@@ -1,0 +1,26 @@
+{
+  "name": "vuex-superstore",
+  "version": "1.0.0",
+  "description": "VueJS / Vuex plugin providing Local Storage hydration, sync and reset ",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davestewart/vuex-superstore.git"
+  },
+  "keywords": [
+    "vuex",
+    "store"
+  ],
+  "author": "Dave Stewart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davestewart/vuex-superstore/issues"
+  },
+  "homepage": "https://github.com/davestewart/vuex-superstore#readme"
+}
