@@ -1,7 +1,7 @@
 {
   "name": "vuex-superstore",
   "version": "1.0.0",
-  "description": "VueJS / Vuex plugin providing Local Storage hydration, sync and reset ",
+  "description": "VueJS / Vuex plugin providing Local Storage hydration, sync, and clear",
   "main": "index.js",
   "files": [
     "index.js"
