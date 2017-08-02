@@ -1,49 +1,45 @@
 const storage = window.localStorage
 
+function load (key) {
+  return JSON.parse(storage.getItem(key) || '{}')
+}
+
 /**
  * Vuex plugin to hydrate, sync and clear state to/from local storage
  *
  * @param   {string}  key   An optional local storage item name
  */
 function Superstore (key = 'vuex') {
+
   Object.assign(this, {
 
     /**
-     * Load and return local data
+     * Load data from local storage and hydrate module states
      *
-     * @returns {Object}
+     * @param   {Object}  modules   The hash of module definitions
+     * @returns {Object}            The updated modules
      */
-    load () {
-      return JSON.parse(storage.getItem(key) || '{}')
-    },
-
-    /**
-     * Hydrate initial Vuex modules from local storage
-     *
-     * To hydrate custom classes within each module, add a custom hydrate() method
-     * to each module's exported definition, and modify the passed state as required
-     *
-     * @param   {Object}  modules   The hash of Vuex modules
-     * @returns {Object}
-     */
-    hydrate (modules) {
-      const values = this.load()
-      Object.keys(modules).forEach(name => {
-        const module = modules[name]
-        if ('state' in module && name in values) {
-          if (module['hydrate'] instanceof Function) {
-            values[name] = module.hydrate(values[name])
+    load (modules) {
+      const states = load(key)
+      Object
+        .keys(modules)
+        .forEach(name => {
+          const module = modules[name]
+          let state = states[name]
+          if (module.state && state) {
+            if (module.hydrate instanceof Function) {
+              module.hydrate(state)
+            }
+            Object.assign(module.state, state)
           }
-          Object.assign(module.state, values[name])
-        }
-      })
+        })
       return modules
     },
 
     /**
      * Vuex mutation handler; assign to Store plugins array
      *
-     * @param {Object} store  The store to save to local storage
+     * @param   {Object}  store     The store to save to local storage
      */
     save (store) {
       store.subscribe((mutation, state) => {
@@ -52,10 +48,10 @@ function Superstore (key = 'vuex') {
     },
 
     /**
-     * Clear local storage data
+     * Clear stored data
      */
     clear () {
-      storage.clear()
+      storage.removeItem(key)
     },
   })
 }
