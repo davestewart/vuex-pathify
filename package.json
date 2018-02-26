@@ -2,11 +2,13 @@
   "name": "vuex-superstore",
   "version": "1.0.0",
   "description": "VueJS / Vuex plugin providing Local Storage hydration, sync, and clear",
-  "main": "index.js",
+  "main": "src/main.js",
   "files": [
     "index.js"
   ],
   "scripts": {
+    "dev": "rollup -c build/rollup.js -w",
+    "build": "rollup -c build/rollup.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,12 +21,16 @@
   ],
   "author": "Dave Stewart",
   "license": "MIT",
+  "homepage": "https://github.com/davestewart/vuex-superstore#readme",
   "bugs": {
     "url": "https://github.com/davestewart/vuex-superstore/issues"
   },
-  "homepage": "https://github.com/davestewart/vuex-superstore#readme",
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
+  },
   "devDependencies": {
-    "vue": "^2.4.2",
-    "vuex": "^2.3.1"
+    "rollup-plugin-buble": "^0.19.1",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-uglify": "^3.0.0"
   }
 }
