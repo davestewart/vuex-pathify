@@ -35,7 +35,7 @@ export function getAccessor (source, path) {
  * @param   {string|Array|Object}  [path]   The optional path to a sub-property
  * @returns {*}
  */
-export function getValue (obj, path) {
+export function getValue (obj, path, ...args) {
   let value = obj
   const keys = getKeys(path)
   keys.every(function (key) {

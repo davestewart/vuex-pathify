@@ -1,14 +1,15 @@
 // helpers
 import { aliasMutations, aliasState, makeGetters, makeMutations } from './helpers/store'
 import { get, getSome, set, sync, syncSome } from './helpers/component'
+import formatters from './utils/formatters'
 
 // plugins
 import initial from './plugins/initial'
+import persist from './plugins/persist'
 import accessors from './plugins/accessors'
-import storage from './plugins/storage'
 
 // settings
-import settings from './utils/settings'
+import settings from './settings'
 
 export {
   // store
@@ -26,9 +27,10 @@ export {
 
   // plugins
   initial,
-  storage,
+  persist,
   accessors,
 
   // settings
-  settings
+  settings,
+  formatters
 }
