@@ -1,6 +1,7 @@
+import settings from '../settings'
+import formatters from '../utils/formatters'
 import { Payload } from '../utils/accessors'
-import { getValue, setValue } from '../utils/store'
-import { getKeys } from '../utils/object'
+import { getKeys, getValue, setValue } from '../utils/object'
 
 /**
  * Utility function to mass-create default getter functions for an existing state object

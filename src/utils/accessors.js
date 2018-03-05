@@ -1,4 +1,5 @@
-import { getAccessor, getValue, setValue } from './store'
+import { getKeys, getValue, setValue } from './object'
+import settings from '../settings'
 
 /**
  * Gets data from the store via a path, automatically using getters or state

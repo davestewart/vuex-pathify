@@ -3,7 +3,7 @@ export default {
     return name => name
   },
 
-  camel: function prefix (prefix = '') {
+  camel: function (prefix = '') {
     return name => prefix + name
       .replace(/\w/, c => c.toUpperCase())
   },

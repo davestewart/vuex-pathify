@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash.clonedeep'
 import { isObject } from '../utils/object'
-import { getValue } from '../utils/store'
+import { getValue } from '../utils/object'
 
 /**
  * Store plugin which updates the store object with initial() and reset() methods
