@@ -2,7 +2,7 @@ import { getKeys, getValue, setValue } from './object'
 import settings from '../settings'
 
 /**
- * Parse and convert a path of the format 'foo/bar@a.b.c' into target and object paths
+ * Creates a resolver object that Parse and convert a path of the format 'foo/bar@a.b.c' into target and object paths
  *
  * @param   {string}  path      The
  * @param   {string}  ...types
@@ -46,20 +46,9 @@ function resolve (store, path) {
     // return values
     if(trgPath in member) {
       return {
-        // required
-        value: member[trgPath], // getter value / action or mutation function
-        trgPath,                // 'params/foo'
-        absPath,                // 'params.foo.a.b.c'
-
-        // useful
-        path,                   // 'params/foo@a.b.c'
-        type,                   // 'action'
-        member,                 // getters, _actions, or _mutations object
-
-        // not needed
-        modPath,                // 'params'
-        objPath,                // 'a.b.c'
-        relPath,                // 'foo'
+        member: member,
+        type: trgPath,
+        path: objPath
       }
     }
   }
@@ -68,14 +57,43 @@ function resolve (store, path) {
   return {
     // statePath,
     // objPath,
-    absPath,
+    path: absPath,
     get
   }
 }
 
+/**
+ * Creates a setter function for the store, automatically targeting actions or mutations
+ *
+ * Also supports setting of sub-properties as part of the path
+ *
+ * @see documentation for more detail
+ *
+ * @param   {Object}  store   The store object
+ * @param   {string}  path    The path to the target node
+ * @returns {*|Promise}       The return value from the commit() or dispatch()
+ */
+export function makeSetter (store, path) {
+  const resolver = resolve(store, path)
+  const action = resolver.get('action')
+  if (action) {
+    return function (value) {
+      return store.dispatch(action.type, value)
+    }
+  }
+  const mutation = resolver.get('mutation')
+  if (mutation) {
+    return function (value) {
+      return store.commit(mutation.type, mutation.path
+        ? new Payload(mutation.path, value)
+        : value)
+    }
+  }
+  console.warn(`[vuex-superstore]: invalid setter path '${path}' (could not find associated action / mutation)`)
+}
 
 /**
- * Gets data from the store via a path, automatically using getters or state
+ * Creates a getter function for the store, automatically targeting getters or state
  *
  * Also supports returning of sub-properties as part of the path
  *
@@ -85,46 +103,23 @@ function resolve (store, path) {
  * @param   {string}  path    The path to the target node
  * @returns {*|Function}      The state value or getter function
  */
-export function getData (store, path, ...args) {
+export function makeGetter (store, path) {
   const resolver = resolve(store, path)
   const getter = resolver.get('getter')
   if (getter) {
-    let { objPath, value } = getter
-    if (objPath) {
-      value = getValue(value, objPath)
+    return function (...args) {
+      let value = getter.member[getter.type]
+      if (getter.path) {
+        value = getValue(value, getter.path)
+      }
+      return value instanceof Function
+        ? value(...args)
+        : value
     }
-    return value instanceof Function
-      ? value(...args)
-      : value
   }
-  return getValue(store.state, resolver.absPath)
-}
-
-/**
- * Sets data on the store via a path, automatically using actions or mutations
- *
- * Also supports setting of sub-properties as part of the path
- *
- * @see documentation for more detail
- *
- * @param   {Object}  store   The store object
- * @param   {string}  path    The path to the target node
- * @param   {*}       value   The value to set
- * @returns {*|Promise}       The return value from the commit() or dispatch()
- */
-export function setData (store, path, value) {
-  const resolver = resolve(store, path)
-  const action = resolver.get('action')
-  if (action) {
-    return store.dispatch(action.trgPath, value)
+  return function () {
+    return getValue(store.state, resolver.path)
   }
-  const mutation = resolver.get('mutation')
-  if (mutation) {
-    const { trgPath, objPath } = mutation
-    return store.commit(trgPath, Payload.create(objPath, value))
-  }
-  console.warn(`[vuex-superstore]: invalid setter path '${path}' (could not find associated action / mutation)`)
-  return false
 }
 
 /**
@@ -135,20 +130,4 @@ export class Payload {
     this.path = path
     this.value = value
   }
-}
-
-/**
- * Utility function to return a Payload or value, depending on the input path
- *
- * - paths without sub-keys return the original value
- * - paths with sub keys return a Payload to be used in commit() methods
- *
- * @param   {*}         value
- * @param   {Array}     keys
- * @returns {Payload|*}
- */
-Payload.create = function (path, value) {
-  return path
-    ? new Payload(path, value)
-    : value
 }
