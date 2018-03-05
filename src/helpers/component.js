@@ -1,4 +1,4 @@
-import { getData, setData } from '../utils/accessors'
+import { makeGetter, makeSetter } from '../utils/accessors'
 import { isObject } from '../utils/object'
 
 /**
@@ -25,13 +25,16 @@ export function sync (getter, setter) {
  * @returns {Object}                  a single get/set Object
  */
 export function get (path) {
-  return function () {
+  let getter
+  return function (...args) {
     if (!this.$store) {
-      throw new Error(`[Superstore] Unexpected condition: this.$store is undefined.
-
-This is a known edge case with some setup and will cause future lookups to fail`)
+      throw new Error('[Superstore] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
     }
-    return getData(this.$store, path)
+    if (!getter) {
+      console.log('making getter!')
+      getter = makeGetter(this.$store, path)
+    }
+    return getter(...args)
   }
 }
 
@@ -42,10 +45,13 @@ This is a known edge case with some setup and will cause future lookups to fail`
  * @returns {Function}                a single setter function
  */
 export function set (path) {
+  let setter
   return function (value) {
-    const result = setData(this.$store, path, value)
+    if (!setter) {
+      setter = makeSetter(this.$store, path)
+    }
     this.$nextTick(() => this.$emit('sync', path, value))
-    return result
+    return setter(value)
   }
 }
 
