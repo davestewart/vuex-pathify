@@ -31,7 +31,6 @@ export function get (path) {
       throw new Error('[Superstore] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
     }
     if (!getter) {
-      console.log('making getter!')
       getter = makeGetter(this.$store, path)
     }
     return getter(...args)
