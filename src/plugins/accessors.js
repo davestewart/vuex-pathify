@@ -21,15 +21,26 @@ export default function (store) {
   }
 
   /**
+   * Get a property on the store, automatically using actions or mutations
+   *
+   * @param   {string}        path    The path to the store element
+   * @param   {boolean}       clone   An optional flag to return a deep clone of the data
+   * @returns {*|undefined}           The value, or undefined
+   */
+  store.get = function (path, ...args) {
+    return getData(store, path, ...args)
+  }
+
+  /**
    * Set a property on the store, automatically using actions or mutations
    *
    * @param   {string}        path    The path to the store element
    * @param   {boolean}       clone   An optional flag to return a deep clone of the data
    * @returns {*|undefined}           The value, or undefined
    */
-  store.get = function (path, clone) {
-    const value = getData(store, path)
-    return clone && isObject(value)
+  store.copy = function (path, ...args) {
+    const value = getData(store, path, ...args)
+    return isObject(value)
       ? cloneDeep(value)
       : value
   }
