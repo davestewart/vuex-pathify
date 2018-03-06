@@ -1,5 +1,5 @@
 // helpers
-import { aliasMutations, aliasState, makeGetters, makeMutations, makeActions } from './helpers/store'
+import { makeGetters, makeMutations, makeActions } from './helpers/store'
 import { get, getSome, set, sync, syncSome } from './helpers/component'
 import formatters from './utils/formatters'
 
@@ -22,8 +22,6 @@ export {
   makeGetters,
   makeMutations,
   makeActions,
-  aliasState,
-  aliasMutations,
 
   // computed
   sync,

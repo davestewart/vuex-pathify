@@ -34,31 +34,6 @@ export function makeGetters (state, only) {
 }
 
 /**
- * Utility function to alias state properties as getters
- *
- * @example aliasing a sub-property
- *
- *   const getters = {
- *     ...aliasState(state, {
- *       qux: 'foo.qux'
- *     })
- *   }
- *
- * @param   {Object}    state     State object from which to alias names
- * @param   {Object}   [aliases]  Hash of alias:state path pairs to pull state from
- */
-export function aliasState (state, aliases) {
-  return getKeys(aliases)
-    .reduce(function (obj, key) {
-      const path = aliases[key]
-      obj[key] = function (state, value) {
-        return getValue(state, path, value)
-      }
-      return obj
-    }, {})
-}
-
-/**
  * Utility function to mass-create default mutation functions for an existing state object
  *
  * @example creating only 2 mutations
@@ -79,32 +54,6 @@ export function makeMutations (state, only) {
         value instanceof Payload
           ? value.setValue(state[key])
           : state[key] = value
-      }
-      return obj
-    }, {})
-}
-
-/**
- * Utility function to alias mutation functions for a Store object
- *
- * @example aliasing mutation of sub-property
- *
- *   const mutations = {
- *     ...aliasMutations(state, {
- *       qux: 'foo.qux'
- *     })
- *   }
- *
- * @param   {Object}    state     State object from which to grab key names
- * @param   {Object}   [aliases]  Hash of alias:mutation path pairs to commit values to
- */
-export function aliasMutations (state, aliases) {
-  return getKeys(aliases)
-    .reduce(function (obj, key) {
-      const path = aliases[key]
-      obj[key] = function (state, value) {
-        setValue(state, path, value)
-        return state
       }
       return obj
     }, {})
