@@ -1,10 +1,10 @@
 import settings from '../settings'
 import formatters from '../utils/formatters'
 import { Payload } from '../utils/accessors'
-import { getKeys, setValue } from '../utils/object'
+import { getKeys } from '../utils/object'
 
 function formatter (name) {
-  return settings.formatters[name] || formatters.none
+  return settings.resolvers[name] || formatters.none
 }
 
 /**

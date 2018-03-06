@@ -1,7 +1,8 @@
-import { getValue, setValue } from './object'
+import { hasValue, getValue, setValue } from './object'
 import settings from '../settings'
 
 const members = {
+  state: 'state',
   getter: 'getters',
   action: '_actions',
   mutation: '_mutations',
@@ -29,12 +30,12 @@ function resolve (store, path) {
 
   // throw error if module does not exist
   if (modPath && !store._modulesNamespaceMap[modPath + '/']) {
-    throw new Error(`[vuex-superstore]: Unknown module '${modPath}' via path '${path}'`)
+    throw new Error(`[Vuex Superstore]: Unknown module '${modPath}' via path '${path}'`)
   }
 
   // throw error if illegal deep access
   if (!settings.deep && objPath) {
-    throw new Error(`[vuex-superstore]: Illegal attempt to access deep property via path '${path}'`)
+    throw new Error(`[Vuex Superstore]: Illegal attempt to access deep property via path '${path}'`)
   }
 
   // state
@@ -43,7 +44,7 @@ function resolve (store, path) {
   // getter
   const get = type => {
     // resolve target name, i.e. SET_VALUE
-    const formatter = settings.formatters[type]
+    const formatter = settings.resolvers[type]
     const relPath = formatter
       ? formatter(target)
       : target
@@ -55,12 +56,13 @@ function resolve (store, path) {
       : relPath
 
     // return values
-    if(trgPath in member) {
-      return {
-        member: member,
-        type: trgPath,
-        path: objPath
-      }
+    return {
+      exists: type === 'state'
+        ? hasValue(member, trgPath)
+        : trgPath in member,
+      member: member,
+      type: trgPath,
+      path: objPath
     }
   }
 
@@ -84,21 +86,23 @@ function resolve (store, path) {
  */
 export function makeSetter (store, path) {
   const resolver = resolve(store, path)
+
   const action = resolver.get('action')
-  if (action) {
+  if (action.exists) {
     return function (value) {
       return store.dispatch(action.type, value)
     }
   }
+
   const mutation = resolver.get('mutation')
-  if (mutation) {
+  if (mutation.exists) {
     return function (value) {
       return store.commit(mutation.type, mutation.path
         ? new Payload(mutation.path, value)
         : value)
     }
   }
-  console.warn(`[vuex-superstore]: invalid setter path '${path}' (could not find associated action / mutation)`)
+  console.warn(`[Vuex Superstore]: Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
 }
 
 /**
@@ -114,8 +118,9 @@ export function makeSetter (store, path) {
  */
 export function makeGetter (store, path) {
   const resolver = resolve(store, path)
+
   const getter = resolver.get('getter')
-  if (getter) {
+  if (getter.exists) {
     return function (...args) {
       let value = getter.member[getter.type]
       if (getter.path) {
@@ -126,9 +131,15 @@ export function makeGetter (store, path) {
         : value
     }
   }
-  return function () {
-    return getValue(store.state, resolver.path)
+
+  const state = resolver.get('state')
+  if (state.exists) {
+    return function () {
+      return getValue(store.state, resolver.path)
+    }
   }
+
+  console.warn(`[Vuex Superstore]: Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
 }
 
 /**

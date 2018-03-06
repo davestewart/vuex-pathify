@@ -67,7 +67,7 @@ export function getKeys (value) {
 }
 
 /**
- * Gets a value from an object, based on a path to the property, or if no path is passed
+ * Gets a value from an object, based on a path to the property
  *
  * @param   {Object}                obj     The Object to get the value from
  * @param   {string|Array|Object}  [path]   The optional path to a sub-property
@@ -104,4 +104,22 @@ export function setValue (source, path, value) {
     obj[key] = value
   }
   return source
+}
+
+/**
+ * Checks an object has a property, based on a path to the property
+ *
+ * @param   {Object}                source  The Object to set the value on
+ * @param   {string|Array|Object}   path    The path to a sub-property
+ * @returns {Object}                        The original source object
+ */
+export function hasValue (source, path) {
+  let key
+  let keys = getKeys(path)
+  let obj = source
+  while (obj && keys.length > 1) {
+    obj = obj[keys.shift()]
+  }
+  key = keys.shift()
+  return obj && obj.hasOwnProperty(key)
 }
