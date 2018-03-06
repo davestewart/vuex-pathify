@@ -41,35 +41,32 @@ function resolve (store, path) {
   // state
   const absPath = path.replace(/[/@]/g, '.')
 
-  // getter
-  const get = type => {
-    // resolve target name, i.e. SET_VALUE
-    const formatter = settings.resolvers[type]
-    const relPath = formatter
-      ? formatter(target)
-      : target
-
-    // member variables, i.e. store._getters['module/SET_VALUE']
-    const member = store[members[type]]
-    const trgPath = modPath
-      ? modPath + '/' + relPath
-      : relPath
-
-    // return values
-    return {
-      exists: type === 'state'
-        ? hasValue(member, trgPath)
-        : trgPath in member,
-      member: member,
-      type: trgPath,
-      path: objPath
-    }
-  }
-
   // resolve targets
   return {
     path: absPath,
-    get
+    get: function (type) {
+      // resolve target name, i.e. SET_VALUE
+      const formatter = settings.resolvers[type]
+      const relPath = formatter
+        ? formatter(target)
+        : target
+
+      // member variables, i.e. store._getters['module/SET_VALUE']
+      const member = store[members[type]]
+      const trgPath = modPath
+        ? modPath + '/' + relPath
+        : relPath
+
+      // return values
+      return {
+        exists: type === 'state'
+          ? hasValue(member, trgPath)
+          : trgPath in member,
+        member: member,
+        type: trgPath,
+        path: objPath
+      }
+    }
   }
 }
 
