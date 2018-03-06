@@ -1,13 +1,23 @@
+// plugin
 import cloneDeep from 'lodash.clonedeep'
 import { isObject } from '../utils/object'
 import { makeGetter, makeSetter} from '../utils/accessors'
+import vuex from '../helpers/vuex'
+
+// settings
+import settings from './settings'
+import formatters from '../utils/formatters'
+import debug from '../utils/debug'
 
 /**
  * Store plugin which updates the store object with set() and get() methods
  *
  * @param {Object} store  The store object
  */
-export default function (store) {
+function plugin (store) {
+
+  // initialize plugin
+  vuex.store = store
 
   /**
    * Set a property on the store, automatically using actions or mutations
@@ -51,4 +61,11 @@ export default function (store) {
       : value
   }
 
+}
+
+export default {
+  settings,
+  formatters,
+  plugin,
+  debug,
 }

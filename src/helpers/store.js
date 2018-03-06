@@ -1,7 +1,7 @@
-import settings from '../settings'
 import formatters from '../utils/formatters'
 import { Payload } from '../utils/accessors'
 import { getKeys } from '../utils/object'
+import settings from '../plugin/settings'
 
 function formatter (name) {
   return settings.resolvers[name] || formatters.none

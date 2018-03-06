@@ -1,4 +1,4 @@
-import formatters from './utils/formatters'
+import formatters from '../utils/formatters'
 
 export default {
   // throw error if accesssing an undefined property

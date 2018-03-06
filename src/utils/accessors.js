@@ -1,5 +1,5 @@
 import { hasValue, getValue, setValue } from './object'
-import settings from '../settings'
+import settings from '../plugin/settings'
 
 const members = {
   state: 'state',
@@ -11,9 +11,9 @@ const members = {
 /**
  * Creates a resolver object that Parse and convert a path of the format 'foo/bar@a.b.c' into target and object paths
  *
- * @param   {string}  path      The
- * @param   {string}  ...types
- * @returns {{trgPath: string, objPath: string}}
+ * @param   {object}  store     The Vuex store instance
+ * @param   {string}  path      The pathify path to the store target
+ * @returns {object}
  */
 function resolve (store, path) {
   // paths
@@ -30,12 +30,12 @@ function resolve (store, path) {
 
   // throw error if module does not exist
   if (modPath && !store._modulesNamespaceMap[modPath + '/']) {
-    throw new Error(`[Vuex Superstore]: Unknown module '${modPath}' via path '${path}'`)
+    throw new Error(`[Vuex Pathify]: Unknown module '${modPath}' via path '${path}'`)
   }
 
   // throw error if illegal deep access
   if (!settings.deep && objPath) {
-    throw new Error(`[Vuex Superstore]: Illegal attempt to access deep property via path '${path}'`)
+    throw new Error(`[Vuex Pathify]: Illegal attempt to access deep property via path '${path}'`)
   }
 
   // state
@@ -46,9 +46,9 @@ function resolve (store, path) {
     path: absPath,
     get: function (type) {
       // resolve target name, i.e. SET_VALUE
-      const formatter = settings.resolvers[type]
-      const relPath = formatter
-        ? formatter(target)
+      const resolver = settings.resolvers[type]
+      const relPath = resolver
+        ? resolver(target)
         : target
 
       // member variables, i.e. store._getters['module/SET_VALUE']
@@ -99,7 +99,7 @@ export function makeSetter (store, path) {
         : value)
     }
   }
-  console.warn(`[Vuex Superstore]: Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
+  console.warn(`[Vuex Pathify]: Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
 }
 
 /**
@@ -136,7 +136,7 @@ export function makeGetter (store, path) {
     }
   }
 
-  console.warn(`[Vuex Superstore]: Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
+  console.warn(`[Vuex Pathify]: Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
 }
 
 /**
