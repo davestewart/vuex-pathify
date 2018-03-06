@@ -1,7 +1,7 @@
 import settings from '../settings'
 import formatters from '../utils/formatters'
 import { Payload } from '../utils/accessors'
-import { getKeys, getValue, setValue } from '../utils/object'
+import { getKeys, setValue } from '../utils/object'
 
 function formatter (name) {
   return settings.formatters[name] || formatters.none
@@ -77,7 +77,7 @@ export function makeMutations (state, only) {
       const name = format(key)
       obj[name] = function (state, value) {
         value instanceof Payload
-          ? setValue(state[key], value.path, value.value)
+          ? value.setValue(state[key])
           : state[key] = value
       }
       return obj

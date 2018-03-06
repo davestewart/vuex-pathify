@@ -1,5 +1,11 @@
-import { getKeys, getValue, setValue } from './object'
+import { getValue, setValue } from './object'
 import settings from '../settings'
+
+const members = {
+  getter: 'getters',
+  action: '_actions',
+  mutation: '_mutations',
+}
 
 /**
  * Creates a resolver object that Parse and convert a path of the format 'foo/bar@a.b.c' into target and object paths
@@ -9,27 +15,30 @@ import settings from '../settings'
  * @returns {{trgPath: string, objPath: string}}
  */
 function resolve (store, path) {
-  let [statePath, objPath] = path.split('@')
+  // paths
+  const [statePath, objPath] = path.split('@')
 
-  // warn over deep access
+  // module
+  let modPath = null
+  let target = statePath
+  if (statePath.includes('/')) {
+    const keys = statePath.split('/')
+    target = keys.pop()
+    modPath = keys.join('/')
+  }
+
+  // throw error if module does not exist
+  if (modPath && !store._modulesNamespaceMap[modPath + '/']) {
+    throw new Error(`[vuex-superstore]: Unknown module '${modPath}' via path '${path}'`)
+  }
+
+  // throw error if illegal deep access
   if (!settings.deep && objPath) {
-    throw new Error(`[vuex-superstore]: Illegal attempt to access deep property via '${path}'`)
+    throw new Error(`[vuex-superstore]: Illegal attempt to access deep property via path '${path}'`)
   }
 
-  // work out path
-  const keys = getKeys(statePath)
-  const target = keys.pop()
-  const modPath = keys.join('/')
-  const absPath = (objPath
-    ? (statePath + '.' + objPath)
-    : statePath).replace(/\//g, '.')
-
-  // lookup
-  const lookup = {
-    getter: 'getters',
-    action: '_actions',
-    mutation: '_mutations',
-  }
+  // state
+  const absPath = path.replace(/[/@]/g, '.')
 
   // getter
   const get = type => {
@@ -40,8 +49,10 @@ function resolve (store, path) {
       : target
 
     // member variables, i.e. store._getters['module/SET_VALUE']
-    const member = store[lookup[type]]
-    const trgPath = modPath + '/' + relPath
+    const member = store[members[type]]
+    const trgPath = modPath
+      ? modPath + '/' + relPath
+      : relPath
 
     // return values
     if(trgPath in member) {
@@ -55,8 +66,6 @@ function resolve (store, path) {
 
   // resolve targets
   return {
-    // statePath,
-    // objPath,
     path: absPath,
     get
   }
@@ -130,4 +139,8 @@ export class Payload {
     this.path = path
     this.value = value
   }
+}
+
+Payload.prototype.setValue = function (state) {
+  setValue(state, this.path, this.value)
 }
