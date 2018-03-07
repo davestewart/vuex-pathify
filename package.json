@@ -1,7 +1,7 @@
 {
-  "name": "vuex-superstore",
-  "version": "1.0.0",
-  "description": "VueJS / Vuex plugin providing Local Storage hydration, sync, and clear",
+  "name": "vuex-pathify",
+  "version": "1.0.0-alpha.1",
+  "description": "Vue / Vuex plugin providing a unified path syntax to Vuex stores",
   "main": "src/main.js",
   "files": [
     "index.js"
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davestewart/vuex-superstore.git"
+    "url": "git+https://github.com/davestewart/vuex-pathify.git"
   },
   "keywords": [
     "vuex",
@@ -21,9 +21,9 @@
   ],
   "author": "Dave Stewart",
   "license": "MIT",
-  "homepage": "https://github.com/davestewart/vuex-superstore#readme",
+  "homepage": "https://github.com/davestewart/vuex-pathify#readme",
   "bugs": {
-    "url": "https://github.com/davestewart/vuex-superstore/issues"
+    "url": "https://github.com/davestewart/vuex-pathify/issues"
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0"
