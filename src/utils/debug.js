@@ -1,10 +1,8 @@
 import settings from '../plugin/settings'
+import { resolveName } from './accessors'
 
-function getFormat (type, value = 'value') {
-  const resolver = settings.resolvers[type]
-  return resolver
-    ? resolver(value)
-    : value
+function resolve (type) {
+  return resolveName(type, 'value')
 }
 
 export default function debug () {
@@ -13,14 +11,14 @@ export default function debug () {
 
   Settings
 -------------------------------
-  deep      : ${settings.deep}
-  strict    : ${settings.strict}
+  deep       : ${settings.deep}
+  strict     : ${settings.strict}
 
   Resolver formats
 -------------------------------
-  getters   : "${getFormat('getter')}"
-  actions   : "${getFormat('action')}"
-  mutations : "${getFormat('mutation')}"
+  getters    : ${resolve('getters')}
+  actions    : ${resolve('actions')}
+  mutations  : ${resolve('mutations')}
 
 
 `)

@@ -1,18 +1,10 @@
-import formatters from '../utils/formatters'
-
 export default {
-  // throw error if accesssing an undefined property
-  strict: true,
-
   // allow deep access into vuex objects
   deep: true,
 
-  // resolver functions
-  resolvers: {
-    getter: formatters.none(),
-    action: formatters.camel('set'),
-    mutation: formatters.const('set'),
-  }
-}
+  // throw error if store member cannot be found
+  strict: true,
 
-window.formatters = formatters
+  // custom store member resolver function
+  resolver: null,
+}

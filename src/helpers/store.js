@@ -1,11 +1,5 @@
-import formatters from '../utils/formatters'
-import { Payload } from '../utils/accessors'
+import { Payload, resolveName } from '../utils/accessors'
 import { getKeys } from '../utils/object'
-import settings from '../plugin/settings'
-
-function formatter (name) {
-  return settings.resolvers[name] || formatters.none
-}
 
 /**
  * Utility function to mass-create default getter functions for an existing state object
@@ -22,11 +16,10 @@ function formatter (name) {
  * @param   {String|Array}   [only]   Optional filter value to grab only certain keys. Can be an Array or string of names
  */
 export function makeGetters (state, only) {
-  const format = formatter('getter')
   return getKeys(only || state)
     .reduce(function (obj, key) {
-      const name = format(key)
-      obj[name] = function (state) {
+      const getter = resolveName('getters', key)
+      obj[getter] = function (state) {
         return state[key]
       }
       return obj
@@ -46,11 +39,10 @@ export function makeGetters (state, only) {
  * @param   {String|Array}  [only]  Optional filter value to grab only certain keys. Can be an Array or string of names
  */
 export function makeMutations (state, only) {
-  const format = formatter('mutation')
   return getKeys(only || state)
     .reduce(function (obj, key) {
-      const name = format(key)
-      obj[name] = function (state, value) {
+      const mutation = resolveName('mutations', key)
+      obj[mutation] = function (state, value) {
         value instanceof Payload
           ? value.setValue(state[key])
           : state[key] = value
@@ -67,14 +59,12 @@ export function makeMutations (state, only) {
  * @param   {String|Array}   [only]   Optional filter value to grab only certain keys. Can be an Array or string of names
  */
 export function makeActions (state, only) {
-  const aFormat = formatter('action')
-  const mFormat = formatter('mutation')
   return getKeys(only || state)
     .reduce(function (obj, key) {
-      const aName = aFormat(key)
-      const mName = mFormat(key)
-      obj[aName] = function ({commit}, value) {
-        commit(mName, value)
+      const action = resolveName('actions', key)
+      const mutation = resolveName('mutations', key)
+      obj[action] = function ({commit}, value) {
+        commit(mutation, value)
       }
       return obj
     }, {})
