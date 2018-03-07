@@ -1,47 +1,77 @@
 # Vuex Pathify
 
-> Vue / Vuex plugin providing a unified path syntax to Vuex stores
-
 ## Overview
 
-Vuex Pathify is a Vuex plugin that provides a familiar, consistent and powerful read/write path access to your Vuex stores.
+Pathify provides intuitive, one-liner `path/to/property` read + write access to Vuex stores.
+
+<img src="https://cdn.vox-cdn.com/uploads/chorus_image/image/49494383/code.0.jpg" width="888" />
+
+The package (+ helpers) solve several inherent Vuex problems:
+
+- inconsistent interface for state, getters, mutations and actions
+- store bloat resulting from "pass-through" mutations, getters and actions
+- component bloat from 2-way component binding
+
+In practical terms, Pathify makes for intuitive, consistent store access, leaner stores, and simpler component wiring.
+
+
+## Usage 
 
 ### Store access
 
-You can pull items from the store using simple path syntax:
+You can pull values from the store using familiar path syntax:
 
 ```js
 const items = store.get('products/items')
 ```
 
-More powerfully, you can write to the store using the same syntax:
+More powerfully, you can write to the store the same way:
 
 ```js
 store.set('products/items', data)
 ```
 
-### Deep property access
-
-You can use the `@` operator to read or write sub properties:
+You can even get copies of items:
 
 ```js
-store.set('products/sort@order', 'ASC')
+const copies = store.copy('products/items')
 ```
 
-(See `makeMutations` further down the page for more info)
+Pathify automatically determines whether to pull `state` or `getters`, or call `actions` or `mutations`.
+
+See the [config]() section for more information.
+
+### Deep property access
+
+Use the `@` operator and dot-syntax to read or write sub properties:
+
+```js
+store.set('products/params@sort.order', 'ASC')
+```
 
 ### Component helpers
 
-Component helpers allow you to get, set and sync computed properties in one line: 
+Component helpers allow you to `get`, `set` and `sync` computed properties in one line: 
 
 ```js
 computed: {
-    results: get('products/items'),
-    filter: sync('products/filter')
+    filter: sync('products/filter'),
+    results: get('products/items')
 }
 ```
 
-Easily map multiple properties at once, change names, even read/write sub-keys:
+You can use `getSome` and `syncSome` to easily map multiple properties at once:
+
+```js
+computed: {
+    ...getSome('products', [
+        'items',
+        'filter',
+    ]),
+}
+``` 
+
+Use the `object` format to change names, even read/write sub-keys:
 
 ```js
 computed: {
@@ -54,7 +84,9 @@ computed: {
 
 ### Store helpers
 
-Store helpers remove the need to create endless store boilerplate. Rather than write tedious and repetitive `mutations` by hand, have Pathify convert your state into functions for you:
+Store helpers exist to remove boilerplate.
+
+Consider the following setup, where 3 mutations need to be written:
 
 ```js
 const state = {
@@ -63,10 +95,17 @@ const state = {
     baz: null,
 }
 ```
+
+The `makeMutations` helper will create all required functions, including **deep-set** functionality:
+
 ```js
-const mutations = makeMutations(state) // can also filter keys
+const mutations = makeMutations(state)
 ```
-```
+
+By hand, you would have had to manually write the following (lacking deep-set-ability!):
+
+```js
+const mutations =
 {
     SET_FOO: (state, value) => state.foo = value,
     SET_BAR: (state, value) => state.bar = value,
@@ -74,113 +113,67 @@ const mutations = makeMutations(state) // can also filter keys
 }
 ```
 
-The associated helpers also exist for `getters` and `actions` but with Pathify's automatic member resolution, there isn't much need to.
+The API docs offer additional information, including skipping properties, and mixing in additional functions. 
 
+The package also includes `makeGetters` and `makeActions` helpers, though [their necessity is reduced]() due to Pathify's automatic member resolution.
 
-## Pathify deep dive
+### Member name resolution
 
-### Automatic member resolution
+Pathify maps intentions such as `set()` with paths such as `"foo/bar"` to store members such as `SET_BAR`
 
-Behind the scenes, Pathify determines which `getter`, `mutation` or `dispatch` type to use based on your pre-configured naming scheme:
-
-
-| Type | Scheme | Prefix | Property |
-| :-- | :-- | :-- | :-- |
-| getters | none |  | items |
-| actions | camel | set | setItems |
-| mutations | const | set | SET_ITEMS |
-
-This allows Pathify to target **existing** store members, or as in the helpers example, create **new** store members that match the current naming scheme.
-
-### Automatic state / getter resolution
-
-One of Pathify's design choices is to automatically determine whether to pull from the `state` or `getters`.
-
-In the following example, Pathify prefers the declared `getter` over the identically-named `state` and so returns an array of `ItemModels`.
-
-This setup allows the state to be the "single source of truth" and the getter to be the "transformer" function:
-
+It uses a simple **resolver function** to determine the naming for a target member:
 
 ```js
-const state = {
-    items: [ ... ]
+function resolve (type, name, formatters) {
+  switch(type) {
+    case 'mutations':
+      return formatters.const('set', name) // SET_BAR
+    case 'actions':
+      return formatters.camel('set', name) // setBar
+  }
+  return name // bar
 }
-
-const getters = {
-    items: state => state.items.map(item => new ItemModel(item))
-}
-``` 
-```
-const models = store.get('products/items')
 ```
 
-The same resolution between `actions` and `mutations` is also applied when **setting** values; this is covered in more details in the API docs.
+This function is [designed to be overridden](), so whatever your store-naming strategy, Pathify can work for you.
 
 
 ## Summary
 
-Pathify provides a simple, consistent and powerful facade for Vuex store access, enabling a significant reduction in boilerplate and an increase in code clarity. 
+Pathify abstracts repetitive and often complex Vuex wiring and boilerplate into elegant one-liners, providing a unified and intuitive interface to your Vuex stores.
 
-Essentially: 
+It uses configuration and reflection to create the functions **you would have created anyway** (including decision-making, syntax juggling, automatic member resolution, and deep-setting) yet simplifies the resulting code and practically eliminates boilerplate.
 
-- A simple, consistent, and powerful path syntax
-- Less requirement for `commit` / `dispatch`
-- Less requirement for module `state` / `getter` syntax juggling
-- No more bloated store setup
-- No more bloated component files
-- No more manual wiring
+Essentially, Pathify provides: 
 
-Finally, Pathify is not meant to **completely** replace manual use of `commit` / `dispatch` rather it is supposed to be used where it makes sense:
+- a simple and consistent path syntax
+- transparent member resolution and execution
+- additional superpowers, like deep property access
+- no more bloated components or stores
+- no more repetitious, complex wiring
 
-- Use Pathify `get`, `set` and `sync` for component data access
-- Use Vuex `dispatch` for asynchronous operations
-- Use Vuex `commit` inside actions 
+## Next steps
 
+Check out the demo:
 
+- Demo
 
-## Setup
+Get started:
 
-#### Main
+- Installation
+- Configuration
 
-Import the plugin, your modules, then set up your Vuex store with the Superstore `save()` and `load()` methods:
+The API:
 
+- Store access
+- Store helpers
+- Component helpers
 
-```js
-import Vuex from 'vuex'
-import pathify from 'vuex-pathify'
+Background:
 
-const store = new Vuex.Store({
+- Best practices
+- Code comparisons
+- How it works
+- Rationale
 
-  plugins: [ pathify.plugin ],
-  
-  state,
-  mutations,
-  actions,
-  getters,
-
-  modules {
-    ...
-  },
-})
-```
-
-#### Components / stores
-
-To use the helpers in components and stores, import and use them as required:
-
-```
-// store
-import { makeMutations, makeGetters, makeActions } from 'vuex-pathify
-```
-```
-// components
-import { get, set, sync, getSome, syncSome } from 'vuex-pathify
-```
-
-Additionally, `commit` and `dispatch` are included for importing convenience for when you don't want to (or can't) use automatic member resolution:
-
-```
-// components
-import { commit, dispatch } from 'vuex-pathify
-```
 
