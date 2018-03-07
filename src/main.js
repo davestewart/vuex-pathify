@@ -1,21 +1,10 @@
-// helpers
+import pathify from './plugin/pathify'
+
 import { makeGetters, makeMutations, makeActions } from './helpers/store'
 import { get, getSome, set, sync, syncSome } from './helpers/component'
-import formatters from './utils/formatters'
+import { commit, dispatch } from './helpers/vuex'
 
-// settings
-import settings from './settings'
-
-// plugins
-import initial from './plugins/initial'
-import persist from './plugins/persist'
-import accessors from './plugins/accessors'
-
-const plugins = {
-  initial,
-  persist,
-  accessors,
-}
+export default pathify
 
 export {
   // store
@@ -30,10 +19,7 @@ export {
   getSome,
   set,
 
-  // settings
-  settings,
-  formatters,
-
-  // plugins
-  plugins,
+  // vuex
+  commit,
+  dispatch
 }

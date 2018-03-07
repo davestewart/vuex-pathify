@@ -170,4 +170,3 @@ function makeSome (path, values, fn) {
       return obj
     }, {})
 }
-

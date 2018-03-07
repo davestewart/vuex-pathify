@@ -19,30 +19,6 @@ export function isObject (value) {
 }
 
 /**
- * Merge properties from a src object into a target object, optionally recursively
- *
- * Only copies values which exist in the target, so stale src objects don't overwrite fresh target objects
- *
- * Arrays are treated as values, so NOT iterated over / merged recursively.
- * This behaviour could be changed if required...
- *
- * @param   {Object}    trg     The object to have properties merged into it
- * @param   {Object}    src     The object from which to copy the properties
- * @param   {Boolean}  [deep]   An optional flag to deep-merge
- * @returns {Object}            The updated target object
- */
-export function merge (trg, src, deep = false) {
-  for (let name in trg) {
-    if (isPlainObject(src) && src.hasOwnProperty(name)) {
-      trg[name] = isPlainObject(trg[name]) && deep
-        ? merge(trg[name], src[name])
-        : trg[name] = src[name]
-    }
-  }
-  return trg
-}
-
-/**
  * Gets keys from any value
  *
  * The function returns keys for various types:
