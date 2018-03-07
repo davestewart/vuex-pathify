@@ -2,15 +2,19 @@
   "name": "vuex-pathify",
   "version": "1.0.0-alpha.1",
   "description": "Vue / Vuex plugin providing a unified path syntax to Vuex stores",
-  "main": "src/main.js",
+  "module": "dist/vuex-pathify.esm.js",
+  "jsnext:main": "dist/vuex-pathify.esm.js",
+  "main": "dist/vuex-pathify.js",
   "files": [
-    "index.js"
+    "dist/*"
   ],
   "scripts": {
     "dev": "rollup -c build/rollup.js -w",
     "build": "rollup -c build/rollup.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Dave Stewart <dave@davestewart.io>",
+  "homepage": "https://github.com/davestewart/vuex-pathify#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/davestewart/vuex-pathify.git"
@@ -19,9 +23,7 @@
     "vuex",
     "store"
   ],
-  "author": "Dave Stewart",
   "license": "MIT",
-  "homepage": "https://github.com/davestewart/vuex-pathify#readme",
   "bugs": {
     "url": "https://github.com/davestewart/vuex-pathify/issues"
   },
