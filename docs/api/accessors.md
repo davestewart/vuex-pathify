@@ -1,0 +1,4 @@
+# Global store accessors plugin
+
+
+
