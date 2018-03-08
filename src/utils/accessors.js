@@ -130,7 +130,9 @@ export function makeSetter (store, path) {
         : value)
     }
   }
-  console.warn(`[Vuex Pathify]: Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(`[Vuex Pathify] Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
+  }
 }
 
 /**
@@ -166,8 +168,9 @@ export function makeGetter (store, path) {
       return getValue(store.state, resolver.path)
     }
   }
-
-  console.warn(`[Vuex Pathify]: Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(`[Vuex Pathify] Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
+  }
 }
 
 /**

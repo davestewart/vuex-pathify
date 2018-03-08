@@ -20,6 +20,5 @@ export default function debug () {
   actions    : ${resolve('actions')}
   mutations  : ${resolve('mutations')}
 
-
 `)
 }

@@ -1,11 +1,15 @@
 const vuex = {
   store: {
     commit () {
-      console.warn('[Vuex Pathify]: Plugin not initialized!')
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('[Vuex Pathify] Plugin not initialized!')
+      }
     },
 
     dispatch () {
-      console.warn('[Vuex Pathify]: Plugin not initialized!')
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('[Vuex Pathify] Plugin not initialized!')
+      }
     }
   }
 }
