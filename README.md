@@ -2,17 +2,18 @@
 
 ## Overview
 
-Pathify provides intuitive, one-liner `path/to/property` read + write access to Vuex stores.
+Pathify provides intuitive `path/to/property` read + write access to Vuex stores.
 
 <img src="https://cdn.vox-cdn.com/uploads/chorus_image/image/49494383/code.0.jpg" width="888" />
 
-The package (+ helpers) solve several inherent Vuex problems:
+The package (+ helpers) solve several everyday Vuex issues:
 
 - inconsistent interface for state, getters, mutations and actions
 - store bloat resulting from "pass-through" mutations, getters and actions
 - component bloat from 2-way component binding
+- general code verbosity
 
-In practical terms, Pathify makes for intuitive, consistent store access, leaner stores, and simpler component wiring.
+In practical terms, Pathify is makes for intuitive, consistent store access, leaner stores, and one-liner component wiring.
 
 
 ## Usage 
