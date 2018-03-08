@@ -1,8 +1,8 @@
-import settings from '../plugin/settings'
+import config from '../plugin/config'
 import { resolveName } from './accessors'
 
 function resolve (type) {
-  return resolveName(type, 'value')
+  return resolveName(type, 'name')
 }
 
 export default function debug () {
@@ -11,10 +11,10 @@ export default function debug () {
 
   Settings
 -------------------------------
-  deep       : ${settings.deep}
-  strict     : ${settings.strict}
+  deep       : ${config.deep}
+  strict     : ${config.strict}
 
-  Resolver formats
+  Resolver scheme
 -------------------------------
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}
