@@ -13,7 +13,7 @@ The package (+ helpers) solve several everyday Vuex issues:
 - component bloat from 2-way component binding
 - general code verbosity
 
-In practical terms, Pathify is makes for intuitive, consistent store access, leaner stores, and one-liner component wiring.
+In practical terms, Pathify makes for intuitive, consistent store access, leaner stores, and one-liner component wiring.
 
 
 ## Usage 
@@ -103,7 +103,7 @@ The `makeMutations` helper will create all required functions, including **deep-
 const mutations = makeMutations(state)
 ```
 
-By hand, you would have had to manually write the following (lacking deep-set-ability!):
+By hand, you would have had to manually write the following (without deep-set-ability):
 
 ```js
 const mutations =
@@ -120,7 +120,7 @@ The package also includes `makeGetters` and `makeActions` helpers, though [their
 
 ### Member name resolution
 
-Pathify maps intentions such as `set()` with paths such as `"foo/bar"` to store members such as `SET_BAR`
+Pathify maps intentions such as `set()` with paths such as `"foo/bar"` to target store members such as `SET_BAR`
 
 It uses a simple **resolver function** to determine the naming for a target member:
 
@@ -152,6 +152,8 @@ Essentially, Pathify provides:
 - additional superpowers, like deep property access
 - no more bloated components or stores
 - no more repetitious, complex wiring
+
+Yet, it's all still Vuex.
 
 ## Next steps
 
