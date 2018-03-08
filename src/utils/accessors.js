@@ -1,18 +1,39 @@
 import { hasValue, getValue, setValue } from './object'
-import settings from '../plugin/settings'
+import config from '../plugin/config'
+import formatters from './formatters'
 
 const members = {
   state: 'state',
-  getter: 'getters',
-  action: '_actions',
-  mutation: '_mutations',
+  getters: 'getters',
+  actions: '_actions',
+  mutations: '_mutations',
 }
 
 /**
- * Creates a resolver object that Parse and convert a path of the format 'foo/bar@a.b.c' into target and object paths
+ * Default name resolver
+ *
+ * Adheres to seemingly the most common Vuex naming pattern
+ *
+ * @param   {string}  type          The member type, i.e state, getters, mutations, or actions
+ * @param   {string}  name          The name of the property being targeted
+ * @param   {object}  formatters    A formatters object with common format functions
+ * @returns {*}
+ */
+function defaultNameResolver (type, name, formatters) {
+  switch(type) {
+    case 'mutations':
+      return formatters.const('set', name) // SET_BAR
+    case 'actions':
+      return formatters.camel('set', name) // setBar
+  }
+  return name // bar
+}
+
+/**
+ * Creates a resolver object that caches properties and can resolve store member properties
  *
  * @param   {object}  store     The Vuex store instance
- * @param   {string}  path      The pathify path to the store target
+ * @param   {string}  path      A pathify path to the store target, i.e. 'foo/bar@a.b.c'
  * @returns {object}
  */
 function resolve (store, path) {
@@ -34,7 +55,7 @@ function resolve (store, path) {
   }
 
   // throw error if illegal deep access
-  if (!settings.deep && objPath) {
+  if (!config.deep && objPath) {
     throw new Error(`[Vuex Pathify]: Illegal attempt to access deep property via path '${path}'`)
   }
 
@@ -44,18 +65,24 @@ function resolve (store, path) {
   // resolve targets
   return {
     path: absPath,
-    get: function (type) {
-      // resolve target name, i.e. SET_VALUE
-      const resolver = settings.resolvers[type]
-      const relPath = resolver
-        ? resolver(target)
-        : target
 
-      // member variables, i.e. store._getters['module/SET_VALUE']
+    /**
+     * Returns properties about the targeted member
+     *
+     * @param   {string}  type  The member type, i.e state, getters, mutations, or actions
+     * @returns {{exists: boolean, member: object, type: string, path: string}}
+     */
+    get: function (type) {
+      // targeted member, i.e. store._getters
       const member = store[members[type]]
+
+      // target name, i.e. SET_VALUE
+      const name = resolveName(type, target, formatters)
+
+      // target path, i.e. store._getters['module/SET_VALUE']
       const trgPath = modPath
-        ? modPath + '/' + relPath
-        : relPath
+        ? modPath + '/' + name
+        : name
 
       // return values
       return {
@@ -68,6 +95,10 @@ function resolve (store, path) {
       }
     }
   }
+}
+
+export function resolveName (type, name) {
+  return (config.resolver || defaultNameResolver)(type, name, formatters)
 }
 
 /**
@@ -84,14 +115,14 @@ function resolve (store, path) {
 export function makeSetter (store, path) {
   const resolver = resolve(store, path)
 
-  const action = resolver.get('action')
+  const action = resolver.get('actions')
   if (action.exists) {
     return function (value) {
       return store.dispatch(action.type, value)
     }
   }
 
-  const mutation = resolver.get('mutation')
+  const mutation = resolver.get('mutations')
   if (mutation.exists) {
     return function (value) {
       return store.commit(mutation.type, mutation.path
@@ -99,7 +130,9 @@ export function makeSetter (store, path) {
         : value)
     }
   }
-  console.warn(`[Vuex Pathify]: Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(`[Vuex Pathify] Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
+  }
 }
 
 /**
@@ -116,7 +149,7 @@ export function makeSetter (store, path) {
 export function makeGetter (store, path) {
   const resolver = resolve(store, path)
 
-  const getter = resolver.get('getter')
+  const getter = resolver.get('getters')
   if (getter.exists) {
     return function (...args) {
       let value = getter.member[getter.type]
@@ -135,8 +168,9 @@ export function makeGetter (store, path) {
       return getValue(store.state, resolver.path)
     }
   }
-
-  console.warn(`[Vuex Pathify]: Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(`[Vuex Pathify] Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
+  }
 }
 
 /**
