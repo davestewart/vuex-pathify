@@ -1,7 +1,7 @@
 {
   "name": "vuex-pathify",
   "version": "1.0.0-alpha.1",
-  "description": "Vue / Vuex plugin providing a unified path syntax to Vuex stores",
+  "description": "Vue / Vuex plugin providing a unified and intuitive path interface to Vuex stores",
   "main": "src/main.js",
   "files": [
     "index.js"
