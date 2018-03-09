@@ -4,7 +4,7 @@
 
 Pathify provides a unified and intuitive path interface to Vuex stores.
 
-![image](https://user-images.githubusercontent.com/132681/37184018-f253070c-2330-11e8-8aa6-c738f0d8f240.png)
+![image](https://user-images.githubusercontent.com/132681/37185793-140d5470-233a-11e8-937b-efbd623a97ab.png)
 
 The plugin aims to solve several everyday Vuex issues:
 
@@ -35,7 +35,7 @@ store.set('products/items', data)
 
 As everything is a path, there's no need for syntax juggling:
 
-```
+```js
 // TODO use Pathify!
 store.state.products.items
 store.getters['products/items']
