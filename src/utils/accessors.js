@@ -98,7 +98,9 @@ function resolve (store, path) {
 }
 
 export function resolveName (type, name) {
-  return (config.resolver || defaultNameResolver)(type, name, formatters)
+  return name.match(/!$/)
+    ? name.substr(0, name.length - 1)
+    : (config.resolver || defaultNameResolver)(type, name, formatters)
 }
 
 /**
