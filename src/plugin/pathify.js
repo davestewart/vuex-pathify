@@ -4,9 +4,8 @@ import { isObject } from '../utils/object'
 import { makeGetter, makeSetter} from '../utils/accessors'
 import vuex from '../helpers/vuex'
 
-// config
-import config from './config'
-import formatters from '../utils/formatters'
+// options
+import options from './options'
 import debug from '../utils/debug'
 
 /**
@@ -64,8 +63,7 @@ function plugin (store) {
 }
 
 export default {
-  config,
-  formatters,
+  options,
   plugin,
   debug,
 }

@@ -1,5 +1,5 @@
 import { hasValue, getValue, setValue } from './object'
-import config from '../plugin/config'
+import options from '../plugin/options'
 import formatters from './formatters'
 
 const members = {
@@ -46,7 +46,7 @@ function defaultNameResolver (type, name, formatters) {
 export function resolveName (type, name) {
   return name.match(/!$/)
     ? name.substr(0, name.length - 1)
-    : (config.resolver || defaultNameResolver)(type, name, formatters)
+    : (options.resolver || defaultNameResolver)(type, name, formatters)
 }
 
 /**
@@ -81,7 +81,7 @@ function resolve (store, path) {
   }
 
   // throw error if illegal deep access
-  if (!config.deep && objPath) {
+  if (!options.deep && objPath) {
     throw new Error(`[Vuex Pathify] Illegal attempt to access deep property via path '${path}'`)
   }
 

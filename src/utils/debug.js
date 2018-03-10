@@ -1,4 +1,4 @@
-import config from '../plugin/config'
+import options from '../plugin/options'
 import { resolveName } from './accessors'
 
 function resolve (type) {
@@ -7,14 +7,14 @@ function resolve (type) {
 
 export default function debug () {
   console.log(`
-  Vuex Pathify Config
+  Vuex Pathify options
 
   Settings
 -------------------------------
-  deep       : ${config.deep}
-  strict     : ${config.strict}
+  deep       : ${options.deep}
+  strict     : ${options.strict}
 
-  Resolver (${config.resolver ? 'custom' : 'default'})
+  Resolver (${options.resolver ? 'custom' : 'default'})
 -------------------------------
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}

@@ -85,9 +85,9 @@ export function setValue (source, path, value) {
 /**
  * Checks an object has a property, based on a path to the property
  *
- * @param   {Object}                source  The Object to set the value on
+ * @param   {Object}                source  The Object to check the value on
  * @param   {string|Array|Object}   path    The path to a sub-property
- * @returns {Object}                        The original source object
+ * @returns {boolean}                       Boolean true or false
  */
 export function hasValue (source, path) {
   let key
