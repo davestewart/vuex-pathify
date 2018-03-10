@@ -9,6 +9,20 @@ const members = {
   mutations: '_mutations',
 }
 
+function getError(path, resolver, aName, a, bName, b) {
+  let error = `[Vuex Pathify] Unable to resolve path '${path}':`
+  if (path.includes('!')) {
+    error += `
+    - Did not find ${aName} or ${bName} named '${resolver.name}' on ${resolver.module ? `module '${resolver.module}'`: 'root store'}`
+  }
+  else {
+    error += `
+    - Did not find ${aName} '${a.name}' or ${bName} '${b.name}' on ${resolver.module ? `module '${resolver.module}'`: 'store'}
+    - Use path '${resolver.target}!' to target store member directly`
+  }
+  return error
+}
+
 /**
  * Default name resolver
  *
@@ -29,6 +43,12 @@ function defaultNameResolver (type, name, formatters) {
   return name // bar
 }
 
+export function resolveName (type, name) {
+  return name.match(/!$/)
+    ? name.substr(0, name.length - 1)
+    : (config.resolver || defaultNameResolver)(type, name, formatters)
+}
+
 /**
  * Creates a resolver object that caches properties and can resolve store member properties
  *
@@ -37,34 +57,40 @@ function defaultNameResolver (type, name, formatters) {
  * @returns {object}
  */
 function resolve (store, path) {
+  // state
+  const absPath = path.replace(/[/@!]+/g, '.')
+
   // paths
   const [statePath, objPath] = path.split('@')
 
-  // module
-  let modPath = null
-  let target = statePath
+  // parent
+  let modPath, trgName
   if (statePath.includes('/')) {
     const keys = statePath.split('/')
-    target = keys.pop()
+    trgName = keys.pop()
     modPath = keys.join('/')
+  }
+  else {
+    trgName = statePath
   }
 
   // throw error if module does not exist
   if (modPath && !store._modulesNamespaceMap[modPath + '/']) {
-    throw new Error(`[Vuex Pathify]: Unknown module '${modPath}' via path '${path}'`)
+    console.error(`[Vuex Pathify] Unknown module '${modPath}' via path '${path}'`)
+    return
   }
 
   // throw error if illegal deep access
   if (!config.deep && objPath) {
-    throw new Error(`[Vuex Pathify]: Illegal attempt to access deep property via path '${path}'`)
+    throw new Error(`[Vuex Pathify] Illegal attempt to access deep property via path '${path}'`)
   }
-
-  // state
-  const absPath = path.replace(/[/@]/g, '.')
 
   // resolve targets
   return {
-    path: absPath,
+    absPath: absPath,
+    module: modPath,
+    target: statePath,
+    name: trgName.replace('!', ''),
 
     /**
      * Returns properties about the targeted member
@@ -76,13 +102,13 @@ function resolve (store, path) {
       // targeted member, i.e. store._getters
       const member = store[members[type]]
 
-      // target name, i.e. SET_VALUE
-      const name = resolveName(type, target, formatters)
+      // resolved target name, i.e. SET_VALUE
+      const resName = resolveName(type, trgName, formatters)
 
       // target path, i.e. store._getters['module/SET_VALUE']
       const trgPath = modPath
-        ? modPath + '/' + name
-        : name
+        ? modPath + '/' + resName
+        : resName
 
       // return values
       return {
@@ -91,16 +117,11 @@ function resolve (store, path) {
           : trgPath in member,
         member: member,
         type: trgPath,
-        path: objPath
+        name: resName,
+        path: objPath,
       }
     }
   }
-}
-
-export function resolveName (type, name) {
-  return name.match(/!$/)
-    ? name.substr(0, name.length - 1)
-    : (config.resolver || defaultNameResolver)(type, name, formatters)
 }
 
 /**
@@ -132,8 +153,9 @@ export function makeSetter (store, path) {
         : value)
     }
   }
+
   if (process.env.NODE_ENV !== 'production') {
-    console.error(`[Vuex Pathify] Invalid setter path '${path}'; could not find associated action '${action.type}' or mutation '${mutation.type}'`)
+    console.error(getError(path, resolver, 'action', action, 'mutation', mutation))
   }
 }
 
@@ -167,11 +189,12 @@ export function makeGetter (store, path) {
   const state = resolver.get('state')
   if (state.exists) {
     return function () {
-      return getValue(store.state, resolver.path)
+      return getValue(store.state, resolver.absPath)
     }
   }
+
   if (process.env.NODE_ENV !== 'production') {
-    console.error(`[Vuex Pathify] Invalid getter path '${path}'; could not find associated getter '${getter.type}' or state '${state.type}'`)
+    console.error(getError(path, resolver, 'getter', getter, 'state', state))
   }
 }
 

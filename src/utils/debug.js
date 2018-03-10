@@ -14,7 +14,7 @@ export default function debug () {
   deep       : ${config.deep}
   strict     : ${config.strict}
 
-  Resolver scheme
+  Resolver (${config.resolver ? 'custom' : 'default'})
 -------------------------------
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}
