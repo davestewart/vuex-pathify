@@ -1,4 +1,5 @@
-import { Payload, resolveName } from '../utils/accessors'
+import { resolveName } from '../services/resolver'
+import { Payload } from '../services/accessors'
 import { getKeys } from '../utils/object'
 
 /**

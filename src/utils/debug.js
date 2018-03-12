@@ -1,5 +1,5 @@
 import options from '../plugin/options'
-import { resolveName } from './accessors'
+import { resolveName } from '../services/resolver'
 
 function resolve (type) {
   return resolveName(type, 'name')
@@ -14,7 +14,7 @@ export default function debug () {
   deep       : ${options.deep}
   strict     : ${options.strict}
 
-  Resolver (${options.resolver ? 'custom' : 'default'})
+  Resolver (${options.resolver instanceof Function ? 'custom' : options.resolver})
 -------------------------------
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}

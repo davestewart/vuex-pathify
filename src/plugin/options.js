@@ -5,6 +5,6 @@ export default {
   // throw error if store member cannot be found
   strict: true,
 
-  // custom store member resolver function
+  // store member resolver function
   resolver: null,
 }

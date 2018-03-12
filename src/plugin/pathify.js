@@ -1,7 +1,7 @@
 // plugin
 import cloneDeep from 'lodash.clonedeep'
 import { isObject } from '../utils/object'
-import { makeGetter, makeSetter} from '../utils/accessors'
+import { makeGetter, makeSetter} from '../services/accessors'
 import vuex from '../helpers/vuex'
 
 // options

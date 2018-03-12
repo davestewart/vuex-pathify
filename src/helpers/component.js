@@ -1,4 +1,4 @@
-import { makeGetter, makeSetter } from '../utils/accessors'
+import { makeGetter, makeSetter } from '../services/accessors'
 import { isObject } from '../utils/object'
 
 /**
