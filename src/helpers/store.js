@@ -1,5 +1,5 @@
 import { resolveName } from '../services/resolver'
-import { Payload } from '../services/accessors'
+import { Payload } from '../utils/Payload'
 import { getKeys } from '../utils/object'
 
 /**

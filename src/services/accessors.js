@@ -1,5 +1,6 @@
-import { getValue, setValue } from '../utils/object'
-import { resolve, getError } from './resolver'
+import { getValue } from '../utils/object'
+import { Payload } from '../utils/Payload'
+import { getError, resolve } from './resolver'
 
 /**
  * Creates a setter function for the store, automatically targeting actions or mutations
@@ -73,18 +74,4 @@ export function makeGetter (store, path) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(getError(path, resolver, 'getter', getter, 'state', state))
   }
-}
-
-/**
- * Payload class to facilitate the setting of sub-properties on the store
- */
-export class Payload {
-  constructor (path, value) {
-    this.path = path
-    this.value = value
-  }
-}
-
-Payload.prototype.setValue = function (state) {
-  setValue(state, this.path, this.value)
 }
