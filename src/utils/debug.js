@@ -7,18 +7,18 @@ function resolve (type) {
 
 export default function debug () {
   console.log(`
-  Vuex Pathify options
-
-  Settings
--------------------------------
-  deep       : ${options.deep}
-  strict     : ${options.strict}
+  [Vuex Pathify] Options:
 
   Resolver (${options.resolver instanceof Function ? 'custom' : options.resolver})
 -------------------------------
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}
   mutations  : ${resolve('mutations')}
+
+  Settings
+-------------------------------
+  deep       : ${options.deep}
+  strict     : ${options.strict}
 
 `)
 }
