@@ -144,11 +144,6 @@ export function getSome (path, props) {
  * @returns {Object}                      The built getters/setters object
  */
 function makeSome (path, values, fn) {
-  // root
-  path = path
-    ? path.replace(/\/*$/, '/')
-    : ''
-
   // array: pre-convert to object
   if (Array.isArray(values)) {
     values = values
@@ -165,8 +160,28 @@ function makeSome (path, values, fn) {
     .reduce(function (obj, prop) {
       const targets = values[prop]
         .split('|')
-        .map(target => path + target)
+        .map(target => makePath(path, target))
       obj[prop] = fn(...targets)
       return obj
     }, {})
+}
+
+/**
+ * Concatenate two path components into a valid path
+ *
+ * One or none components could have "/" "@" or '.' characters in them
+ *
+ * @param   {string}  path
+ * @param   {string}  target
+ * @returns {string}
+ */
+export function makePath (path, target = '') {
+  path = path.replace(/\/+$/, '')
+  const value = path.includes('@')
+    ? path + '.' + target
+    : path + '/' + target
+  return value
+    .replace(/[.@/]+$/, '')
+    .replace(/\/@/, '@')
+    .replace(/@\./, '@')
 }
