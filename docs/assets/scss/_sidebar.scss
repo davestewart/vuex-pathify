@@ -1,0 +1,23 @@
+.sidebar {
+  > h1 {
+    text-align: left;
+    margin-left: 15px;
+    font-family: Merriweather;
+    font-weight: 400;
+  }
+
+  .sidebar-nav > ul > li {
+    margin-bottom: 30px;
+  }
+
+  > li > p {
+    font-family: Merriweather;
+    font-weight: 400;
+    color: $dark;
+  }
+
+  a:hover {
+    color: $key;
+    text-decoration: none;
+  }
+}

@@ -1,8 +1,35 @@
 # Discussion
 
+## Why
+
+The majority of state management is simple get / set
+
+
+
+
 Whilst Vuex (especially with the Vue Dev Tools) makes state management easier, the required change in both thinking, architecture and coding is a cost that needs to be taken into account when planning a Vuex project.
 
+The *idea* of single state tree management is simple, but the *reality* of working with Vuex isn't. There's so much to remember, consider, architect and ultimately *convert to code* that an application that uses Vuex ends up with many more – often repetitive, abstract or esoteric – lines of code than one that doesn't.
+
 Rather than bloat the actual documentation with this kind of discussion or explanation, I've opted to contain most of that here.
+
+## Concept
+
+Because of the Vuex's inherent conceptual and often practical complexity:
+
+- 4 channels of input / output
+- 3 different naming conventions for store members
+- asas
+
+As such, various schools of thought have sprung up about *how* to best-write code for Vuex, such as:
+
+- naming all commits in CONSTANT_CASE
+- only using getters and only using actions
+- putting state, getters, mutations and actions in separate files
+
+Depending on your own experience and learned practices there may be reasonable grounds to adhere to these guidelines, but Superstore looks at the problem a different way:
+
+
 
 ## Components
 
