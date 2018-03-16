@@ -23,11 +23,11 @@ const resolvers = {
    * Adheres to seemingly the most common Vuex naming pattern
    *
    * @param   {string}  type          The member type, i.e state, getters, mutations, or actions
-   * @param   {string}  name          The name of the property being targeted
-   * @param   {object}  formatters    A formatters object with common format functions
-   * @returns {*}
+   * @param   {string}  name          The name of the property being targeted, i.e. value
+   * @param   {object}  formatters    A formatters object with common format functions, camel, snake, const
+   * @returns {string}
    */
-  default (type, name, formatters) {
+  common (type, name, formatters) {
     switch(type) {
       case 'mutations':
         return formatters.const('set', name) // SET_BAR
