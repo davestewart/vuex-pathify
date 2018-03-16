@@ -93,7 +93,13 @@ computed: {
 }
 ```
 
-No `get/set` object block, no `state/getter` or `commit/dispatch` juggling, no `...mapState` here and `...mapMutations` there; everything's handled automatically, in one place, in one easy-to-read line.
+Note:
+
+- no complex `get/set` object block
+- no knowledge of whether it's `state/getter` or `commit/dispatch`
+- no `...mapState` here and `...mapMutations` in there
+
+Everything's handled automatically, in one place, in one easy-to-read line.
 
 Use `getSome` and `syncSome` to map multiple properties at once:
 
@@ -151,7 +157,7 @@ const mutations = makeMutations(state)
 }
 ```
 
-Note the (configurable) **naming** and **sub-property access** (for free).
+Note the (configurable) automatic **naming** and **sub-property access** (for free).
 
 The package also includes `makeGetters` and `makeActions` for those who still want or need explicit wiring (hint: you probably don't).
 

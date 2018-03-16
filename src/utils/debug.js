@@ -1,24 +1,25 @@
-import config from '../plugin/config'
-import { resolveName } from './accessors'
+import options from '../plugin/options'
+import { resolveName } from '../services/resolver'
 
 function resolve (type) {
-  return resolveName(type, 'name')
+  return resolveName(type, 'value')
 }
 
 export default function debug () {
   console.log(`
-  Vuex Pathify Config
+  [Vuex Pathify] Options:
 
-  Settings
+  Resolver (${options.resolver instanceof Function ? 'custom' : options.resolver})
 -------------------------------
-  deep       : ${config.deep}
-  strict     : ${config.strict}
-
-  Resolver scheme
--------------------------------
+  state      : ${resolve('state')}
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}
   mutations  : ${resolve('mutations')}
+
+  Settings
+-------------------------------
+  strict     : ${options.strict}
+  deep       : ${options.deep}
 
 `)
 }
