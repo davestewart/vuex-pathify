@@ -1,0 +1,59 @@
+body {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.markdown-section {
+    padding: 0;
+    width: inherit;
+}
+
+#container {
+    width: 770px;
+    height: 400px;
+}
+
+#caption {
+    display: block;
+    padding-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.owl-wrapper-outer {
+    width: 760px;
+    x-border: 1px solid #EEE;
+    x-border-left: 5px solid #EEE;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 760px;
+    height: 300px;
+}
+
+.item label {
+    display: none;
+}
+
+#container {
+    opacity: 0;
+    transition: 1s all;
+}
+
+body.loaded #container {
+    opacity: 1;
+}
+
+.large code {
+    font-size: 2.5em !important;
+}
+
+.markdown-section pre[data-lang="pathify"],
+.markdown-section code.lang-pathify {
+    margin: 0;
+    padding: 0;
+}

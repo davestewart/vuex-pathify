@@ -1,0 +1,74 @@
+pre[data-lang="pathify"],
+code.lang-pathify {
+
+  margin: 0;
+  margin-left: 10px;
+  overflow: visible;
+  background: none;
+}
+
+pre[data-lang="pathify"] {
+  // border-left: 5px solid #EFEFEF;
+  // margin-bottom: 10px;
+  border-radius: 0;
+
+  &:after {
+    content: none;
+  }
+}
+
+code.lang-pathify {
+
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: $light;
+
+  font-family: Merriweather, Serif;
+  font-weight: 300;
+  font-style: italic;
+
+  .token {
+
+    // for ligatures @see https://github.com/TryGhost/Casper/issues/235
+    font-style: normal;
+    font-weight: 400;
+
+    &.construct {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    &.comment {
+      font-size: 0.5em;
+      color: black;
+      vertical-align: bottom;
+      font-style: italic;
+    }
+
+    &.string {
+      color: #25afaf;
+      font-weight: 400;
+    }
+
+    &.number,
+    &.boolean {
+      color: $light;
+    }
+
+    &.punctuation {
+      color: $light;
+    }
+
+    &.pathify,
+    &.function,
+    &.keyword {
+      font-style: italic;
+      font-weight: 400;
+      color: $key;
+      // color: $dark;
+    }
+
+  }
+
+}

@@ -1,4 +1,4 @@
-# Store accessors
+# Path syntax
 
 > Store accessors provide root read / write access to the store
 
