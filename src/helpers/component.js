@@ -1,58 +1,26 @@
+import { makePaths } from '../utils/paths'
 import { makeGetter, makeSetter } from '../services/accessors'
-import { isObject } from '../utils/object'
+import vuex from './vuex'
 
-/**
- * Creates a single 2-way vue:vuex computed property
- *
- * @usage   foo: sync('module/foo')
- * @usage   foo: sync('module/getFoo', 'module/saveFoo')
- *
- * @param   {string}      getter      a single path to a state/getter AND commit/action reference
- *                                    OR one path to a state/getter reference
- * @param   {string}     [setter]     AND an optional additional path to commit/action reference
- * @returns {Object}                  a single get/set Object
- */
-export function sync (getter, setter) {
-  return getter && setter
-    ? { get: get(getter), set: set(setter) }
-    : { get: get(getter), set: set(getter) }
+// -------------------------------------------------------------------------------------------------------------------
+// entry
+// -------------------------------------------------------------------------------------------------------------------
+
+export function sync (path, props) {
+  return make(path, props, syncOne)
 }
 
-/**
- * Creates a single 1-way vue:vuex computed getter
- *
- * @param   {string}      path        a path to a state/getter reference
- * @returns {Object}                  a single get/set Object
- */
-export function get (path) {
-  let getter
-  return function (...args) {
-    if (!this.$store) {
-      throw new Error('[Superstore] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
-    }
-    if (!getter) {
-      getter = makeGetter(this.$store, path)
-    }
-    return getter(...args)
-  }
+export function get (path, props) {
+  return make(path, props, getOne)
 }
 
-/**
- * Creates a single 1-way vue:vuex setter
- *
- * @param   {string}      path        a path to an action/commit reference
- * @returns {Function}                a single setter function
- */
-export function set (path) {
-  let setter
-  return function (value) {
-    if (!setter) {
-      setter = makeSetter(this.$store, path)
-    }
-    this.$nextTick(() => this.$emit('sync', path, value))
-    return setter(value)
-  }
+export function set (path, props) {
+  return make(path, props, setOne)
 }
+
+// -------------------------------------------------------------------------------------------------------------------
+// utility
+// -------------------------------------------------------------------------------------------------------------------
 
 /**
  * Creates multiple 2-way vue:vuex computed properties
@@ -82,106 +50,84 @@ export function set (path) {
  * Where different getter / setters need to be specified, pass getter and setter in
  * the same string, separating with a | character:
  *
- *     - @usage                                 ...sync('module', ['getFoo|setFoo'])
+ *     - @usage                                 ...sync('module', ['foo|updateFoo'])
  *
  * @param   {string|Object}         path        a path to a module, or a hash of state/getter or commit/action references
- * @param   {Object|Array}         [props]      a hash of state/getter or commit/action references
+ * @param   {Object|Array}          props       a hash of state/getter or commit/action references
+ * @param   {Function}              fn          the callback function to create the setter
  * @returns {{set, get}}                        a hash of get/set Objects
  */
-export function syncSome (path, props) {
-  if (isObject(path)) {
-    return makeSome('', path, sync)
+export function make (path, props, fn) {
+  // expand path / props
+  // console.log('making', vuex)
+  const data = makePaths(path, props, vuex.store.state)
+
+  // handle single paths
+  if (typeof data === 'string') {
+    return fn(data)
   }
-  return makeSome(path, props, sync)
+
+  // handle multiple properties
+  Object
+    .keys(data)
+    .forEach(key => {
+      data[key] = fn(data[key])
+    })
+  return data
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+// one
+// -------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Creates a single 2-way vue:vuex computed property
+ *
+ * @param   {string}      path        a path to a state/getter reference. Path can contain an optional commit / action reference, separated by a |, i.e. foo/bar|updateBar
+ * @returns {Object}                  a single get/set Object
+ */
+export function syncOne (path) {
+  let [getter, setter] = path.split('|')
+  if (setter) {
+    setter = getter.replace(/\w+!?$/, setter.replace('!', '') + '!')
+  }
+  return getter && setter
+    ? { get: getOne(getter), set: setOne(setter) }
+    : { get: getOne(getter), set: setOne(getter) }
 }
 
 /**
- * Creates multiple 1-way vue:vuex computed getters
+ * Creates a single 1-way vue:vuex computed getter
  *
- * The function has multiple usages:
- *
- *  1. multiple properties from multiple modules
- *
- *     - @usage                                 ...sync({foo: 'module1/foo', bar: 'module2/bar'})
- *
- *     - @param   {Object}          props       a hash of key:path state/getter references
- *
- *  2. multiple properties from a single module (object shorthand)
- *
- *     - @usage                                 ...sync('module', {foo: 'foo', bar: 'bar'})
- *
- *     - @param   {string}          path        a path to a module
- *     - @param   {Object}          props       a hash of key:prop state/getter references
- *
- *  3. multiple properties from a single module (array shorthand)
- *
- *     - @usage                                 ...sync('module', ['foo', 'bar'])
- *
- *     - @param   {string}          path        a path to a module
- *     - @param   {Array}           props       an Array of state/getter references
- *
- * @param   {string|Object}         path        a path to a module, or a hash of state/getter references
- * @param   {Object|Array}         [props]      a hash or array of state/getter references
- * @returns {{Function}}                        a hash of getter functions
+ * @param   {string}      path        a path to a state/getter reference
+ * @returns {Object}                  a single getter function
  */
-export function getSome (path, props) {
-  if (isObject(path)) {
-    return makeSome('', path, get)
+export function getOne (path) {
+  let getter
+  return function (...args) {
+    if (!this.$store) {
+      throw new Error('[Superstore] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
+    }
+    if (!getter) {
+      getter = makeGetter(this.$store, path)
+    }
+    return getter(...args)
   }
-  return makeSome(path, props, get)
-}
-
-// ---------------------------------------------------------------------------------------------------------------------
-// utilities
-// ---------------------------------------------------------------------------------------------------------------------
-
-/**
- * Utility function to make multiple getters/setters from [path, object] or [path, array] parameters
- *
- * @param   {string}          path        The absolute module path
- * @param   {Object|Array}    values      The Object or Array of Vuex state/getter or commit/action references
- * @param   {Function}        fn          The conversion function to call (sync, get or set)
- * @returns {Object}                      The built getters/setters object
- */
-function makeSome (path, values, fn) {
-  // array: pre-convert to object
-  if (Array.isArray(values)) {
-    values = values
-      .reduce(function (obj, value) {
-        const key = String(value).split('|').shift()
-        obj[key] = value
-        return obj
-      }, {})
-  }
-
-  // object: convert to function result
-  return Object
-    .keys(values)
-    .reduce(function (obj, prop) {
-      const targets = values[prop]
-        .split('|')
-        .map(target => makePath(path, target))
-      obj[prop] = fn(...targets)
-      return obj
-    }, {})
 }
 
 /**
- * Concatenate two path components into a valid path
+ * Creates a single 1-way vue:vuex setter
  *
- * One or none components could have "/" "@" or '.' characters in them
- *
- * @param   {string}  path
- * @param   {string}  target
- * @returns {string}
+ * @param   {string}      path        a path to an action/commit reference
+ * @returns {Function}                a single setter function
  */
-export function makePath (path, target = '') {
-  path = path.replace(/\/+$/, '')
-  const value = path.includes('@')
-    ? path + '.' + target
-    : path + '/' + target
-  return value
-    .replace(/[.@/]+$/, '')
-    .replace(/\/@/, '@')
-    .replace(/@\./, '@')
+export function setOne (path) {
+  let setter
+  return function (value) {
+    if (!setter) {
+      setter = makeSetter(this.$store, path)
+    }
+    this.$nextTick(() => this.$emit('sync', path, value))
+    return setter(value)
+  }
 }
