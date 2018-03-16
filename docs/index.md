@@ -1,41 +1,36 @@
-# Vuex Superstore
+# Pathify docs
+#### Prerequisites
 
-## Overview
-
-Vuex Superstore is a package of **helpers** and **plugins** that bring consistency and simplicity to data access in Vuex-based projects, as well as providing some additional functionality.
-
-Its key features are:
-
-- simplified store facade via `get()` and `set()`
-- consistent property referencing using `'path/to/value'`
-- transparent resolution of `getters`, `mutations` and `actions`
-
-Additional functionality includes:
-
-- Component helpers like `sync()` and `syncSome()` to minimise component wiring
-- Store helpers like `makeMutations()` to minimise store boilerplate
-- Store plugins like `initial` and `persist` add useful lifecycle functionality
-
-See all functionality demoed in the project below:
-
-- [Demo](https://codesandbox.io/s/github/davestewart/vuex-superstore/demo)
+- [Read me first](discussion/prerequisites.md)
+  <br>What to know before using Pathify
 
 
-## Getting started
-
-Check out links below to see how to use Superstore in your project:
-
+#### Getting started
 - [Setup](guide/setup.md)
+  <br>Installation and setup
+- [Config](guide/config.md)
+  <br>Options and custom config
+- [Usage](guide/usage.md)
+  <br>A top-to bottom store setup and component wiring example
+
+#### API reference
+
+- [Store plugin](api/accessors.md)
+  <br>Additional methods directly on the store instance
 - [Store helpers](api/store.md)
-- [Component helpers](api/components.md)
-- [Plugins](api/plugins.md)
+  <br>A set of helper functions to reduce or eliminate store boilerplate
+- [Component helpers](api/component.md)
+  <br>A set of helper functions to reduce component wiring and repetition
 
-Check below to understand the rationale:
+#### Discussion
 
-- [Rationale](guide/rationale.md)
-- [FAQ](guide/faq.md)
+- [How it works](discussion/how-it-works.md)
+  <br>Understand how Pathify abstracts Vuex
+- [Best practices](discussion/best-practices.md)
+  <br>Pathify and Vuex tips and tricks to ramp up productivity
+- [Code comparisons](discussion/code-comparisons.md)
+  <br>Comparisons of everyday task in vanilla Vuex vs Vuex + Pathify
+- [Rationale](old/rationale.md)
+  <br>Rationale behind creating Pathify
 
-Click below to browse the full API:
-
-- [API](api/index.md)
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- title -->
+  <title>Slideshow</title>
+
+  <!-- meta -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700i" rel="stylesheet">
+
+  <!-- styles -->
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+
+  <!-- owl carousel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+  <!-- prism -->
+  <script src="https://unpkg.com/prismjs"></script>
+  <script src="../js/prism-pathify.js"></script>
+
+  <!-- local assets -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/slideshow.css">
+
+</head>
+<body>
+
+<div id="container">
+
+  <label id="caption">&nbsp;</label>
+
+  <div class="markdown-section">
+    <div id="carousel" class="owl-theme">
+
+      <div class="item">
+        <label>In Pathify, <strong>everything</strong> is a path:</label>
+        <code>'path/to/property'</code>
+      </div>
+
+      <div class="item">
+        <label>Paths support <strong>sub-properties</strong> as well as properties:</label>
+        <code>'path/to@sub.property'</code>
+      </div>
+
+      <div class="item">
+        <label>Read <strong>and</strong> write data with a single <strong>unified</strong> syntax...</label>
+        <code style="line-height: 2em">store.get('settings/loaded')
+store.set('settings/loaded', true)</code>
+      </div>
+
+      <div class="item">
+        <label>Pathify prioritises <strong>getters</strong> over <strong>state</strong>, and <strong>dispatches</strong> over <strong>commits</strong>:</label>
+        <code>// state or getters? I don't care - just give me the items!
+store.get('items')</code>
+      </div>
+
+      <div class="item">
+        <label>Sync <strong>single</strong> properties with <strong>one-liner</strong>, two-way data binding:</label>
+        <code>computed: {
+    filters: sync('products/filters')
+}</code>
+      </div>
+
+      <div class="item">
+        <label>Sync <strong>multiple</strong> properties using <strong>array</strong> and <strong>object</strong> formats...</label>
+<code>computed: {
+    ...sync('products/filters@sort', {
+        sortOrder: 'order',
+        sortKey: 'key'
+    })
+}</code>
+      </div>
+
+      <div class="item">
+        <label>... or <strong>wildcards</strong> if appropriate:</label>
+        <code>computed: {
+    ...sync('products/*')
+}</code>
+      </div>
+
+      <div class="item">
+        <label>In stores, <strong>generate</strong> mutations to <strong>eliminate boilerplate</strong>:</label>
+        <code>state = { items, search, sort, budget }
+// make everything writeable!
+mutations = makeMutations(state)
+</code>
+      </div>
+
+      <div class="item">
+        <label>In components, use <strong>just three helpers</strong>:</label>
+        <code>import { get, set, sync } from 'vuex-pathify'</code>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+  function setupSlides () {
+    $('code')
+      .each(function (i, e) {
+        var lang = 'pathify'
+        var $e = $(e)
+          .attr('class', 'language-' + lang)
+          .wrap('<pre data-lang="' +lang+ '">')
+
+        Prism.highlightElement(e)
+
+        setTimeout(function () {
+          $e.attr('class', 'lang-' + lang)
+        })
+      })
+  }
+
+  function setupCarousel () {
+    $carousel
+      .owlCarousel({
+        navigation : true, // Show next and prev buttons
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true,
+        addClassActive: true,
+        callbacks: true,
+        afterMove: updateCaption
+      })
+  }
+
+  function updateCaption (immediate) {
+    var html = $carousel
+      .find('.owl-item.active label')
+      .html()
+    $caption.html(html)
+  }
+
+  var $caption = $('#caption')
+  var $carousel = $('#carousel')
+
+  setupCarousel()
+  setupSlides()
+  updateCaption()
+
+  $('body').addClass('loaded')
+</script>
+
+
+</body>
+</html>

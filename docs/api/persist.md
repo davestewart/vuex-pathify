@@ -1,4 +1,0 @@
-# Store persistance plugin
-
-
-
