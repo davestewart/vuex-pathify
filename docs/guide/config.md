@@ -18,8 +18,8 @@ export default {
 
 If you need to change this, you probably want to do one of two things:
 
-- use a custom [resolver](/guide/resolvers)
-- update [options](/guide/options)
+- configure naming with the [resolver](/guide/resolvers) option
+- configure additional [options](/guide/options)
 
 Read the documentation as required, then **follow the steps below**.
  

@@ -39,9 +39,11 @@ Pathify does this **all within the bounds of Vuex**; no hacks, just [configurati
 
 In practical terms, Pathify results in:
 
+- less cognitive overhead
 - zero store boilerplate
-- one-liner component wiring
+- one-liner wiring
 - cleaner code
+- less code
 
 ### Next steps
 

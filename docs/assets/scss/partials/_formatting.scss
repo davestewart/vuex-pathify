@@ -44,6 +44,10 @@ h1 { font-size: 3em; }
 h2 { font-size: 2.2em; }
 h3 { font-size: 1.8em; }
 
+table, ul, ol {
+  margin-left: 25px;
+}
+
 pre {
   padding: 0;
   margin-left: 25px;
@@ -67,9 +71,22 @@ code, pre {
 
 h2, h3, h4 {
   & code {
-    font-size: 0.8em;
-    font-family: Merriweather;
-    font-style: italic;
+    font-size: 1em;
+    font-family: Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    background: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+
+    &:before {
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+      content: "#";
+      color: #42b983;
+    }
   }
 }
 

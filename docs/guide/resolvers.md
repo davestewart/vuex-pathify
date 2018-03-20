@@ -1,71 +1,71 @@
 # Resolvers
 
-> Write a custom function to map paths to appropriate store members
+> Configure the mapping of paths to store members
 
 ## Overview
 
-Pathify uses a configurable algorithm in order to map Pathify paths to Vuex store members:
+The **resolver** function is the configurable part of Pathify's [mapping algorithm](/guide/prerequisites.md) which returns a likely **store member name** for supplied **store member state**, such as `foo` to `SET_FOO` or similar.
+
+It can be configured using a preset or custom function as required.
+
+
+## Presets
+
+There are two presets to choose from, which are identified by `name` and transform `state` as illustrated:
+
+name|state|getter|mutation|action|notes
+:---|:---|:---|:---|:---|:---
+`common`|foo|foo|SET_FOO|setFoo|Used by most Vue developers
+`simple`|foo|foo|foo|setFoo|Simpler, unified format for reading and writing
+
+
+To reconfigure Pathify from the default `common` preset, set Pathify's options like so:
 
 ```js
-operation + path            accessor         resolver          store member
-
-get('products/items')  ->   state      ->   'items'       ->   state.products.items
-                            getter     ->   'items'       ->   getters['products/items']
-set('products/items')  ->   mutation   ->   'SET_ITEMS'   ->   commit('products/SET_ITEMS')
-                            action     ->   'setItems'    ->   dispatch('products/setItems')
+pathify.options.resolver = 'simple'
 ```
 
-The configurable part of the algorithm is the “resolver” – a **user-definable** function who's job it is to determine a **likely name** for a store member in response to the **given parameters**:
+## Custom function
+
+If your Vuex naming scheme isn't matched by a preset, you can create your own.
+
+A resolver function at its simplest is just a `switch/case` with some concatenation and formatting:
 
 ```js
-function (type, name) {
-  // return likely name
-}
-```
-
-Pathify ships with two buit-in resolvers, `common` and `simple`, but you can also write your own.
-
-## Custom resolvers
-
-A resolver function at its simplest is just a `switch/case`, some concatenation and formatting.
-
-The function takes the following arguments, and must return a string:
-
-- type       `{string}` - The member type, i.e `state`, `getters`, `mutations`, or `actions`
-- name       `{string}` - The name of the property being targeted, i.e. `value`
-- formatters `{object}` - A hash of common formatting functions, `camel`, `snake`, `const`
-
-
-### Writing a resolver
-
-A custom resolver that transforms all store members might be:
-
-```js
-function resolver (type, name, formatters) {
+function (type, name, formatters) {
   switch(type) {
     case 'mutations':
-      return formatters.const('set', name) // SET_BAR
+      return formatters.const('set', name) // SET_FOO
     case 'actions':
-      return formatters.camel('set', name) // setBar
+      return formatters.camel('set', name) // setFoo
     case 'getters':
-      return formatters.camel('get', name) // getBar
+      return formatters.camel('get', name) // getFoo
   }
-  return name // bar
+  return name // foo
 }
 ```
+
+The function has injected into it the following parameters, and **must** return a string:
+
+- **type**       `{string}` - The member type, i.e `state`, `getters`, `mutations`, or `actions`
+- **name**       `{string}` - The name of the property being targeted, i.e. `foo`
+- **formatters** `{object}` - A hash of common formatting functions, `camel`, `snake`, `const`
+
 
 You would assign it to Pathify's config like so:
 
 ```js
-pathify.options.resolver = resolver
+pathify.options.resolver = function (type, name, formatters) {
+    ...
+}
 ```
 
-### Formatter functions
+### Formatters
 
-The formatter functions passed as a convenience in as the 3rd argument have two roles:
+The formatter functions passed as a convenience in as the 3rd parameter have two roles:
 
-- concatenate separate words
-- convert their case 
+1. concatenate separate words
+2. convert their case 
 
 There are 3 functions available:
 
@@ -76,5 +76,7 @@ There are 3 functions available:
 As an example:
 
 ```js
-formatters.const('hello', 'world') // HELLO_WORLD
+formatters.const('set', 'items') // SET_ITEMS
 ```
+
+You're free to use the built-in formatters, or use 3rd party helpers like [lodash](https://lodash.com/docs/4.17.5#camelCase).
