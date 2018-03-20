@@ -4,21 +4,27 @@
 
 ## Overview
 
-Pathify **simplifies** Vuex by abstracting its syntaxes and methods to a unified **state-based** syntax:
+Pathify **simplifies** Vuex by abstracting its syntaxes and methods to a powerful, unified **state-based** syntax:
+
+```
+products/items@filters.search
+```
+
+It uses helpers and decorators to get and set values on the store using Vuex itself:
 
 ```js
-const items = get('products/items')
+const items = store.get('products/items')
 ```
 
 Behind the scenes, Pathify reads from the correct store member, or executes the correct Vuex operation:
 
 ```js
-Pathify                               Vuex
-
-get('products/items')           <-    store.state.products.items
-                                      store.getters['products/items']
-set('products/items', items)    ->    commit('products/SET_ITEMS', items)
-                                      dispatch('products/setItems', items)
+Pathify                                     Vuex
+      
+store.get('products/items')           <-    store.state.products.items
+                                            store.getters['products/items']
+store.set('products/items', items)    ->    commit('products/SET_ITEMS', items)
+                                            dispatch('products/setItems', items)
 ```
 
 The result is a reduction:
@@ -40,7 +46,7 @@ Additionally, Pathify adds significant extra functionality, such as:
 
 The first thing to know is that the mapping of paths to state, to getters, mutations or actions uses an **algorithm**, so store members need to be named **predictably**. 
 
-You should choose and stick to a **scheme** so that state consistently maps to associated members:
+You should choose and stick to a **naming scheme** so that state consistently **maps** to associated members:
 
 ```js
 state:         foo         // base name
@@ -52,7 +58,7 @@ actions:       setFoo      // "set" prefix, camel case,
 
 #### Mapping
 
-The realisation of any such scheme **in code** is achieved using a **resolver** function that employs **prefixes**, **concatenation** and **formatting** to return the appropriate names for a given operation:
+The realisation of naming schemes **in code** is achieved using a **resolver** function that employs **prefixes**, **concatenation** and **formatting** to return the appropriate names for a given operation:
 
 ```js
 function resolver (type, name, formatter) {
@@ -60,9 +66,14 @@ function resolver (type, name, formatter) {
 }
 ```
 
-Subsequently the Vuex member is found, and the **value read**, or the **operation executed**.
+Subsequently the matched Vuex member is found, and the **value read**, or the **operation executed**.
 
 For more information see the  [resolvers](/guide/resolvers.md) page.
+
+#### Direct accessor access
+
+It should be noted that Pathify's mapping algorithm is tuned for **get** / **set** operations, so accessors that use alternate nomenclature such as **increment** or **update** must use a [direct](/api/paths#direct-member-access) syntax.
+
 
 #### Presets
 
@@ -74,6 +85,18 @@ preset|state|getter|mutation|action|notes
 `simple`|items|items|items|setItems|Simpler, unified format for reading and writing
 `custom`|items|?|?|?|Whatever you need for your preferences or project
 
+
+#### Outcome
+
+The final result of the algorithm is based on:
+
+- the path itself, i.e. `foo/bar`
+- the operation type, i.e. `get()` or `set()`
+- a prefix per store member, i.e. always use `set` for `mutations`
+- a case conversion, i.e. `camelCase` or `CONSTANT_CASE`
+- a preference of getters over state, and actions over mutations
+- whether the store member exists, i.e. does the `state` have an associated `getter` 
+
 To illustrate the process for all possible operations for the `common` preset, we have:
 
 | Operation | Order | Accessor | Prefix | Formatter | Result | Outcome
@@ -83,22 +106,5 @@ To illustrate the process for all possible operations for the `common` preset, w
 | `set()` | 1 | actions | set | camel | setBar | `dispatch('foo/setBar')`
 |   | 2 | mutations | set | const | SET_BAR | `commit('foo/SET_BAR')`
 
-#### Alternate accessor access
 
-It should be noted that Pathify's mapping algorithm is tuned for **get** / **set** operations, so accessors that use alternate nomenclature such as **increment** or **update** use a modified syntax.
-
-See the [path syntax](/api/paths.md) page for more details.
-
-## Outcome
-
-The final result of the algorithm is based on:
-
-- the path itself, i.e. `products/items`
-- the operation type, i.e. `get()` or `set()`
-- a prefix per store member, i.e. always use `set` for `mutations`
-- a case conversion, i.e. `camelCase` or `CONSTANT_CASE`
-- a preference of getters over state, and actions over mutations
-- whether the store member exists, i.e. does the `state` have an associated `getter` 
-
-This mapping is used transparently by all Pathify's helpers and is what makes Pathify so easy to use.
-
+This mapping is used **transparently** by all Pathify's helpers and is what makes Pathify so easy to use.
