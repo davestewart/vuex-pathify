@@ -1,22 +1,23 @@
-- Getting started
-    - [Prerequisites](guide/prerequisites.md)
-    - [Installation and setup](guide/setup.md)
-    - [Configuration](guide/config.md)
-        - [Options](guide/options.md)
-        - [Resolvers](guide/resolvers.md)
-    - [Basic example](guide/example.md)
+- [Getting started](/guide/index.md)
 
-- API reference
+    - [Prerequisites](/guide/prerequisites.md)
+    - [Installation and setup](/guide/setup.md)
+    - [Configuration](/guide/config.md)
+        - [Options](/guide/options.md)
+        - [Resolvers](/guide/resolvers.md)
+    - [Basic example](/guide/example.md)
 
-    - [Path syntax](api/paths.md)
-    - [Store accessors](api/accessors.md)
-    - [Component helpers](api/component.md)
-    - [Store helpers](api/store.md)
+- [API reference](/api/index.md)
 
-- Discussion
+    - [Path syntax](/api/paths.md)
+    - [Store accessors](/api/accessors.md)
+    - [Component helpers](/api/component.md)
+    - [Store helpers](/api/store.md)
 
-    - [Best practices](discussion/best-practices.md)
-    - [Code comparisons](discussion/code-comparisons.md)
-    - [Rationale](old/rationale.md)
+- Guide
+
+    - [Best practices](/discussion/best-practices.md)
+    - [Code comparisons](/discussion/code-comparisons.md)
+    - [Rationale](/old/rationale.md)
 
 

@@ -8,6 +8,12 @@
 
   .sidebar-nav > ul > li {
     margin-bottom: 30px;
+    font-size: 17px;
+
+    > p > a {
+      font-size: 17px;
+      font-weight: 700;
+    }
   }
 
   > li > p {

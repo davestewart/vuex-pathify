@@ -4,7 +4,7 @@
 
 ## Overview
 
-Pathify **simplifies** Vuex by abstracting its syntaxes and methods into a single `op(path)` syntax, based on **state**:
+Pathify **simplifies** Vuex by abstracting its syntaxes and methods to a unified **state-based** syntax:
 
 ```js
 const items = get('products/items')

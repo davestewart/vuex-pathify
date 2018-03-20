@@ -35,7 +35,7 @@ computed: {
 ```
 -->
 
-Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/guide/config), [path syntax](/api/paths), and [helpers](/api/component). 
+Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/guide/config.md), [path syntax](/api/paths.md), and [helpers](/api/component.md) which return robust, lightweight functions; the kind **you would have written anyway**, but by-hand, and without the whistles and bells. 
 
 In practical terms, Pathify results in:
 
@@ -47,5 +47,5 @@ In practical terms, Pathify results in:
 
 ### Next steps
 
-Check out the [getting started](/guide/setup) section, or play with the editable [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo).
+Check out the [getting started](/guide/prerequisites.md) section, or play with the editable [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo).
 

@@ -18,8 +18,8 @@ export default {
 
 If you need to change this, you probably want to do one of two things:
 
-- configure naming with the [resolver](/guide/resolvers) option
-- configure additional [options](/guide/options)
+- configure naming with the [resolver](/guide/resolvers.md) option
+- configure additional [options](/guide/options.md)
 
 Read the documentation as required, then **follow the steps below**.
  
@@ -32,7 +32,7 @@ Read the documentation as required, then **follow the steps below**.
 
 Create a new file called `pathify.js` and save it in the same folder as your store index file.
 
-Add the following code to import, configure and re-export the Pathify, modifying the [options](/guide/options) as desired:
+Add the following code to import, configure and re-export the Pathify, modifying the [options](/guide/options.md) as desired:
 
 ```js
 import pathify from 'vuex-pathify'
