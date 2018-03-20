@@ -80,12 +80,12 @@ Alternatively, you **can** write manually; see the [Payload](/api/accessors.md#p
 
 #### `Wildcard expansion`
 
-Wildcards `*` allow you to reference multiple properties at once, and are used primarily in [component helpers](/api/component.md) to generate multiple computed properties at once.
+Wildcards `*` allow you to reference multiple properties at once, and are used primarily in [component helpers](/api/component.md).
 
-As such, paths using wildcards don't **return** values, rather they **generate** a hash of named functions for **all properties that they expand to**, and are usually mixed in using the ES6 spread operator:
+Wildcards don't **return** values like other path references, rather they **generate** a hash of named functions for **all properties that they expand to**, and are usually mixed in using the ES6 spread operator:
 
 ```js
-// computed getters for `items` and `filters`
+// a hash of computed getters for `items` and `filters`
 computed: {
   ...get('*') 
 }
@@ -94,13 +94,13 @@ computed: {
 You can use wildcards on top-level modules, properties and sub-properties:
 
 ```js
-// computed getters for `search` and `sort`
+// a hash of computed getters for `search` and `sort`
 computed: {
   ...get('filters*')
 }
 ```
 ```js
-// computed getters for `key` and `order`
+// a hash of computed getters for `key` and `order`
 computed: {
   ...get('filters@sort.*')
 }
