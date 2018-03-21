@@ -1,6 +1,6 @@
 # Getting started
 
-- [Prerequisites](/guide/prerequisites.md) - Understand how Pathify works before integrating it in your project
+- [Plugin overview](/guide/overview.md) - Understand how Pathify works before integrating it in your project
 
 - [Installation and setup](/guide/setup.md) - Setup the plugin in a new project
 
@@ -10,5 +10,5 @@
     
     - [Resolvers](/guide/resolvers.md) - Configure the mapping of paths to store members
     
-- [Basic example](/guide/example.md) - An example store and component demoing key features with minimal code
+- [Basic example](/guide/usage.md) - An example store and component demoing key features with minimal code
 

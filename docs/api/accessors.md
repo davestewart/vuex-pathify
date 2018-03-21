@@ -46,7 +46,7 @@ See the [path syntax](/api/paths.md) page for details on compatible path syntax.
 
 ## Methods
 
-!> Examples on this page use the [common](/guide/resolvers.md) naming preset
+!> **Note**: The examples on this page use the [standard](/guide/resolvers.md) naming preset
 
 #### `get(path: string): *`
 

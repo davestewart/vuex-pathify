@@ -4,7 +4,7 @@
 
 ## Overview
 
-The **resolver** function is the configurable part of Pathify's [mapping algorithm](/guide/prerequisites.md) which returns a likely **store member name** for supplied **store member state**, such as `foo` to `SET_FOO` or similar.
+The **resolver** function is the configurable part of Pathify's [mapping algorithm](/guide/overview.md) which returns a likely **store member name** for supplied **store member state**, such as `foo` to `SET_FOO` or similar.
 
 It can be configured using a preset or custom function as required.
 
@@ -15,11 +15,11 @@ There are two presets to choose from, which are identified by `name` and transfo
 
 name|state|getter|mutation|action|notes
 :---|:---|:---|:---|:---|:---
-`common`|foo|foo|SET_FOO|setFoo|Used by most Vue developers
+`standard`|foo|foo|SET_FOO|setFoo|Used by most Vue developers
 `simple`|foo|foo|foo|setFoo|Simpler, unified format for reading and writing
 
 
-To reconfigure Pathify from the default `common` preset, set Pathify's options like so:
+To reconfigure Pathify from the default `standard` preset, set Pathify's options like so:
 
 ```js
 pathify.options.resolver = 'simple'

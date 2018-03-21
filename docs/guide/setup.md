@@ -15,7 +15,7 @@ yarn add vuex-pathify
 
 ## Config
 
-If you haven't read the [prerequisites](/guide/prerequisites.md) section, you should do so now, as it explains the process Pathify uses to map paths to store members using **naming schemes** and **resolvers**.
+If you haven't has a brief skim over the [plugin overview](/guide/overview.md) page, you should do so now, as it explains the process Pathify uses to map paths to store members using **naming schemes** and **resolvers**.
 
 The naming scheme below seems to be the most common amongst Vue developers, so is the default:
 
@@ -28,7 +28,7 @@ actions:       setFoo      // "set" prefix, camel case,
 ``` 
 Before continuing, ensure your store naming reflects this, or [configure](/guide/config.md) an alternative preset or custom resolver instead.
 
-!>**Warning**<br>You will not be able to update the store if Pathify cannot map paths to Vuex members.
+!>**Warning!**<br>You will not be able to update the store if Pathify cannot map paths to Vuex members.
 
 ## Setup
 
@@ -55,6 +55,6 @@ export default new Vuex.Store({
 
 When you're happy with your setup, continue:
 
-> Next step: [Usage instructions](/guide/example.md)   
+> Next step: [Usage instructions](/guide/usage.md)   
 
 

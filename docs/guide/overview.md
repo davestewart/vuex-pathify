@@ -1,8 +1,8 @@
-# Prerequisites
+# Plugin overview
 
 > Understand how Pathify works before integrating it in your project
 
-## Overview
+## Pathify 101
 
 Pathify **simplifies** Vuex by abstracting its syntaxes and methods to a powerful, unified **state-based** syntax:
 
@@ -14,6 +14,11 @@ It uses helpers and decorators to get and set values on the store using Vuex its
 
 ```js
 const items = store.get('products/items')
+```
+```js
+computed: {
+  items: sync('products/items')
+}
 ```
 
 Behind the scenes, Pathify reads from the correct store member, or executes the correct Vuex operation:
@@ -39,6 +44,8 @@ Additionally, Pathify adds significant extra functionality, such as:
 - one-liner, two-way data-binding
 - wildcard property expansion
 - boilerplate elimination
+
+For detailed info on why Pathify was created, check the [Rationale](/discussion/rationale.md) page
 
 ## The Pathify algorithm
 
@@ -81,9 +88,9 @@ Pathify ships with a couple of **preset** resolvers, but also allows for **custo
 
 preset|state|getter|mutation|action|notes
 :---|:---|:---|:---|:---|:---
-`common`|items|items|SET_ITEMS|setItems|Used by most Vue developers
-`simple`|items|items|items|setItems|Simpler, unified format for reading and writing
-`custom`|items|?|?|?|Whatever you need for your preferences or project
+**standard**|items|items|SET_ITEMS|setItems|Used by most Vue developers
+**simple**|items|items|items|setItems|Simpler, unified format for reading and writing
+**custom**|items|?|?|?|Whatever you need for your preferences or project
 
 
 #### Outcome
@@ -97,7 +104,7 @@ The final result of the algorithm is based on:
 - a preference of getters over state, and actions over mutations
 - whether the store member exists, i.e. does the `state` have an associated `getter` 
 
-To illustrate the process for all possible operations for the `common` preset, we have:
+To illustrate the process for all possible operations for the `standard` preset, we have:
 
 | Operation | Order | Accessor | Prefix | Formatter | Result | Outcome
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |

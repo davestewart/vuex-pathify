@@ -1,4 +1,4 @@
-# Basic example
+# Basic usage
 
 > An example store and component demoing key features with minimal code
 

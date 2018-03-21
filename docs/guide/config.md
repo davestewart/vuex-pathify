@@ -9,7 +9,7 @@ Pathify loads with the following defaults:
 
 ```js
 export default {
-  resolver: 'common',   // resolve store members using common naming scheme
+  resolver: 'standard', // resolve store members using the standard naming scheme
   strict: true,         // throw error if store member cannot be found
   cache: true,          // cache generated functions for faster re-use
   deep: true,           // allow sub-property access to Vuex stores
@@ -30,7 +30,7 @@ Read the documentation as required, then **follow the steps below**.
     Because of the way ES6 imports work, configuration <strong>must</strong> be saved in a standalone file and <strong>must</strong> be imported before any store files.
 </p>
 
-Create a new file called `pathify.js` and save it in the same folder as your store index file.
+Create a new file called `pathify.js` and save it in the same folder as your store index file (or anywhere, really).
 
 Add the following code to import, configure and re-export the Pathify, modifying the [options](/guide/options.md) as desired:
 
@@ -51,7 +51,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // pathify config
-import pathify from './pathify' // <-- note the ./ denoting a local file
+import pathify from './pathify' // <-- note the ./ denoting a local file!
 
 // store
 const store = {

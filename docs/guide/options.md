@@ -5,9 +5,11 @@
 #### `resolver`
 
 - Type: String | Function
-- Default: "common"
+- Default: "standard"
 
-The **resolver** option helps determine how Pathify should map Pathify operations to Vuex store members:
+The **resolver** option helps determine how Pathify should map Pathify operations to Vuex store members.
+
+You can choose from a couple of common presets, or provide a custom function.
 
 See the [resolver](/guide/resolvers.md) page for more details.
 
