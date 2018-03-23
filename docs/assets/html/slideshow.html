@@ -41,7 +41,7 @@
     <div id="carousel" class="owl-theme">
 
       <div class="slide">
-        <label>In Pathify, almost <strong>everything</strong> is a path:</label>
+        <label>With Pathify, Vuex is accessed by <strong>path</strong>:</label>
 <pre>'path/to/property'</pre>
       </div>
 
@@ -96,7 +96,7 @@
       </div>
 
       <div class="slide">
-        <label>Pathify's API contains just <strong>four</strong> helpers:</label>
+        <label>Just <strong>four</strong> methods; <strong>that's it!</strong></label>
         <pre>import { get, set, sync, make } from 'vuex-pathify'</pre>
       </div>
 
@@ -155,6 +155,9 @@
     })
   }
 
+  /**
+   * @see http://www.landmarkmlp.com/js-plugin/owl.carousel/
+   */
   function setupCarousel () {
     $carousel
       .owlCarousel({
@@ -166,6 +169,20 @@
         callbacks: true,
         afterMove: updateCaption
       })
+
+    owl = $carousel.data('owlCarousel')
+
+    $(parent ? parent : document).on('keydown', function (event) {
+      var k = event.keyCode
+      if (k === 37) {
+        owl.prev()
+        event.preventDefault()
+      }
+      if (k === 39 || k === 32) {
+        owl.next()
+        event.preventDefault()
+      }
+    })
   }
 
   function updateCaption (immediate) {
@@ -177,6 +194,7 @@
 
   var $caption = $('#caption')
   var $carousel = $('#carousel')
+  var owl;
 
   setupSlides()
   setupCarousel()
