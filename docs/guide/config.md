@@ -4,24 +4,19 @@
 
 ## Overview
 
-Pathify loads with the following defaults:
+Pathify installs with the following defaults:
 
 
 ```js
 export default {
-  resolver: 'standard', // resolve store members using the standard naming scheme
-  strict: true,         // throw error if store member cannot be found
+  mapping: 'standard',  // map states to store members using the "standard" scheme
+  strict: true,         // throw an error if the store member cannot be found
   cache: true,          // cache generated functions for faster re-use
   deep: true,           // allow sub-property access to Vuex stores
 }
 ```
 
-If you need to change this, you probably want to do one of two things:
-
-- configure naming with the [resolver](/guide/resolvers.md) option
-- configure additional [options](/guide/options.md)
-
-Read the documentation as required, then **follow the steps below**.
+To modify these settings, review the [options](/guide/options.md) or [mapping](/guide/mapping.md) pages, then **follow the steps below**.
  
 ## Config
 
@@ -39,7 +34,7 @@ import pathify from 'vuex-pathify'
 export default pathify
 
 // options
-pathify.options.resolver = 'simple'
+pathify.options.mapping = 'simple'
 pathify.options.deep = false
 ```
 
@@ -67,15 +62,16 @@ Then finish setting up your project as you would otherwise.
 
 ## Troubleshooting
 
-If you need to check your settings, you can call `pathify.debug()` at any time which will output the current `options` values and a breakdown of the resolver function output.
+If you need to check your settings, you can call `pathify.debug()` at any time which will output the current `options` values and a breakdown of the mapping function output.
 
 ```text
-  [Vuex Pathify] - Options
+  [Vuex Pathify] Options:
 
-  Resolver (custom)
+  Mapping (standard)
 -------------------------------
+  path       : value
   state      : value
-  getters    : getValue
+  getters    : value
   actions    : setValue
   mutations  : SET_VALUE
 

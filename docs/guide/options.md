@@ -2,16 +2,16 @@
 
 > Configure Pathify's options
 
-#### `resolver`
+#### `mapping`
 
 - Type: String | Function
 - Default: "standard"
 
-The **resolver** option helps determine how Pathify should map Pathify operations to Vuex store members.
+The **mapping** option helps determine how Pathify should map Pathify operations to Vuex store members.
 
 You can choose from a couple of common presets, or provide a custom function.
 
-See the [resolver](/guide/resolvers.md) page for more details.
+See the [mapping](/guide/mapping.md) page for more details.
 
 #### `deep`
 

@@ -1,17 +1,147 @@
-- 
-- Really useful helpers to 
+# Rationale
 
-Additionally:
+> “If something can be easy, why make it hard?” - Evan You
 
-- you can still use Vuex directly
+## Overview
+
+The rationale behind creating Pathify is that **Vuex is great** but the coding experience is **way too complex** for something as simple as **setting and getting values** on what is essentially a global object.
+
+The daily experience of working with state should not feel like competing in [American Ninja Warrior](https://www.youtube.com/watch?v=Hf6jGpArqeE), we should not need to be constantly checking the manual for syntax or caveats, writing reams of redundant code, or fretting over which "best practice" will protect us from ourselves long enough to make an app that functions in the real world.
+
+With that being said, Vuex is the Vue **state management standard**, has great tooling and online support, so we want to work with it rather than coming up with a new solution that no-one knows or cares about.
+
+## The brief
+
+### Pain points
+
+The first thing to look at was, where are the pain points when using Vuex?
+
+Which ones can be solved, which ones seem to be mantra over practicality, and which ones do we just have to live with?
+
+- Lots of store boilerplate
+
+    - every property needing to be explicitly created 
+    - every property needs at least a state and mutation, and potentially a getter and action
+    - unsure whether to create getters for all states, or not
+    - when should actions be created and when to use only mutations ?
+
+- Component wiring
+
+    - many competing and cumbersome component wiring choices
+    - 4 Vuex helpers to choose from
+    - why do we have to map state AND getters ?
+    - when and where to use "mapMutations" vs "mapActions" ?
+    - helpers needed in computed and methods
+    
+- Things that are hard but feel like they shouldn't be
+
+    - overall setup
+    - working with object sub-properties
+    - choosing between similar store members
+
+- Inconsistency
+
+    - In stores, why `items`, `setItems` and `SET_ITEMS` ?
+    - In components, why:
+        - `store.state.module.value` and `store.getters['module/value']`
+        - `commit('module/SET_VALUE')` and `dispatch('module/setValue')` 
+
+- Varying advice on "best" practices
+
+    - it's "bad practice" to use mutations in components
+    - you should use "getters and actions" not "state and mutations"
+    - should you write commits as `CONST_CASE` or `camelCase` ?
+
+- Verbose setup
+    - storing different accessor types in separate files
+    - creating static consts for all store member references
+    - using dynamic object keys e.g. `[mutations.SET_ITEMS]: function () { ... }` to create properties
+    
+- Esoteric terms and concepts
+
+    - why "mutation", "commit", "dispatch" ?
+    - why "getters" but then "mutations"
+    - when to use actions and when mutations ?
+    - when to use getters and when state ?
+    
+The above points seem to fall into the following categories:
+
+- **experience** - some of these points become clearer as you get to know Vuex
+- **architecture** - some points are concerned simply with Vuex's architectural choices (good or bad)
+- **best practice** - seemingly "best" practices seem to exist to protect the developer against the code itself
+- **personal preference** - some of these points will depend on yours or your team's developmental preferences
+
+In the next section we'll discuss which of these can be mitigated against, but for now, let's see what we both need and want to do wth Vuex...
+
+### Everyday Vuex
+
+The second thing to look at is, what are the general tasks we do with Vuex on a day to day basis?
+
+- Writing boilerplate:
+
+    - definitely, setting up mutations
+    - potentially, setting up getters and actions
+    - wiring one-way getters for component properties, either:
+        - manually, by writing functions and accessing state and/or getters
+        - automatically, using mapState and mapGetters
+    - setting up two way wiring for component controls, either:
+        - manually, by writing compound computed properties
+        - semi-automatically, using
+            - a combination of @event handlers
+            - mapState / mapGetters
+            - mapMutations / mapActions
+
+- General access
+
+    - getting values from state or getters
+    - setting values using commits or dispatches
+    - calling actions using dispatches
+    - getting copies of data for forms or other compound components
 
 
+### Ideal solution
 
-, the family of helpers and plugins are all refreshingly obvious; clear naming, obvious functionality, and some extra functionality you'll be glad was included. 
+What would the ideal Vuex experience look like ?
 
-Superstore doesn't replace Vuex; behind the scenes `commit()`s are still made and `getters` are still accessed, additionally you can fall back to 
+- Baseline happy:
 
-See the Rationale page for more information.
+    - not have to juggle JavaScript syntax or Vuex naming formats
+    - not have to think about which store member data comes from or has to go to
+    - set and get data without constant hand-holding from the documentation or forums
+    - set up wiring quickly, easily and consistently
+    - reduce or eliminate store boilerplate
+
+- Ideal scenario:
+
+    - works in any project
+    - works with, not against, Vuex
+    - doesn't require hacks to get working
+    - doesn't require compromises in Vuex or JavaScript
+    - can be integrated a little or a lot
+    - significant reduction in lines of code
+    - removes need for defensive programming
+    - adds additional useful functionality
+    - approved by advanced users
+    - easy for beginners
+
+
+## Result
+
+#### Overview
+
+The result of incremental development over various projects, Pathify is the result of and realising that a lot of the setup and wiring can be abstracted.
+
+#### Problems solved
+
+asas
+
+#### Compromises made
+
+asas
+
+#### Problems not solved
+
+asas
 
 
 ## Example
@@ -327,7 +457,7 @@ Over the course of the project,
 
 ## Introduction
 
-State management with Vuex brings with it various advantages, but with [significant overhead](discussion.md) compared to simple stores for full read/write access:
+State management with Vuex brings with it various advantages, but with [significant overhead](../old/discussion.md) compared to simple stores for full read/write access:
  
  - additional boilerplate beyond an initial state setup
  - additional machinery and wiring for even read-write access
@@ -340,7 +470,7 @@ As such, the package has several aims:
 - provide a common pattern to access store members
 - reduce overall boilerplate and wiring
 
-These aims are discussed in more detail [here](aims.md).
+These aims are discussed in more detail [here](../old/aims.md).
 
 ## Getting started
 

@@ -1,6 +1,6 @@
-# Installation and setup
+# Setup
 
-> Setup the plugin in a new project
+> Install and setup the plugin in a new project
 
 ## Installation
 
@@ -15,9 +15,9 @@ yarn add vuex-pathify
 
 ## Config
 
-If you haven't has a brief skim over the [plugin overview](/guide/overview.md) page, you should do so now, as it explains the process Pathify uses to map paths to store members using **naming schemes** and **resolvers**.
+If you haven't had a brief skim over the [plugin overview](/discussion/overview.md) page, you should do so now, as it explains the process Pathify uses to map paths to store members using **naming schemes** and **mapping**.
 
-The naming scheme below seems to be the most common amongst Vue developers, so is the default:
+Pathify's default mapping, hereon known as **"standard"**, seems to be the most common amongst Vue developers:
 
 
 ```js
@@ -26,7 +26,7 @@ getters:       foo         // no prefix, no case conversion
 mutations:     SET_FOO     // "set" prefix, constant case, 
 actions:       setFoo      // "set" prefix, camel case, 
 ``` 
-Before continuing, ensure your store naming reflects this, or [configure](/guide/config.md) an alternative preset or custom resolver instead.
+Before continuing, ensure your store naming reflects this, or [configure](/guide/config.md) an alternative mapping preset or custom mapping functi0on instead.
 
 !>**Warning!**<br>You will not be able to update the store if Pathify cannot map paths to Vuex members.
 
@@ -55,6 +55,6 @@ export default new Vuex.Store({
 
 When you're happy with your setup, continue:
 
-> Next step: [Usage instructions](/guide/usage.md)   
+> Next step: [Usage instructions](/resources/usage.md)   
 
 

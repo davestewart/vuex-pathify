@@ -1,11 +1,9 @@
 - [Guide](/guide/index.md)
 
-    - [Plugin overview](/guide/overview.md)
-    - [Installation and setup](/guide/setup.md)
+    - [Setup](/guide/setup.md)
     - [Configuration](/guide/config.md)
         - [Options](/guide/options.md)
-        - [Resolvers](/guide/resolvers.md)
-    - [Basic usage](/guide/usage.md)
+        - [Mapping](/guide/mapping.md)
 
 - [API reference](/api/index.md)
 
@@ -14,12 +12,14 @@
     - [Component helpers](/api/component.md)
     - [Store helpers](/api/store.md)
 
-- Discussion
+- [Discussion](/discussion/index.md)
 
+    - [Plugin overview](/discussion/overview.md)
     - [Rationale](/discussion/rationale.md)
     - [Best practices](/discussion/best-practices.md)
     
-- Resources
+- [Resources](/resources/index.md)
 
-    - [Example store](/resources/store.md)
+    - [Basic usage](/resources/usage.md)
+    - [Example setup](/resources/setup.md)
     - [Code comparisons](/resources/comparions.md)

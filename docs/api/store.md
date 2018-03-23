@@ -3,116 +3,160 @@
 
 > Store helpers eliminate store boilerplate
 
-### Overview
-
-Stores generally have a lot of boilerplate. Consider a typical store, perhaps to browse products:
-
-```js
-const state = {
-    items: [ ... ],
-    itemId: null,
-    pagination: { ... },
-    search: '',
-    sort: {
-        key: 'id',
-        order: 'ASC'
-    }
-}
-```
-
-Depending on your development preferences, you'll have to:
-
-- create mutations to gain write access
-
-The `mutations` for most of these will be fairly redundant "set state" functions, with the exception of the `pagination` and `search` properties which will require some additional gymnastics to set sub-properties.
-
-Use the `makeMutations` helper to so all this in one line, including full sub-property access via Pathify path syntax, i.e. `products@sort.key`:
-
-### Mutation generation
-
-Use `makeMutations` to build all `mutations` with transparent support for `@subproperty` access: 
-
-```js
-const mutations = makeMutations(state)
-```
-
-You can selectively pick properties, and mix them in using destructuring as required:
-
-```js
-const mutations =  {
-    ...makeMutations(state, ['foo', 'bar']),
-    
-    // add additional functions here...
-}
-```
-
-### Getters and actions generation
-
-The package also includes `makeGetters` and `makeActions` ...
-
-```
-const getters = makeGetters(state)
-const actions = makeActions(state)
-```
-
-... though the requirement for explicit `getters` and `actions` is somewhat redundant seeing as Pathify manages this access for you.
-
-
-View [store setup](docs/discussion/code-comparisons.md#store-setup) comparisons here.
-
-
 ## Overview
 
-**Store helpers exist to remove boilerplate.**
+The store helpers are the last piece in the puzzle to lightweight Vuex projects, as they **eliminate boilerplate** by creating redundant 1:1 wiring functions from a supplied state object.
 
-Consider a typical store, perhaps to browse products:
+They are implemented as **helper functions** which:
+ 
+- can include only certain store members
+- can be mixed in with additional declarations
+
+Each helper builds and returns the appropriate JavaScript functions.
+
+!> Note that `make.mutations()` provides the functionality for **sub-property** writes!
+
+## Usage
+
+The following illustrates core functionality and usage:
 
 ```js
+import { make } from 'vuex-pathify'
+
 const state = {
-    items: [ ... ],
-    itemId: null,
-    pagination: { ... },
-    search: '',
-    sort: {
-        key: 'id',
-        order: 'ASC'
-    }
+  items: [],
+  category: '',
+  filters: {
+    sort : { ... } // object sub-properties
+  }
+}
+
+// make all mutations
+const mutations = make.mutations(state)
+
+// make `setItems()` action only
+const actions = make.actions(state, 'items')
+
+const getters = {
+  // make all getters
+  ...make.getters(state),
+  
+  // overwrite default `items` getter
+  items: state => {
+    return state.items.map(item => new Item(item))
+  },
+  
+  // add new `filteredItems` getter
+  filteredItems: (state, getters) => {
+    return getters.items.filter(item => item.category === state.category)
+  }
+}
+
+export default {
+  state,
+  mutations,
+  actions,
+  getters,
 }
 ```
 
-Depending on your development preferences, you'll have to at leas
+## API
 
-The `mutations` for most of these will be fairly redundant "set state" functions, with the exception of the `pagination` and `search` properties which will require some additional gymnastics to set sub-properties.
+### Helpers
 
-Use the `makeMutations` helper to so all this in one line, including full sub-property access via Pathify path syntax, i.e. `products@sort.key`:
+!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
+
+#### `make.mutations(state: Object, filter: *): Object`
+
+Use `make.mutations()` to generate default mutations for your state object:
 
 ```js
-const mutations =  {
-    // all properties
-    ...makeMutations(state)
-    
-    // customise search
-    search (state, value) => state.search = value.trim()
+const mutations = make.mutations(state)
+```
+
+The helper generates the following code:
+
+```js
+mutations = {
+    SET_ITEMS: (state, value) => value instanceof Payload
+        ? value.update(state)
+        : state.items = value,
+    SET_CATEGORY: (state, value) => value instanceof Payload
+        ? value.update(state)
+        : state.category = value,
+    SET_FILTERS: (state, value) => value instanceof Payload
+        ? value.update(state)
+        : state.filters = value,
 }
 ```
 
-The package also includes `makeGetters` and `makeActions` for those who still want or need explicit wiring.
+Note that the [Payload](#payload-class) instance, which is responsible for setting **sub-property** values, if a [sub-property](/api/paths#sub-property-access) path was passed.
 
 
-To use the helpers in components and stores, import and use them as required:
+#### `make.actions(state: Object, filter: *): Object`
 
-```js
-// store
-import { makeMutations, makeGetters, makeActions } from 'vuex-pathify
-```
-```js
-// components
-import { get, set, sync, getSome, syncSome } from 'vuex-pathify
-```
-
-Additionally, Vuex's `commit` and `dispatch` are aliased for importing convenience for when you don't want to (or can't) use automatic member resolution:
+You can use `make.actions()` to generate default actions for your state object:
 
 ```js
-// components
-import { sync, commit, dispatch } from 'vuex-pathify
+const actions = make.actions(state)
 ```
+
+The helper generates the following code:
+
+```js
+const actions = {
+    setItems: ({commit}, value) => commit('SET_ITEMS', value),
+    setCategory: ({commit}, value) => commit('SET_CATEGORY', value),
+    setFilters: ({commit}, value) => commit('SET_FILTERS', value),
+}
+```
+
+If using Pathify as your core store access mechanism, you generally don't need to create redundant actions, but if you're the kind of developer who prefers accessing the store by **actions only**, this will save you writing them all yourself.
+
+
+#### `make.getters(state: Object, filter: *): Object`
+
+You can use `make.getters()` to generate default getters for your state object:
+
+```js
+const getters = make.getters(state)
+```
+
+The helper generates the following code:
+
+```js
+const getters = {
+  items: state => state.items,
+  category: state => state.category,
+  filters: state => state.filters,
+}
+```
+
+If using Pathify as your core store access mechanism, you generally don't need to create redundant getters, but if you're the kind of developer who prefers accessing the store by **getters only**, this will save you writing them all yourself.
+
+
+### Filters
+
+All `make.*` helpers can control which state properties are converted into function using a second argument:
+
+
+```js
+// strings have properties parsed from them
+const mutations = make.mutations(state, 'items category')
+
+// arrays use the passed values
+const actions = make.actions(state, ['items', 'category'])
+
+// objects use the passed keys
+const getters = make.getters(state, {items: true, category: true})
+```
+
+
+
+### Payload class
+
+The `Payload` class is a Pathify-specific helper that works with [store.set()](/api/accessors.md#set) as well as component helpers' [set()](/api/component.md#set) and [sync()](/api/component.md#sync), and serves to communicate information about sub-property access to the `make.mutations()` helper.
+
+
+
+

@@ -24,7 +24,7 @@
 
   <!-- prism -->
   <script src="https://unpkg.com/prismjs"></script>
-  <script src="../js/prism-pathify.js"></script>
+  <script src="../vendor/prism/prism-pathify.js"></script>
 
   <!-- local assets -->
   <link rel="stylesheet" href="../css/styles.css">
@@ -61,11 +61,6 @@
       </div>
 
       <div class="slide">
-        <label>In components, use only <strong>three</strong> helpers:</label>
-        <pre>import { get, set, sync } from 'vuex-pathify'</pre>
-      </div>
-
-      <div class="slide">
         <label>Easily add <strong>one-liner</strong>, <strong>two-way</strong> data binding:</label>
 <pre>computed: {
     search: sync('products/search')
@@ -93,12 +88,18 @@
       </div>
 
       <div class="slide">
-        <label>In stores, eliminate <strong>boilerplate</strong> for <a href="#mutations">mutations</a>, <a href="#actions">actions</a> and <a
+        <label>Eliminate <strong>boilerplate</strong> for <a href="#mutations">mutations</a>, <a href="#actions">actions</a> and <a
           href="#getters">getters</a>:</label>
-        <pre name="mutations">mutations = makeMutations(state)</pre>
-        <pre name="actions">actions = makeActions(state)</pre>
-        <pre name="getters">getters = makeGetters(state)</pre>
+        <pre name="mutations">mutations = make.mutations(state)</pre>
+        <pre name="actions">actions = make.actions(state)</pre>
+        <pre name="getters">getters = make.getters(state)</pre>
       </div>
+
+      <div class="slide">
+        <label>Pathify's API contains just <strong>four</strong> helpers:</label>
+        <pre>import { get, set, sync, make } from 'vuex-pathify'</pre>
+      </div>
+
 
     </div>
   </div>

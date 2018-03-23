@@ -100,3 +100,7 @@ h2, h3, h4 {
     margin-left: 0;
   }
 }
+
+p.tip + p.tip {
+  margin-top: -1.5em;
+}

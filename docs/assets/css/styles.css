@@ -78,6 +78,9 @@
   .markdown-section pre {
     margin-left: 0; } }
 
+.markdown-section p.tip + p.tip {
+  margin-top: -1.5em; }
+
 .markdown-section pre[data-lang="pathify"],
 .markdown-section code.lang-pathify {
   margin: 0;

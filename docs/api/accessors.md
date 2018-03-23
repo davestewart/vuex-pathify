@@ -4,7 +4,7 @@
 
 ## Overview
 
-The plugin adds methods directly to the Vuex store instance, making it easy to get and set values from anywhere, even the console if the store is saved as a global variable:
+The plugin adds accessors directly to the Vuex store instance, making it easy to get and set values from anywhere, even the console if the store is saved as a global variable:
 
 ```js
 import store from 'store'
@@ -14,39 +14,13 @@ window.store = store
 store.set('settings/loaded', false)
 ```
 
-To illustrate the examples on this page, we'll use the following example store:
-
-```js
-import { makeMutations } from 'vuex-pathify'
-
-const state = {
-    items: [ ... ],
-    category: 'shoes',
-    filters: {
-        search: 'red',
-        sort: {
-            key: 'id',
-            order: 'asc',
-        }
-    }
-}
-
-export default {
-    state,
-    mutations: makeMutations(state)
-    getters: {
-        items (state) {
-            return state.items.map(item => new Item(item))
-        }
-    }
-}
-```
-
 See the [path syntax](/api/paths.md) page for details on compatible path syntax.
 
-## Methods
+## API
 
-!> **Note**: The examples on this page use the [standard](/guide/resolvers.md) naming preset
+!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
+
+### Methods
 
 #### `get(path: string): *`
 
@@ -76,7 +50,7 @@ To access the raw state, just access the store directly:
 store.state.items
 ```
 
-Additionally, the path format works round the awkward syntax juggling required for Vuex modules:
+Additionally, the path format works round the awkward syntax juggling required for Vuex modules; compare:
 
 ```js
 // single, unified format
@@ -86,7 +60,6 @@ store.get('products/items')
 store.state.products.items
 store.getters['products/items']
 ```
-
 
 #### `set(path: string, value: *): *`
 
@@ -103,7 +76,7 @@ Crucially, the method prioritises `actions` over `mutations`, which reduces the 
 
 ```js
 // single, unified format
-store.set('items')
+store.set('items', data)
 ```
 
 Behind the scenes:
@@ -141,27 +114,64 @@ copy('items')
 
 
 
-## Errors
+### Errors
 
-In the event that a supplied path does not resolve to a property, Vuex will log an error:
+In the event that a supplied path does not map to a property, Vuex will log an error:
 
 ```js
 store.set('blah', false)
 ```
 ```text
-[Vuex Pathify] Unable to resolve path 'blah':
+[Vuex Pathify] Unable to map path 'blah':
     - Did not find action 'setBlah' or mutation 'SET_BLAH' on store
     - Use path 'blah!' to target store member directly
 ```
 
-As a developer you can update the path, or if the member exists in an upmappable form, access the member [directly](/api/paths.md#direct-member-access):
+As a developer you can update the path, or access the member **directly** (see below).
 
+
+## Direct access
+
+Pathify comes with two ways to get or set values **directly** in the store.
+
+#### `Direct access syntax`
+
+The first is to use [direct access syntax](/api/paths.md#direct-member-access) as discussed on the Paths API page. This **skips** automatic mapping, but does check the actions/mutations block or the getters/state blocks in order, so if you have **same-named** members, it will get the first one: 
 
 ```js
-store.set('updateBlah!', value)
-store.commit('updateBlah', value)
+// read from the getter
+store.get('filteredItems!') 
+
+// call action directly
+store.set('updateItems!', data)
 ```
 
+#### `Vuex aliases`
 
+The second method works only for setting data, and is to simple call the `commit()` or `dispatch()` directly.
 
+You can do this in two ways; firstly, by accessing the store **directly**:
+
+```js
+// directly on the store
+store.dispatch('updateItems', data)
+
+// in a component, directly on the store
+this.$store.dispatch('updateItems', data)
+```
+
+The second way is to use Pathify's Vuex **aliases**, which it wires up when you activate the plugin:
+
+```js
+// import 
+import { commit, dispatch } from 'vuex-pathify'
+
+// mutations
+commit('UPDATE_ITEMS', data)
+
+// actions
+dispatch('updateItems', data)
+```
+
+Note that the aliases will work only on the **last** store registered in your application (this is probably 99% of apps) !
 

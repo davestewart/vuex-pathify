@@ -4,7 +4,7 @@
 
 ## Overview
 
-Pathify provides a rich [syntax](#core-syntax) to access Vuex stores, including:
+Pathify provides a rich [path syntax](#core-syntax) to access Vuex stores, including:
 
 - module, property and sub-property access
 - wildcard expansion
@@ -14,23 +14,11 @@ There are some [utility](#utility-syntax) formats as well, which are designed to
 - direct member access
 - two-way mapping override
 
-To illustrate the examples on this page, we'll use the following example state:
-
-```js
-const state = {
-    items: [ ... ],
-    filters: {
-        search: 'red',
-        sort: {
-            key: 'id',
-            order: 'asc',
-        }
-    }
-}
-```
 
 
 ## Syntax
+
+!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
 
 ### Core syntax
 
@@ -110,7 +98,7 @@ computed: {
 
 #### `Direct member access`
 
-Pathify's [resolver](/guide/resolvers.md) function is designed to predictably map `state` names to associated store members, like `SET_FOO` or `setFoo`.
+Pathify's [mapping](/guide/mapping.md) function is designed to predictably map `state` names to associated store members, like `SET_FOO` or `setFoo`.
 
 For cases where the "set/get" nomenclature doesn't make sense, you can override Pathify's member resolution by appending a bang `!` to the property name:
 

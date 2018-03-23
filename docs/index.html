@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- title -->
-  <title>Vuex Pathify - Vue / Vuex plugin providing a unified and intuitive path interface to Vuex stores</title>
+  <!-- info -->
+  <title>Vuex Pathify - Vue / Vuex plugin providing a declarative, path-based interface to your Vuex store</title>
+  <meta property="og:title" content="Vuex Pathify">
+  <meta property="og:description" content="A Vue / Vuex plugin providing a declarative, path-based interface to your Vuex store">
+  <meta property="og:image" content="https://raw.githubusercontent.com/davestewart/vuex-pathify/master/docs/assets/media/api.png">
+  <meta property="og:url" content="https://davestewart.github.io/vuex-pathify">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- meta -->
   <meta charset="UTF-8">
@@ -14,10 +19,12 @@
   <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700i" rel="stylesheet">
 
   <!-- styles -->
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="assets/vendor/docsify/vue.css">
 
   <!-- local assets -->
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/plugins.js"></script>
+
 
 </head>
 <body>
@@ -30,14 +37,20 @@
       name        : 'Vuex Pathify',
       repo        : 'https://github.com/davestewart/vuex-pathify',
       themeColor  : '#25afaf',
+      homepage    : 'home.md',
       loadSidebar : true,
-      auto2top    : true
+      autoHeader  : true,
+      auto2top    : true,
+
+      plugins: [
+        fixAnchors
+      ]
     }
   </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="assets/vendor/docsify/docsify.min.js"></script>
 
   <!-- plugins -->
-  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="assets/vendor/docsify/search.min.js"></script>
 
 </body>
 </html>
