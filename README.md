@@ -4,7 +4,7 @@
 
 Pathify provides a unified and intuitive path interface to Vuex stores.
 
-![image](https://user-images.githubusercontent.com/132681/37185793-140d5470-233a-11e8-937b-efbd623a97ab.png)
+![image](https://user-images.githubusercontent.com/132681/37240859-d763f3ca-2448-11e8-9f41-0f90ac1f084b.png)
 
 The plugin aims to solve several everyday Vuex issues:
 
@@ -18,4 +18,5 @@ In practical terms, Pathify results in zero store boilerplate, one-liner wiring 
 
 ## Next steps
 
-Check out the [docs](https://davestewart.github.io/vuex-pathify/), or play with the editable [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo).
+- Check out the [docs](https://davestewart.github.io/vuex-pathify/)
+- Try the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)
