@@ -39,6 +39,9 @@
 .markdown-section h3 {
   font-size: 1.8em; }
 
+.markdown-section table, .markdown-section ul, .markdown-section ol {
+  margin-left: 25px; }
+
 .markdown-section pre {
   padding: 0;
   margin-left: 25px; }
@@ -53,9 +56,20 @@
   border-radius: 4px; }
 
 .markdown-section h2 code, .markdown-section h3 code, .markdown-section h4 code {
-  font-size: 0.8em;
-  font-family: Merriweather;
-  font-style: italic; }
+  font-size: 1em;
+  font-family: Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+  font-weight: 700;
+  display: inline-block;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit; }
+  .markdown-section h2 code:before, .markdown-section h3 code:before, .markdown-section h4 code:before {
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    content: "#";
+    color: #42b983; }
 
 .markdown-section .indent {
   margin-left: 20px; }
@@ -63,6 +77,9 @@
 @media only screen and (max-width: 600px) {
   .markdown-section pre {
     margin-left: 0; } }
+
+.markdown-section p.tip + p.tip {
+  margin-top: -1.5em; }
 
 .markdown-section pre[data-lang="pathify"],
 .markdown-section code.lang-pathify {
@@ -92,9 +109,9 @@
       font-weight: 300; }
     .markdown-section code.lang-pathify .token.comment {
       font-size: 0.5em;
-      color: black;
       vertical-align: bottom;
-      font-style: italic; }
+      font-style: italic;
+      color: #666; }
     .markdown-section code.lang-pathify .token.string {
       color: #25afaf;
       font-weight: 400; }
@@ -114,7 +131,11 @@
   font-weight: 400; }
 
 .sidebar .sidebar-nav > ul > li {
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  font-size: 17px; }
+  .sidebar .sidebar-nav > ul > li > p > a {
+    font-size: 17px;
+    font-weight: 700; }
 
 .sidebar > li > p {
   font-family: Merriweather;

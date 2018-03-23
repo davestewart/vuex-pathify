@@ -2,86 +2,49 @@
 
 > Configure Pathify's options
 
-## resolver: `String | Function`
+#### `mapping`
 
-> discuss built-in resolvers, but move the custom stuff to the resolver page
+- Type: String | Function
+- Default: "standard"
 
-The most important option is the **resolver** option, which determines how Pathify should map paths to Vuex store members. You can choose from some **presets**, or you can supply a [user-defined](#custom-resolver) function.
+The **mapping** option helps determine how Pathify should map Pathify operations to Vuex store members.
 
-asasas
+You can choose from a couple of common presets, or provide a custom function.
 
+See the [mapping](/guide/mapping.md) page for more details.
 
-scheme|state|getter|mutation|action|notes
-:---|:---|:---|:---|:---|:---
-`common`|foo|foo|SET_FOO|setFoo|Used by most Vue developers
-`simple`|foo|foo|foo|setFoo|Single unified format for reading and writing
+#### `deep`
 
-If you get the following error, you failed to configure the plugin before using it, so should check your setup again:
+- Type: Boolean
+- Default: true
 
-Writing your own resolver function is as simple as you see above, just make sure to load your configuration correctly as outlined in the [Configuration](/guide/config) page.
-
-```text
-Uncaught Error: [Vuex Pathify] Unknown resolver 'none' in options
-    - Choose one of 'common', 'simple'
-    - Or, supply a custom function
-```
-
-
-#### Custom resolver
-
-
-## deep : `Boolean`
-
-Allows sub-property acesss
-
-## strict: `Boolean`
-
-
-
-### Naming scheme
-
-Before even importing Pathify, you should have a concrete idea of your Vuex variable naming scheme:
-
-- will you use `set` or `update` as your `mutation` prefix ?
-- will you use `camelCase` or `CONSTANT_CASE` for `mutations` ?
-- will you use one of the Pathify naming presets, or a custom function?
-
-
-
-
-
-
-#### Built-in resolvers
-
-Pathify comes with two built-in resolvers, `common` and `simple`.
-
-The `common` Pathify resolver function looks like this.
+The **deep** option premits sub-property read and writes for store members of the `Object` type:
 
 ```js
-function resolve (type, name, formatters) {
-  switch(type) {
-    case 'mutations':
-      return formatters.const('set', name) // SET_BAR
-    case 'actions':
-      return formatters.camel('set', name) // setBar
-  }
-  return name // bar
-}
+store.set('settings@loaded', true)
 ```
 
-The `simple` Pathify resolver function looks like this:
+Setting deep to `false` will cause sub-property access to fail and will generate a console error in development.
 
-```js
-function resolve (type, name, formatters) {
-  if (type === 'actions') {
-    return formatters.camel('set', name) // setBar
-  }
-  return name // bar
-}
-```
 
-You can choose these resolvers by name in the config options by passing a string:
+#### `strict`
 
-```js
-pathify.options.resolver = 'simple'
-```
+> Not implemented yet
+
+- Type: Boolean
+- Default: true
+
+The **strict** option causes an error to be thrown if attempting to access to properties that don't exist.
+
+
+
+#### `cache`
+
+> Not implemented yet
+
+- Type: Boolean
+- Default: true
+
+The **cache** option enables caching of mapping results, making for speedier lookups when paths are accessed or computed properties are recreated.
+
+Disabling caching has a negligible performance impact.

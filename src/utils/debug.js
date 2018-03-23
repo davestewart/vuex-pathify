@@ -9,8 +9,9 @@ export default function debug () {
   console.log(`
   [Vuex Pathify] Options:
 
-  Resolver (${options.resolver instanceof Function ? 'custom' : options.resolver})
+  Mapping (${options.mapping instanceof Function ? 'custom' : options.mapping})
 -------------------------------
+  path       : value
   state      : ${resolve('state')}
   getters    : ${resolve('getters')}
   actions    : ${resolve('actions')}
@@ -19,6 +20,7 @@ export default function debug () {
   Settings
 -------------------------------
   strict     : ${options.strict}
+  cache      : ${options.cache}
   deep       : ${options.deep}
 
 `)

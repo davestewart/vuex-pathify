@@ -1,0 +1,62 @@
+body {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.markdown-section {
+  padding: 0;
+  width: inherit;
+
+  pre[data-lang="pathify"],
+  code.lang-pathify {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#container {
+  width: 770px;
+  height: 400px;
+
+  opacity: 0;
+  transition: 1s all;
+  body.loaded & {
+    opacity: 1;
+  }
+}
+
+#caption {
+  display: block;
+  padding-bottom: 25px;
+  font-size: 1.1em;
+}
+
+a {
+  color: #25afaf;
+  font-weight: 600;
+}
+
+#carousel,
+.owl-wrapper-outer {
+  width: 760px;
+  // border: 1px solid #EEE;
+  // border-left: 5px solid #EEE;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 760px;
+  height: 300px;
+
+  label {
+    display: none;
+  }
+}
+
+.large code {
+  font-size: 2.5em !important;
+}

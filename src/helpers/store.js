@@ -71,4 +71,8 @@ export function makeActions (state, only) {
     }, {})
 }
 
-
+export default {
+  getters: makeGetters,
+  mutations: makeMutations,
+  actions: makeActions,
+}

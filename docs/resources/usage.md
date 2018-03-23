@@ -56,9 +56,9 @@ Note:
 This component file demonstrates:
 
 - the `get()` helper which pulls properties 1-way from the store
-- the `syncSome()` helper which creates multiple 2-way data-bindings with the store
-    - `syncSome()` `array` format which creates 1:1 `name:property` mappings 
-    - `syncSome()` `object` format which creates custom `name:property` mappings 
+- the `sync()` helper which creates both single and multiple 2-way data-bindings with the store
+    - `array` format which creates multiple 1:1 `name:property` mappings 
+    - `object` format which creates multiple custom `name:property` mappings 
 - sub-property access via Pathify's `@property` syntax
 
 The code is:
@@ -79,18 +79,18 @@ The code is:
 </template>
 
 <script>
-  import { get, syncSome } from 'vuex-pathify'
+  import { get, sync } from 'vuex-pathify'
 
   export default {
     computed: {
       user: get('user'),
       name: get('user/name'),
-      ...syncSome('user', [
+      ...sync('user', [
         'firstName',
         'lastName',
         'email',
       ]),
-      ...syncSome('user/personal', {
+      ...sync('user/personal', {
         height: '@height',
         age: '@age',
       })

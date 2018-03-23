@@ -4,24 +4,19 @@
 
 ## Overview
 
-Pathify loads with the following defaults:
+Pathify installs with the following defaults:
 
 
 ```js
 export default {
-  resolver: 'common',   // resolve store members using common naming scheme
-  strict: true,         // throw error if store member cannot be found
+  mapping: 'standard',  // map states to store members using the "standard" scheme
+  strict: true,         // throw an error if the store member cannot be found
   cache: true,          // cache generated functions for faster re-use
   deep: true,           // allow sub-property access to Vuex stores
 }
 ```
 
-If you need to change this, you probably want to do one of two things:
-
-- use a custom [resolver](/guide/resolvers)
-- update [options](/guide/options)
-
-Read the documentation as required, then **follow the steps below**.
+To modify these settings, review the [options](/guide/options.md) or [mapping](/guide/mapping.md) pages, then **follow the steps below**.
  
 ## Config
 
@@ -30,16 +25,16 @@ Read the documentation as required, then **follow the steps below**.
     Because of the way ES6 imports work, configuration <strong>must</strong> be saved in a standalone file and <strong>must</strong> be imported before any store files.
 </p>
 
-Create a new file called `pathify.js` and save it in the same folder as your store index file.
+Create a new file called `pathify.js` and save it in the same folder as your store index file (or anywhere, really).
 
-Add the following code to import, configure and re-export the Pathify, modifying the [options](/guide/options) as desired:
+Add the following code to import, configure and re-export the Pathify, modifying the [options](/guide/options.md) as desired:
 
 ```js
 import pathify from 'vuex-pathify'
 export default pathify
 
 // options
-pathify.options.resolver = 'simple'
+pathify.options.mapping = 'simple'
 pathify.options.deep = false
 ```
 
@@ -51,7 +46,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // pathify config
-import pathify from './pathify' // <-- note the ./ denoting a local file
+import pathify from './pathify' // <-- note the ./ denoting a local file!
 
 // store
 const store = {
@@ -67,15 +62,16 @@ Then finish setting up your project as you would otherwise.
 
 ## Troubleshooting
 
-If you need to check your settings, you can call `pathify.debug()` at any time which will output the current `options` values and a breakdown of the resolver function output.
+If you need to check your settings, you can call `pathify.debug()` at any time which will output the current `options` values and a breakdown of the mapping function output.
 
 ```text
-  [Vuex Pathify] - Options
+  [Vuex Pathify] Options:
 
-  Resolver (custom)
+  Mapping (standard)
 -------------------------------
+  path       : value
   state      : value
-  getters    : getValue
+  getters    : value
   actions    : setValue
   mutations  : SET_VALUE
 

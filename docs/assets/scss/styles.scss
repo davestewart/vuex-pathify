@@ -1,4 +1,4 @@
-@import "variables";
+@import "partials/variables";
 
 .content {
   padding-top: 30px;
@@ -6,8 +6,8 @@
 
 .markdown-section {
 
-  @import "formatting";
-  @import "code";
+  @import "partials/formatting";
+  @import "partials/code";
 }
 
-@import "sidebar";
+@import "partials/sidebar";

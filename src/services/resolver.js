@@ -18,7 +18,7 @@ const members = {
 const resolvers = {
 
   /**
-   * Default name resolver
+   * Standard name mapping function
    *
    * Adheres to seemingly the most common Vuex naming pattern
    *
@@ -27,7 +27,7 @@ const resolvers = {
    * @param   {object}  formatters    A formatters object with common format functions, camel, snake, const
    * @returns {string}
    */
-  common (type, name, formatters) {
+  standard (type, name, formatters) {
     switch(type) {
       case 'mutations':
         return formatters.const('set', name) // SET_BAR
@@ -37,6 +37,9 @@ const resolvers = {
     return name // bar
   },
 
+  /**
+   * Simple name mapping function
+   */
   simple (type, name, formatters) {
     if (type === 'actions') {
       return formatters.camel('set', name) // setBar
@@ -52,7 +55,7 @@ const resolvers = {
 let resolver
 
 /**
- * Internal function to resolve member name using configured resolver function
+ * Internal function to resolve member name using configured mapping function
  *
  * @param   {string}  type  The member type, i.e. actions
  * @param   {string}  name  The supplied path member id, i.e. value
@@ -69,13 +72,13 @@ export function resolveName (type, name) {
 
   // unconfigured resolver! (runs once)
   if (!fn) {
-    if (options.resolver instanceof Function) {
-      fn = options.resolver
+    if (options.mapping instanceof Function) {
+      fn = options.mapping
     }
     else {
-      fn = resolvers[options.resolver]
+      fn = resolvers[options.mapping]
       if (!fn) {
-        throw new Error(`[Vuex Pathify] Unknown resolver '${options.resolver}' in options
+        throw new Error(`[Vuex Pathify] Unknown mapping '${options.mapping}' in options
     - Choose one of '${Object.keys(resolvers).join("', '")}'
     - Or, supply a custom function
 `)
@@ -168,7 +171,7 @@ export function resolve (store, path) {
  * Error generation function for accessors
  */
 export function getError(path, resolver, aName, a, bName, b) {
-  let error = `[Vuex Pathify] Unable to resolve path '${path}':`
+  let error = `[Vuex Pathify] Unable to map path '${path}':`
   if (path.includes('!')) {
     error += `
     - Did not find ${aName} or ${bName} named '${resolver.name}' on ${resolver.module ? `module '${resolver.module}'`: 'root store'}`
