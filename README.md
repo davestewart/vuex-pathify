@@ -19,4 +19,3 @@ In practical terms, Pathify results in zero store boilerplate, one-liner wiring 
 
 - Check out the [documentation](https://davestewart.github.io/vuex-pathify/)
 - Install the [package](https://www.npmjs.com/package/vuex-pathify)
-- Try the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)
