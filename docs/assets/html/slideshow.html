@@ -15,16 +15,16 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 
   <!-- jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
   <!-- owl carousel -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 
   <!-- prism -->
-  <script src="https://unpkg.com/prismjs"></script>
-  <script src="../vendor/prism/prism-pathify.js"></script>
+  <script type="application/javascript" src="../vendor/prism/prism.js"></script>
+  <script type="application/javascript" src="../vendor/prism/prism-pathify.js"></script>
 
   <!-- local assets -->
   <link rel="stylesheet" href="../css/styles.css">
@@ -41,13 +41,13 @@
     <div id="carousel" class="owl-theme">
 
       <div class="slide">
-        <label>In Pathify, almost <strong>everything</strong> is a path:</label>
-<pre>'path/to/property'</pre>
+        <label>With Pathify, Vuex is accessed by <strong>path</strong>:</label>
+        <pre>'path/to/property'</pre>
       </div>
 
       <div class="slide">
         <label>Paths support <strong>sub-properties</strong> for all operations:</label>
-<pre>'path/to@sub.property'</pre>
+        <pre>'path/to@sub.property'</pre>
       </div>
 
       <div class="slide">
@@ -88,15 +88,14 @@
       </div>
 
       <div class="slide">
-        <label>Eliminate <strong>boilerplate</strong> for <a href="#mutations">mutations</a>, <a href="#actions">actions</a> and <a
-          href="#getters">getters</a>:</label>
+        <label>Eliminate <strong>boilerplate</strong> for <a href="#mutations">mutations</a>, <a href="#actions">actions</a> and <a href="#getters">getters</a>:</label>
         <pre name="mutations">mutations = make.mutations(state)</pre>
         <pre name="actions">actions = make.actions(state)</pre>
         <pre name="getters">getters = make.getters(state)</pre>
       </div>
 
       <div class="slide">
-        <label>Pathify's API contains just <strong>four</strong> helpers:</label>
+        <label>Just <strong>four little functions</strong> and you're up and running!</label>
         <pre>import { get, set, sync, make } from 'vuex-pathify'</pre>
       </div>
 
@@ -129,6 +128,7 @@
         })
       })
 
+    // group sub-slides
     $('.slide')
       .each(function (i, e) {
         var $slide = $(e)
@@ -145,7 +145,9 @@
         }
       })
 
+    // when the caption is clicked, show the correct sub-slide
     $('#caption').on('click', 'a', function (event) {
+      event.preventDefault()
       var name = $(this).attr('href').replace('#', '')
       $('.owl-item.active')
         .find('pre')
@@ -155,6 +157,9 @@
     })
   }
 
+  /**
+   * @see http://www.landmarkmlp.com/js-plugin/owl.carousel/
+   */
   function setupCarousel () {
     $carousel
       .owlCarousel({
@@ -166,17 +171,37 @@
         callbacks: true,
         afterMove: updateCaption
       })
+
+    owl = $carousel.data('owlCarousel')
+    $(doc).on('keydown', function onKeyDown(event) {
+      var e = event
+      var k = e.keyCode
+      if (!(e.metaKey || e.ctrlKey || e.altKey)) {
+        if (k === 37) {
+          owl.prev()
+        }
+        if (k === 39 || k === 32) {
+          owl.next()
+          if (k === 32) {
+            e.preventDefault()
+          }
+        }
+      }
+    })
+
   }
 
-  function updateCaption (immediate) {
+  function updateCaption () {
     var html = $carousel
       .find('.owl-item.active label')
       .html()
     $caption.html(html)
   }
 
+  var doc = parent ? parent : document
   var $caption = $('#caption')
   var $carousel = $('#carousel')
+  var owl;
 
   setupSlides()
   setupCarousel()

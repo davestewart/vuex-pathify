@@ -21,7 +21,7 @@ See the [mapping](/guide/mapping.md) page for more details.
 The **deep** option premits sub-property read and writes for store members of the `Object` type:
 
 ```js
-store.set('settings@loaded', true)
+store.set('sort@order', 'asc')
 ```
 
 Setting deep to `false` will cause sub-property access to fail and will generate a console error in development.

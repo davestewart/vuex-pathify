@@ -71,6 +71,12 @@
     content: "#";
     color: #42b983; }
 
+.markdown-section ol li p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; }
+  .markdown-section ol li p:last-child {
+    margin-bottom: 2em; }
+
 .markdown-section .indent {
   margin-left: 20px; }
 
@@ -123,6 +129,22 @@
       font-style: italic;
       font-weight: 400;
       color: #ff7337; }
+
+.markdown-section #config {
+  display: flex; }
+  .markdown-section #config .column,
+  .markdown-section #config .options {
+    padding-right: 10px; }
+    .markdown-section #config .column label,
+    .markdown-section #config .column select,
+    .markdown-section #config .options label,
+    .markdown-section #config .options select {
+      display: block;
+      width: 100%;
+      min-width: 150px; }
+    .markdown-section #config .column label,
+    .markdown-section #config .options label {
+      padding: 5px; }
 
 .sidebar > h1 {
   text-align: left;

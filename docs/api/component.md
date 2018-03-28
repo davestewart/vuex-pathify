@@ -4,7 +4,7 @@
 
 ## Overview
 
-Pathify component helpers are designed to **easily wire components** to the store using the same [path syntax](/api/paths) and [functionality](/api/accessors.md#methods) used throughout Pathify.
+Pathify component helpers are designed to **easily wire components** to the store.
 
 They are implemented as **helper functions** which can:
  
@@ -12,7 +12,7 @@ They are implemented as **helper functions** which can:
 - wire **single** or **multiple** properties
 - be written as one-liners
 
-Each helper builds and returns the appropriate computed property. The created **compound** computed property keeps all functionality within the `computed` block, so no need for actions or additional helpers.
+Each helper builds and returns the appropriate `computed` property. Because get, set **and** sync are all **computed properties**, there's no need to add functions or map actions/mutations in the `methods` block.
 
 ## Usage
 
@@ -38,6 +38,9 @@ export default {
       sortOrder: 'order',
       sortKey: 'key',
     }),
+
+    // wildcard syntax
+    ...sync('products/*')
   }
 }
 ```
@@ -48,6 +51,7 @@ export default {
 
 ### Single property access
 
+Remember that component helpers use Pathify's core [property access](/api/properties.md) so have exactly the same functionality.
 
 #### `sync(path: string): *`
 
@@ -71,6 +75,17 @@ computed: {
       return this.$store.commit('products/SET_ITEMS', value)
     },
   }
+}
+```
+Note that `sync()` takes an additional path syntax `|` with which you can specify direct access for both get and set members:
+
+```js
+computed: {
+    // get with `items` accessor but set with `updateItems()` action
+    items: sync('items|updateItems!')
+
+    // get with `filteredItems` getter and set with `updateItems()` action
+    items: sync('filteredItems!|updateItems!')
 }
 ```
 
@@ -117,7 +132,7 @@ computed: {
 
 ### Multi-property access
 
-All the component helpers have an **alternate syntax** which generate **multiple** property wirings.
+Each of the component helpers can generate **multiple** property wirings.
 
 You can use:
 
@@ -125,7 +140,7 @@ You can use:
 - [object syntax](#object-syntax) - to map properties with different names on the component
 - [wildcard syntax](#wildcard-syntax) - to grab sets of properties automatically
 
-The differing syntaxes have the same outcome; they transform a single or compound input into **multiple paths**, each of which are then passed through the executed helper. The return result is **always** an Object which must be mixed in to the computed property block, or set as the block itself:
+Each syntax generates an **Object** of **named properties** which must be mixed in to the computed property block, or set as the block itself:
 
 ```js
 computed: {
@@ -135,23 +150,6 @@ computed: {
 ```js
 computed: sync(path, map) 
 ```
-
-For Array and Object syntaxes, where an **optional string** may be passed before the **map parameter**, the two parameters are **intelligently concatenated**, attempting to transparently handles differing path syntax:
-
-```js
-computed: {
-  ...get('products/filters@', [
-    'search', 
-    'sort.order'
-  ])  
-}
-```
-```paths
-search : products/filters@search
-order  : products/filters@sort.order
-```
-
-You can be reasonably creative with how you specify the component parts!
 
 #### `Array syntax`
 
@@ -180,9 +178,9 @@ It takes an **optional** path prefix, and hash of `key:property` names:
 
 ```js
 computed: {
-  ...sync('products/filters@', { 
-    sortOrder: 'sort.order'
-    sortKey: 'sort.key'
+  ...sync('products/filters@sort', { 
+    sortOrder: 'order'
+    sortKey: 'key'
   })
 }
 ```
@@ -206,43 +204,10 @@ category : products/category
 filters  : products/filters
 ```
 
-Note that you can use wildcards to target **any** set of state properties or sub properties, so the following syntaxes would be valid:
+Note that you can use wildcards to target **any** set of state properties or sub properties, so the following are all valid:
 
 ```wildcards
 products/*
 products/filters@*
 products/filters@sort.*
 ```
-
-## Utility syntax
-
-As mentioned on the paths page, there are two [utility syntaxes](/api/paths.md#utility-syntax), one of which is specific to computed property helpers.
-
-
-#### `Direct member access`
-
-The first, is [direct member access](/api/paths.md#direct-member-access) which allows you access store properties directly, without any mapping.
-
-To do this, reference the property name and append a bang `!`:
-
-```js
-computed: {
-  items: get('products/filteredItems!')
-}
-```
-
-Pathify will create a computed property that references the store member directly.
-
-#### `Two-way mapping override`
-
-The second, is two-way mapping override, which allows direct access in sync modifiers for one or both members.
-
-To do this, reference the property names with a pipe `|` character between them:
-
-```js
-computed: {
-  items: sync('products/filteredItems!|updateItems!')
-}
-```
-
-Pathify will create a computed property that references both store members directly.
