@@ -1,4 +1,6 @@
-# Getting started
+# Guide
+
+- [Overview](/guide/pathify.md) - A brief overview on how Pathify works
 
 - [Setup](/guide/setup.md) - Install and setup the plugin in a new project
 

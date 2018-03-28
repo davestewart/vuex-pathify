@@ -4,9 +4,11 @@
 
 ## Overview
 
-Pathify's [algorithm](/discussion/overview.md#the-pathify-algorithm) maps **paths** to **store members**, such as `foo/` to `SET_FOO` or similar.
+Pathify's [algorithm](/guide/pathify.md#the-pathify-algorithm) maps **paths** to **store members**, such as `foo/` to `SET_FOO` or similar.
 
 It can be configured using a preset or custom function.
+
+!> For detailed information on how Pathify maps paths to store members, see the [mapping algorithm](/discussion/algorithm.md) page.
 
 
 ## Presets
@@ -16,7 +18,7 @@ There are two mapping presets to choose from, which map as follows:
 name|path|state|getter|mutation|action|notes
 :---|:---|:---|:---|:---|:---|:---
 **standard**|`/foo`|foo|foo|SET_FOO|setFoo|Used by most Vue developers
-**simple**|`/foo`|foo|foo|foo|setFoo|Simpler, unified read/write format
+**simple**|`/foo`|foo|foo|foo|setFoo|Simpler, unified format
 
 
 To reconfigure Pathify from the default `standard` mapping, set Pathify's options like so:

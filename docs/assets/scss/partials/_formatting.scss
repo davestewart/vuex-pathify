@@ -90,9 +90,19 @@ h2, h3, h4 {
   }
 }
 
+ol li p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+
+  &:last-child {
+    margin-bottom: 2em;
+  }
+}
+
 .indent {
   margin-left: 20px;
 }
+
 
 
 @media only screen and (max-width: 600px) {

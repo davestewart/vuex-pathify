@@ -9,10 +9,10 @@ Pathify provides a rich [path syntax](#core-syntax) to access Vuex stores, inclu
 - module, property and sub-property access
 - wildcard expansion
 
-There are some [utility](#utility-syntax) formats as well, which are designed to handle customisation around non `get/set` naming:
+There are some additional [direct syntaxes](#direct-syntax) as well, which are designed to handle customisation around non `get/set` naming:
 
-- direct member access
-- two-way mapping override
+- direct access
+- direct sync
 
 
 
@@ -45,6 +45,8 @@ get('products/items')
 
 #### `Sub-property access`
 
+!> Note that Pathify only supports Object (not array) access. Arrays should be updated using manual methods
+
 Sub-property access requires the `@` character, and allows you to read sub-properties to any depth:
 
 ```js
@@ -56,15 +58,14 @@ get('filters@search')
 get('filters@sort.key')
 ```
 
-!> Note that Pathify only supports Object (not array) access. Arrays should be updated using manual methods
-
-For sub-properties to be **written to** mutations **must have** been created using the [makeMutations()](/api/store.md) helper.
+To transparently **write** sub-properties, use the [make.mutations()](/api/store.md#make-mutations) helper or the [Payload](/api/properties.md#payload-class) class.
 
 ```js
 set('filters@search', 'blue')
 ```
 
-Alternatively, you **can** write manually; see the [Payload](/api/accessors.md#payload) helper for more information.
+See the [sub-property access](/api/properties.md#sub-property-access) section for more information.
+
 
 #### `Wildcard expansion`
 
@@ -94,45 +95,28 @@ computed: {
 }
 ```
 
-### Utility syntax
+### Direct syntax
 
-#### `Direct member access`
+Pathify has two syntax types which are used to handle customisation around non get/set naming. 
 
-Pathify's [mapping](/guide/mapping.md) function is designed to predictably map `state` names to associated store members, like `SET_FOO` or `setFoo`.
+#### `Direct access`
 
-For cases where the "set/get" nomenclature doesn't make sense, you can override Pathify's member resolution by appending a bang `!` to the property name:
+Direct access syntax uses a bang `!` to skip mapping and access Vuex members directly:
 
 ```js
-// reference the `filteredItems` getter, rather than `items`
 get('filteredItems!')
 ```
-```js
-// call the `updateItems()` action, rather than `setItems()`
-set('updateItems!', data)
-```
 
-Alternatively, you can just call Vuex members directly:
+See the [properties](/api/properties.md#direct-property-access) page for more info.
 
-```js
-// use vuex directly
-store.commit('updateItems', data)
-```
+#### `Direct sync`
 
-#### `Two-way mapping override`
-
-The computed property helper [sync()](/api/component.md#sync) has a special `|` syntax which allows you to specify an alternate getter **and/or** setter.
-
-You can override one or both properties:
+Direct sync syntax uses a pipe `|` to specify alternate get and set members in component helpers:
 
 ```js
-// get items with `items` but override the setItems() action with the `updateItems()`
-sync('items|updateItems!')
+computed: {
+    items: sync('filteredItems!|updateItems!')
+}
 ```
 
-Alternatively, you can specify both the getter and the setter by using the direct access syntax for the getter:
-
-```js
-// get items with the `filteredItems` getter and set items with the action `updateItems()`
-sync('filteredItems!|updateItems!')
-```
-
+See the [component helpers](/api/component.md#sync) page for more info.

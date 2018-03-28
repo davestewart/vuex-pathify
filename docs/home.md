@@ -9,6 +9,7 @@ iframe {
     height: 420px;
     border: 0 !important;
     margin-bottom: -20px;
+    overflow: hidden;
 }
 </style>
 
@@ -35,7 +36,9 @@ computed: {
 ```
 -->
 
-Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/guide/config.md), [path syntax](/api/paths.md), and [helpers](/api/component.md) which return robust, lightweight functions; the kind **you would have liked to have written anyway**, but automatically, and with extra whistles and bells. 
+Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/guide/config.md), [path syntax](/api/paths.md), and [helpers](/api/component.md).
+
+Pathify generates concise, lightweight code; the kind **you would have liked to have written anyway** – minus the drudgery – with additional well thought-out functionality that makes working with Vuex a breeze. 
 
 In practical terms, Pathify results in:
 
@@ -47,7 +50,7 @@ In practical terms, Pathify results in:
 
 ### Next steps
 
-- Check out the [plugin overview](/discussion/overview.md) to find out how Pathify works
-- Set up Pathify on the [installation and setup](/guide/setup.md) page
+- Check out the [Pathify 101](/guide/pathify.md) for the essential Pathify info
+- Visit the [Setup](/guide/setup.md) page to start using Pathify now
 - Play with the editable [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo).
 

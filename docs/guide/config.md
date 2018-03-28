@@ -16,7 +16,11 @@ export default {
 }
 ```
 
-To modify these settings, review the [options](/guide/options.md) or [mapping](/guide/mapping.md) pages, then **follow the steps below**.
+If you're a new user, and you need to configure a mapping scheme, visit the [mapping](/guide/mapping.md) page first.
+
+If you just need to tweak these values, review the [options](/guide/options.md) for more information.
+
+When you're ready to save your changes, **follow the steps below**.
  
 ## Config
 
