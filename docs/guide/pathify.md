@@ -10,7 +10,7 @@ Pathify **simplifies** Vuex by abstracting its various syntaxes and methods to *
 products/items@filters.search
 ```
 
-You use store decorators and helper functions to get and set values:
+You use store decorators and helper functions to just `get()`, `set()` and `sync()` values:
 
 ```js
 const items = store.get('products/items')
