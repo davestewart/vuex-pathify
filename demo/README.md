@@ -1,6 +1,6 @@
-# vuex-superstore-demo
+# vuex-pathify-demo
 
-> Vuex Superstore Demo
+> Vuex Pathify Demo
 
 ## Build Setup
 

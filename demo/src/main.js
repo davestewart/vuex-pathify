@@ -1,7 +1,20 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
+import store from './store'
+import router from './router'
 
-new Vue({
+// ui
+import 'components/index'
+
+// styles
+import './assets/styles.css'
+
+Vue.config.productionTip = false
+
+window.app = new Vue({
   el: '#app',
-  render: h => h(App)
+  router,
+  store,
+  template: '<App/>',
+  components: { App }
 })
