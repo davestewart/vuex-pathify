@@ -3,8 +3,10 @@
   <article>
 
     <div class="content">
-      <h3 class="title is-3">Basics example</h3>
-      <p>Use get, set and copy to interact with the store directly</p>
+      <h2 class="title is-2">API: Component helpers</h2>
+      <blockquote>
+        <p>Page uses core Pathify get and sync functions, sub-property access, and explicit object and array syntax.</p>
+      </blockquote>
     </div>
 
     <div>
@@ -70,17 +72,3 @@
   }
 
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-  * {
-    text-align: left;
-    line-height: 1.4em;
-  }
-
-  pre {
-    padding: 10px;
-    background: #FCFCFC;
-  }
-</style>

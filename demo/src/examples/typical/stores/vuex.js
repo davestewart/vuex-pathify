@@ -2,6 +2,13 @@ import _ from 'lodash'
 
 import { state, getters, actions } from './base'
 
+/**
+ * Vuex store
+ *
+ * Requires manual creation of all mutations:
+ *
+ * - simple
+ */
 const mutations = {
   SET_ITEMS (state, value) {
     state.items = value

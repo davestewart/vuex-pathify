@@ -1,8 +1,17 @@
 import axios from 'axios'
 import _ from 'lodash'
-import Repo from 'views/components/repos/Repo'
+import Repo from 'examples/typical/views/ui/Repo'
 //import data from 'assets/json/repositories'
 
+/**
+ * Base store for all comparisons
+ *
+ * Contains:
+ *
+ * - state
+ * - getters
+ * - API calls
+ */
 export const state = {
   items: [],
   status: '',

@@ -2,7 +2,7 @@
   <div>
 
     <div class="content">
-      <h3 class="title is-3">Large component example</h3>
+      <h2 class="title is-2">Large component example</h2>
       <p>This page demonstrates different approaches to handling form data in Vuex. See the source code for details.</p>
     </div>
 

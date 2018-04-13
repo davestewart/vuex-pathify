@@ -2,7 +2,7 @@
   <article>
 
     <div class="content">
-      <h3 class="title is-3">Typical component example</h3>
+      <h2 class="title is-2">Typical component example</h2>
       <h4 class="title is-4">Overview</h4>
       <p>This section compares various ways to setup and wire what might be considered a typical component:</p>
       <ul>

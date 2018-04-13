@@ -6,10 +6,9 @@ import Vuex from 'vuex'
 import pathify from './pathify'
 
 // store
-import { root, nested } from './features/root'
-import basics from './features/basics'
-import repos from './code/repos'
-import code from './code/user'
+import { root, module } from 'examples/api/stores/store'
+import typical from 'examples/typical/stores/index'
+import large from 'examples/large/stores/index'
 
 pathify.debug()
 
@@ -20,14 +19,13 @@ const store = new Vuex.Store({
 
   ...root,
 
-  plugins: [pathify.plugin],
-
   modules: {
-    nested,
-    basics,
-    ...repos,
-    ...code,
+    module,
+    ...typical,
+    ...large,
   },
+
+  plugins: [pathify.plugin],
 
 })
 

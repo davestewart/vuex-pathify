@@ -32,6 +32,7 @@
   .media {
 
     h5 {
+      margin-top: 0;
       margin-bottom: 0.2em;
       text-transform: capitalize;
     }
