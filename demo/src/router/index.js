@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import basics from './modules/basics'
-import users from './modules/users'
+import Home from 'views/pages/Home'
+import Code from 'views/pages/Code'
+
+import features from './modules/features'
+import repos from './modules/repos'
+import user from './modules/user'
 
 Vue.use(Router)
 
@@ -11,11 +15,16 @@ export function route (path, component) {
 }
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
+  linkActiveClass: 'is-link-active',
+  linkExactActiveClass: 'is-link-exact',
   routes: [
-    ...basics,
-    ...users,
+    { path: '/', redirect:'/home' },
+    route('/home', Home),
+    ...features,
+    route('/code', Code),
+    ...repos,
+    ...user,
     route('*', {template: '<div>Route not found</div>'})
-
   ]
 })

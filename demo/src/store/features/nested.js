@@ -1,6 +1,4 @@
-export const root = {
-
-  namespaced: true,
+export default {
 
   state: {
     value: 'hello from root',
@@ -18,9 +16,3 @@ export const root = {
     }
   }
 }
-
-export const nested = Object.assign({}, root, {
-  state: {
-    value: 'hello from nested'
-  }
-})

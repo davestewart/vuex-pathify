@@ -4,15 +4,18 @@ import store from './store'
 import router from './router'
 
 // ui
-import 'components/index'
+import 'components'
 
 // styles
-import './assets/styles.css'
+// import 'font-awesome'
+import 'bulma/css/bulma.css'
+import './assets/styles/index.scss'
+// import './assets/vendor/vue.css'
 
 Vue.config.productionTip = false
 
 window.app = new Vue({
-  el: '#app',
+  el: '#demo',
   router,
   store,
   template: '<App/>',

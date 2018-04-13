@@ -1,0 +1,81 @@
+body {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  text-align: center;
+  color: #2c3e50;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  // display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+
+* {
+  text-align: left;
+  line-height: 1.4em;
+}
+
+pre {
+  display: inline-block;
+  padding: 10px;
+  background: #FCFCFC;
+  border-radius: 4px;
+  color: black;
+}
+
+.field {
+  margin-right: .5em;
+}
+
+label.label.is-small {
+  letter-spacing: 0.05em;
+}
+
+fieldset {
+
+  border: 0;
+  padding: 1em;
+  max-width: 400px;
+  font-size: 1.4em;
+  font-weight: bold;
+
+  /*
+  > .field {
+    display: flex;
+  }
+
+  .label {
+    min-width: 150px;
+    vertical-align: baseline;
+    line-height: 2em;
+    margin-bottom: 0;
+  }
+
+  .control {
+    flex: 1;
+  }
+  */
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: Merriweather;
+}
