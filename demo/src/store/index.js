@@ -6,10 +6,10 @@ import Vuex from 'vuex'
 import pathify from './pathify'
 
 // store
-import { root, module } from 'examples/api/stores/api'
-import icons from 'examples/api/stores/icons'
-import typical from 'examples/typical/stores/index'
-import large from 'examples/large/stores/index'
+import { root, module } from '../examples/api/stores/api'
+import icons from '../examples/api/stores/icons'
+import typical from '../examples/typical/stores/index'
+import large from '../examples/large/stores/index'
 
 pathify.debug()
 

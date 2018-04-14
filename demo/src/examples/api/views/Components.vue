@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import {get, sync, commit } from 'vuex-pathify'
+  import { get, sync, commit } from 'vuex-pathify'
 
   export default {
 

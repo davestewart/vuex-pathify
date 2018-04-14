@@ -4,7 +4,7 @@ import store from './store'
 import router from './router'
 
 // ui
-import 'components'
+import './views/components'
 
 // styles
 // import 'font-awesome'

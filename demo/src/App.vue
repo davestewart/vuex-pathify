@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Sidebar from 'components/Sidebar'
-import Home from 'pages/Home'
+import Sidebar from './views/components/Sidebar'
+import Home from './views/pages/Home'
 
 export default {
 

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from 'views/pages/Home'
-import Code from 'views/pages/Code'
+import Home from '../views/pages/Home'
+import Code from '../views/pages/Code'
 
 import api from './api'
 import repos from './typical'

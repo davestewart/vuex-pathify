@@ -1,6 +1,6 @@
 import axios from 'axios'
 import _ from 'lodash'
-import Repo from 'examples/typical/views/ui/Repo'
+import Repo from '../../../examples/typical/views/ui/Repo'
 //import data from 'assets/json/repositories'
 
 /**

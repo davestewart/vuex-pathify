@@ -1,9 +1,9 @@
 import { route } from './index'
 
-import Paths from 'examples/api/views/Paths'
-import Advanced from 'examples/api/views/Advanced'
-import Store from 'examples/api/views/Store'
-import Components from 'examples/api/views/Components'
+import Paths from '../examples/api/views/Paths'
+import Advanced from '../examples/api/views/Advanced'
+import Store from '../examples/api/views/Store'
+import Components from '../examples/api/views/Components'
 
 export default [
   route('/api/paths', Paths),
