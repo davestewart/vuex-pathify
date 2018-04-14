@@ -85,11 +85,10 @@ module.exports = {
       '@':          resolve(''),
       'assets':     resolve('assets'),
       'store':      resolve('store'),
-      'utils':      resolve('utils'),
+      'examples':   resolve('examples'),
       'views':      resolve('views'),
       'pages':      resolve('views/pages'),
       'components': resolve('views/components'),
-      'examples':   resolve('views/examples'),
     },
     extensions: ['*', '.js', '.vue', '.json']
   },

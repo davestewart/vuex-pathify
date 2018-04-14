@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Sidebar from 'components/nav/Sidebar'
+import Sidebar from 'components/Sidebar'
 import Home from 'pages/Home'
 
 export default {

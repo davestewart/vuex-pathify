@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <label class="label is-small">{{ label }}</label>
+    <label v-if="label" class="label is-small">{{ label }}</label>
     <div class="control">
       <input v-model="model" class="input is-small" type="text" placeholder="Text input">
     </div>
@@ -29,7 +29,3 @@
   }
 
 </script>
-
-<style lang="sass">
-
-</style>

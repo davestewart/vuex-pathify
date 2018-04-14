@@ -2,7 +2,7 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2">Vue computed (full)</h2>
+      <h2 class="title is-2"><span>Large component</span>Vue computed (full)</h2>
       <blockquote>
         <p>Page uses manually-created computed properties, accessing the store via getters and actions.</p>
       </blockquote>

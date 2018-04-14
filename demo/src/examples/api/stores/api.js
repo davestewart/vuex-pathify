@@ -13,26 +13,19 @@ const state = {
   string: 'some value',
 
   object: {
-    value: 789,
-    nested: {
-      a: {
-        b: {
-          c: 'hello world'
-        }
+    value: 'some other value',
+    a: {
+      b: {
+        c: 'some nested value'
       }
-    },
+    }
   },
 
   wildcard: {
-    a: 'a',
-    b: 'b',
-    c: 'c'
-  }
-}
-
-const getters = {
-  value: state => String(state.value).toUpperCase(),
-  //value: state => id => state[id],
+    x: 'x',
+    y: 'y',
+    z: 'z'
+  },
 }
 
 const mutations = {
@@ -42,6 +35,15 @@ const mutations = {
 export const module = {
   namespaced: true,
   state,
-  getters,
   mutations,
+}
+
+items: [
+  {sides: 1, name: 'circle'},
+  {sides: 3, name: 'triangle'},
+  {sides: 4, name: 'square'},
+],
+
+  function Shape (data) {
+  Object.assign(this, data)
 }

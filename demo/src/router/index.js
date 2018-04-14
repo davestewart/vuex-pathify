@@ -4,9 +4,9 @@ import Router from 'vue-router'
 import Home from 'views/pages/Home'
 import Code from 'views/pages/Code'
 
-import features from './modules/features'
-import repos from './modules/repos'
-import user from './modules/user'
+import api from './api'
+import repos from './typical'
+import user from './large'
 
 Vue.use(Router)
 
@@ -21,7 +21,7 @@ export default new Router({
   routes: [
     { path: '/', redirect:'/home' },
     route('/home', Home),
-    ...features,
+    ...api,
     route('/code', Code),
     ...repos,
     ...user,

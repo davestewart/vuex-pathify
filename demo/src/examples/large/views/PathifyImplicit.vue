@@ -2,7 +2,7 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2">Pathify Implicit</h2>
+      <h2 class="title is-2"><span>Large component</span>Pathify (implicit)</h2>
       <blockquote>
         <p>Page uses core Pathify get and sync functions, sub-property access, and implicit wildcard syntax.</p>
       </blockquote>

@@ -1,5 +1,13 @@
+import RepoCollection from './ui/RepoCollection'
+
+/**
+ * Base component for all comparisons
+ */
 export default function (repo) {
   return {
+    components: {
+      RepoCollection
+    },
 
     watch: {
       language () {

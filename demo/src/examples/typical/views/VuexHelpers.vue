@@ -2,7 +2,10 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2">Components: Vuex helpers</h2>
+      <h2 class="title is-2"><span>Typical component: </span>Vuex helpers</h2>
+      <blockquote>
+        <p>Page uses core Pathify get and sync functions, sub-property access, and explicit object and array syntax.</p>
+      </blockquote>
     </div>
 
     <div class="field is-horizontal">
@@ -14,7 +17,7 @@
                  @input="SET_FILTERS({key: 'language', value: $event})" />
       <ui-select label="Type"
                  options="framework library toolkit utility state data CMS graph game"
-                 initial="Any"
+                 prompt="Any"
                  :value="filters.type"
                  @input="SET_FILTERS({key: 'type', value: $event})" />
       <ui-select label="Sort key"

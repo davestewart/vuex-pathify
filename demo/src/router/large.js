@@ -1,6 +1,6 @@
 import { route } from './index'
 
-import Index from 'pages/User'
+import Index from 'pages/Large'
 import PathifyImplicit from 'examples/large/views/PathifyImplicit'
 import PathifyExplicit from 'examples/large/views/PathifyExplicit'
 import VuexComputedLight from 'examples/large/views/VueComputedLight'

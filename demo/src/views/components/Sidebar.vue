@@ -11,9 +11,10 @@
 
     <p class="menu-label">API</p>
     <ul class="menu-list">
-      <li><router-link class="code" to="/api/paths">Paths</router-link></li>
-      <li><router-link class="code" to="/api/store-helpers">Store helpers</router-link></li>
+      <li><router-link class="code" to="/api/paths">Path syntax</router-link></li>
+      <li><router-link class="code" to="/api/store-accessors">Store accessors</router-link></li>
       <li><router-link class="code" to="/api/component-helpers">Component helpers</router-link></li>
+      <li><router-link class="code" to="/api/advanced">Advanced usage</router-link></li>
     </ul>
 
     <p class="menu-label">Code comparisons</p>

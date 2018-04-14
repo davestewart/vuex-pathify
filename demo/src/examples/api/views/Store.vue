@@ -2,53 +2,59 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2">API: Store helpers</h2>
+      <h2 class="title is-2">API: Store accessors</h2>
       <blockquote>
-        <p>Use get, set and copy to interact with the store directly</p>
+        <p>Store accessors provide global read / write access to the store</p>
       </blockquote>
     </div>
 
-    <div>
-      <button class="button is-small" @click="set">Set</button>
-      <button class="button is-small" @click="get">Get</button>
-      <button class="button is-small" @click="copy">Copy</button>
-    </div>
-
     <div class="content">
-      <p>Value:</p>
+      <p>This is the example module store:</p>
+      <pre>{{ data }}</pre>
+
+      <p>Click to <a href="#" @click.prevent="setData">set value...</a></p>
+      <pre>{{ data.value }}</pre>
+
+      <p>Click to <a href="#" @click.prevent="getData">get value:</a></p>
       <pre>{{ value }}</pre>
 
-      <p>Copy:</p>
-      <pre>{{ data }}</pre>
+      <p>Click to get a copy of
+        <a href="#" @click.prevent="copyData('module')">the store</a> /
+        <a href="#" @click.prevent="copyData('module/object')">a property</a> /
+        <a href="#" @click.prevent="copyData('module/object@a')">a sub-property</a>
+      </p>
+      <pre>{{ copy }}</pre>
     </div>
 
   </article>
 </template>
 
 <script>
+  import { get } from 'vuex-pathify'
+
   export default {
     data () {
       return {
-        value: this.$store.state.basics.date,
-        data: ' ',
+        value: '...',
+        copy: '...',
       }
     },
 
     computed: {
-
+      data: get('module'),
     },
 
     methods: {
-      set () {
-        this.$store.set('basics/date', new Date)
+      setData () {
+        this.$store.set('module/value', Date.now())
       },
 
-      get () {
-        this.value = this.$store.get('basics/date')
+      getData () {
+        this.value = this.$store.get('module/value')
       },
 
-      copy () {
-        this.data = this.$store.copy('basics/object')
+      copyData (path) {
+        this.copy = this.$store.copy(path)
       },
 
     }

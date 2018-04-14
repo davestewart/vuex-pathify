@@ -7,9 +7,6 @@ body {
 #demo {
   display: flex;
   height: 100%;
-  > * {
-    padding: 20px;
-  }
 }
 
 aside {
@@ -17,12 +14,15 @@ aside {
   flex-direction: column;
   width: 200px;
   min-width: 300px;
+  padding: 20px;
 }
 
 main {
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 20px;
+  padding-left: 40px;
 
   > * {
     width: 800px;

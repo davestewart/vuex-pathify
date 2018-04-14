@@ -2,7 +2,10 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2">Components: Pathify</h2>
+      <h2 class="title is-2"><span>Typical component: </span>Pathify</h2>
+      <blockquote>
+        <p>Page uses core Pathify get and sync functions, sub-property access, and explicit object and array syntax.</p>
+      </blockquote>
     </div>
 
     <div class="field is-horizontal">
@@ -11,7 +14,7 @@
                  v-model="language"/>
       <ui-select label="Type"
                  options="framework library toolkit utility state data CMS graph game"
-                 initial="Any"
+                 prompt="Any"
                  v-model="type"/>
       <ui-select label="Sort key"
                  options="stars name author license"
