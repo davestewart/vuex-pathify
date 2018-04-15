@@ -1,17 +1,15 @@
-import _ from 'lodash'
-
-import { state, getters, actions } from './base'
+import { state, getters, actions, clone } from './base'
 
 import { make } from 'vuex-pathify'
 
 /**
  * Pathify store
  *
- * Contains only make.mutations()
+ * - mutations created via make.mutations()
  */
 export default {
   namespaced: true,
-  state: _.clone(state),
+  state: clone(state),
   mutations: make.mutations(state),
   getters,
   actions,

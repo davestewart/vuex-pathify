@@ -9,10 +9,12 @@ export const names = [
   'wrench'
 ]
 
-export const colors = [
-  { name: 'red', value: '#EF476F' },
-  { name: 'yellow', value: '#FFD166' },
-  { name: 'green', value: '#06D6A0' },
-  { name: 'blue', value: '#118AB2' },
-  { name: 'navy', value: '#073B4C' },
-]
+export const palette = {
+  red: '#EF476F',
+  yellow: '#FFD166',
+  green: '#06D6A0',
+  blue: '#118AB2',
+  navy: '#073B4C',
+}
+
+export const colors = Object.keys(palette)

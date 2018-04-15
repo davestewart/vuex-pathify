@@ -1,4 +1,4 @@
-import { names, colors } from './options'
+import { names, colors, palette } from './options'
 
 /**
  * Icon class
@@ -6,8 +6,10 @@ import { names, colors } from './options'
  * Used to encapsulate logic away from the view and store
  */
 export default function Icon (data) {
-  Object.assign(this, data)
-  this.description = `${this.color.name} ${this.name}`
+  const { name, color } = data
+  this.name = name
+  this.color = palette[color]
+  this.description = `${color} ${name}`
 }
 
 Icon.prototype = {

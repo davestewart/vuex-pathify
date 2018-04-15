@@ -1,17 +1,22 @@
-import axios from 'axios'
 import _ from 'lodash'
-import Repo from '../../../examples/typical/views/ui/Repo'
-//import data from 'assets/json/repositories'
+import axios from 'axios'
 
-/**
- * Base store for all comparisons
- *
- * Contains:
- *
- * - state
- * - getters
- * - API calls
- */
+import Repo from '../../../examples/typical/views/ui/Repo'
+
+/*
+Base store for all comparisons
+
+Contains:
+
+  - state
+  - getters
+  - API calls
+*/
+
+export function clone (value) {
+  return _.cloneDeep(value)
+}
+
 export const state = {
   items: [],
   status: '',
@@ -27,6 +32,7 @@ export const state = {
 }
 
 export const getters = {
+  // return array of Repo classes, based on state
   items (state) {
     return state.items
       .map(item => new Repo(item))
@@ -50,7 +56,7 @@ export const actions = {
       commit('SET_ITEMS', items)
     }
 
-    // return update(data.items)
+    // return update(require('../../../assets/json/repositories.json').items)
 
     axios
       .get(url).then(res => {
@@ -60,9 +66,6 @@ export const actions = {
         console.log(err)
         commit('SET_STATUS', err.response.data.message)
       })
-  },
-
-  loadReadme (repo) {
-
   }
+
 }

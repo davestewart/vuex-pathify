@@ -1,13 +1,10 @@
-import _ from 'lodash'
-
-import { state, getters, actions } from './base'
+import { state, getters, actions, clone } from './base'
 
 /**
  * Vuex store
  *
- * Requires manual creation of all mutations:
- *
- * - simple
+ * - manual creation of all mutations
+ * - sub-properties need handling separately
  */
 const mutations = {
   SET_ITEMS (state, value) {
@@ -31,7 +28,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state: _.clone(state),
+  state: clone(state),
   mutations,
   getters,
   actions,

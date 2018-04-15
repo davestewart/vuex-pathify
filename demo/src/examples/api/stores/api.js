@@ -37,13 +37,3 @@ export const module = {
   state,
   mutations,
 }
-
-items: [
-  {sides: 1, name: 'circle'},
-  {sides: 3, name: 'triangle'},
-  {sides: 4, name: 'square'},
-],
-
-  function Shape (data) {
-  Object.assign(this, data)
-}
