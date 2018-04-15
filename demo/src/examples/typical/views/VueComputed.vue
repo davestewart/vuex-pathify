@@ -8,7 +8,7 @@
       </blockquote>
     </div>
 
-    <div class="field is-horizontal">
+    <div class="controls field is-horizontal">
       <ui-select label="Language"
                  options="JavaScript PHP Ruby Python CSS Go"
                  v-model="language"/>

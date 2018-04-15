@@ -67,5 +67,6 @@
 
   .field {
     max-width: 300px;
+    margin: 0.5em 1em;
   }
 </style>

@@ -8,7 +8,7 @@
       </blockquote>
     </div>
 
-    <div class="field is-horizontal">
+    <div class="controls field is-horizontal">
       <!-- input handlers need to be unique -->
       <!-- sub-property handlers need to pass complex arguments -->
       <ui-select label="Language"

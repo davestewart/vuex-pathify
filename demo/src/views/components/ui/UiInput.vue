@@ -1,5 +1,5 @@
 <template>
-  <div class="field">
+  <div class="field ui-input">
     <label v-if="label" class="label is-small">{{ label }}</label>
     <div class="control">
       <input v-model="model" class="input is-small" type="text" placeholder="Text input">

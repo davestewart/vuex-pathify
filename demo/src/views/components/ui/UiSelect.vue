@@ -1,6 +1,6 @@
 <template>
 
-  <div class="field">
+  <div class="field ui-select">
     <label v-if="label" class="label is-small">{{ label }}</label>
     <div class="control">
       <div class="select is-small">

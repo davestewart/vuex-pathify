@@ -1,5 +1,5 @@
 <template>
-  <div class="field">
+  <div class="field ui-button">
     <div class="control">
       <button class="button is-small"
               type="button"
@@ -17,7 +17,3 @@
   }
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>
