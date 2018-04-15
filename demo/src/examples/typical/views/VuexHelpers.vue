@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Typical component: </span>Vuex helpers</h2>
       <blockquote>
-        <p>Page uses core Pathify get and sync functions, sub-property access, and explicit object and array syntax.</p>
+        <p>Demo uses mapState, mapGetters, mapMutations, deep watcher, manual event handlers</p>
       </blockquote>
     </div>
 

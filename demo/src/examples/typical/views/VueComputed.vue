@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Typical component: </span>Vue computed</h2>
       <blockquote>
-        <p>Page uses core Pathify get and sync functions, sub-property access, and explicit object and array syntax.</p>
+        <p>Demo uses one and two-way computed properties, state, getters and commits, object and array syntax</p>
       </blockquote>
     </div>
 

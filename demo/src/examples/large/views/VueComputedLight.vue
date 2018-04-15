@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Large component</span>Vue computed (light)</h2>
       <blockquote>
-        <p>Page uses manually-created computed properties, accessing the store via state and mutations.</p>
+        <p>Demo uses manually-created computed properties, accessing the store via state and mutations.</p>
       </blockquote>
     </div>
 
