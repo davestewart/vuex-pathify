@@ -3,15 +3,15 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2">API: Advanced usage</h2>
+      <h2 class="title is-2">API: Advanced property access</h2>
       <blockquote>
-        <p>Pathify has a few tricks such as accessor priority and direct syntax to make wiring easier</p>
+        <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge some gaps</p>
       </blockquote>
     </div>
 
     <div class="content">
       <!-- controls -->
-      <div class="field is-horizontal">
+      <div class="controls field is-horizontal">
         <ui-select :options="colors" v-model="color"/>
         <ui-select :options="names" v-model="name"/>
         <ui-button label="Add random" @click="addRandom"/>
@@ -24,7 +24,7 @@
              class="icon-container"
              :title="icon.description">
           <span class="icon"
-                :style="`background-color: ${icon.color.value}`"
+                :style="`background-color: ${icon.color}`"
                 @click="onClick(icon)">
             <i :class="`fa fa-${icon.name}`"></i>
           </span>
@@ -51,15 +51,15 @@
     data () {
       return {
         names,
-        colors,
         name: 'cog',
-        color: colors[0].value
+        colors: colors,
+        color: colors[0]
       }
     },
 
     computed: {
-      // prioritised getter: the same-named `data` getter is prioritised over state,
-      // returning and array of Icon instances, rather than a plain Object
+      // if a same-named getter is found, it is prioritised over state, in this case returning an array of Icon
+      // instances with transformed properties and methods, rather than just a plain Object
       icons: get('icons/data'),
     },
 
@@ -71,17 +71,13 @@
     methods: {
       // call mutation using direct access (!) syntax
       addIcon (name, color) {
-        let icon = {
-          name: name,
-          color: colors.find(c => c.value === color)
-        }
-        this.$store.set('icons/ADD_ICON!', icon)    // try removing the ! to see what happens (check the console)
-                                                    // try using the commit() vuex alias to achieve the same
+        this.$store.set('icons/ADD_ICON!', {name, color}) // try removing the ! to see what happens (check the console)
+                                                          // try using the commit() vuex alias to achieve the same
       },
 
       // call action using vuex alias
       addRandom () {
-        dispatch('icons/addRandom')                 // try using direct syntax to achieve the same
+        dispatch('icons/addRandom')                       // try using direct syntax to achieve the same
       },
 
       // call action using vuex directly
@@ -91,7 +87,7 @@
 
       // call method on returned Icon instance directly
       onClick (icon) {
-        icon.doSomething()                          // try moving this call directly to the markup
+        icon.doSomething()                                // try moving this call directly to the markup
       }
     }
   }
