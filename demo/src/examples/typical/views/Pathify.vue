@@ -38,23 +38,23 @@
 
   export default {
 
-    extends: base('repos'),
+    extends: base('repos1'),
 
     computed: {
       // get + direct syntax
-      repos: get('repos/filteredItems!'),
+      repos: get('repos1/filteredItems!'),
 
       // get + array syntax
-      ...get('repos', [
+      ...get('repos1', [
         'status',
         'readme'
       ]),
 
       // sync, sub-property + wildcard syntax
-      ...sync('repos/filters@*'),
+      ...sync('repos1/filters@*'),
 
       // sync, sub-property + object syntax
-      ...sync('repos/sort@', {
+      ...sync('repos1/sort@', {
         sortOrder: 'order',
         sortKey: 'key',
       }),
