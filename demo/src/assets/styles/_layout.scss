@@ -1,0 +1,31 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+}
+
+#demo {
+  display: flex;
+  height: 100%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  min-width: 275px;
+  padding: 20px;
+}
+
+main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px 20px 15vh 40px;
+
+  > * {
+    width: 800px;
+    margin: 20px auto;
+  }
+}
