@@ -18,7 +18,7 @@
 
     methods: {
       open () {
-        window.open(url, 'docs');
+        window.open(this.url, 'docs');
       }
     }
   }
