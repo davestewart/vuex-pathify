@@ -5,7 +5,8 @@
     <div class="content">
       <h2 class="title is-2">API: Advanced property access</h2>
       <blockquote>
-        <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge some gaps</p>
+        <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge configuration gaps</p>
+        <links file="examples/api/views/Properties.vue" docs="api/properties"/>
       </blockquote>
     </div>
 
@@ -58,8 +59,8 @@
     },
 
     computed: {
-      // if a same-named getter is found, it is prioritised over state, in this case returning an array of Icon
-      // instances with transformed properties and methods, rather than just a plain Object
+      // pathify chooses same-named getters over same-named states, in this case returning an array
+      // of Icon instances with transformed properties and methods, rather than just a plain Object
       icons: get('icons/data'),
     },
 
@@ -68,6 +69,7 @@
       color (value) { this.addIcon(this.name, value) },
     },
 
+    // to target non SET_* members, use these techniques:
     methods: {
       // call mutation using direct access (!) syntax
       addIcon (name, color) {

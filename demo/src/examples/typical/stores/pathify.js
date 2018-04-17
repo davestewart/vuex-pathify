@@ -7,10 +7,12 @@ import { make } from 'vuex-pathify'
  *
  * - mutations created via make.mutations()
  */
+const mutations = make.mutations(state)
+
 export default {
   namespaced: true,
   state: clone(state),
-  mutations: make.mutations(state),
+  mutations,
   getters,
   actions,
 }

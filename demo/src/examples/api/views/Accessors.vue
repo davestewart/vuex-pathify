@@ -1,10 +1,12 @@
 <template>
+
   <article>
 
     <div class="content">
       <h2 class="title is-2">API: Store accessors</h2>
       <blockquote>
         <p>Store accessors provide global read / write access to the store</p>
+        <links file="examples/api/views/Accessors.vue" docs="api/accessors"/>
       </blockquote>
     </div>
 

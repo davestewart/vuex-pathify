@@ -5,6 +5,7 @@
       <h2 class="title is-2"><span>Typical component: </span>Pathify</h2>
       <blockquote>
         <p>Demo uses Pathify get and sync functions, sub-property access, object, array, and wildcard syntax</p>
+        <links file="examples/typical/views/Pathify.vue"/>
       </blockquote>
     </div>
 

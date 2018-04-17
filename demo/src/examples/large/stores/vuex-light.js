@@ -4,16 +4,11 @@ const state = {
   email: 'joe@bloggs.com',
   website: 'www.bloggs.com',
   phone: '0123 456 789',
-  address: {
-    line1: '123 Some Street',
-    line2: 'Somewhere',
-    town: 'Sometown',
-    zipcode: '12345',
-  }
-}
-
-const getters = {
-  name: state => `${state.firstName} ${state.lastName}`,
+  street: '123 Some Street',
+  area: 'Some Area',
+  town: 'Some Town',
+  zipcode: '12345',
+  country: 'Some Country',
 }
 
 const mutations = {
@@ -37,33 +32,29 @@ const mutations = {
     state.phone = value
   },
 
-  SET_ADDRESS: (state, value) => {
-    if (key in state.address) {
-      state.address[key] = value
-    }
+  SET_STREET: (state, value) => {
+    state.street = value
   },
 
-  SET_LINE1: (state, value) => {
-    state.address.line1 = value
-  },
-
-  SET_LINE2: (state, value) => {
-    state.address.line2 = value
+  SET_AREA: (state, value) => {
+    state.area = value
   },
 
   SET_TOWN: (state, value) => {
-    state.address.town = value
+    state.town = value
   },
 
   SET_ZIPCODE: (state, value) => {
-    state.address.zipcode = value
+    state.zipcode = value
   },
 
+  SET_COUNTRY: (state, value) => {
+    state.country = value
+  },
 }
 
 export default {
   namespaced: true,
   state,
-  getters,
   mutations,
 }

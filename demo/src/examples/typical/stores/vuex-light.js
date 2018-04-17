@@ -15,7 +15,7 @@ const mutations = {
     state.status = value
   },
 
-  // complex properties require destructuring and manual assignment
+  // complex properties require destructuring and assignment
   SET_SORT (state, {key, value}) {
     state.sort[key] = value
   },

@@ -19,10 +19,10 @@ aside {
 
 main {
   display: flex;
+  position: relative;
   flex-direction: column;
   flex: 1;
-  padding: 20px;
-  padding-left: 40px;
+  padding: 20px 20px 15vh 40px;
 
   > * {
     width: 800px;

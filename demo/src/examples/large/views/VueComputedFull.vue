@@ -5,36 +5,36 @@
       <h2 class="title is-2"><span>Large component</span>Vue computed (full)</h2>
       <blockquote>
         <p>Demo uses manually-created computed properties, accessing the store via getters and actions.</p>
+        <links file="examples/large/views/VueComputedFull.vue"/>
       </blockquote>
     </div>
 
     <div class="columns">
       <fieldset class="column">
-        <legend>Personal</legend>
-        <ui-input label="First Name" v-model="firstName" />
-        <ui-input label="Last Name" v-model="lastName" />
-        <ui-input label="Email" v-model="email" />
-        <ui-input label="Website" v-model="website" />
-        <ui-input label="Phone" v-model="phone" />
+        <ui-input label="First Name" v-model="firstName"/>
+        <ui-input label="Last Name" v-model="lastName"/>
+        <ui-input label="Email" v-model="email"/>
+        <ui-input label="Website" v-model="website"/>
+        <ui-input label="Phone" v-model="phone"/>
       </fieldset>
 
       <fieldset class="column">
-        <legend>Address</legend>
-        <ui-input label="Line1" v-model="line1" />
-        <ui-input label="Line2" v-model="line2" />
-        <ui-input label="Town" v-model="town" />
-        <ui-input label="Zipcode" v-model="zipcode" />
+        <ui-input label="Street" v-model="street"/>
+        <ui-input label="Area" v-model="area"/>
+        <ui-input label="Town" v-model="town"/>
+        <ui-input label="Zipcode" v-model="zipcode"/>
+        <ui-input label="Country" v-model="country"/>
       </fieldset>
     </div>
 
     <div class="card">
       <div class="card-content content">
-        <p class="title is-4">{{ name }}</p>
-        <p class="subtitle is-6"><a :href="'mailto:' + email">{{ email }}</a> | <a :href="website">{{ website }}</a> | {{ phone }}</p>
-        <p>{{ line1 }}<br>{{ line2 }}<br>{{ town }}<br>{{ zipcode }}</p>
+        <p class="title is-4">{{ firstName }} {{ lastName }}</p>
+        <p class="subtitle is-6"><a :href="'mailto:' + email">{{ email }}</a> | <a :href="website">{{ website }}</a> |
+          {{ phone }}</p>
+        <p>{{ street }}<br>{{ area }}<br>{{ town }}<br>{{ zipcode }}<br>{{ country }}</p>
       </div>
     </div>
-
   </article>
 
 </template>
@@ -42,98 +42,93 @@
 <script>
   export default {
     computed: {
-
-      name () {
-        return this.$store.getters['user6/name']
-      },
-
       firstName: {
         get () {
-          return this.$store.getters['user6/firstName']
+          return this.$store.getters['user4/firstName']
         },
         set (value) {
-          this.$store.dispatch('user6/setFirstName', value)
+          this.$store.dispatch('user4/setFirstName', value)
         }
       },
 
       lastName: {
         get () {
-          return this.$store.getters['user6/lastName']
+          return this.$store.getters['user4/lastName']
         },
         set (value) {
-          this.$store.dispatch('user6/setLastName', value)
+          this.$store.dispatch('user4/setLastName', value)
         }
       },
 
       email: {
         get () {
-          return this.$store.getters['user6/email']
+          return this.$store.getters['user4/email']
         },
         set (value) {
-          this.$store.dispatch('user6/setEmail', value)
+          this.$store.dispatch('user4/setEmail', value)
         }
       },
 
       website: {
         get () {
-          return this.$store.getters['user6/website']
+          return this.$store.getters['user4/website']
         },
         set (value) {
-          this.$store.dispatch('user6/setWebsite', value)
+          this.$store.dispatch('user4/setWebsite', value)
         }
       },
 
       phone: {
         get () {
-          return this.$store.getters['user6/phone']
+          return this.$store.getters['user4/phone']
         },
         set (value) {
-          this.$store.dispatch('user6/setPhone', value)
+          this.$store.dispatch('user4/setPhone', value)
         }
       },
 
-      address: {
+      street: {
         get () {
-          return this.$store.getters['user6/address']
+          return this.$store.getters['user4/street']
         },
         set (value) {
-          this.$store.dispatch('user6/setAddress', value)
+          this.$store.dispatch('user4/setStreet', value)
         }
       },
 
-      line1: {
+      area: {
         get () {
-          return this.$store.getters['user6/line1']
+          return this.$store.getters['user4/area']
         },
         set (value) {
-          this.$store.dispatch('user6/setLine1', value)
-        }
-      },
-
-      line2: {
-        get () {
-          return this.$store.getters['user6/line2']
-        },
-        set (value) {
-          this.$store.dispatch('user6/setLine2', value)
+          this.$store.dispatch('user4/setArea', value)
         }
       },
 
       town: {
         get () {
-          return this.$store.getters['user6/town']
+          return this.$store.getters['user4/town']
         },
         set (value) {
-          this.$store.dispatch('user6/setTown', value)
+          this.$store.dispatch('user4/setTown', value)
         }
       },
 
       zipcode: {
         get () {
-          return this.$store.getters['user6/zipcode']
+          return this.$store.getters['user4/zipcode']
         },
         set (value) {
-          this.$store.dispatch('user6/setZipcode', value)
+          this.$store.dispatch('user4/setZipcode', value)
+        }
+      },
+
+      country: {
+        get () {
+          return this.$store.getters['user4/country']
+        },
+        set (value) {
+          this.$store.dispatch('user4/setCountry', value)
         }
       },
 

@@ -12,8 +12,8 @@
     <p class="menu-label">API</p>
     <ul class="menu-list">
       <li><router-link class="code" to="/api/paths">Path syntax</router-link></li>
-      <li><router-link class="code" to="/api/store-accessors">Store accessors</router-link></li>
-      <li><router-link class="code" to="/api/component-helpers">Component helpers</router-link></li>
+      <li><router-link class="code" to="/api/accessors">Store accessors</router-link></li>
+      <li><router-link class="code" to="/api/component">Component helpers</router-link></li>
       <li><router-link class="code" to="/api/properties">Advanced property access</router-link></li>
     </ul>
 
@@ -24,8 +24,8 @@
         <router-link to="/code/typical" class="is-parent">Typical component</router-link>
         <ul class="menu-list">
           <li><router-link class="code" to="/code/typical/pathify">Pathify</router-link></li>
-          <li><router-link class="code" to="/code/typical/vue-computed">Vue computed</router-link></li>
-          <li><router-link class="code" to="/code/typical/vuex-helpers">Vuex helpers</router-link></li>
+          <li><router-link class="code" to="/code/typical/vue-computed">Vue computed (light)</router-link></li>
+          <li><router-link class="code" to="/code/typical/vuex-helpers">Vuex helpers (light)</router-link></li>
         </ul>
       </li>
 
@@ -84,7 +84,6 @@
   .code:before {
     font-family: FontAwesome;
     margin-right: .5em;
-    // content: "\f121";
     content: "\f108";
   }
 </style>

@@ -10,13 +10,8 @@ export default function (repo) {
     },
 
     watch: {
-      language () {
-        this.load()
-      },
-
-      type () {
-        this.load()
-      }
+      language: 'load',
+      type: 'load',
     },
 
     created () {

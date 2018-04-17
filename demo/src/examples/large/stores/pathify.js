@@ -6,23 +6,17 @@ const state = {
   email: 'joe@bloggs.com',
   website: 'www.bloggs.com',
   phone: '0123 456 789',
-  address: {
-    line1: '123 Some Street',
-    line2: 'Somewhere',
-    town: 'Sometown',
-    zipcode: '12345',
-  }
+  street: '123 Some Street',
+  area: 'Some Area',
+  town: 'Some Town',
+  zipcode: '12345',
+  country: 'Some Country',
 }
 
 const mutations = make.mutations(state)
 
-const getters = {
-  name: state => `${state.firstName} ${state.lastName}`
-}
-
 export default {
   namespaced: true,
   state,
-  mutations,
-  getters
+  mutations
 }

@@ -10,38 +10,62 @@
         <li>Vue compound computed properties</li>
         <li>Vuex helpers</li>
       </ul>
-      <p>The aim is to compare Pathify to vanilla JavaScript / Vuex, specifically:</p>
+
+      <p>There are currently two sets of comparison files:</p>
+
       <ul>
-        <li>lines of store code required to set up full I/O for each store property</li>
-        <li>lines of view code required to wire a component to a store property</li>
-        <li>differences in lines of code for various "best-practice" setups, i.e "getters + actions" over "state + mutations"</li>
-        <li>layout and formatting of files, especially where more complex code needs clearer formatting</li>
-        <li>the amount of different syntax styles needed for full wiring of each approach</li>
-        <li>any UI handler code required to link controls to methods</li>
-        <li>handling of sub-property wiring</li>
+        <li>A <strong><router-link to="/code/typical">typical component</router-link></strong> with 4 top-level properties, 5 sub-properties, and some UI control wiring</li>
+        <li>A <strong><router-link to="/code/large">large component</router-link></strong> with 9 top-level properties and associated UI control wiring</li>
       </ul>
+
+      <p>Note that each set is <strong>identical</strong> in its presentation and functionality, with the <strong>implementation</strong> differing between examples.</p>
+
+      <h4 class="title is-4">Purpose</h4>
+      <p>The aim is to compare Pathify to vanilla JavaScript / Vuex, specifically:</p>
+
+      <div class="indent">
+        <h5 class="title is-6">Lines of code:</h5>
+        <ul>
+          <li>how many lines of store and component code are required to fully wire each state property?</li>
+          <li>what are the differences in lines of code between "getters + actions" (full) and "state + mutations" (light) setups?</li>
+        </ul>
+
+        <h5 class="title is-6">Complexity:</h5>
+        <ul>
+          <li>how many syntax or coding styles are required to properly wire each approach?</li>
+          <li>how much extra code is required to fully wire sub-properties?</li>
+          <li>how many component attributes or handlers are required to wire-up controls?</li>
+          <li>is additional formatting required for larger, more complex setups?</li>
+        </ul>
+      </div>
 
       <h4 class="title is-4">Examples</h4>
-      <p>There are currently two sets of comparison files:</p>
+
+      <p>For each set:</p>
       <ul>
-        <li>A <router-link to="/code/typical">"typical"</router-link> component, with 4 top-level properties, 5 sub-properties, and some UI control wiring</li>
-        <li>A <router-link to="/code/large">"large"</router-link> component, with 9 top-level properties and associated UI control wiring</li>
+        <li>an <strong>overview</strong> outlines setup and aim</li>
+        <li>an <strong>analysis</strong> compares:</li>
+        <ul>
+          <li><strong>lines of code</strong> counted using only the "doing" code, i.e. the computed property block and/or the actions block</li>
+          <li><strong>typed characters</strong> counted using only characters from that line's indent</li>
+          <li><strong>complexity</strong> counted using the amount of different operations or syntax types used</li>
+        </ul>
+      </ul>
+      <p>For each example:</p>
+      <ul>
+        <li>an <strong>introduction sentence</strong> briefly outlines overall setup</li>
+        <li>a <strong>button</strong> links to the same component file (if running in CodeSandbox)</li>
+        <li>source code <strong>comments</strong> detail implementation specifics</li>
       </ul>
 
-      <p>The examples all run <strong>exactly the same</strong>; study the code to see the differences.</p>
-      <p>Click <a href="#" @click="showCode">here</a> to open the first file.</p>
+      <p>For the Vuex / Vuex examples:</p>
+      <ul>
+        <li>The <strong>"light"</strong> examples, Vuex stores use <strong>state and mutations</strong> only</li>
+        <li>The <strong>"full"</strong> examples, Vuex stores use additional <strong>getters and actions</strong> (a so-called best-practice, as detailed
+          <a href="https://forum.vuejs.org/t/actions-for-actions-sake/16413">here</a>)</li>
+      </ul>
+
     </div>
 
   </article>
 </template>
-
-<script>
-  export default {
-    methods: {
-      showCode () {
-        dispatch(actions.editor.openModule('/src/examples/typical/state/pathify.js'));
-      }
-    }
-  }
-
-</script>
