@@ -152,3 +152,16 @@ h2 span {
 
   }
 }
+
+button.is-primary {
+  i {
+    margin-right: .5em;
+  }
+
+  background: #25afaf;
+
+  &:hover {
+    background: #25afaf;
+    opacity: 0.8;
+  }
+}

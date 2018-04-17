@@ -6,7 +6,8 @@
       <h2 class="title is-2">API: Advanced property access</h2>
       <blockquote>
         <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge configuration gaps</p>
-        <links file="examples/api/views/Properties.vue" docs="api/properties"/>
+        <view-code src="examples/api/views/Properties.vue"/>
+        <view-docs src="api/properties"/>
       </blockquote>
     </div>
 

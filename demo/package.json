@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.6.2",
+    "codesandbox-api": "0.0.18",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.5",
     "marked": "^0.3.19",
