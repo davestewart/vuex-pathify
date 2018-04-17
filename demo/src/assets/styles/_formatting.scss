@@ -153,7 +153,7 @@ h2 span {
   }
 }
 
-button.is-primary {
+.button.is-primary {
   i {
     margin-right: .5em;
   }
@@ -161,8 +161,7 @@ button.is-primary {
   background: #25afaf;
 
   &:hover {
-    background: #25afaf;
-    opacity: 0.8;
+    background: lighten(#25afaf, 5%);
   }
 }
 

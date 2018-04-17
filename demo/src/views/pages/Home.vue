@@ -1,7 +1,10 @@
 <template>
 
   <div class="content">
-    <h1 class="title is-2">Vuex Pathify Demo</h1>
+    <div style="text-align: center">
+      <img src="../../assets/img/pathify-logo-demo.png" width="450">
+    </div>
+
     <h3>Introduction</h3>
     <p>The demo is designed to be run on CodeSandbox, or locally via NPM.</p>
     <p>In both environments, you can edit the code and see results live in the browser. The source code is clearly commented, with interactive suggestions where appropriate.</p>
