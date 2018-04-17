@@ -23,7 +23,7 @@
         },
         set: _.debounce(function (value) {
           this.$emit('input', value)
-        }, 250)
+        }, 200)
       }
     }
   }
