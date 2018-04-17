@@ -28,20 +28,20 @@
       </fieldset>
     </div>
 
-    <div class="card">
-      <div class="card-content content">
-        <p class="title is-4">{{ firstName }} {{ lastName }}</p>
-        <p class="subtitle is-6"><a :href="'mailto:' + email">{{ email }}</a> | <a :href="website">{{ website }}</a> |
-          {{ phone }}</p>
-        <p>{{ street }}<br>{{ area }}<br>{{ town }}<br>{{ zipcode }}<br>{{ country }}</p>
-      </div>
-    </div>
+    <user-card user="user4"/>
+
   </article>
 
 </template>
 
 <script>
+  import UserCard from './ui/UserCard'
+
   export default {
+    components: {
+      UserCard
+    },
+
     computed: {
       firstName: {
         get () {
