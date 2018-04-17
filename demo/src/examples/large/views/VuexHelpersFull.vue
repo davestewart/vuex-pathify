@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Large component</span>Vuex helpers (full)</h2>
       <blockquote>
-        <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via getters and actions.</p>
+        <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via getters and actions</p>
         <view-code src="examples/large/views/VuexHelpersFull.vue"/>
         <view-code src="examples/large/stores/vuex-full.js"/>
       </blockquote>
@@ -67,12 +67,11 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
 
-  import UserCard from './ui/UserCard'
+  import base from './base.js'
 
   export default {
-    components: {
-      UserCard
-    },
+
+    extends: base,
 
     computed: {
       ...mapGetters('user6', [

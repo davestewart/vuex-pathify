@@ -23,31 +23,33 @@
       <h4 class="title is-4">Purpose</h4>
       <p>The aim is to compare Pathify to vanilla JavaScript / Vuex, specifically:</p>
 
-      <div class="indent">
-        <h5 class="title is-6">Lines of code:</h5>
-        <ul>
-          <li>how many lines of store and component code are required to fully wire each state property?</li>
-          <li>what are the differences in lines of code between "getters + actions" (full) and "state + mutations" (light) setups?</li>
-        </ul>
-
-        <h5 class="title is-6">Complexity:</h5>
+      <ul>
+        <li>Lines of code:</li>
         <ul>
           <li>how many syntax or coding styles are required to properly wire each approach?</li>
           <li>how much extra code is required to fully wire sub-properties?</li>
           <li>how many component attributes or handlers are required to wire-up controls?</li>
           <li>is additional formatting required for larger, more complex setups?</li>
         </ul>
-      </div>
+
+        <li>Complexity:</li>
+        <ul>
+          <li>how many syntax or coding styles are required to properly wire each approach?</li>
+          <li>how much extra code is required to fully wire sub-properties?</li>
+          <li>how many component attributes or handlers are required to wire-up controls?</li>
+          <li>is additional formatting required for larger, more complex setups?</li>
+        </ul>
+      </ul>
 
       <p>For each example set:</p>
       <ul>
-        <li>an <strong>introduction page</strong> outlines aim and setup</li>
+        <li>an <strong>introduction</strong> outlines aim and setup</li>
         <li>an <strong>analysis</strong> compares:</li>
         <ul>
-          <li><strong>approaches</strong> detailing the interesting points, strengths and weaknesses of each one</li>
-          <li><strong>lines of code</strong> counted using only the "doing" code, i.e. the computed property block and/or the actions block</li>
-          <li><strong>typed characters</strong> counted using only characters from that line's indent</li>
-          <li><strong>complexity</strong> counted using the amount of different operations or syntax types used</li>
+          <li><strong>approaches</strong> - detailing the interesting points, strengths and weaknesses of each one</li>
+          <li><strong>lines of code</strong> - counting only the "doing" code, i.e. computed or actions, and skipping blank lines</li>
+          <li><strong>typed characters</strong> - counting only typed characters, so ignoring indent whitespace</li>
+          <li><strong>complexity</strong> - counting the amount of different operations or syntax types used</li>
         </ul>
       </ul>
 

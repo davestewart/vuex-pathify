@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Large component</span>Vuex helpers (light)</h2>
       <blockquote>
-        <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via state and mutations.</p>
+        <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via state and mutations</p>
         <view-code src="examples/large/views/VuexHelpersLight.vue"/>
         <view-code src="examples/large/stores/vuex-light.js"/>
       </blockquote>
@@ -67,12 +67,11 @@
 <script>
   import { mapState, mapGetters, mapMutations } from 'vuex'
 
-  import UserCard from './ui/UserCard'
+  import base from './base.js'
 
   export default {
-    components: {
-      UserCard
-    },
+
+    extends: base,
 
     computed: {
       ...mapState('user5', [

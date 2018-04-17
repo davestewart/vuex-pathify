@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Large component</span>Pathify (explicit)</h2>
       <blockquote>
-        <p>Demo uses core Pathify get and sync functions, sub-property access, and explicit object and array syntax.</p>
+        <p>Demo uses Pathify sync and explicit array syntax</p>
         <view-code src="examples/large/views/PathifyExplicit.vue"/>
         <view-code src="examples/large/stores/pathify.js"/>
       </blockquote>
@@ -37,12 +37,11 @@
 <script>
   import { sync } from 'vuex-pathify'
 
-  import UserCard from './ui/UserCard'
+  import base from './base.js'
 
   export default {
-    components: {
-      UserCard
-    },
+
+    extends: base,
 
     computed: {
       ...sync('user2/', [

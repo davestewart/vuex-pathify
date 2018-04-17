@@ -81,8 +81,8 @@
             "Naming": "state",
             "Bindings": "v-model",
             "Blocks": "computed",
-            "Component": "get, sync",
-            "Store": "state, make.mutations",
+            "Component code": "get, sync",
+            "Store code": "state, make.mutations",
             "Total": 6
           },
           {
@@ -90,18 +90,18 @@
             "Naming": "state, SET_STATE",
             "Bindings": "v-model",
             "Blocks": "computed",
-            "Component": "function, compound function, state syntax, getter syntax, commit, payload",
-            "Store": "state, mutations, functions, assignment, destructuring, array access",
+            "Component code": "function, compound function, state syntax, getter syntax, commit, payload",
+            "Store code": "state, mutations, functions, assignment, destructuring, array access",
             "Total": 14
           },
           {
             "Approach": "Vuex Helpers (light)",
             "Naming": "state, SET_STATE",
-            "Bindings": ":value, @input, payload",
+            "Bindings": ":value, @input, payload, $event",
             "Blocks": "computed, methods",
-            "Component": "mapState, mapGetters, mapMutations, deep watch",
-            "Store": "state, mutations, functions, assignment, destructuring, array access",
-            "Total": 15
+            "Component code": "mapState, mapGetters, mapMutations, deep watch",
+            "Store code": "state, mutations, functions, assignment, destructuring, array access",
+            "Total": 16
           },
 
         ]

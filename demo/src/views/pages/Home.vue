@@ -1,15 +1,27 @@
 <template>
-  <div>
-    <div class="content">
-      <h1 class="title is-2">Vuex Pathify Demo</h1>
-      <p>This small demo showcases some of the features of Pathify, as well as demonstrating the code savings that can be had.</p>
-      <p>To get the most out of it, check the source code. For syntax and usage examples, see the documentation.</p>
-      <p>Check:</p>
-      <ul>
-        <li>Features for basic, store and component Pathify examples</li>
-        <li>Code comparisons for real-world code comparisons and stats between differing Vuex setups</li>
-      </ul>
-    </div>
 
+  <div class="content">
+    <h1 class="title is-2">Vuex Pathify Demo</h1>
+    <h3>Introduction</h3>
+    <p>The demo is designed to be run on CodeSandbox, or locally via NPM.</p>
+    <p>In both environments, you can edit the code and see results live in the browser. The source code is clearly commented, with interactive suggestions where appropriate.</p>
+    <p>In demo components, there are buttons to view the related docs, and when running in CodeSandbox, buttons to jump straight to the code.</p>
+
+    <h3>Sections</h3>
+
+    <p>The API section demonstrates core Pathify features:</p>
+    <ul>
+      <li><router-link class="code" to="/api/paths">Path syntax</router-link></li>
+      <li><router-link class="code" to="/api/accessors">Store accessors</router-link></li>
+      <li><router-link class="code" to="/api/component">Component helpers</router-link></li>
+      <li><router-link class="code" to="/api/properties">Advanced property access</router-link></li>
+    </ul>
+
+    <p>The Code Comparisons section demonstrates real-world components using differing Vuex setups, with analysis and statistics:</p>
+    <ul>
+      <li><router-link to="/code/typical" class="is-parent">Typical component</router-link></li>
+      <li><router-link to="/code/large" class="is-parent">Large component</router-link></li>
+    </ul>
   </div>
+
 </template>

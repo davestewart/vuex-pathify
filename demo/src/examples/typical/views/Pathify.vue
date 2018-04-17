@@ -43,8 +43,8 @@
     extends: base('repos1'),
 
     computed: {
-      // get + direct syntax
-      repos: get('repos1/filteredItems!'),
+      // get + path syntax
+      repos: get('repos1/filteredItems'),
 
       // get + array syntax
       ...get('repos1', [

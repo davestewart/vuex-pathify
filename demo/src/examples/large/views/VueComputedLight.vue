@@ -4,7 +4,7 @@
     <div class="content">
       <h2 class="title is-2"><span>Large component</span>Vue computed (light)</h2>
       <blockquote>
-        <p>Demo uses manually-created computed properties, accessing the store via state and mutations.</p>
+        <p>Demo uses manually-created computed properties, accessing the store via state and mutations</p>
         <view-code src="examples/large/views/VueComputedLight.vue"/>
         <view-code src="examples/large/stores/vuex-light.js"/>
       </blockquote>
@@ -35,12 +35,11 @@
 </template>
 
 <script>
-  import UserCard from './ui/UserCard'
+  import base from './base.js'
 
   export default {
-    components: {
-      UserCard
-    },
+
+    extends: base,
 
     computed: {
       firstName: {

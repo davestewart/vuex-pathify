@@ -11,14 +11,13 @@
       </ul>
       <p>The example <strong>manages a user's personal data</strong> by way of a form.</p>
       <p>Whilst an interim "model &gt; submit" approach is arguably a better way to manage form data, the example is
-        intended
-        to simply illustrate management of a larger component with many editable properties.</p>
+        intended to illustrate 2-way data-binding of a larger component with many wired properties.</p>
 
       <h4 class='title is-4'>Code</h4>
       <p>The code can be found in <code>src/examples/large</code>.</p>
       <p>For each of the examples:</p>
       <ul>
-        <li>the component and store code is entirely self-contained</li>
+        <li>the store code is entirely self-contained</li>
         <li>the stores set up a variety of state, getters, actions and mutations</li>
       </ul>
 
@@ -148,8 +147,8 @@ mutations: make.mutations(state)
             "Naming": "state",
             "Bindings": "v-model",
             "Blocks": "computed",
-            "Component": "sync",
-            "Store": "state, make.mutations",
+            "Component code": "sync",
+            "Store code": "state, make.mutations",
             "Total": 7
           },
           {
@@ -157,8 +156,8 @@ mutations: make.mutations(state)
             "Naming": "state, SET_STATE",
             "Bindings": ":value, @input",
             "Blocks": "computed, methods",
-            "Component": "mapState, mapMutations",
-            "Store": "state, mutations, functions, assignment",
+            "Component code": "mapState, mapMutations",
+            "Store code": "state, mutations, functions, assignment",
             "Total": 13
           },
           {
@@ -166,8 +165,8 @@ mutations: make.mutations(state)
             "Naming": "state, SET_STATE",
             "Bindings": "v-model",
             "Blocks": "computed",
-            "Component": "functions, compound functions, state syntax, commit",
-            "Store": "state, mutations, functions, assignment",
+            "Component code": "functions, compound functions, state syntax, commit",
+            "Store code": "state, mutations, functions, assignment",
             "Total": 13
           },
           {
@@ -175,8 +174,8 @@ mutations: make.mutations(state)
             "Naming": "state, setState, SET_STATE",
             "Bindings": ":value, @input",
             "Blocks": "computed, methods",
-            "Component": "mapGetters, mapActions",
-            "Store": "state, mutations, getters, actions, functions, assignment",
+            "Component code": "mapGetters, mapActions",
+            "Store code": "state, mutations, getters, actions, functions, assignment",
             "Total": 16
           },
           {
@@ -184,8 +183,8 @@ mutations: make.mutations(state)
             "Naming": "state, setState, SET_STATE",
             "Bindings": "v-model",
             "Blocks": "computed",
-            "Component": "functions, compound functions, getter syntax, dispatch",
-            "Store": "state, mutations, getters, actions, functions, assignment",
+            "Component code": "functions, compound functions, getter syntax, dispatch",
+            "Store code": "state, mutations, getters, actions, functions, assignment",
             "Total": 16
           }
         ]
