@@ -27,11 +27,10 @@
       <p>Pathify makes it easy to target groups with its <code>@</code> sub-property syntax, whilst the <code>*</code>
         wildcard syntax automatically wires sub-properties, with <code>make.mutations()</code> handling automatic
         setting of sub-properties. </p>
-      <p>With manual JavaScript, a variety of syntaxes and styles are required to pass payloads and destructure.</p>
+      <p>With manual JavaScript, significantly more syntaxes and styles are required to wire the same properties, including manually creating, passing, destructuring and assigning payloads.</p>
       <p>With the helpers approach, templates need manually-created value and handler attributes, code must be added to
         computed and methods blocks, and a deep watcher is needed to trigger a store update.</p>
-      <p>Note that the Vuex stores all use the "light" approach, which is to use <strong>state and mutations</strong> to
-        <strong>getters and actions</strong>.</p>
+      <p>Note that all examples in this set use the "light" Vuex approach, which is to reference <strong>state and mutations</strong> only.</p>
 
       <h5 class='title is-5'>Lines of code</h5>
       <ui-table :data='lines'></ui-table>
@@ -79,7 +78,8 @@
         styles: [
           {
             "Approach": "Pathify",
-            "Template": "v-model",
+            "Naming": "state",
+            "Bindings": "v-model",
             "Blocks": "computed",
             "Component": "get, sync",
             "Store": "state, make.mutations",
@@ -87,20 +87,23 @@
           },
           {
             "Approach": "Vue Computed (light)",
-            "Template": "v-model",
+            "Naming": "state, SET_STATE",
+            "Bindings": "v-model",
             "Blocks": "computed",
-            "Component": "function, compound function, getter syntax, state syntax, commit, payload",
+            "Component": "function, compound function, state syntax, getter syntax, commit, payload",
             "Store": "state, mutations, functions, assignment, destructuring, array access",
             "Total": 14
           },
           {
             "Approach": "Vuex Helpers (light)",
-            "Template": ":value, @input, payload",
+            "Naming": "state, SET_STATE",
+            "Bindings": ":value, @input, payload",
             "Blocks": "computed, methods",
             "Component": "mapState, mapGetters, mapMutations, deep watch",
             "Store": "state, mutations, functions, assignment, destructuring, array access",
             "Total": 15
           },
+
         ]
       }
     },

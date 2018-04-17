@@ -39,18 +39,20 @@
         </ul>
       </div>
 
-      <h4 class="title is-4">Examples</h4>
-
-      <p>For each set:</p>
+      <p>For each example set:</p>
       <ul>
-        <li>an <strong>overview</strong> outlines setup and aim</li>
+        <li>an <strong>introduction page</strong> outlines aim and setup</li>
         <li>an <strong>analysis</strong> compares:</li>
         <ul>
+          <li><strong>approaches</strong> detailing the interesting points, strengths and weaknesses of each one</li>
           <li><strong>lines of code</strong> counted using only the "doing" code, i.e. the computed property block and/or the actions block</li>
           <li><strong>typed characters</strong> counted using only characters from that line's indent</li>
           <li><strong>complexity</strong> counted using the amount of different operations or syntax types used</li>
         </ul>
       </ul>
+
+
+      <h4 class="title is-4">Examples</h4>
       <p>For each example:</p>
       <ul>
         <li>an <strong>introduction sentence</strong> briefly outlines overall setup</li>

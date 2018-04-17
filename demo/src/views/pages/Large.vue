@@ -23,18 +23,9 @@
       </ul>
 
       <h4 class='title is-4'>Analysis</h4>
-      <p>The interesting thing about this component, is just how poorly simple get/set property wiring scales with
-        vanilla
-        JavaScript.</p>
-      <p>With Pathify, you can use <code>make.mutations()</code> and <code>*</code> wildcard syntax to effectively
-        <strong>scale property wiring for free</strong>:</p>
-      <pre>
-// component
-computed: sync('user/*')
+      <p>The interesting thing about this example set, is just how poorly simple get/set property wiring scales with
+        vanilla JavaScript.</p>
 
-// store
-mutations: make.mutations(state)
-</pre>
       <p>With manual JavaScript and Vuex, depending on your approach, it can take up to 400 characters and 16 lines
         <strong>per property</strong>:</p>
       <pre>
@@ -64,6 +55,25 @@ SET_FIRST_NAME: (state, value) => {
 // store getter
 firstName: state => state.firstName,
 </pre>
+
+      <p>Additionally, 12 different syntax styles and elements are needed, just to sync values 1:1 with the store.</p>
+
+      <p>With Pathify, you can use <code>make.mutations()</code> and <code>*</code> wildcard syntax to effectively
+        <strong>scale property wiring for free</strong>:</p>
+      <pre>
+// template binding
+v-model="..."
+
+// component
+computed: sync('user/*')
+
+// store
+mutations: make.mutations(state)
+</pre>
+
+      <p>This allows you to concentrate on the difficult stuff in your app, and almost completely automate component /
+        store sync.</p>
+
 
       <h5 class='title is-5'>Lines of code</h5>
       <ui-table :data='lines'></ui-table>
@@ -135,43 +145,48 @@ firstName: state => state.firstName,
         styles: [
           {
             "Approach": "Pathify (all)",
-            "Template": "v-model",
+            "Naming": "state",
+            "Bindings": "v-model",
             "Blocks": "computed",
             "Component": "sync",
-            "Syntaxes": "state, make.mutations",
-            "Total": 5
+            "Store": "state, make.mutations",
+            "Total": 7
           },
           {
             "Approach": "Vuex helpers (light)",
-            "Template": ":value, @input",
+            "Naming": "state, SET_STATE",
+            "Bindings": ":value, @input",
             "Blocks": "computed, methods",
             "Component": "mapState, mapMutations",
-            "Syntaxes": "state, mutations, functions, assignment",
-            "Total": 10
+            "Store": "state, mutations, functions, assignment",
+            "Total": 13
           },
           {
             "Approach": "Vue computed (light)",
-            "Template": "v-model",
+            "Naming": "state, SET_STATE",
+            "Bindings": "v-model",
             "Blocks": "computed",
             "Component": "functions, compound functions, state syntax, commit",
-            "Syntaxes": "state, mutations, functions, assignment",
-            "Total": 10
+            "Store": "state, mutations, functions, assignment",
+            "Total": 13
           },
           {
             "Approach": "Vuex helpers (full)",
-            "Template": ":value, @input",
+            "Naming": "state, setState, SET_STATE",
+            "Bindings": ":value, @input",
             "Blocks": "computed, methods",
             "Component": "mapGetters, mapActions",
-            "Syntaxes": "state, mutations, getters, actions, functions, assignment",
-            "Total": 12
+            "Store": "state, mutations, getters, actions, functions, assignment",
+            "Total": 16
           },
           {
             "Approach": "Vue computed (full)",
-            "Template": "v-model",
+            "Naming": "state, setState, SET_STATE",
+            "Bindings": "v-model",
             "Blocks": "computed",
             "Component": "functions, compound functions, getter syntax, dispatch",
-            "Syntaxes": "state, mutations, getters, actions, functions, assignment",
-            "Total": 12
+            "Store": "state, mutations, getters, actions, functions, assignment",
+            "Total": 16
           }
         ]
       }
