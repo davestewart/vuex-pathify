@@ -7,6 +7,7 @@
       <blockquote>
         <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge configuration gaps</p>
         <view-code src="examples/api/views/Properties.vue"/>
+        <view-code src="examples/api/stores/icons.js"/>
         <view-docs src="api/properties"/>
       </blockquote>
     </div>

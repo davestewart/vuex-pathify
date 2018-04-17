@@ -7,6 +7,7 @@
       <blockquote>
         <p>Component helpers make wiring store properties to components simple and intuitive</p>
         <view-code src="examples/api/views/Components.vue"/>
+        <view-code src="examples/api/stores/api.js"/>
         <view-docs src="api/component"/>
       </blockquote>
     </div>

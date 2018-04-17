@@ -15,7 +15,7 @@
 
     computed: {
       isActive () {
-        return this.src// && window.location.href.includes('codesandbox')
+        return this.src && window.location.href.includes('codesandbox')
       },
 
       url () {
