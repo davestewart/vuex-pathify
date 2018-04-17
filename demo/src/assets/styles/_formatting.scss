@@ -165,3 +165,7 @@ button.is-primary {
     opacity: 0.8;
   }
 }
+
+button + button {
+  margin-left: 0.5em;
+}

@@ -15,7 +15,9 @@ export function route (path, component) {
 }
 
 export default new Router({
-  // mode: 'history',
+  mode: window.location.href.includes('codesandbox')
+    ? 'history'
+    : 'hash',
   linkActiveClass: 'is-link-active',
   linkExactActiveClass: 'is-link-exact',
   routes: [
