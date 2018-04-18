@@ -28,6 +28,12 @@
         <a href="#" @click.prevent="copyData('module/object@a')">a sub-property</a>
       </p>
       <pre>{{ copy }}</pre>
+
+      <p>You can call store accessors from anywhere, even the console, and they will update the view. Try:</p>
+      <pre>store.get('module')
+store.set('module/object', {x: {y: {z: 100}}})
+store.copy('module/object@x.y.z')
+</pre>
     </div>
 
   </article>

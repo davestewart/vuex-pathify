@@ -1,7 +1,6 @@
 <template>
   <button v-if="isActive" class="button is-small is-primary" @click="open" :title="url">
-    <i class="fa fa-code"></i>
-    <slot>{{ text }}</slot>
+    <i class="fa fa-code"></i> {{ label || text }}
   </button>
 </template>
 
@@ -11,6 +10,7 @@
   export default {
     props: {
       src: String,
+      label: String
     },
 
     computed: {
