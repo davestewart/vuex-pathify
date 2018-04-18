@@ -9,6 +9,10 @@ body {
   color: #2c3e50;
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+//  HEADINGS
+// ---------------------------------------------------------------------------------------------------------------------
+
 h1, h2 {
   font-weight: normal;
 }
@@ -26,6 +30,40 @@ h1, h2 {
     word-spacing: .05rem;
   }
 }
+
+h1, h2, h3, h4, h5 {
+  font-family: Merriweather;
+  margin-top: 2em;
+}
+
+.indent, li {
+  h1, h2, h3, h4, h5 {
+    margin-top: 1.5em;
+  }
+}
+
+.content > h1:first-child,
+.content > h2:first-child,
+.content > h3:first-child,
+.content > h4:first-child {
+  margin-top: 0;
+}
+
+h2 span {
+  display: none;
+  font-size: 0.35em;
+  margin-bottom: 0.3em;
+  margin-top: -1.6em;
+}
+
+.title + .title {
+  margin-top: 0.5em;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+//  LISTS
+// ---------------------------------------------------------------------------------------------------------------------
 
 
 ul {
@@ -57,81 +95,8 @@ pre {
   color: black;
 }
 
-.field {
-  margin-right: .5em;
-}
-
-label.label.is-small {
-  letter-spacing: 0.05em;
-}
-
 .columns {
   margin-top: 0;
-}
-
-.controls {
-  border-bottom: 1px solid #EEE;
-}
-
-fieldset {
-
-  border: 0;
-  padding: 1em;
-  max-width: 400px;
-  font-size: 1.4em;
-  font-weight: bold;
-
-  legend {
-    font-family: Merriweather, sans-serif;
-    font-size: 1.5rem;
-    font-weight: normal;
-  }
-
-  /*
-  > .field {
-    display: flex;
-  }
-
-  .label {
-    min-width: 150px;
-    vertical-align: baseline;
-    line-height: 2em;
-    margin-bottom: 0;
-  }
-
-  .control {
-    flex: 1;
-  }
-  */
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: Merriweather;
-  margin-top: 2em;
-}
-
-.indent, li {
-  h1, h2, h3, h4, h5 {
-    margin-top: 1.5em;
-  }
-}
-
-.content > h1:first-child,
-.content > h2:first-child,
-.content > h3:first-child,
-.content > h4:first-child {
-  margin-top: 0;
-}
-
-.title + .title {
-  margin-top: 0.5em;
-}
-
-h2 span {
-  display: none;
-  font-size: 0.35em;
-  margin-bottom: 0.3em;
-  margin-top: -1.6em;
 }
 
 .indent {
@@ -151,20 +116,4 @@ h2 span {
     }
 
   }
-}
-
-.button.is-primary {
-  i {
-    margin-right: .5em;
-  }
-
-  background: #25afaf;
-
-  &:hover {
-    background: lighten(#25afaf, 5%);
-  }
-}
-
-button + button {
-  margin-left: 0.5em;
 }

@@ -1,0 +1,68 @@
+.controls {
+  border-bottom: 1px solid #EEE;
+
+  &.is-horizontal {
+    align-items: flex-end;
+
+    > .field {
+      margin-bottom: 0.75em;
+    }
+  }
+
+}
+
+.field {
+  margin-right: .5em;
+}
+
+label.label.is-small {
+  letter-spacing: 0.05em;
+}
+
+fieldset {
+
+  border: 0;
+  padding: 1em;
+  max-width: 400px;
+  font-size: 1.4em;
+  font-weight: bold;
+
+  legend {
+    font-family: Merriweather, sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+
+  /*
+  > .field {
+    display: flex;
+  }
+
+  .label {
+    min-width: 150px;
+    vertical-align: baseline;
+    line-height: 2em;
+    margin-bottom: 0;
+  }
+
+  .control {
+    flex: 1;
+  }
+  */
+}
+
+.button.is-primary {
+  i {
+    margin-right: .5em;
+  }
+
+  background: #25afaf;
+
+  &:hover {
+    background: lighten(#25afaf, 5%);
+  }
+}
+
+button + button {
+  margin-left: 0.5em;
+}
