@@ -24,13 +24,12 @@
 
       <!-- render icons using custom Icon classes -->
       <div class="icons" v-if="icons.length">
-        <div v-for="icon in icons"
+        <div v-for="(icon, index) in icons"
              class="icon-container"
+             :key="index"
              :title="icon.description">
-          <span class="icon"
-                :style="`background-color: ${icon.color}`"
-                @click="onClick(icon)">
-            <i :class="`fa fa-${icon.name}`"></i>
+          <span class="icon" @click="onClick(icon)">
+            <span class="svg" v-html="icon.render()"></span>
           </span>
           <p class="desc">{{ icon.description }}</p>
         </div>
@@ -38,6 +37,10 @@
 
       <!-- user prompt -->
       <div v-else>Use the controls above to add icons...</div>
+    </div>
+    <div class="attribution">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
+      href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
     </div>
 
   </article>
@@ -55,7 +58,7 @@
     data () {
       return {
         names,
-        name: 'cog',
+        name: names[0],
         colors: colors,
         color: colors[0]
       }
@@ -104,29 +107,25 @@
     display: inline-block;
     width: 100px;
     margin: 5px;
-    border: 1px solid #DDD;
-    border-radius: 2px;
     overflow: hidden;
 
     > .icon {
-      width: 98px;
-      height: 98px;
-      font-size: 50px;
-      color: white;
+      width: 100px;
+      height: 100px;
       cursor: pointer;
-      border: 2px solid white;
       margin-bottom: -3px;
-      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
 
-      > i {
+      > .svg {
+        display: inline-block;
+        margin: 20px;
+        line-height: 1em;
         transition: 1s all;
-        text-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
       }
 
       &:hover {
-        i {
+        .svg {
           transition: 0.1s all;
-          transform: scale(1.2);
+          transform: scale(1.5);
         }
       }
 
@@ -136,7 +135,15 @@
       text-align: center;
       background: white;
       color: black;
+      font-size: 0.9em;
     }
 
+  }
+
+  .attribution {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    background: #FFF;
   }
 </style>

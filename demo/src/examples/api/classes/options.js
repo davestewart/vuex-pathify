@@ -1,20 +1,17 @@
-export const names = [
-  'cog',
-  'plane',
-  'star',
-  'eye',
-  'cloud',
-  'flag',
-  'glass',
-  'wrench'
-]
+import _icons from '../../../assets/svg'
+
+export const icons = _icons
+
+export const names = Object.keys(_icons).sort()
 
 export const palette = {
-  red: '#EF476F',
-  yellow: '#FFD166',
-  green: '#06D6A0',
-  blue: '#118AB2',
-  navy: '#073B4C',
+  red: '#DD3A77',
+  orange: '#ff822d',
+  yellow: '#ffc84f',
+  grey: '#CCC',
+  green: '#05AFAF',
+  blue: '#3382bf',
+  navy: '#163c7a',
 }
 
 export const colors = Object.keys(palette)
