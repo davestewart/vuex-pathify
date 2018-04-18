@@ -2,7 +2,7 @@
 
   <div class="content">
     <div style="text-align: center">
-      <img src="../../assets/img/pathify-logo-demo.png" width="450">
+      <img src="../../assets/img/pathify-logo.png" width="450">
     </div>
 
     <h3>Introduction</h3>
@@ -22,6 +22,7 @@
 
     <p>The Code Comparisons section demonstrates real-world components using differing Vuex setups, with analysis and statistics:</p>
     <ul>
+      <li><router-link to="/code" class="is-parent">Overview</router-link></li>
       <li><router-link to="/code/typical" class="is-parent">Typical component</router-link></li>
       <li><router-link to="/code/large" class="is-parent">Large component</router-link></li>
     </ul>
