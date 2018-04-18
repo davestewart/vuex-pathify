@@ -16,28 +16,28 @@
     <div class="content">
       <!-- controls -->
       <div class="controls field is-horizontal">
+        <ui-select label="Style" :options="styles" v-model="style"/>
         <ui-select label="Color" :options="colors" v-model="color"/>
         <ui-select label="Icon" :options="names" v-model="name"/>
+        <ui-button label="Add" @click="addIcon"/>
         <ui-button label="Add random" @click="addRandom"/>
         <ui-button label="Clear" @click="clear"/>
       </div>
 
-      <!-- render icons using custom Icon classes -->
+      <!-- icon presentation and functionality via custom Icon classes -->
       <div class="icons" v-if="icons.length">
-        <div v-for="(icon, index) in icons"
-             class="icon-container"
+        <icon v-for="(icon, index) in icons"
              :key="index"
-             :title="icon.description">
-          <span class="icon" @click="onClick(icon)">
-            <span class="svg" v-html="icon.render()"></span>
-          </span>
-          <p class="desc">{{ icon.description }}</p>
-        </div>
+             :title="icon.title"
+             :svg="icon.render(style)"
+             @click="icon.show()">
+        </icon>
       </div>
 
       <!-- user prompt -->
       <div v-else>Use the controls above to add icons...</div>
     </div>
+
     <div class="attribution">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a
       href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
       href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC BY 3.0</a>
@@ -50,42 +50,73 @@
 <script>
   import _ from 'lodash'
 
-  import { get, commit, dispatch } from 'vuex-pathify'
+  import { get, sync, commit, dispatch } from 'vuex-pathify'
 
-  import { names, colors } from '../classes/options'
+  import { names, colors, styles } from '../classes/options'
+
+  import Icon from './ui/Icon'
 
   export default {
+    components: {
+      Icon
+    },
+
     data () {
       return {
         names,
         name: names[0],
-        colors: colors,
-        color: colors[0]
+        colors,
+        color: colors[0],
+        styles,
       }
     },
 
     computed: {
-      // pathify chooses same-named getters over same-named states, in this case returning an array
-      // of Icon instances with transformed properties and methods, rather than just a plain Object
+      /**
+       * Accessor priority
+       *
+       * Pathify chooses same-named getters over same-named states, in this case returning an array of Icon
+       * instances with transformed properties and additional methods, rather than just a plain Object
+       *
+       * Encapsulating logic in classes, rather than the view or store, reduces tight coupling and repetition
+       * in the rest of your application
+       *
+       * The Icon class demonstrates:
+       *
+       *  - new properties from existing values, i.e. title and hex color
+       *  - a render() function to transform existing values (SVG) at run time
+       *  - a show() function to perform an additional operation, independent of store or view
+       *
+       * As the functionality is encapsulated on the Icon class, the methods can be called from anywhere.
+       *
+       * Try running this in the console:
+       *
+       *  - store.get('icons/data')[0].show()
+       */
       icons: get('icons/data'),
+
+      style: sync('icons/style'),
     },
 
     watch: {
-      name (value) { this.addIcon(value, this.color) },
-      color (value) { this.addIcon(this.name, value) },
+      name: 'onUpdate',
+      color : 'onUpdate',
     },
 
     // to target non SET_* members, use these techniques:
     methods: {
+
       // call mutation using direct access (!) syntax
-      addIcon (name, color) {
-        this.$store.set('icons/ADD_ICON!', {name, color}) // try removing the ! to see what happens (check the console)
-                                                          // try using the commit() vuex alias to achieve the same
+      addIcon () {
+        // try removing the ! to see what happens (check the console)
+        // try using the commit() vuex alias to achieve the same
+        this.$store.set('icons/ADD_ICON!', {color: this.color, name: this.name})
       },
 
       // call action using vuex alias
       addRandom () {
-        dispatch('icons/addRandom')                       // try using direct syntax to achieve the same
+        // try using pathify and direct syntax to achieve the same result
+        dispatch('icons/addRandom')
       },
 
       // call action using vuex directly
@@ -93,53 +124,17 @@
         this.$store.dispatch('icons/clear')
       },
 
-      // call method on returned Icon instance directly
-      onClick (icon) {
-        icon.doSomething()                                // try moving this call directly to the markup
-      }
+      // utility
+      onUpdate () {
+        this.$nextTick(this.addIcon)
+      },
+
     }
   }
 
 </script>
 
 <style lang="scss">
-  .icon-container {
-    display: inline-block;
-    width: 100px;
-    margin: 5px;
-    overflow: hidden;
-
-    > .icon {
-      width: 100px;
-      height: 100px;
-      cursor: pointer;
-      margin-bottom: -3px;
-
-      > .svg {
-        display: inline-block;
-        margin: 20px;
-        line-height: 1em;
-        transition: 1s all;
-      }
-
-      &:hover {
-        .svg {
-          transition: 0.1s all;
-          transform: scale(1.5);
-        }
-      }
-
-    }
-
-    > .desc {
-      text-align: center;
-      background: white;
-      color: black;
-      font-size: 0.9em;
-    }
-
-  }
-
   .attribution {
     position: absolute;
     bottom: 0;

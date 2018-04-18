@@ -9,6 +9,7 @@ export default {
   namespaced: true,
 
   state: {
+    style: 'line',
     data: [
       Icon.create(),
     ],
@@ -30,6 +31,10 @@ export default {
   },
 
   mutations: {
+    SET_STYLE (state, style) {
+      state.style = style
+    },
+
     ADD_ICON (state, icon) {
       state.data.push(icon)
     },
