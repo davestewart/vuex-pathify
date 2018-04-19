@@ -4,7 +4,7 @@ export const icons = _icons
 
 export const names = Object.keys(_icons).sort()
 
-export const styles = ['line', 'outline', 'pathify', 'sticker', 'neon']
+export const styles = ['line', 'pathify', 'sticker', 'outline', 'neon']
 
 export const palette = {
   red: '#DD3A77',

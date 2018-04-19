@@ -22,16 +22,17 @@
         <ui-button label="Add" @click="addIcon"/>
         <ui-button label="Add random" @click="addRandom"/>
         <ui-button label="Clear" @click="clear"/>
+        <ui-button label="Get SVG" @click="getSvg"/>
       </div>
 
       <!-- icon presentation and functionality via custom Icon classes -->
       <div class="icons" v-if="icons.length">
-        <icon v-for="(icon, index) in icons"
+        <ui-icon v-for="(icon, index) in icons"
              :key="index"
              :title="icon.title"
              :svg="icon.render(style)"
-             @click="icon.show()">
-        </icon>
+             @click="show(icon)">
+        </ui-icon>
       </div>
 
       <!-- user prompt -->
@@ -53,12 +54,35 @@
   import { get, sync, commit, dispatch } from 'vuex-pathify'
 
   import { names, colors, styles } from '../classes/options'
+  import Icon from '../classes/Icon'
+  import template from '!!raw-loader!../classes/template.html'
 
-  import Icon from './ui/Icon'
+  import UiIcon from './ui/UiIcon'
 
+
+  /**
+   * This file demonstrates:
+   *
+   * Custom classes
+   *
+   * - accessor priority
+   * - returning custom classes from the store
+   * - referencing custom properties and calling custom methods on the class
+   * - using the class independently of the component or store
+   *
+   * Direct syntax
+   *
+   * - using direct syntax to call non SET_* members on the store
+   * - using Pathify's Vuex aliases to call Vuex directly
+   * - skipping Pathify and just calling Vuex directly
+   *
+   * The Icon example has become a bit extravagant, but the principle is sound; encapsulating logic
+   * in classes, rather than the view or store, can help to reduce repetition and cruft in the rest
+   * of your application
+   */
   export default {
     components: {
-      Icon
+      UiIcon
     },
 
     data () {
@@ -77,9 +101,6 @@
        *
        * Pathify chooses same-named getters over same-named states, in this case returning an array of Icon
        * instances with transformed properties and additional methods, rather than just a plain Object
-       *
-       * Encapsulating logic in classes, rather than the view or store, reduces tight coupling and repetition
-       * in the rest of your application
        *
        * The Icon class demonstrates:
        *
@@ -122,6 +143,22 @@
       // call action using vuex directly
       clear () {
         this.$store.dispatch('icons/clear')
+      },
+
+      // call method on Icon class directly
+      show (icon) {
+        const html = template
+          .replace(/{{ file }}/g, `${icon.name}.svg`)
+          .replace('{{ svg }}', icon.getSvg())
+        const win = window.open('', 'icon')
+        win.document.write(html)
+        win.document.close()
+      },
+
+      // use Icon class independently of component or store
+      getSvg () {
+        const svg = Icon.create(this.color, this.name).render(this.style)
+        console.log(svg)
       },
 
       // utility

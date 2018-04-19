@@ -2,7 +2,7 @@
   <div class="field ui-input">
     <label v-if="label" class="label is-small">{{ label }}</label>
     <div class="control">
-      <input v-model="model" class="input is-small" type="text" placeholder="Text input">
+      <input v-model="model" class="input is-small" :type="type" placeholder="Text input">
     </div>
   </div>
 </template>
@@ -13,7 +13,11 @@
   export default {
     props: {
       label: String,
-      value: [String, Number]
+      value: [String, Number],
+      type: {
+        type: String,
+        default: 'text'
+      },
     },
 
     computed: {

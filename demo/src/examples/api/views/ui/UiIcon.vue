@@ -56,5 +56,32 @@
     }
 
   }
+</style>
 
+<style lang="scss">
+  @keyframes neon {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes line {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.2; }
+    100% { opacity: 1; }
+  }
+
+  .icon {
+    svg[data-style="neon"] {
+      .line {
+        mix-blend-mode: screen;
+        animation: line 2s ease infinite;
+      }
+
+      .neon {
+        animation: neon 2s ease infinite;
+        animation-delay: 0.1s;
+      }
+    }
+  }
 </style>

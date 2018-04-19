@@ -11,7 +11,7 @@ export default {
   state: {
     style: 'line',
     data: [
-      Icon.create(),
+      Icon.getData(),
     ],
   },
 
@@ -22,7 +22,7 @@ export default {
 
   actions: {
     addRandom ({commit}) {
-      commit('ADD_ICON', Icon.create())
+      commit('ADD_ICON', Icon.getData())
     },
 
     clear ({commit}) {

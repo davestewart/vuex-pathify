@@ -5,7 +5,7 @@
     <div class="content">
       <h2 class="title is-2">API: Store helpers</h2>
       <blockquote>
-        <p>Store helpers generate store mutations, and if required getters and actions</p>
+        <p>Store helpers help set up stores quickly, by generating default mutations, getters and actions</p>
         <view-code src="examples/api/views/Store.vue"/>
         <view-code src="examples/api/stores/helpers.js"/>
         <view-docs src="api/store"/>
