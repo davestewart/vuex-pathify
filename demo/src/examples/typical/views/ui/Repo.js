@@ -2,7 +2,7 @@ export default function Repo (data) {
 
   // properties
   this.id = data.id
-  this.name = data.name || ''
+  this.name = (data.name || '').replace(/-/g, ' ')
   this.description = data.description || ''
   this.author = data.owner.login
   this.stars = data.stargazers_count
@@ -13,6 +13,6 @@ export default function Repo (data) {
 
   // methods
   this.contains = keyword => {
-    return this.description.indexOf(keyword) > -1 || this.name.indexOf(keyword) > -1
+    return (this.description + this.name).indexOf(keyword) > -1
   }
 }

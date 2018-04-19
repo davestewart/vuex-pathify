@@ -7,7 +7,7 @@
     </figure>
     <div class="media-content">
       <div class="content">
-        <h5 class="title is-5">{{ repo.name.replace(/-/g, ' ') }}</h5>
+        <h5 class="title is-5">{{ repo.name }}</h5>
         <p>{{ repo.description }}</p>
         <span class="icon is-small has-text-warning"><i class="fa fa-star"></i></span> <span class="is-small">{{ repo.stars }}</span>
       </div>
