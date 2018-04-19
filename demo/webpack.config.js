@@ -86,6 +86,7 @@ module.exports = {
   resolve: {
     alias: {
       'vue$':       'vue/dist/vue.esm.js',
+      /*
       '@':          resolve(''),
       'assets':     resolve('assets'),
       'store':      resolve('store'),
@@ -93,6 +94,7 @@ module.exports = {
       'views':      resolve('views'),
       'pages':      resolve('views/pages'),
       'components': resolve('views/components'),
+      */
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
