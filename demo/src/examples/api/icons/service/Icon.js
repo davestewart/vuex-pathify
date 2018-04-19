@@ -1,28 +1,24 @@
-import { icons, names, colors, palette } from './options'
+import css from '!!raw-loader!./styles.css'
 
 /**
  * Icon class
  *
- * Encapsulate logic independently from view or store
+ * Encapsulate icon drawing logic independently from view or store
  */
-export default function Icon (data) {
-  const { name, color } = data
+export default function Icon (name, color, title, svg) {
   this.name = name
-  this.color = palette[color]
-  this.title = `${color} ${name}`
+  this.color = color
+  this.title = title
+
+  this.getSvg = function () {
+    return svg
+  }
 }
 
 /**
  * Custom Icon methods
  */
 Icon.prototype = {
-
-  /**
-   * Get original SVG outlines
-   */
-  getSvg () {
-    return icons[this.name]
-  },
 
   /**
    * Get styled SVG outlines
@@ -106,6 +102,9 @@ Icon.prototype = {
       ? `<g class="neon">${layers.slice(0,3).join('')}</g>${layers[3]}`
       : layers.join('')
 
+    // add styles
+    addStyles()
+
     // render
     return svg
       .replace('<svg', `<svg data-style="${style}"`)
@@ -115,19 +114,12 @@ Icon.prototype = {
 
 }
 
-/**
- * Get Icon data
- */
-Icon.getData  = function (color, name) {
-  const random = values => values[Math.floor(Math.random() * values.length)]
-  color = color || random(colors)
-  name = name || random(names)
-  return {name, color}
-}
-
-/**
- * Get Icon instance
- */
-Icon.create = function (color, name) {
-  return new Icon(Icon.getData(color, name))
+function addStyles () {
+  if (!document.getElementById('icon-styles')) {
+    const style = document.createElement('style')
+    style.setAttribute('type', 'text/css')
+    style.setAttribute('id', 'icon-styles')
+    style.innerHTML = css
+    document.querySelector('head').appendChild(style)
+  }
 }

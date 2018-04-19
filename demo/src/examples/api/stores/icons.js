@@ -1,4 +1,4 @@
-import Icon from '../classes/Icon'
+import factory from '../icons/factory'
 
 /**
  * Icons Store
@@ -11,18 +11,18 @@ export default {
   state: {
     style: 'line',
     data: [
-      Icon.getData(),
+      factory.getData(),
     ],
   },
 
   getters: {
     // return array of custom Icon classes
-    data: state => state.data.map(icon => new Icon(icon))
+    data: state => state.data.map(icon => factory.create(icon.name, icon.color))
   },
 
   actions: {
     addRandom ({commit}) {
-      commit('ADD_ICON', Icon.getData())
+      commit('ADD_ICON', factory.getData())
     },
 
     clear ({commit}) {

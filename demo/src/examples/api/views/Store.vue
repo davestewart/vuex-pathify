@@ -12,7 +12,6 @@
       </blockquote>
     </div>
 
-
     <div class="content">
       <p>Store:</p>
       <pre>state: {{ state }}</pre>
