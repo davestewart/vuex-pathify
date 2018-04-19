@@ -7,6 +7,7 @@ import pathify from './pathify'
 
 // store
 import { root, module } from '../examples/api/stores/api'
+import helpers from '../examples/api/stores/helpers'
 import icons from '../examples/api/stores/icons'
 import typical from '../examples/typical/stores/index'
 import large from '../examples/large/stores/index'
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
 
   modules: {
     module,
+    helpers,
     icons,
     ...typical,
     ...large,
