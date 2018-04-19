@@ -15,6 +15,24 @@ There are some additional [direct syntaxes](#direct-syntax) as well, which are d
 - direct sync
 
 
+## Usage
+
+Paths are used throughout Pathify:
+
+```js
+// global
+store.get('value')
+store.set('module/foo', 100)
+
+// components
+computed: {
+  value: sync('module/bar@baz')
+}
+```
+
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/develop/demo?initialpath=api/paths) for live examples.
+
+
 
 ## Syntax
 
@@ -104,7 +122,7 @@ Pathify has two syntax types which are used to handle customisation around non g
 Direct access syntax uses a bang `!` to skip mapping and access Vuex members directly:
 
 ```js
-get('filteredItems!')
+set('updateItems!', items)
 ```
 
 See the [properties](/api/properties.md#direct-property-access) page for more info.
@@ -115,7 +133,7 @@ Direct sync syntax uses a pipe `|` to specify alternate get and set members in c
 
 ```js
 computed: {
-    items: sync('filteredItems!|updateItems!')
+    items: sync('updatedItems|updateItems!')
 }
 ```
 

@@ -9,12 +9,14 @@
 - [API](/api/index.md)
 
     - [Path syntax](/api/paths.md)
-    - [Property access](/api/properties.md)
+    - [Store helpers](/api/store.md)
     - [Store accessors](/api/accessors.md)
     - [Component helpers](/api/component.md)
-    - [Store helpers](/api/store.md)
+    - [Advanced property access](/api/properties.md)
 
 - [Discussion](/discussion/index.md)
 
+    - [Mapping algorithm](/discussion/algorithm.md)
+    - [Best practices](/discussion/best-practices.md)
     - [Rationale](/discussion/rationale.md)
     

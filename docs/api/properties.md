@@ -1,4 +1,4 @@
-# Property access
+# Advanced property access
 
 > Detailed information on store property access
 
@@ -6,13 +6,17 @@
 
 Pathify's unified path syntax and mapping simplifies property access to Vuex, at the expense of some minor flexibility.
 
-Here's what you should know:
+This section covers:
 
 - [accessor priority](#accessor-priority) - how Pathify simplifies get / set operations
 - [direct property access](#direct-property-access) - how to override mapping and target properties manually
 - [sub-property access](#sub-property-access) - how Pathify writes to state sub-properties
 - [errors](#errors) - what happens if Pathify fails to map a path to a store member
 
+
+## Usage
+
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/develop/demo?initialpath=api/properties) for live examples.
 
 ## Details
 
@@ -139,7 +143,7 @@ Here's an example of manually using the class:
 
 ```js
 import { Payload } from 'vuex-pathify'
-import_ from 'lodash'
+import _ from 'lodash'
 
 mutations: {
   SET_FOO: (state, payload) => {
