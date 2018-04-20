@@ -3,7 +3,7 @@
 
 <h2>Overview</h2>
 
-Pathify makes working with Vuex **easy**, with a **unified, state-based, path syntax**:
+Pathify makes working with Vuex **easy**, with a **declarative, state-based, path syntax**:
 
 ![pathify-path](docs/assets/img/readme/pathify-path.png)
 
@@ -11,7 +11,7 @@ Pathify's core helpers provide one-liner **read, write** or **sync** to any stor
 
 ![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
 
-Pathify's store helpers eliminate the time, code and cost of store setup:
+Pathify's store helpers eliminate the time, code and complexity of store setup:
 
 ![vuex-mutations](docs/assets/img/readme/pathify-make-mutations.png)
 
