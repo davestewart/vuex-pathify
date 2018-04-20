@@ -2,147 +2,106 @@
 
 > Pathify and Vuex tips and tricks to ramp up your productivity
 
-### What is Pathify good at?
 
-Getting data
-Syncing data
-Syncing data
 
-In what situations would Pathify not be able to resolve names?
+## When to use Pathify
 
-## Strategies
+#### What is Pathify best-suited for?
 
-    Decide on your project-wide Vuex strategies
-    
-    naming
-        all the same
-        state, SET_STATE
-    access
-        use 
-        only getters and actions?
-        
-    Decide on your Superstore strategy
-        Use paths (state, getters, mutations) for data
-        Use actions for operations
-        
+Getting, setting and syncing properties 1:1 with the store.
+
+In the vast majority of cases, you'll just need to set and get data, or sync components, and this is where Pathify shines.
+
+#### What is Pathify less-suited for?
+
+Because Pathify's configuration is tuned to map state names to Vuex members in a `get/set` manner, calling non `get/set` named `actions` or `mutations` such as `updateItems` or `loadItems` via Pathify may not feel intuitive.
+
+You can use [direct syntax](/api/paths#direct-syntax) to target non-`get/set` members, for example `set('products/updateItem!', value)` or, if you feel more comfortable in these situations commit or dispatch [directly](#do-i-still-need-commit-and-dispatch).
+
+#### Make sure you understand Vuex properly before using Pathify
+
+Pathify wires up Vuex "behind the scenes", so if you don't properly understand Vuex, you'll doubtless find it confusing if something doesn't work as expected.
+
+Pathify isn't designed to replace Vuex, or designed "let you off" understanding Vuex, it's designed to take the drudgery out of wiring up Vuex stores once you understand them.
+
 #### Don't use Pathify sub-property access as a crutch
 
-Don't put everything in one property, then use pathify to acesss sub properties, as your application logic will become unclear.
+Pathify's sub-property access is extremely useful, but don't be tempted to put everything in one property, then use pathify to acesss sub properties, as your application logic will become unclear.
 
-#### Is there a need for an operator to NOT use automatic name resolution?
-
-Maybe when you have SET_ but you also need add?
-
-commit('items/ADD_ITEM')
-
-Not much point really, as you know what it is, so no point running more code
-
-** Might be worth adding a dmo to show using sync() and commit() in the same file **
-
-
-## Pathify or Vuex
-
-Note that although Pathify removes the burden of setup and wiring, there will still be times when you want to access the store explicitly.
-
-Ideally, you should:
-
-- use Pathify `get`, `set` and `sync` for component / store data sync
-- use Vuex `dispatch` for explicit asynchronous operations
-- use Vuex `commit` for custom commits, or commits **within** the store
-- use direct `state` / `getter` access where you need to be explicit
-
-
-#### Should I still use the Vuex helpers?
-
-You can, but it's probably easier to just use `getSome()`
-
-#### Can I use mapActions?
-
-Map Actions is useful, so it's been mixed in to Vuex Helpers so your imports are tidier
-
-#### Do I still use commit and dispatch?
-
-With `set()` now being the primary way to set values on the store, `commit()` is not so useful.
-
-However, `dispatch()` is still useful in the fact it's explicit.
-
-You could of course use `set()` to call actions as well.
 
 
 ## Store setup
 
 #### Should I always go through getters and actions?
 
-They are included mainly for developers who feel more comfortable accessing everything through [getters and actions](https://forum.vuejs.org/t/actions-for-actions-sake/16413)
+There's really no need!
+
+The consistency that **in theory** was provided by always going through actions or always going through getters, is mitigated by **only going through a path**.
+
+Creating additional getters and actions will only clog up your store and provide more code for Vue to run when getting or setting values. Creating ONLY the getters and actions you need keeps your store lean and codebase tight!
+
+The [store helpers](/api/store) include `make.getters()` and `make.actions()` mainly for developers who [prefer this approach](https://forum.vuejs.org/t/actions-for-actions-sake/16413).
+
+
+#### Which naming scheme should I use; default or simple?
+
+If you can, name your store members using the [simple](/guide/mapping) scheme.
+
+It makes no difference to Pathify when correctly configured, but in the author's opinion, it's much easier to scan a file and see relate a single `foo` in state, getters and mutations, than it is to see 2 or even 3 variations on prefixing, naming and casing.
+
+Additionally, if you do need to use `commit` or `action` syntax either directly or in Pathify, it feels more consistent to use and type `lowercase` or `camelCase` in components, rather than have to keep swapping between `foo` and `SET_FOO`.
+
+
+Finally, in the Vuex Devtools mutations panel it's arguably easier on the eyes to scan a list of consistent `foo/bar` type mutations than it is to read a mixed list of `foo/SET_BAR` type mutations!
+
+
+## Component wiring
+
+#### Do I still need commit and dispatch?
+
+With `sync()`, `set()` and [direct syntax](/api/paths#direct-syntax) being the preferred way to get and set values on the store, you won't need `commit()` as much, but `dispatch()` is still useful in the fact it's explicit.
+
+As such, Pathify includes aliases to `commit()` and `dispatch()` within its helpers; it's up to you which method you feel most comfortable with.
+
+See the [Vuex aliases](api/properties#vuex-aliases) section for more info.
+
+
+#### Should I use Vuex Helpers?
+
+No.
+
+Vuex helpers, through saving over manual coding, add a lot of structural and syntactic cruft; up to 16 different entities to think about vs only 7 for Pathify. See the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code/large) section of the demo to view this for yourself.
+
+If you use a lot of `actions`, you may still find `mapActions()` useful, though generally running most if-not-all `get/set` operations via Pathify you'll find it clearer to manually dispatch actions as needed.
+
+
+#### Do I ever need to access the store directly?
+
+Note that although Pathify removes the burden of setup and wiring, there will still be times when you want to access the store explicitly.
+
+Some rules of thumb::
+
+- use Pathify `get()`, `set()` and `sync()` for global access and component/store sync
+- use Pathify [direct syntax](/api/paths#direct-syntax) for non `set*`/`SET_*` mutations or actions
+- use Vuex `dispatch()` or `commit()` if you really want to be explicit, or **within** the store
+- call `state` directly if a same-named getter is taking priority
 
 
 
 
-## Performance
 
 ## Debugging
 
-#### How much complication is in generated helper functions?
+#### How much complication generated by, or in, helper functions?
 
-None. After the members have been found, the references are concrete
+None, really. 
+
+After the members have been found, returned functions are lightweight, and references are concrete.
 
 #### Does Pathify make it harder to debug?
 
-Pathify abstracts the mechanism to target store members, then returns lightweight functions that 
+Pathify actually has a bunch of built-in warnings for when you don't wire things correctly! If you make a mistake, Pathify will attempt to help you out.
 
-Parameters vs data
+Once set-up in the store, or wired in components, the functions are literally the same functions as you would have written yourself.
 
-## 
-Where to clean code
-
-
-
-### Automatic state / getter resolution
-
-One of Pathify's design choices is to automatically determine whether to pull from the `state` or `getters`.
-
-In the following example, Pathify prefers the declared `getter` over the identically-named `state` and so returns an array of `ItemModels`.
-
-This setup allows the state to be the "single source of truth" and the getter to be the "transformer" function:
-
-
-```js
-const state = {
-    items: [ ... ]
-}
-
-const getters = {
-    items: state => state.items.map(item => new ItemModel(item))
-}
-``` 
-```
-const models = store.get('products/items')
-```
-
-The same resolution between `actions` and `mutations` is also applied when **setting** values; this is covered in more details in the API docs.
-
-### Same-named store members
-
-
-
-For example, naming `state`, `getters` and `mutation` **identically** and :
-
-```js
-const store = {
-    foo: [],
-    bar: true,
-    baz: 'hello',
-}
-
-// foo is foo, bar is bar, etc
-const mutations = {
-    foo: (state, value) => foo = value,
-    bar: (state, value) => bar = value,
-    baz: (state, value) => baz = value,
-}
-
-// this identical foo getter will override foo state
-const getters = {
-    foo: state => foo.items.map(foo => new FooModel(foo))
-} 
-```
+If you come across a situation where you think Pathify has made something harder, [raise an issue](https://github.com/davestewart/vuex-pathify/issues) on Github.

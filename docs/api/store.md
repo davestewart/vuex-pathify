@@ -59,13 +59,11 @@ export default {
 }
 ```
 
-See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/develop/demo?initialpath=api/store) for live examples.
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/store) for live examples.
 
 ## API
 
 ### Helpers
-
-!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
 
 #### `make.mutations(state: Object, filter: *): Object`
 

@@ -5,16 +5,17 @@
   padding-bottom: 50vh; }
 
 .markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5 {
-  font-family: Merriweather;
+  font-family: Merriweather, serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400; }
   .markdown-section h1 a, .markdown-section h2 a, .markdown-section h3 a, .markdown-section h4 a, .markdown-section h5 a {
     font-weight: 400;
     transition: 0.2s color; }
     .markdown-section h1 a.anchor:hover, .markdown-section h2 a.anchor:hover, .markdown-section h3 a.anchor:hover, .markdown-section h4 a.anchor:hover, .markdown-section h5 a.anchor:hover {
       text-decoration: none; }
       .markdown-section h1 a.anchor:hover span, .markdown-section h2 a.anchor:hover span, .markdown-section h3 a.anchor:hover span, .markdown-section h4 a.anchor:hover span, .markdown-section h5 a.anchor:hover span {
-        color: #ff7337; }
+        color: #07a6a6; }
 
 .markdown-section h1, .markdown-section h2 {
   margin-left: -15px;
@@ -42,6 +43,25 @@
 .markdown-section table, .markdown-section ul, .markdown-section ol {
   margin-left: 25px; }
 
+.markdown-section ol li p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; }
+  .markdown-section ol li p:last-child {
+    margin-bottom: 2em; }
+
+.markdown-section .indent {
+  margin-left: 20px; }
+
+@media only screen and (max-width: 600px) {
+  .markdown-section pre {
+    margin-left: 0; } }
+
+.markdown-section p.tip + p.tip {
+  margin-top: -1.5em; }
+
+.markdown-section p a:hover {
+  color: #09d7d7; }
+
 .markdown-section pre {
   padding: 0;
   margin-left: 25px; }
@@ -53,7 +73,8 @@
     padding: 8px 10px; }
 
 .markdown-section code, .markdown-section pre {
-  border-radius: 4px; }
+  border-radius: 4px;
+  color: #ff7337; }
 
 .markdown-section h2 code, .markdown-section h3 code, .markdown-section h4 code {
   font-size: 1em;
@@ -71,22 +92,6 @@
     content: "#";
     color: #42b983; }
 
-.markdown-section ol li p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em; }
-  .markdown-section ol li p:last-child {
-    margin-bottom: 2em; }
-
-.markdown-section .indent {
-  margin-left: 20px; }
-
-@media only screen and (max-width: 600px) {
-  .markdown-section pre {
-    margin-left: 0; } }
-
-.markdown-section p.tip + p.tip {
-  margin-top: -1.5em; }
-
 .markdown-section pre[data-lang="pathify"],
 .markdown-section code.lang-pathify {
   margin: 0;
@@ -98,6 +103,9 @@
   border-radius: 0; }
   .markdown-section pre[data-lang="pathify"]:after {
     content: none; }
+
+.markdown-section .token.keyword {
+  color: #ff7337; }
 
 .markdown-section code.lang-pathify {
   font-size: 1.8rem;
@@ -130,26 +138,23 @@
       font-weight: 400;
       color: #ff7337; }
 
-.markdown-section #config {
-  display: flex; }
-  .markdown-section #config .column,
-  .markdown-section #config .options {
-    padding-right: 10px; }
-    .markdown-section #config .column label,
-    .markdown-section #config .column select,
-    .markdown-section #config .options label,
-    .markdown-section #config .options select {
-      display: block;
-      width: 100%;
-      min-width: 150px; }
-    .markdown-section #config .column label,
-    .markdown-section #config .options label {
-      padding: 5px; }
+.cover-main img {
+  width: 300px; }
+
+.cover-main blockquote {
+  font-family: Baloo, cursive;
+  text-transform: lowercase; }
+  .cover-main blockquote p {
+    margin: 0.5em; }
+  .cover-main blockquote p.title {
+    font-size: 2.5em; }
+  .cover-main blockquote p.strapline {
+    font-size: 0.6em; }
 
 .sidebar > h1 {
   text-align: left;
   margin-left: 15px;
-  font-family: Merriweather;
+  font-family: Merriweather, serif;
   font-weight: 400; }
 
 .sidebar .sidebar-nav > ul > li {
@@ -160,10 +165,10 @@
     font-weight: 700; }
 
 .sidebar > li > p {
-  font-family: Merriweather;
+  font-family: Merriweather, serif;
   font-weight: 400;
   color: #203245; }
 
 .sidebar a:hover {
-  color: #ff7337;
+  color: #07a6a6;
   text-decoration: none; }

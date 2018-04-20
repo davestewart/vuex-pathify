@@ -6,7 +6,7 @@
 
 The rationale behind creating Pathify is that **Vuex is great** but the coding experience is **way too complex** for something as simple as **setting and getting values** on what is essentially a global object.
 
-Managing state should not feel like an episode of [American Ninja Warrior](https://www.youtube.com/watch?v=Hf6jGpArqeE), we should not need to be constantly checking the manual for syntax or caveats, writing reams of redundant code, or fretting over which "best practice" will protect us from ourselves long enough to make an app that functions in the real world.
+Managing state should not feel like an episode of [American Ninja Warrior](https://www.youtube.com/watch?v=TPa8whN2q60), we should not need to be constantly checking the manual for syntax or caveats, writing reams of redundant code, or fretting over which "best practice" will protect us from ourselves long enough to make an app that functions in the real world.
 
 With that being said, Vuex is the Vue **state management standard**, has great tooling and online support, so we want to work with it rather than coming up with a new solution that no-one knows or cares about.
 

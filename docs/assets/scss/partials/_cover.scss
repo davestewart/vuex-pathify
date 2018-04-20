@@ -1,0 +1,22 @@
+.cover-main {
+
+  img {
+    width: 300px;
+  }
+
+  blockquote {
+    font-family: Baloo, cursive;
+    text-transform: lowercase;
+    p {
+      margin: 0.5em;
+    }
+
+    p.title {
+      font-size: 2.5em;
+    }
+
+    p.strapline {
+      font-size: 0.6em;
+    }
+  }
+}

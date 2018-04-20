@@ -1,8 +1,8 @@
-![splash](docs/assets/img/readme/splash.png)
+![splash](docs/assets/img/logos/splash.png)
 
 ## Overview
 
-Pathify makes working with Vuex **easy** with a **unified, state-based, path syntax**:
+Pathify makes working with Vuex **easy**, with a **unified, state-based, path syntax**:
 
 ![pathify-path](docs/assets/img/readme/pathify-path.png)
 
@@ -10,34 +10,26 @@ Pathify's core helpers let you easily **read, write** or **sync** any store **pr
 
 ![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
 
-In conjunction with store helpers, Pathify results in zero store boilerplate, one-liner wiring and overall cleaner code.
+In conjunction with store helpers, Pathify results in zero store boilerplate, one-liner wiring, less cognitive overhead, and radically cleaner code.
 
 
 ## Pathify API
 
-Let's expand on the example above and check out some of Pathify's additional features.
+Let's look a little more closely at the code needed to do this.
 
-Here's the example store:
+Our example store has **module**, **property** and **sub-property** nodes:
 
 ![vuex-store](docs/assets/img/readme/vuex-store.png)
 
-We've:
-
-- a module **foo**
-- a top-level property **bar**
-- a sub-property **baz**
-
-**Reading, writing** and **wiring** are handled via Pathify's [store accessors] and [component helpers] using [path syntax] you just saw:
-
-![pathify-code](docs/assets/img/readme/pathify-code.png)
-
-Sub-properties are accessed using the `@` symbol (though the functionality can be disabled if required). Multiple properties can be wired using object or array syntax, with wildcard `*` syntax wiring properties (or sub-properties) automatically.
-
-When it comes to store setup, Pathify's [store helpers] make it a **one-liner, completely scalable** affair:
+The store is made **writeable** using Pathify's one-liner [store helpers]:
 
 ![pathify-mutations](docs/assets/img/readme/pathify-mutations.png)
 
-Note that Pathify can create getters and actions as well, though the consistency of Pathify's path format allows you to dispense with redundant actions if your aim is merely to keep things consistent.
+Pathify's [store accessors] and handle global **I/O** whilst [component helpers] handle **wiring**:
+
+![pathify-code](docs/assets/img/readme/pathify-code.png)
+
+Using the now familiar [path syntax] sub-properties are accessed using the `@` symbol, whilst multiple properties can be wired using object, array, or even wildcard `*` syntax wiring groups of properties automatically.
 
 
 ## Comparing to Vuex
@@ -50,11 +42,11 @@ Getting and setting values requires juggling accessors, syntax and naming:
 
 ![vuex-code](docs/assets/img/readme/vuex-code.png)
 
-Wiring Component can require up to 4 different helpers, name juggling, and more:
+Component wiring can require up to 4 different helpers, name juggling, plus additional template binding:
 
 ![vuex-helpers](docs/assets/img/readme/vuex-helpers.png)
 
-As such, Pathify's demo [compares](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) what could be considered both typical and large components across a variety of Pathify and Vuex setups, and finds Pathify setups coming in between 2 and 15 times less code than vanilla Vuex.
+Pathify's demo [compares](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) what could be considered both typical and large components across a variety of Pathify and Vuex setups, and finds Pathify setups coming in between 2 and 15 times less code than vanilla Vuex.
 
 
 ## Next steps

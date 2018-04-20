@@ -31,12 +31,9 @@ window.store = store
 store.set('settings/loaded', false)
 ```
 
-See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/develop/demo?initialpath=api/accessors) for live examples.
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/accessors) for live examples.
 
 ## API
-
-!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
-
 
 ### Methods
 

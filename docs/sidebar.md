@@ -1,6 +1,6 @@
 - [Guide](/guide/index.md)
 
-    - [Pathify 101](/guide/pathify.md)
+    - [Pathify 101](/guide/intro.md)
     - [Setup](/guide/setup.md)
     - [Configuration](/guide/config.md)
         - [Options](/guide/options.md)
@@ -16,7 +16,6 @@
 
 - [Discussion](/discussion/index.md)
 
-    - [Mapping algorithm](/discussion/algorithm.md)
     - [Best practices](/discussion/best-practices.md)
     - [Rationale](/discussion/rationale.md)
     
