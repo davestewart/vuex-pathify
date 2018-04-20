@@ -8,8 +8,9 @@ Pathify's algorithm maps **paths** to **store members**, such as `foo/` to `SET_
 
 It can be configured using a preset or custom function.
 
+<!--
 !> For detailed information on how Pathify maps paths to store members, see the [mapping algorithm](/discussion/algorithm.md) page.
-
+-->
 
 ## Presets
 

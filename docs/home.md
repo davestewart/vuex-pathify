@@ -1,6 +1,8 @@
+<a id="home" style="position: absolute; top: 0"></a>
+
 # Vuex Pathify
 
-> Pathify provides a declarative, path-based interface to your Vuex store
+> Pathify provides a declarative, state-based, path interface to your Vuex store
 
 
 [](assets/html/slideshow.html ':include')
@@ -50,7 +52,7 @@ In practical terms, Pathify results in:
 
 ### Next steps
 
-- Check out the [Pathify 101](/guide/pathify.md) for the essential Pathify info
+- Check out the [Pathify 101](/guide/intro.md) for the essential Pathify info
 - Visit the [Setup](/guide/setup.md) page to start using Pathify now
 - Play with the editable [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo).
 

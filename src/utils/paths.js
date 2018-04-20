@@ -102,5 +102,10 @@ export function expandWildcard (path, src) {
   let srcPath = path.replace(/\*$/, '')
   let objPath = srcPath.replace(/\W+$/, '').replace(/\/+/g, '.')
   let obj = getValue(src, objPath)
+  if (!obj) {
+    console.error(`[Vuex Pathify] Unable to expand wildcard '${path}':
+    - It looks like the store path '${objPath}' doesn't resolve to an object`, store.state)
+    return []
+  }
   return Object.keys(obj).map(key => srcPath + key)
 }

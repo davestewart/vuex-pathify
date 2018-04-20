@@ -1,10 +1,11 @@
+
 # Pathify 101
 
 > An overview of Pathify in less than 30 seconds
 
 ## Overview
 
-Pathify **simplifies** Vuex by abstracting its various syntaxes and methods to **a unified, state-based, path syntax**:
+Pathify **simplifies** Vuex wiring by abstracting its various syntaxes and methods to **a unified, state-based, path syntax**:
 
 ```
 products/items@filters.search

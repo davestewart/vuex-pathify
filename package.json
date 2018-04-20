@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "rollup -c build/rollup.js -w",
     "build": "rollup -c build/rollup.js",
-    "docs": "node-sass docs/assets/scss -o docs/assets/css -w docs/assets/scss/*.scss & docsify serve docs",
+    "docs": "node-sass docs/assets/scss -o docs/assets/css -w docs/assets/scss/**/*.scss & docsify serve docs",
     "demo": "cd demo && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
