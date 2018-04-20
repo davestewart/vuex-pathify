@@ -45,13 +45,15 @@ export default {
 }
 ```
 
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/component) for live examples.
+
+
 ## API
 
-!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
+!> Remember that component helpers use Pathify's core [property access](/api/properties.md) so have exactly the same functionality.
 
 ### Single property access
 
-Remember that component helpers use Pathify's core [property access](/api/properties.md) so have exactly the same functionality.
 
 #### `sync(path: string): *`
 

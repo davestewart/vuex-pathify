@@ -1,6 +1,6 @@
 - [Guide](/guide/index.md)
 
-    - [Pathify 101](/guide/pathify.md)
+    - [Pathify 101](/guide/intro.md)
     - [Setup](/guide/setup.md)
     - [Configuration](/guide/config.md)
         - [Options](/guide/options.md)
@@ -9,12 +9,13 @@
 - [API](/api/index.md)
 
     - [Path syntax](/api/paths.md)
-    - [Property access](/api/properties.md)
+    - [Store helpers](/api/store.md)
     - [Store accessors](/api/accessors.md)
     - [Component helpers](/api/component.md)
-    - [Store helpers](/api/store.md)
+    - [Advanced property access](/api/properties.md)
 
 - [Discussion](/discussion/index.md)
 
     - [Rationale](/discussion/rationale.md)
+    - [FAQs](/discussion/faq.md)
     

@@ -24,7 +24,7 @@ The **deep** option premits sub-property read and writes for store members of th
 store.set('sort@order', 'asc')
 ```
 
-Setting deep to `false` will cause sub-property access to fail and will generate a console error in development.
+Setting deep to `false` will cause sub-property access to fail and will generate a console error in development if sub-property access is attempted.
 
 
 #### `strict`

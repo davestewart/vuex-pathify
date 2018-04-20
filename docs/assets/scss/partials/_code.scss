@@ -17,6 +17,10 @@ pre[data-lang="pathify"] {
   }
 }
 
+.token.keyword {
+  color: $key;
+}
+
 code.lang-pathify {
 
   font-size: 1.8rem;

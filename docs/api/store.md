@@ -5,7 +5,7 @@
 
 ## Overview
 
-The store helpers are the last piece in the puzzle to lightweight Vuex projects, as they **eliminate boilerplate** by creating redundant 1:1 wiring functions from a supplied state object.
+Store helpers **eliminate boilerplate** by creating redundant 1:1 wiring functions from a supplied state object.
 
 They are implemented as **helper functions** which:
  
@@ -59,11 +59,11 @@ export default {
 }
 ```
 
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/store) for live examples.
+
 ## API
 
 ### Helpers
-
-!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
 
 #### `make.mutations(state: Object, filter: *): Object`
 

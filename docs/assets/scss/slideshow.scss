@@ -3,6 +3,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 770px;
 }
 
 .markdown-section {
@@ -17,7 +18,7 @@ body {
 }
 
 #container {
-  width: 770px;
+  // width: 770px;
   height: 400px;
 
   opacity: 0;
@@ -29,8 +30,7 @@ body {
 
 #caption {
   display: block;
-  padding-bottom: 25px;
-  font-size: 1.1em;
+  min-height: 2.7em;
 }
 
 a {
@@ -42,7 +42,6 @@ a {
 .owl-wrapper-outer {
   width: 760px;
   // border: 1px solid #EEE;
-  // border-left: 5px solid #EEE;
 }
 
 .slide {
@@ -59,4 +58,26 @@ a {
 
 .large code {
   font-size: 2.5em !important;
+}
+
+
+@media screen and (max-width: 768px) {
+  #container,
+  #carousel,
+  .owl-wrapper-outer,
+  .slide {
+    width: 100%;
+  }
+
+  .markdown-section code.lang-pathify {
+    font-size: 4vw !important;
+  }
+}
+
+@media screen and (max-width: 490px) {
+
+  .slide {
+    height: 65vw;
+  }
+
 }

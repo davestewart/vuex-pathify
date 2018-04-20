@@ -1,4 +1,4 @@
-# Property access
+# Advanced property access
 
 > Detailed information on store property access
 
@@ -6,7 +6,7 @@
 
 Pathify's unified path syntax and mapping simplifies property access to Vuex, at the expense of some minor flexibility.
 
-Here's what you should know:
+This section covers:
 
 - [accessor priority](#accessor-priority) - how Pathify simplifies get / set operations
 - [direct property access](#direct-property-access) - how to override mapping and target properties manually
@@ -14,11 +14,15 @@ Here's what you should know:
 - [errors](#errors) - what happens if Pathify fails to map a path to a store member
 
 
+## Usage
+
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/properties) for live examples.
+
 ## Details
 
 ### Accessor priority
 
-**Accessor priority** is a core Pathify feature that reduces operations from 4 to just 2; `get()` and `set()`.
+One of Pathify's design choices is to **automatically** determine whether to get via **state or getters**, or set via **actions or mutations**. The feature is called **accessor priority** and reduces store operations from 4 to just 2; `get()` and `set()`.
 
 The basic premise is this:
 
@@ -51,7 +55,7 @@ store.state.products.items
 store.getters['products/items']
     ```
 
-3. Supports a pattern where a related `getter` can return **transformed** items whilst keeping the raw `state` untouched:
+3. Supports a pattern where the `state` can be the "single source of truth" and the `getter` works as a "transformer" function:
 
     ```js
     state: {
@@ -139,7 +143,7 @@ Here's an example of manually using the class:
 
 ```js
 import { Payload } from 'vuex-pathify'
-import_ from 'lodash'
+import _ from 'lodash'
 
 mutations: {
   SET_FOO: (state, payload) => {

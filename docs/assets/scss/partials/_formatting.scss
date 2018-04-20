@@ -6,18 +6,23 @@
   padding-bottom: 50vh;
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// HEADINGS
+// ---------------------------------------------------------------------------------------------------------------------
+
 h1, h2, h3, h4, h5 {
-  font-family: Merriweather;
+  font-family: $title-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: $title-weight;
 
   a {
-    font-weight: 400;
+    font-weight: $title-weight;
     transition: 0.2s color;
     &.anchor:hover {
       text-decoration: none;
       span {
-        color: $key;
+        color: $link;
       }
     }
   }
@@ -44,50 +49,12 @@ h1 { font-size: 3em; }
 h2 { font-size: 2.2em; }
 h3 { font-size: 1.8em; }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// FORMATTING
+// ---------------------------------------------------------------------------------------------------------------------
+
 table, ul, ol {
   margin-left: 25px;
-}
-
-pre {
-  padding: 0;
-  margin-left: 25px;
-
-  > code {
-    padding: 10px 15px;
-  }
-
-  + pre {
-    margin-top: -.75em;
-  }
-
-  &:after {
-    padding: 8px 10px;
-  }
-}
-
-code, pre {
-  border-radius: 4px;
-}
-
-h2, h3, h4 {
-  & code {
-    font-size: 1em;
-    font-family: Source Sans Pro,Helvetica Neue,Arial,sans-serif;
-    font-weight: 700;
-    display: inline-block;
-    background: none;
-    padding: 0;
-    margin: 0;
-    color: inherit;
-
-    &:before {
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
-      content: "#";
-      color: #42b983;
-    }
-  }
 }
 
 ol li p {
@@ -113,4 +80,55 @@ ol li p {
 
 p.tip + p.tip {
   margin-top: -1.5em;
+}
+
+p a:hover {
+  color: lighten($link, 10%);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// CODE
+// ---------------------------------------------------------------------------------------------------------------------
+
+pre {
+  padding: 0;
+  margin-left: 25px;
+
+  > code {
+    padding: 10px 15px;
+  }
+
+  + pre {
+    margin-top: -.75em;
+  }
+
+  &:after {
+    padding: 8px 10px;
+  }
+}
+
+code, pre {
+  border-radius: 4px;
+  color: $key;
+}
+
+h2, h3, h4 {
+  & code {
+    font-size: 1em;
+    font-family: Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    background: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+
+    &:before {
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+      content: "#";
+      color: #42b983;
+    }
+  }
 }

@@ -62,7 +62,7 @@ const store = {
 
 Then finish setting up your project as you would otherwise.
 
-<p class="tip"><strong>Remember:</strong><br>Failing to import Pathify configuration before store imports will result in the <strong>default</strong> settings being used.</p>
+<p class="tip"><strong>Remember:</strong><br>Failing to import Pathify configuration before store imports will result in the <strong>default</strong> settings being used. This will result in a broken app and lots of console errors as mutation and action identifiers will be wrong.</p>
 
 ## Troubleshooting
 

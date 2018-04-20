@@ -12,6 +12,7 @@ The methods:
 - implement [accessor priority](/api/properties.md#accessor-priority), simplifying the overall set/get interface
 - couple with [store helpers](/api/store.md) to provide full sub-property read/write
 
+
 ## Usage
 
 Once [configured](/guide/config.md), getting and setting values on the store is simple: 
@@ -30,10 +31,9 @@ window.store = store
 store.set('settings/loaded', false)
 ```
 
+See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/accessors) for live examples.
+
 ## API
-
-!> The examples on this page use the [example](/resources/setup) setup and the [standard](/guide/mapping.md) mapping scheme
-
 
 ### Methods
 
@@ -75,10 +75,13 @@ store
 
 #### `copy(path: string): *`
 
-The `copy()` method clones and returns a copy of the values in the store.
+The `copy()` method clones and returns a non-reactive copy of the values in the store.
 
 ```js
-// Object[]
-copy('items')
+// {key: "bags", order: "asc"} 
+copy('sort')
+```
+```js
+// rather than {__ob__: Observer}
 ```
 

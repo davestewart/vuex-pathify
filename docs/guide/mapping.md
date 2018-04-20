@@ -4,12 +4,13 @@
 
 ## Overview
 
-Pathify's [algorithm](/guide/pathify.md#the-pathify-algorithm) maps **paths** to **store members**, such as `foo/` to `SET_FOO` or similar.
+Pathify's algorithm maps **paths** to **store members**, such as `foo/` to `SET_FOO` or similar.
 
 It can be configured using a preset or custom function.
 
+<!--
 !> For detailed information on how Pathify maps paths to store members, see the [mapping algorithm](/discussion/algorithm.md) page.
-
+-->
 
 ## Presets
 
@@ -47,12 +48,13 @@ function (type, name, formatters) {
 }
 ```
 
-The function is called with the following parameters, and **must** return a string:
+The function **must** return a string which **must** correctly reference store members.
+
+The function is called with the following parameters:
 
 - **type**       `{string}` - The member type, i.e `state`, `getters`, `mutations`, or `actions`
 - **name**       `{string}` - The name of the property being targeted, i.e. `foo`
 - **formatters** `{object}` - A hash of common formatting functions, `camel`, `snake`, `const`
-
 
 You assign it to Pathify's options like so:
 

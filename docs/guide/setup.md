@@ -7,7 +7,7 @@
 In your project's root folder, install using NPM or yarn:
 
 ```shell
-npm install vuex-pathify --save
+npm i vuex-pathify
 ```
 ```shell
 yarn add vuex-pathify
@@ -17,15 +17,15 @@ yarn add vuex-pathify
 
 If you don't know already, Pathify **gets and sets** values by mapping **paths** to **store members**.
 
-To do this, Pathify needs to know your store **naming scheme**:
+To do this, Pathify needs to know your store **naming scheme** so it can generate code that suits your setup:
 
 scheme|path|state|getter|mutation|action|notes
 :---|:---|:---|:---|:---|:---|:---
 **standard**|`/foo`|foo|foo|SET_FOO|setFoo|Used by most Vue developers
 **simple**|`/foo`|foo|foo|foo|setFoo|Simpler, unified format
-**custom**|`/foo`|?|?|?|?|Requires custom function
+**custom**|`/foo`|?|?|?|?|User must supply custom mapping function
 
-If you use the default **standard** scheme, then no configuration required.
+If you use the default **standard** naming scheme above, then no configuration is required.
  
 If not, you'll need to [configure](/guide/config.md) Pathify before continuing.
 
