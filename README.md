@@ -1,5 +1,6 @@
 ![splash](docs/assets/img/logos/splash.png)
 
+
 ## Overview
 
 Pathify makes working with Vuex **easy**, with a **unified, state-based, path syntax**:
