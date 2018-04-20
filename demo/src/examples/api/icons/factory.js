@@ -3,7 +3,7 @@ import IconFactory from './service/IconFactory'
 /**
  * Import the weather icons...
  *
- * There is also a travel set - try importing them instead!
+ * (There is also a travel set - try importing them instead!)
  */
 import icons from '../../../assets/svg/weather'
 

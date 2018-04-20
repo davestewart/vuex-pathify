@@ -8,7 +8,8 @@
         <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge configuration gaps</p>
         <view-code src="examples/api/views/Properties.vue"/>
         <view-code src="examples/api/stores/icons.js"/>
-        <view-code src="examples/api/classes/Icon.js" label="View Icon class" />
+        <view-code src="examples/api/icons/service/Icon.js" label="View Icon class" />
+        <view-code src="examples/api/icons/factory.js" label="View icon factory" />
         <view-docs src="api/properties"/>
       </blockquote>
     </div>
@@ -87,7 +88,7 @@
 
     data () {
       // get ui data from factory
-      const { names, colors, styles } = factory.config
+      const { names, colors, styles } = factory
 
       return {
         names,

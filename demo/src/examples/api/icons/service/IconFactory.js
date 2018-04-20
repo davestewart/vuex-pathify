@@ -2,7 +2,7 @@ import Icon from './Icon'
 
 export default function IconFactory (icons, colors) {
 
-  this.config = {
+  Object.assign(this, {
 
     styles: [
       'line',
@@ -19,7 +19,7 @@ export default function IconFactory (icons, colors) {
     palette: colors,
 
     icons,
-  }
+  })
 }
 
 IconFactory.prototype = {
@@ -29,8 +29,8 @@ IconFactory.prototype = {
    */
   getData (name, color) {
     const random = values => values[Math.floor(Math.random() * values.length)]
-    color = color || random(this.config.colors)
-    name = name || random(this.config.names)
+    color = color || random(this.colors)
+    name = name || random(this.names)
     return {name, color}
   },
 
@@ -39,8 +39,8 @@ IconFactory.prototype = {
    */
   create (name, color) {
     const title = `${color} ${name}`
-    const hex = this.config.palette[color]
-    const svg = this.config.icons[name]
+    const hex = this.palette[color]
+    const svg = this.icons[name]
     return new Icon(name, hex, title, svg)
   }
 }
