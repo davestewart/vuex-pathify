@@ -16,6 +16,6 @@
 
 - [Discussion](/discussion/index.md)
 
-    - [Best practices](/discussion/best-practices.md)
     - [Rationale](/discussion/rationale.md)
+    - [FAQs](/discussion/faq.md)
     

@@ -1,4 +1,4 @@
-# Best practices
+# FAQs
 
 > Pathify and Vuex tips and tricks to ramp up your productivity
 
