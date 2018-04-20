@@ -149,7 +149,7 @@ mutations: make.mutations(state)
             "Blocks": "computed",
             "Component code": "sync",
             "Store code": "state, make.mutations",
-            "Total": 7
+            "Total": 6
           },
           {
             "Approach": "Vuex helpers (light)",
@@ -158,7 +158,7 @@ mutations: make.mutations(state)
             "Blocks": "computed, methods",
             "Component code": "mapState, mapMutations",
             "Store code": "state, mutations, functions, assignment",
-            "Total": 13
+            "Total": 12
           },
           {
             "Approach": "Vue computed (light)",
@@ -167,7 +167,7 @@ mutations: make.mutations(state)
             "Blocks": "computed",
             "Component code": "functions, compound functions, state syntax, commit",
             "Store code": "state, mutations, functions, assignment",
-            "Total": 13
+            "Total": 12
           },
           {
             "Approach": "Vuex helpers (full)",
@@ -176,7 +176,7 @@ mutations: make.mutations(state)
             "Blocks": "computed, methods",
             "Component code": "mapGetters, mapActions",
             "Store code": "state, mutations, getters, actions, functions, assignment",
-            "Total": 16
+            "Total": 15
           },
           {
             "Approach": "Vue computed (full)",
@@ -185,7 +185,7 @@ mutations: make.mutations(state)
             "Blocks": "computed",
             "Component code": "functions, compound functions, getter syntax, dispatch",
             "Store code": "state, mutations, getters, actions, functions, assignment",
-            "Total": 16
+            "Total": 15
           }
         ]
       }

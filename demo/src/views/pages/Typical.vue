@@ -83,7 +83,7 @@
             "Blocks": "computed",
             "Component code": "get, sync",
             "Store code": "state, make.mutations",
-            "Total": 6
+            "Total": 7
           },
           {
             "Approach": "Vue Computed (light)",
@@ -92,7 +92,7 @@
             "Blocks": "computed",
             "Component code": "function, compound function, state syntax, getter syntax, commit, payload",
             "Store code": "state, mutations, functions, assignment, destructuring, array access",
-            "Total": 14
+            "Total": 16
           },
           {
             "Approach": "Vuex Helpers (light)",
@@ -101,7 +101,7 @@
             "Blocks": "computed, methods",
             "Component code": "mapState, mapGetters, mapMutations, deep watch",
             "Store code": "state, mutations, functions, assignment, destructuring, array access",
-            "Total": 16
+            "Total": 18
           },
 
         ]
