@@ -16,7 +16,7 @@ Pathify's store helpers eliminate the time, code and cost of store setup:
 ![vuex-mutations](docs/assets/img/readme/pathify-make-mutations.png)
 
 
-The end result is projects with up to [15+ times less store and wiring code](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code/large)  and significantly less cognitive overhead.
+The end result is projects with up to [14+ times less store and wiring code](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code/large)  and significantly less cognitive overhead.
 
 
 ## Pathify API
