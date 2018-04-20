@@ -44,7 +44,7 @@ export default {
   getters
 }
 ```
-
+4pm dr linman
 Note:
 
 - absence of any store boilerplate
