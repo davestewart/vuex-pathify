@@ -26,6 +26,7 @@
     <div class="content">
 
       <!-- controls -->
+      <!-- control properties use IconFactory properties  -->
       <div class="controls field is-horizontal">
         <ui-select label="Style" :options="styles" v-model="style"/>
         <ui-select label="Color" :options="colors" v-model="color"/>
@@ -36,11 +37,11 @@
         <ui-button label="Get SVG" @click="getSvg"/>
       </div>
 
-      <!-- icon functionality via custom Icon class -->
-      <!-- icon types via IconFactory and custom imports -->
+      <!-- render Icon data into standard UiIcon component -->
       <div class="icons" v-if="icons.length">
 
-        <!-- standard ui-icon component; renders what it is given! -->
+        <!-- Icon instances returned from store contain extra informational and presentation data -->
+        <!-- Think about how the same pattern could be used for Products, Users, Widgets, etc -->
         <ui-icon v-for="(icon, index) in icons"
              :key="index"
              :title="icon.title"
@@ -64,11 +65,7 @@
 </template>
 
 <script>
-  import _ from 'lodash'
-
   import { get, sync, commit, dispatch } from 'vuex-pathify'
-
-  import template from '!!raw-loader!../icons/template.html'
 
   import factory from '../icons/factory'
 
@@ -158,15 +155,9 @@
         this.$store.dispatch('icons/clear')
       },
 
-      // use properties and functions from Icon instance directly
+      // pass icon data around, independent of component or store
       show (icon) {
-        const html = _.template(template)({
-          file: `${icon.name}.svg`,
-          svg: icon.getSvg()
-        })
-        const win = window.open('', 'icon')
-        win.document.write(html)
-        win.document.close()
+        factory.show(icon)
       },
 
       // use Icon class (via IconFactory) independently of component or store

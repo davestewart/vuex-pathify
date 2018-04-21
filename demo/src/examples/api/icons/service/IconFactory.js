@@ -1,3 +1,7 @@
+import _ from 'lodash'
+
+import template from '!!raw-loader!./template.html'
+
 import Icon from './Icon'
 
 export default function IconFactory (icons, colors) {
@@ -42,5 +46,18 @@ IconFactory.prototype = {
     const hex = this.palette[color]
     const svg = this.icons[name]
     return new Icon(name, hex, title, svg)
+  },
+
+  /**
+   * Preview icon in new window
+   */
+  show (icon) {
+    const html = _.template(template)({
+      file: `${icon.name}.svg`,
+      svg: icon.getSvg()
+    })
+    const win = window.open('', 'icon')
+    win.document.write(html)
+    win.document.close()
   }
 }
