@@ -6,11 +6,20 @@
       <h2 class="title is-2">API: Advanced property access</h2>
       <blockquote>
         <p>Pathify has a few tricks such as accessor priority and direct syntax, to add functionality and bridge configuration gaps</p>
-        <view-code src="examples/api/views/Properties.vue"/>
-        <view-code src="examples/api/stores/icons.js"/>
-        <view-code src="examples/api/icons/service/Icon.js" label="View Icon class" />
-        <view-code src="examples/api/icons/factory.js" label="View icon factory" />
-        <view-docs src="api/properties"/>
+        <table>
+          <tr><td>Pathify:</td>
+          <td>
+            <view-code src="examples/api/views/Properties.vue"/>
+            <view-code src="examples/api/stores/icons.js"/>
+            <view-docs src="api/properties"/>
+          </td></tr>
+          <tr><td>Icon:</td>
+          <td>
+            <view-code src="views/components/ui/UiIcon.vue" label="View Icon component" />
+            <view-code src="examples/api/icons/factory.js" label="View Icon factory" />
+            <view-code src="examples/api/icons/service/Icon.js" label="View Icon class" />
+          </td></tr>
+        </table>
       </blockquote>
     </div>
 
@@ -69,7 +78,7 @@
    *
    * Pathify features:
    *
-   * - using accessor priority to return classes not objects
+   * - using accessor priority to work with classes not objects
    * - using direct syntax to call non SET_* members on the store
    * - using Pathify's Vuex aliases to call Vuex directly
    * - skipping Pathify and just calling Vuex directly
@@ -184,5 +193,11 @@
     bottom: 0;
     padding: 10px;
     background: #FFF;
+  }
+
+  table {
+    tr:last-child td {
+      border: none;
+    };
   }
 </style>
