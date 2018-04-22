@@ -1,6 +1,6 @@
 import { hasValue } from '../utils/object'
-import formatters from './formatters'
 import options from '../plugin/options'
+import formatters from './formatters'
 
 /**
  * Map of store members

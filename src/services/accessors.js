@@ -1,6 +1,6 @@
 import { getValue } from '../utils/object'
-import { Payload } from '../utils/Payload'
 import { getError, resolve } from './resolver'
+import { Payload } from './Payload'
 
 /**
  * Creates a setter function for the store, automatically targeting actions or mutations

@@ -1,5 +1,5 @@
-import { makePaths } from '../utils/paths'
 import { makeGetter, makeSetter } from '../services/accessors'
+import { makePaths } from '../services/paths'
 import vuex from './vuex'
 
 // -------------------------------------------------------------------------------------------------------------------

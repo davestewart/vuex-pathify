@@ -1,4 +1,4 @@
-import { setValue } from './object'
+import { setValue } from '../utils/object'
 
 /**
  * Payload class to facilitate the setting of sub-properties on the store

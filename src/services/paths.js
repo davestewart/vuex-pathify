@@ -1,4 +1,4 @@
-import { isObject, getValue } from './object'
+import { isObject, getValue } from '../utils/object'
 
 /**
  * Helper function to convert Pathify path syntax paths to objects

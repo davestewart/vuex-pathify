@@ -1,4 +1,4 @@
-import options from '../plugin/options'
+import options from './options'
 import { resolveName } from '../services/resolver'
 
 function resolve (type) {

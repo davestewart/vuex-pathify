@@ -6,7 +6,7 @@ import vuex from '../helpers/vuex'
 
 // options
 import options from './options'
-import debug from '../utils/debug'
+import debug from './debug'
 
 /**
  * Store plugin which updates the store object with set() and get() methods

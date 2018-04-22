@@ -1,6 +1,6 @@
-import { resolveName } from '../services/resolver'
-import { Payload } from '../utils/Payload'
 import { getKeys } from '../utils/object'
+import { resolveName } from '../services/resolver'
+import { Payload } from '../services/Payload'
 
 /**
  * Utility function to mass-create default getter functions for an existing state object
