@@ -1,6 +1,6 @@
 import { getKeys } from '../utils/object'
 import { resolveName } from '../services/resolver'
-import { Payload } from '../services/Payload'
+import Payload from '../classes/Payload'
 
 /**
  * Utility function to mass-create default getter functions for an existing state object
@@ -45,7 +45,7 @@ export function makeMutations (state, only) {
       const mutation = resolveName('mutations', key)
       obj[mutation] = function (state, value) {
         value instanceof Payload
-          ? value.setValue(state[key])
+          ? value.update(state[key])
           : state[key] = value
       }
       return obj
