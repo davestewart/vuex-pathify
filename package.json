@@ -9,7 +9,8 @@
     "dist/*"
   ],
   "scripts": {
-    "dev": "rollup -c build/rollup.js -w",
+    "dev": "npm run demo & npm run watch",
+    "watch": "rollup -c build/rollup.js -w",
     "build": "rollup -c build/rollup.js",
     "docs": "node-sass docs/assets/scss -o docs/assets/css -w docs/assets/scss/**/*.scss & docsify serve docs",
     "demo": "cd demo && npm run dev",
@@ -35,7 +36,7 @@
   "devDependencies": {
     "node-sass": "^4.7.2",
     "rollup-plugin-buble": "^0.19.1",
-    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-uglify": "^3.0.0"
   }
 }
