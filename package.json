@@ -1,7 +1,7 @@
 {
   "name": "vuex-pathify",
-  "version": "1.0.0-beta-3",
-  "description": "Vue / Vuex plugin providing a unified and intuitive path interface to Vuex stores",
+  "version": "1.0.0",
+  "description": "Ridiculously simple Vuex wiring + setup",
   "main": "dist/vuex-pathify.js",
   "module": "dist/vuex-pathify.esm.js",
   "jsnext:main": "dist/vuex-pathify.esm.js",
