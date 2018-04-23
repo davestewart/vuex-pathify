@@ -95,59 +95,85 @@
 .markdown-section pre[data-lang="pathify"],
 .markdown-section code.lang-pathify {
   margin: 0;
-  margin-left: 10px;
   overflow: visible;
   background: none; }
 
 .markdown-section pre[data-lang="pathify"] {
+  padding: 2em 2em 4em;
   border-radius: 0; }
+  @media screen and (max-width: 768px) {
+    .markdown-section pre[data-lang="pathify"] {
+      padding: 1em 1em 1.5em; } }
   .markdown-section pre[data-lang="pathify"]:after {
     content: none; }
+  .markdown-section pre[data-lang="pathify"]:nth-of-type(1) {
+    text-align: center !important; }
+    .markdown-section pre[data-lang="pathify"]:nth-of-type(1) code {
+      letter-spacing: 0.01em;
+      font-size: 3.3em; }
+      @media screen and (max-width: 768px) {
+        .markdown-section pre[data-lang="pathify"]:nth-of-type(1) code {
+          font-size: 8vw; } }
+  .markdown-section pre[data-lang="pathify"] + pre[data-lang="pathify"] {
+    padding-top: 0;
+    margin-top: -3em; }
+    @media screen and (max-width: 768px) {
+      .markdown-section pre[data-lang="pathify"] + pre[data-lang="pathify"] {
+        margin-top: -1em; } }
 
 .markdown-section .token.keyword {
   color: #ff7337; }
 
+.markdown-section code.lang-pathify,
+.markdown-section code.lang-pathify * {
+  -webkit-font-smoothing: antialiased; }
+
 .markdown-section code.lang-pathify {
-  font-size: 1.8rem;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: #BBB;
-  font-family: Merriweather, Serif;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #203245;
+  text-align: left;
+  display: inline-block;
+  font-family: Baloo, Merriweather, Serif;
+  font-size: 2.2rem;
   font-weight: 300;
-  font-style: italic; }
+  padding: 0; }
+  @media screen and (max-width: 768px) {
+    .markdown-section code.lang-pathify {
+      font-size: 5vw; } }
   .markdown-section code.lang-pathify .token {
     font-style: normal;
     font-weight: 400; }
-    .markdown-section code.lang-pathify .token.construct {
-      font-style: italic;
-      font-weight: 300; }
     .markdown-section code.lang-pathify .token.comment {
-      font-size: 0.5em;
+      font-size: 0.8em;
       vertical-align: bottom;
       font-style: italic;
-      color: #666; }
+      color: #BBB; }
     .markdown-section code.lang-pathify .token.string {
-      color: #25afaf;
-      font-weight: 400; }
+      color: #25afaf; }
     .markdown-section code.lang-pathify .token.number, .markdown-section code.lang-pathify .token.boolean {
       color: #BBB; }
     .markdown-section code.lang-pathify .token.punctuation {
-      color: #BBB; }
+      color: #203245;
+      padding: 0 .1em; }
     .markdown-section code.lang-pathify .token.pathify, .markdown-section code.lang-pathify .token.function, .markdown-section code.lang-pathify .token.keyword {
-      font-style: italic;
-      font-weight: 400;
-      color: #ff7337; }
+      color: #EB2972; }
+    .markdown-section code.lang-pathify .token.method {
+      color: #203245; }
 
 .cover-main img {
   width: 300px; }
 
 .cover-main blockquote {
+  margin: 40px 0;
   font-family: Baloo, cursive;
   text-transform: lowercase; }
   .cover-main blockquote p {
-    margin: 0.5em; }
+    margin: 0.5em 0; }
   .cover-main blockquote p.title {
-    font-size: 2.5em; }
+    margin: 0.3em 0;
+    font-size: 2.5em;
+    line-height: 0.8em; }
   .cover-main blockquote p.strapline {
     font-size: 0.6em; }
 

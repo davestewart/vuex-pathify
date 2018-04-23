@@ -1,46 +1,74 @@
+<style type="text/css">
+
+</style>
+
 <a id="home" style="position: absolute; top: 0"></a>
 
 # Vuex Pathify
 
 > Pathify provides a declarative, state-based, path interface to your Vuex store
 
+In Pathify, **everything** is a **path**:
 
-[](assets/html/slideshow.html ':include')
-<style>
-iframe {
-    height: 420px;
-    border: 0 !important;
-    margin-bottom: -20px;
-    overflow: hidden;
-}
-</style>
-
-
-<!--
-Firstly, **everything** is a path:
-
-```actionscript
-store.get('settings/loaded')
+```pathify
+"foo/bar@baz"
 ```
 
-You can **write** as easily as you read, even to store **sub-properties**:
+Paths can reference any **module**, **property** or (nested) **sub-property**:
 
-```actionscript
-store.set('settings/theme@color', color)
+![pathify-diagram](assets/img/readme/pathify-diagram.png)
+
+
+**Get** or **set** data without **syntax juggling** or worrying about **implementation**:
+
+```pathify
+store.get('loaded')
+```
+```pathify
+store.set('loaded', true)
 ```
 
-Component wiring is a snap, with **one-liner**, **two-way** data binding:
 
-```actionscript
+Set up **one or two-way** data binding on **any** store value without **bloat** or **fuss**:
+
+```pathify
 computed: {
-    order: sync('products/filters@sort.order')
+      products: get('products'),
+      category: sync('filters@category'),
 }
 ```
--->
+
+
+
+Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
+
+```pathify
+...sync('filters@sort', [
+      'order', 
+      'key'
+])
+```
+```pathify
+...sync('filters@sort', {
+      sortOrder: 'order',
+      sortKey: 'key'
+})
+```
+```pathify
+...sync('filters@*')
+```
+
+
+Set up your store – **no matter how complex** – in a single line:
+
+```pathify
+make.mutations(state)
+```
+
+
+And... that's it.
 
 Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/guide/config.md), [path syntax](/api/paths.md), and [helpers](/api/component.md).
-
-Pathify generates concise, lightweight code; the kind **you would have liked to have written anyway** – minus the drudgery – with additional well thought-out functionality that makes working with Vuex a breeze. 
 
 In practical terms, Pathify results in:
 
@@ -48,11 +76,16 @@ In practical terms, Pathify results in:
 - zero store boilerplate
 - one-liner wiring
 - cleaner code
-- less code
+- lighter files
+
+Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demo which illustrates a reduction Vuex code of between **2 and 15 times** (at least) depending on store size and setup.
 
 ### Next steps
 
-- Check out the [Pathify 101](/guide/intro.md) for the essential Pathify info
-- Visit the [Setup](/guide/setup.md) page to start using Pathify now
-- Play with the editable [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo).
+- Check the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo) to see the code in action
+- Visit the [Setup](/guide/setup.md) page to install and use Pathify now
+- Read the [API](/api) section for a deep dive into Pathify's features
 
+<script>
+alert(1)
+</script>

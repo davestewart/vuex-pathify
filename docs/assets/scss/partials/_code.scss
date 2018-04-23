@@ -1,19 +1,43 @@
 pre[data-lang="pathify"],
 code.lang-pathify {
-
   margin: 0;
-  margin-left: 10px;
   overflow: visible;
   background: none;
 }
 
 pre[data-lang="pathify"] {
-  // border-left: 5px solid #EFEFEF;
-  // margin-bottom: 10px;
+  padding: 2em 2em 4em;
   border-radius: 0;
+
+  @media screen and (max-width: $tablet) {
+    padding: 1em 1em 1.5em;
+  }
 
   &:after {
     content: none;
+  }
+
+  &:nth-of-type(1) {
+    text-align: center !important;
+    code {
+      letter-spacing: 0.01em;
+      font-size: 3.3em;
+
+      @media screen and (max-width: $tablet) {
+        font-size: 8vw;
+      }
+
+    }
+  }
+
+  & + pre[data-lang="pathify"] {
+    padding-top: 0;
+    margin-top: -3em;
+
+    @media screen and (max-width: $tablet) {
+      margin-top: -1em;
+    }
+
   }
 }
 
@@ -21,16 +45,29 @@ pre[data-lang="pathify"] {
   color: $key;
 }
 
+code.lang-pathify,
+code.lang-pathify * {
+  -webkit-font-smoothing: antialiased;
+}
+
 code.lang-pathify {
 
-  font-size: 1.8rem;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: $light;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: $dark;
 
-  font-family: Merriweather, Serif;
+  text-align: left;
+  display: inline-block;
+
+  font-family: Baloo, Merriweather, Serif;
+  font-size: 2.2rem;
   font-weight: 300;
-  font-style: italic;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 5vw;
+  }
+
+  padding: 0;
 
   .token {
 
@@ -39,20 +76,17 @@ code.lang-pathify {
     font-weight: 400;
 
     &.construct {
-      font-style: italic;
-      font-weight: 300;
     }
 
     &.comment {
-      font-size: 0.5em;
+      font-size: 0.8em;
       vertical-align: bottom;
       font-style: italic;
-      color: #666;
+      color: $light;
     }
 
     &.string {
       color: #25afaf;
-      font-weight: 400;
     }
 
     &.number,
@@ -61,16 +95,19 @@ code.lang-pathify {
     }
 
     &.punctuation {
-      color: $light;
+      color: $dark;
+      padding: 0 .1em;
     }
 
     &.pathify,
     &.function,
     &.keyword {
-      font-style: italic;
-      font-weight: 400;
-      color: $key;
+      color: $key2;
       // color: $dark;
+    }
+
+    &.method {
+      color: $dark;
     }
 
   }

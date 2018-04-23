@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="460px" height="460px" viewBox="0 0 460 460" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo">
+            <g id="Outline" opacity="0.129999995" transform="translate(32.000000, 25.000000)" fill="#000000" stroke="#000000" stroke-width="42">
+                <g id="pins-left" transform="translate(53.500000, 212.000000) rotate(-90.000000) translate(-53.500000, -212.000000) translate(-54.500000, 158.500000)">
+                    <path d="M107.816794,24.8421053 L107.816794,106.320746" id="Path-2-Copy-5"></path>
+                    <ellipse id="Oval-2" cx="107.475191" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="196.633588 24.8421053 196.633588 59.8303865 169.305344 106.320746"></polyline>
+                    <ellipse id="Oval-2" cx="196.291985" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(33.030534, 65.581426) scale(-1, 1) translate(-33.030534, -65.581426) " points="46.6946565 24.8421053 46.6946565 59.8303865 19.3664122 106.320746"></polyline>
+                    <ellipse id="Oval-2" transform="translate(19.708015, 20.394737) scale(-1, 1) translate(-19.708015, -20.394737) " cx="19.7080153" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="pins-bottom" transform="translate(201.000000, 357.500000) rotate(-180.000000) translate(-201.000000, -357.500000) translate(93.000000, 304.000000)">
+                    <path d="M107.816794,24.8421053 L107.816794,106.320746" id="Path-2-Copy-5"></path>
+                    <ellipse id="Oval-2" cx="107.475191" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="196.633588 24.8421053 196.633588 59.8303865 169.305344 106.320746"></polyline>
+                    <ellipse id="Oval-2" cx="196.291985" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(33.030534, 65.581426) scale(-1, 1) translate(-33.030534, -65.581426) " points="46.6946565 24.8421053 46.6946565 59.8303865 19.3664122 106.320746"></polyline>
+                    <ellipse id="Oval-2" transform="translate(19.708015, 20.394737) scale(-1, 1) translate(-19.708015, -20.394737) " cx="19.7080153" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="pins-right" transform="translate(342.500000, 211.000000) rotate(-270.000000) translate(-342.500000, -211.000000) translate(234.500000, 157.500000)">
+                    <path d="M107.816794,24.8421053 L107.816794,106.320746" id="Path-2-Copy-5"></path>
+                    <ellipse id="Oval-2" cx="107.475191" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="196.633588 24.8421053 196.633588 59.8303865 169.305344 106.320746"></polyline>
+                    <ellipse id="Oval-2" cx="196.291985" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(33.030534, 65.581426) scale(-1, 1) translate(-33.030534, -65.581426) " points="46.6946565 24.8421053 46.6946565 59.8303865 19.3664122 106.320746"></polyline>
+                    <ellipse id="Oval-2" transform="translate(19.708015, 20.394737) scale(-1, 1) translate(-19.708015, -20.394737) " cx="19.7080153" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="pins-top" transform="translate(200.000000, 53.500000) rotate(-360.000000) translate(-200.000000, -53.500000) translate(92.000000, 0.000000)">
+                    <path d="M107.816794,24.8421053 L107.816794,106.320746" id="Path-2-Copy-5"></path>
+                    <ellipse id="Oval-2" cx="107.475191" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="196.633588 24.8421053 196.633588 59.8303865 169.305344 106.320746"></polyline>
+                    <ellipse id="Oval-2" cx="196.291985" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(33.030534, 65.581426) scale(-1, 1) translate(-33.030534, -65.581426) " points="46.6946565 24.8421053 46.6946565 59.8303865 19.3664122 106.320746"></polyline>
+                    <ellipse id="Oval-2" transform="translate(19.708015, 20.394737) scale(-1, 1) translate(-19.708015, -20.394737) " cx="19.7080153" cy="20.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <path d="M99,296 C99,312.568542 143.099952,326 197.5,326 C251.900048,326 296,312.568542 295.999995,298.65215 C295.999998,180.48218 296,116.397194 296,116.397194 C296,99.8791728 251.900048,86 197.5,86 C143.099952,86 99,99.8791728 99,117 L99,296 Z" id="Drum"></path>
+            </g>
+            <g transform="translate(37.000000, 30.000000)" stroke="#2C3E50">
+                <g id="pins" transform="translate(45.500000, 206.500000) rotate(-90.000000) translate(-45.500000, -206.500000) translate(-44.000000, 161.000000)" stroke-width="16">
+                    <path d="M88.8167939,19.8421053 L88.8167939,101.320746" id="Path-2-Copy-5" fill="#EB2972" fill-rule="evenodd"></path>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="88.4751908" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="177.633588 19.8421053 177.633588 54.8303865 150.305344 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="177.291985" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(14.347328, 60.581426) scale(-1, 1) translate(-14.347328, -60.581426) " points="28.0114504 19.8421053 28.0114504 54.8303865 0.683206107 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" transform="translate(1.024809, 15.394737) scale(-1, 1) translate(-1.024809, -15.394737) " cx="1.02480916" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="pins" transform="translate(195.500000, 355.500000) rotate(-180.000000) translate(-195.500000, -355.500000) translate(106.000000, 310.000000)" stroke-width="16">
+                    <path d="M88.8167939,19.8421053 L88.8167939,101.320746" id="Path-2-Copy-5" fill="#EB2972" fill-rule="evenodd"></path>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="88.4751908" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="177.633588 19.8421053 177.633588 54.8303865 150.305344 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="177.291985" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(14.347328, 60.581426) scale(-1, 1) translate(-14.347328, -60.581426) " points="28.0114504 19.8421053 28.0114504 54.8303865 0.683206107 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" transform="translate(1.024809, 15.394737) scale(-1, 1) translate(-1.024809, -15.394737) " cx="1.02480916" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="pins" transform="translate(340.500000, 206.500000) rotate(-270.000000) translate(-340.500000, -206.500000) translate(251.000000, 161.000000)" stroke-width="16">
+                    <path d="M88.8167939,19.8421053 L88.8167939,101.320746" id="Path-2-Copy-5" fill="#EB2972" fill-rule="evenodd"></path>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="88.4751908" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="177.633588 19.8421053 177.633588 54.8303865 150.305344 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="177.291985" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(14.347328, 60.581426) scale(-1, 1) translate(-14.347328, -60.581426) " points="28.0114504 19.8421053 28.0114504 54.8303865 0.683206107 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" transform="translate(1.024809, 15.394737) scale(-1, 1) translate(-1.024809, -15.394737) " cx="1.02480916" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="pins" transform="translate(195.500000, 45.500000) rotate(-360.000000) translate(-195.500000, -45.500000) translate(106.000000, 0.000000)" stroke-width="16">
+                    <path d="M88.8167939,19.8421053 L88.8167939,101.320746" id="Path-2-Copy-5" fill="#EB2972" fill-rule="evenodd"></path>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="88.4751908" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" points="177.633588 19.8421053 177.633588 54.8303865 150.305344 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" cx="177.291985" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                    <polyline id="Path-2-Copy-5" transform="translate(14.347328, 60.581426) scale(-1, 1) translate(-14.347328, -60.581426) " points="28.0114504 19.8421053 28.0114504 54.8303865 0.683206107 101.320746"></polyline>
+                    <ellipse id="Oval-2" fill="#EB2972" fill-rule="evenodd" transform="translate(1.024809, 15.394737) scale(-1, 1) translate(-1.024809, -15.394737) " cx="1.02480916" cy="15.3947368" rx="19.471374" ry="19.5"></ellipse>
+                </g>
+                <g id="Database" transform="translate(94.000000, 81.000000)" stroke-width="20">
+                    <path d="M-1.77635684e-15,210 C-1.77635684e-15,226.568542 44.0999521,240 98.5,240 C152.900048,240 197,226.568542 196.999995,212.65215 C196.999998,94.4821795 197,30.397194 197,30.397194 C197,13.8791728 152.900048,0 98.5,0 C44.0999521,0 -1.77635684e-15,13.8791728 -1.77635684e-15,31 L-1.77635684e-15,210 Z" id="Drum" fill="#05AFAF" fill-rule="evenodd"></path>
+                    <path d="M0,151 C0,167.568542 44.0999521,181 98.5,181 C152.900048,181 197,167.568542 197,151" id="Oval-3" stroke-linecap="round" stroke-linejoin="bevel"></path>
+                    <path d="M0,91 C0,107.568542 44.0999521,121 98.5,121 C152.900048,121 197,107.568542 197,91" id="Oval-2" stroke-linecap="round" stroke-linejoin="bevel"></path>
+                    <path d="M0,31 C0,47.5685425 44.0999521,61 98.5,61 C152.900048,61 197,47.5685425 197,31" id="Oval-1" stroke-linecap="round" stroke-linejoin="bevel"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
