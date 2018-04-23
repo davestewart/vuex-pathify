@@ -55,7 +55,6 @@ computed: {
 }
 ```
 
-The Pathify [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo) shows a reduction in setup and wiring code between **2 and 15 times** (at least) depending on component size and Vuex setup.
 
 ## Summary
 

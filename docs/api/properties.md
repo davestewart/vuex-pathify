@@ -22,7 +22,23 @@ See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-path
 
 ### Accessor priority
 
-One of Pathify's design choices is to **automatically** determine whether to get via **state or getters**, or set via **actions or mutations**. The feature is called **accessor priority** and reduces store operations from 4 to just 2; `get()` and `set()`.
+Pathify's accessor functions **automatically** determine whether to get via **state or getters**, or set via **actions or mutations**:
+
+```js
+Pathify                                     Vuex
+      
+store.get('products/items')           <-    store.getters['products/items']
+                                            store.state.products.items
+store.set('products/items', items)    ->    dispatch('products/setItems', items)
+                                            commit('products/SET_ITEMS', items)
+```
+
+The feature is called **accessor priority** and results in a significant simplification of Vuex's API:
+ 
+- from **4** operations, **4** helpers, **3** accessor syntaxes and **3** naming formats
+- to **3** methods and **1** path format
+
+
 
 The basic premise is this:
 
@@ -32,6 +48,7 @@ The basic premise is this:
 - when accessing a property, say `items`, if found:
     - a mapped **getter** will be prioritised over a mapped **state** (as the getter will reference it)
     - a mapped **action** will be prioritised over a mapped **mutation** (as the action will call it) 
+
 
 This logic and implementation serves several purposes:
 

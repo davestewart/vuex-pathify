@@ -1,8 +1,8 @@
-![logo](assets/img/logos/logo.png)
+![logo](assets/img/logos/logo.svg)
 
 <blockquote>
     <p class="title">Vuex Pathify</p>
-    <p class="strapline">A declarative, state-based, path interface to Vuex</p>
+    <p class="strapline">Ridiculously simple store wiring + setup</p>
 </blockquote>
 
 [GitHub](https://github.com/davestewart/vuex-pathify)
