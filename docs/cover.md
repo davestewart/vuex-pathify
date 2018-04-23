@@ -2,7 +2,7 @@
 
 <blockquote>
     <p class="title">Vuex Pathify</p>
-    <p class="strapline">Ridiculously simple store wiring + setup</p>
+    <p class="strapline">Ridiculously simple Vuex wiring + setup</p>
 </blockquote>
 
 [GitHub](https://github.com/davestewart/vuex-pathify)
