@@ -85,7 +85,3 @@ Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex
 - Check the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo) to see the code in action
 - Visit the [Setup](/guide/setup.md) page to install and use Pathify now
 - Read the [API](/api) section for a deep dive into Pathify's features
-
-<script>
-alert(1)
-</script>

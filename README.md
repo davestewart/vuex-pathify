@@ -1,44 +1,46 @@
 
 ![splash](docs/assets/img/readme/splash-github.png)
 
-<h2>Overview</h2>
+## Overview
 
-Pathify makes working with Vuex **easy**, with a **declarative, state-based, path syntax**:
+Pathify makes working with Vuex **easy**, with a **declarative**, **state-based**, **path syntax**:
 
-![pathify-path](docs/assets/img/readme/pathify-path.png)
+![pathify-diagram](docs/assets/img/readme/pathify-path.png)
 
-Pathify's core helpers provide one-liner **read, write** or **sync** to any store **property** or **sub-property**:
+
+Paths can reference any **module**, **property** or (nested) **sub-property**:
 
 ![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
 
-Pathify's store helpers eliminate the time, code and complexity of store setup:
 
-![vuex-mutations](docs/assets/img/readme/pathify-make-mutations.png)
+**Get** or **set** data without **syntax juggling** or worrying about **implementation**:
 
-
-The end result is Vuex projects with significantly less code, complication and cognitive overhead.
+![pathify-diagram](docs/assets/img/readme/pathify-accessors.png)
 
 
-## Pathify API
+Set up **one or two-way** data binding on **any** store value without **bloat** or **fuss**:
 
-Let's look a little closer at the above example.
-
-The store has **module**, **property** and **sub-property** nodes:
-
-![vuex-store](docs/assets/img/readme/vuex-store.png)
-
-Pathify's one-liner [store helpers] generate mutations **automatically**:
-
-![pathify-mutations](docs/assets/img/readme/pathify-mutations.png)
-
-Pathify's [store accessors] handle global **I/O** whilst [component helpers] handle **wiring**:
-
-![pathify-code](docs/assets/img/readme/pathify-code.png)
-
-Pathify's [path syntax] provides sub-property access via the `@` symbol, with wildcard `*` syntax wiring entire groups of properties or sub-properties automatically.
+![pathify-diagram](docs/assets/img/readme/pathify-computed.png)
 
 
-## Comparing to Vuex
+Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
+
+![pathify-diagram](docs/assets/img/readme/pathify-computed-many.png)
+
+
+Set up your store – **no matter how complex** – in a single line:
+
+![pathify-diagram](docs/assets/img/readme/pathify-make-mutations.png)
+
+
+And... that's it.
+
+Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/docs/guide/config.md), [path syntax](/docs/api/paths.md), and [helpers](/docs/api/component.md).
+
+
+
+
+## Vuex comparison
 
 The start of a Vuex project usually requires manual and painstaking store setup:
 
@@ -52,24 +54,30 @@ Component wiring can require up to 4 different helpers, name juggling, plus addi
 
 ![vuex-helpers](docs/assets/img/readme/vuex-helpers.png)
 
-An entire section of Pathify's demo site has been devoted to comparing what could be considered both [typical](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code/typical) and [large](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code/large) components across a variety of Pathify and Vuex setups, and finds Pathify:
- 
- - can use anything between 2 and 14 times less code than vanilla Vuex
- - can be up to 2.5 times less complex, using a core of only 6 or 7 different naming, syntax or coding entities, compared to Vuex's maximum of 15 / 18
+Writing computed properties takes this much code **per property** for 2-way wiring:
+
+![vuex-helpers](docs/assets/img/readme/vuex-computed.png)
+
+Essentially, vanilla Vuex takes a lot of manual JavaScript coding to both set up and maintain.
+
+Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demo which illustrates a reduction in Vuex code when using Pathify, of between **2 and 14 times** (or more) depending on store size and setup.
 
 
-## Next steps
+## Summary
 
-So if you like what you see, here's where to go next:
+In practical terms, Pathify results in:
 
-- Try the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)
-- Check out the [documentation](https://davestewart.github.io/vuex-pathify/)
-- Install the [package](https://www.npmjs.com/package/vuex-pathify)
+- less cognitive overhead
+- zero store boilerplate
+- one-liner wiring
+- cleaner code
+- lighter files
 
 
-[path syntax]: https://davestewart.github.io/vuex-pathify/#/api/paths
-[component helpers]: https://davestewart.github.io/vuex-pathify/#/api/component
-[store helpers]: https://davestewart.github.io/vuex-pathify/#/api/store
-[store accessors]: https://davestewart.github.io/vuex-pathify/#/api/accessors
+### Next steps
+
+- Read the [documentation](https://davestewart.github.io/vuex-pathify/) to find out more
+- Check out the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo) to see the code in action
+- Install the [package](https://www.npmjs.com/package/vuex-pathify) from NPM
 
 
