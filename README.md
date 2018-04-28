@@ -63,7 +63,7 @@ Essentially, vanilla Vuex takes a lot of manual JavaScript coding to both set up
 Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demo which illustrates a reduction in Vuex code when using Pathify, of between **2 and 14 times** (or more) depending on store size and setup.
 
 
-## Summary
+## Summary
 
 In practical terms, Pathify results in:
 
