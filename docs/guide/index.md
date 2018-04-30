@@ -1,5 +1,7 @@
 # Guide
 
+- [Pathify 101](/guide/intro.md) - A quick intro to how Pathify does what it does
+
 - [Setup](/guide/setup.md) - Install and setup the plugin in a new project
 
 - [Configuration](/guide/config.md) - Configure Pathify using custom options 

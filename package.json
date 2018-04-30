@@ -1,7 +1,7 @@
 {
   "name": "vuex-pathify",
-  "version": "1.0.0",
-  "description": "Ridiculously simple Vuex wiring + setup",
+  "version": "1.0.1",
+  "description": "Ridiculously simple Vuex setup + wiring",
   "main": "dist/vuex-pathify.js",
   "module": "dist/vuex-pathify.esm.js",
   "jsnext:main": "dist/vuex-pathify.esm.js",
@@ -34,7 +34,7 @@
     "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.0",
     "rollup-plugin-buble": "^0.19.1",
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-uglify": "^3.0.0"
