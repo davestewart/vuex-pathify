@@ -1,17 +1,17 @@
 
 # Pathify 101
 
-> An overview of Pathify in less than 30 seconds
+> A quick intro to how Pathify works
 
-## Overview
+Pathify exists to **simplify** the everyday Vuex development experience.
 
-Pathify **simplifies** Vuex wiring by abstracting its various syntaxes and methods to **a unified, state-based, path syntax**:
+It does this by abstracting its various practices, syntaxes and methods to a unified, state-based, [path syntax](/api/paths.md):
 
+```js
+'products/items@filters.search'
 ```
-products/items@filters.search
-```
 
-All store interaction is then expressed in terms of `paths/to/properties` and `get()`, `set()` or `sync()`:
+Store [access](/api/accessors.md) is then expressed in terms of `paths/to/state` and `get()`, `set()` and `sync()` methods:
 
 ```js
 // global
@@ -23,7 +23,19 @@ computed: {
 }
 ```
 
-[Configuration](/guide/mapping.md) and [accessor logic](/api/properties.md) factor   out decisions around `state`, `getters`, `commits` or `dispatches`:
+To convert a path (say `foo`) to its associated store members, Pathify uses configurable, programmatic [mapping](/guide/mapping.md): 
+
+```js
+Member            Name            Method
+
+state:            foo             // base name
+getters:          foo             // no prefix, no case conversion
+mutations:        SET_FOO         // "set" prefix, constant case, 
+actions:          setFoo          // "set" prefix, camel case, 
+``` 
+
+
+Once mapped, Pathify simplifies implementation decisions by [prioritising](/api/properties.md) **getters over state** and **actions over mutations**:
 
 ```js
 Pathify                                     Vuex
@@ -34,38 +46,20 @@ store.set('products/items', items)    ->    dispatch('products/setItems', items)
                                             commit('products/SET_ITEMS', items)
 ```
 
-The approach results in a significant simplification of Vuex's API:
+
+The overall approach results in a significant simplification of Vuex's API:
  
-- from **4** operations, **4** helpers, **3** accessor syntaxes and **3** naming formats
+- from **4** operations, **4** helpers, **3** accessor syntaxes and **3** (or sometimes **4**) naming formats
 - to **3** methods and **1** path format
 
 
-In store setup [store helpers](/api/store.md) eliminate store boilerplate:
+
+Finally, [store helpers](/api/store.md) eliminate store setup boilerplate by generating mutations automatically:
 
 ```js
 const mutations = make.mutations(state)
 ```
 
-In app code [component helpers](/api/component.md) enable one-liner, multi-property wiring with transparent sub-property read and write:
 
-```js
-computed: {
-  ...get('products/*'),
-  ...sync('products/items@filters.search')
-}
-```
-
-
-## Summary
-
-A final look at Pathify's core features:
-
-- unified, state-based, path format
-- simplified store member access
-- transparent sub-property access
-- one-liner component data-binding
-- one-liner boilerplate generation
-- massive reduction in lines of code
-
-The bottom line: Pathify radically reduces store setup, wiring and cognitive overhead, leaving you more time and bandwidth to build today's complex front end apps.
+The bottom line is that Pathify **radically** reduces store setup, wiring and cognitive overhead, leaving you more time and bandwidth to build your application.
 
