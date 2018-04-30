@@ -10,7 +10,7 @@ In Pathify, **everything** is a **path**:
 'foo/bar@a.b.c'
 ```
 
-Paths can reference any **module**, **property** or (nested) **sub-property**:
+Paths can reference any **module**, **property** or **sub-property**:
 
 ![pathify-diagram](assets/img/readme/pathify-diagram.png)
 

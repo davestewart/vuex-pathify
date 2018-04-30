@@ -23,7 +23,7 @@ computed: {
 }
 ```
 
-To convert a path (say `foo`) to its associated store members, Pathify uses configurable, programmatic [mapping](/guide/mapping.md): 
+Pathify resolves store members from paths using configurable, programmatic [mapping](/guide/mapping.md): 
 
 ```js
 Member            Name            Method
@@ -35,7 +35,7 @@ actions:          setFoo          // "set" prefix, camel case,
 ``` 
 
 
-Once mapped, Pathify simplifies implementation decisions by [prioritising](/api/properties.md) **getters over state** and **actions over mutations**:
+Implementation decisions are further simplified by [prioritising](/api/properties.md) **getters over state** and **actions over mutations**:
 
 ```js
 Pathify                                     Vuex
