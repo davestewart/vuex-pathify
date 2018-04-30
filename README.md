@@ -30,25 +30,22 @@ Wire **multiple** properties (or sub-properties) using **array**, **object** and
 
 Set up your store – **no matter how complex** – in a single line:
 
-![pathify-diagram](docs/assets/img/readme/pathify-make-mutations.png)
+![pathify-diagram](docs/assets/img/readme/pathify-store.png)
 
 
 And... that's it.
-
-Pathify does this **all within the bounds of Vuex**; no hacks, just [configuration](/docs/guide/config.md), [path syntax](/docs/api/paths.md), and [helpers](/docs/api/component.md).
-
 
 
 
 ## Vuex comparison
 
-The start of a Vuex project usually requires manual and painstaking store setup:
+Conversely, beginning a *vanilla* Vuex project requires manual and usually painstaking store setup:
 
-![vuex-mutations](docs/assets/img/readme/vuex-mutations.png)
+![vuex-mutations](docs/assets/img/readme/vuex-store.png)
  
 Getting and setting values requires juggling accessors, syntax and naming:
 
-![vuex-code](docs/assets/img/readme/vuex-code.png)
+![vuex-code](docs/assets/img/readme/vuex-accessors.png)
 
 Component wiring can require up to 4 different helpers, name juggling, plus additional template binding:
 
