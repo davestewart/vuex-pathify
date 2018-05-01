@@ -1,0 +1,16 @@
+.guide-links {
+  margin-top: 50px;
+  border-top: 1px solid #EEE;
+  padding-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}

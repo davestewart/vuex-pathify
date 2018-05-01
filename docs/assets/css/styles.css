@@ -183,6 +183,9 @@
   font-family: Merriweather, serif;
   font-weight: 400; }
 
+.sidebar p.active a {
+  color: #07a6a6; }
+
 .sidebar .sidebar-nav > ul > li {
   margin-bottom: 30px;
   font-size: 17px; }
@@ -198,3 +201,14 @@
 .sidebar a:hover {
   color: #07a6a6;
   text-decoration: none; }
+
+.guide-links {
+  margin-top: 50px;
+  border-top: 1px solid #EEE;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between; }
+  .guide-links a {
+    text-decoration: none; }
+    .guide-links a:hover {
+      text-decoration: underline; }
