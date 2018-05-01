@@ -30,7 +30,7 @@ computed: {
 }
 ```
 
-See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/paths) for live examples.
+See the path syntax [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/paths) for an editable, live example.
 
 
 

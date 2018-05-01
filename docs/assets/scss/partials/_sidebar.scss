@@ -6,6 +6,10 @@
     font-weight: $title-weight;
   }
 
+  p.active a {
+    color: $link;
+  }
+
   .sidebar-nav > ul > li {
     margin-bottom: 30px;
     font-size: 17px;

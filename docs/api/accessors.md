@@ -31,7 +31,7 @@ window.store = store
 store.set('settings/loaded', false)
 ```
 
-See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/accessors) for live examples.
+See the store accessors [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/accessors) for an editable, live example.
 
 ## API
 

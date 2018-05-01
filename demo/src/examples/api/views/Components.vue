@@ -14,18 +14,24 @@
 
     <div class="content">
 
-      <p>Sync property: <ui-input v-model="value"/></p>
+      <p>Store:</p>
+      <pre>{{ store }}</pre>
+
+      <p>Sync property: <ui-input v-model.number="value"/></p>
       <p>Sync sub-property: <ui-input v-model="sub"/></p>
       <p>Sync nested property: <ui-input v-model="nested"/></p>
 
-      <p>Module:</p>
-      <pre>{{ module }}</pre>
+      <p>Nested syntax:</p>
+      <pre>{{ { sub, nested } }} </pre>
+
+      <p>Array syntax:</p>
+      <pre>{{ { value, string } }} </pre>
+
+      <p>Object syntax:</p>
+      <pre>{{ { altValue, altString } }} </pre>
 
       <p>Wildcards:</p>
-      <pre>{{ x }} {{ y }} {{ z }} </pre>
-
-      <p>Other wired props:</p>
-      <pre>{{ [altValue, altString, x, y, z ] }} </pre>
+      <pre>{{ { x, y, z } }} </pre>
     </div>
 
   </article>
@@ -40,7 +46,11 @@
     computed: {
 
       // single property syntax
-      module: get('module'),
+      store: get('module'),
+
+      // nested property syntax
+      sub: sync('module/object@value'),
+      nested: sync('module/object@a.b.c'),
 
       // array syntax
       ...sync('module', [
@@ -53,10 +63,6 @@
         altValue: 'value',
         altString: 'string'
       }),
-
-      // nested property syntax
-      sub: sync('module/object@value'),
-      nested: sync('module/object@a.b.c'),
 
       // wildcard syntax, maps x, y, z
       ...get('module/wildcard@*'),

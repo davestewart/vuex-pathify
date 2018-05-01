@@ -4,7 +4,7 @@
 
 > Pathify provides a declarative, state-based, path interface to your Vuex store
 
-In Pathify, **everything** is a **path**:
+With Pathify, you access Vuex by **path**:
 
 ```pathify
 'foo/bar@a.b.c'
@@ -73,15 +73,16 @@ In practical terms, Pathify results in:
 - cleaner code
 - lighter files
 
-For a deeper insight:
-
-- See the [intro](/guide/intro.md) for an overview of the Pathify mechanism
-- Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demo which illustrates a reduction Vuex code of between **2 and 14 times** (at least) depending on store size and setup.
+For a deeper insight check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demo which illustrates a reduction Vuex code of between **2 and 14 times** (at least) depending on store size and setup.
 
 ### Next steps
 
 To get started:
 
-- Check the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo) to see the code in action
+- Read the [Intro](/guide/intro.md) for an overview of the Pathify mechanism
 - Visit the [Setup](/guide/setup.md) page to install and use Pathify now
 - Read the [API](/api) section for a deep dive into Pathify's features
+
+To see Pathify in action:
+
+- Check the editable CodeSandbox [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)
