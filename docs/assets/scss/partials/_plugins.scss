@@ -3,8 +3,19 @@
   border-top: 1px solid #EEE;
   padding-top: 20px;
 
-  display: flex;
-  justify-content: space-between;
+  .guide-link-next {
+    float: right;
+  }
+
+  .guide-link-prev:before {
+    padding-right: 0.4em;
+    content: '←';
+  }
+
+  .guide-link-next:after {
+    padding-left: 0.4em;
+    content: '→';
+  }
 
   a {
     text-decoration: none;

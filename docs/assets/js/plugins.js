@@ -1,7 +1,16 @@
+function getLink (link) {
+  if (link instanceof Element) {
+    link = link.getAttribute('href')
+  }
+  var hash = (link.match(/#.+/) || '').toString().replace('#', '')
+  return hash || '/'
+}
+
 function getLinks () {
+
   var sidebar = document.querySelector('.sidebar')
   var links = [].slice.call(sidebar.querySelectorAll('a'))
-  var current = links.find(link => link.getAttribute('href').replace('#', '') === location.hash.replace('#', ''))
+  var current = links.find(link => getLink(link) === getLink(location.href))
   var index = links.indexOf(current)
 
   return {
@@ -19,7 +28,7 @@ function pageNav (hook) {
     var links = getLinks()
     var link = links[name]
     if (link) {
-      window.location.hash = link.getAttribute('href')
+      window.location.hash = getLink(link)
     }
   }
 
@@ -48,23 +57,21 @@ function pageLinks (hook) {
 
     var html = ''
     if (links.prev) {
-      html += '<span class="guide-link-prev">← ' +links.prev.outerHTML+ '</span>'
+      html += '<span class="guide-link-prev">' +links.prev.outerHTML+ '</span>'
     }
     if (links.next) {
-      html += '<span class="guide-link-next">' +links.next.outerHTML+ ' →</span>'
+      html += '<span class="guide-link-next">' +links.next.outerHTML+ '</span>'
     }
 
     return html
   }
 
   hook.afterEach(function (html, next) {
-    var links = getLinks()
-    if (links.length === 1) {
-      setTimeout(function () {
-        document.querySelector('.guide-links').innerHTML = makeLinks()
-      }, 100)
-    }
     next(html + '<div class="guide-links">' +makeLinks()+ '</div>')
+  })
+
+  hook.ready(function () {
+    document.querySelector('.guide-links').innerHTML = makeLinks()
   })
 
 }

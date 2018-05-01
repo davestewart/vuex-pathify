@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .content {
   padding-top: 30px; }
 
@@ -205,9 +206,15 @@
 .guide-links {
   margin-top: 50px;
   border-top: 1px solid #EEE;
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between; }
+  padding-top: 20px; }
+  .guide-links .guide-link-next {
+    float: right; }
+  .guide-links .guide-link-prev:before {
+    padding-right: 0.4em;
+    content: '←'; }
+  .guide-links .guide-link-next:after {
+    padding-left: 0.4em;
+    content: '→'; }
   .guide-links a {
     text-decoration: none; }
     .guide-links a:hover {
