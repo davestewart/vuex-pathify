@@ -6,13 +6,17 @@
 
 Pathify component helpers are designed to **easily wire components** to the store.
 
-They are implemented as **helper functions** which can:
+They are implemented as **helper functions** which:
  
-- **get**, **set** or **sync** values
+- are written as one-liners
+- can **get**, **set** or **sync** values
 - wire **single** or **multiple** properties
-- be written as one-liners
 
-Each helper builds and returns the appropriate `computed` property. Because get, set **and** sync are all **computed properties**, there's no need to add functions or map actions/mutations in the `methods` block.
+Each helper generates and returns the appropriate `computed` property function.
+
+Note that although the **generation** is more expensive than writing a manual function, once helper has finished, only a single lightweight function is returned and used.
+
+Additionaly, because get, set **and** sync are all **computed properties**, there's no need to add functions or map actions/mutations in the `methods` block.
 
 ## Usage
 
@@ -27,25 +31,22 @@ export default {
     // read-only, single property
     items: get('products/items'),
     
-    // read-only, direct-access single property
-    ...get('products/filteredItems!'),
-    
     // read/write, single property
     search: sync('products/search'),
     
-    // read/write, multiple (sub)properties
+    // read/write, multiple manual (sub) properties
     ...sync('products/filters@sort', {
       sortOrder: 'order',
       sortKey: 'key',
     }),
 
-    // wildcard syntax
+    // read/write, multiple automatic properties
     ...sync('products/*')
   }
 }
 ```
 
-See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/component) for live examples.
+See the component helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/component) for an editable, live example.
 
 
 ## API
@@ -87,7 +88,7 @@ computed: {
     items: sync('items|updateItems!')
 
     // get with `filteredItems` getter and set with `updateItems()` action
-    items: sync('filteredItems!|updateItems!')
+    items: sync('filteredItems|updateItems!')
 }
 ```
 

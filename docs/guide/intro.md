@@ -3,15 +3,15 @@
 
 > A quick intro to how Pathify works
 
-Pathify exists to **simplify** the everyday Vuex development experience.
+Pathify **simplifies** the Vuex development experience.
 
-It does this by abstracting its various practices, syntaxes and methods to a unified, state-based, [path syntax](/api/paths.md):
+Its core mechanism is a custom [path syntax](/api/paths.md) which can reference any state property:
 
 ```js
 'products/items@filters.search'
 ```
 
-Store [access](/api/accessors.md) is then expressed in terms of `paths/to/state` and `get()`, `set()` and `sync()` methods:
+Store [access](/api/accessors.md) and component [wiring](/api/component.md) are unified with `get()`, `set()` and `sync()` methods:
 
 ```js
 // global
@@ -23,19 +23,19 @@ computed: {
 }
 ```
 
-Pathify resolves store members from paths using configurable, programmatic [mapping](/guide/mapping.md): 
+Paths are mapped to store members via a configurable [mapping](/guide/mapping.md) algorithm:
 
 ```js
-Member            Name            Method
+Operation       Member          Name            Naming scheme
 
-state:            foo             // base name
-getters:          foo             // no prefix, no case conversion
-mutations:        SET_FOO         // "set" prefix, constant case, 
-actions:          setFoo          // "set" prefix, camel case, 
+read            state           foo             // base name
+read            getters         foo             // no prefix, no case conversion
+write           mutations       SET_FOO         // "set" prefix, constant case, 
+write           actions         setFoo          // "set" prefix, camel case, 
 ``` 
 
 
-Implementation decisions are further simplified by [prioritising](/api/properties.md) **getters over state** and **actions over mutations**:
+Implementation details are simplified by [prioritising](/api/properties.md) **getters over state** and **actions over mutations**:
 
 ```js
 Pathify                                     Vuex
@@ -52,14 +52,13 @@ The overall approach results in a significant simplification of Vuex's API:
 - from **4** operations, **4** helpers, **3** accessor syntaxes and **3** (or sometimes **4**) naming formats
 - to **3** methods and **1** path format
 
+For store members that don't fit the "set/get" paradigm, there are several [direct access](/api/properties.md#direct-property-access) mechanisms available.
 
-
-Finally, [store helpers](/api/store.md) eliminate store setup boilerplate by generating mutations automatically:
+Finally, [store helpers](/api/store.md) provide transparent sub-property access whilst **eliminating** store setup boilerplate:
 
 ```js
 const mutations = make.mutations(state)
 ```
 
 
-The bottom line is that Pathify **radically** reduces store setup, wiring and cognitive overhead, leaving you more time and bandwidth to build your application.
-
+The end result a **radical** reduction in store setup, component wiring, lines of code and cognitive overhead, leaving you more time and bandwidth to build your application.

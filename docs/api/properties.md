@@ -16,7 +16,7 @@ This section covers:
 
 ## Usage
 
-See the [interactive demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/properties) for live examples.
+See the advanced property access [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/properties) for an editable, live example.
 
 ## Details
 
@@ -89,15 +89,15 @@ get('items')        // state.items
 set('items', data)  // actions.setItems
 ```
 
-This is great for everyday **get/set** usage, but can't account for more nuanced access like `getters.filteredItems` or `actions.updateItems()`. To work round this, you can reference store members directly.
+This is great for everyday **get/set** usage, but can't account for more nuanced access like `mutations.INCREMENT_VALUE` or `actions.updateItems()`. To work round this, you can reference store members directly.
 
 #### `Direct access syntax`
 
 To **skip** mapping and reference a member directly, append a bang `!` to the property name:
 
 ```js
-// reference the `filteredItems` getter, rather than `items`
-get('filteredItems!')
+// call the `INCREMENT_VALUE` mutation directly
+set('INCREMENT_VALUE!')
 ```
 ```js
 // call the `updateItems()` action, rather than `setItems()`
@@ -118,7 +118,7 @@ These are Vuex's own methods, but bound to your project's store, and for conveni
 import { commit, dispatch } from 'vuex-pathify'
 
 // mutations
-commit('UPDATE_ITEMS', data)
+commit('INCREMENT_VALUE')
 
 // actions
 dispatch('updateItems', data)

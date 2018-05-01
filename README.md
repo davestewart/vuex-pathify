@@ -8,7 +8,7 @@ Pathify makes working with Vuex **easy**, with a **declarative**, **state-based*
 ![pathify-diagram](docs/assets/img/readme/pathify-path.png)
 
 
-Paths can reference any **module**, **property** or (nested) **sub-property**:
+Paths can reference any **module**, **property** or **sub-property**:
 
 ![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
 
@@ -23,7 +23,7 @@ Set up **one or two-way** data binding on **any** store value without **bloat** 
 ![pathify-diagram](docs/assets/img/readme/pathify-computed.png)
 
 
-Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
+Wire **multiple** properties or sub-properties using **array**, **object** and **wildcard** formats:
 
 ![pathify-diagram](docs/assets/img/readme/pathify-computed-many.png)
 
@@ -39,7 +39,9 @@ And... that's it.
 
 ## Vuex comparison
 
-Conversely, beginning a *vanilla* Vuex project requires manual and usually painstaking store setup:
+Conversely, working with Vuex directly requires is much more work.
+
+Store setup is a manual and laborious process:
 
 ![vuex-mutations](docs/assets/img/readme/vuex-store.png)
  
