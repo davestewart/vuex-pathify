@@ -15,7 +15,7 @@ The methods:
 
 ## Usage
 
-Once [configured](/guide/config.md), getting and setting values on the store is simple: 
+Once [configured](/setup/config.md), getting and setting values on the store is simple: 
 
 ```js
 store.set('products/filters@sort.order', 'asc')

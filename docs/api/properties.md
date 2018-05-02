@@ -22,7 +22,7 @@ See the advanced property access [demo](https://codesandbox.io/s/github/davestew
 
 ### Accessor priority
 
-As outlined in the [intro](/guide/intro.md) Pathify **automatically** determines whether to get via **state or getters**, or set via **actions or mutations**. This feature is called **Accessor Priority** and results in a significant simplification of Vuex's API.
+As outlined in the [intro](/intro/pathify.md) Pathify **automatically** determines whether to get via **state or getters**, or set via **actions or mutations**. This feature is called **Accessor Priority** and results in a significant simplification of Vuex's API.
  
 The basic premise is this:
 
@@ -75,7 +75,7 @@ Overall the prioritised approach covers the majority of get/set wiring cases, an
 
 ### Direct property access
 
-Pathify's [mapping](/guide/mapping.md) algorithm is designed to **map paths to store members** in a predictable 1:1 manner, for example:
+Pathify's [mapping](/setup/mapping.md) algorithm is designed to **map paths to store members** in a predictable 1:1 manner, for example:
 
 ```js
 get('items')        // state.items

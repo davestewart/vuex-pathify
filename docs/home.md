@@ -75,14 +75,14 @@ In practical terms, Pathify results in:
 
 To get started:
 
-- Visit the [Setup](/guide/setup.md) page to install and use Pathify now
-- Read the [API](/api) section for a deep dive into Pathify's features
+- visit the [Installation](/setup/install.md) page to install and use Pathify now
+- read the [API](/api/index.md) section for a deep dive into Pathify's features
 
 To see Pathify in action:
 
-- Check the editable CodeSandbox [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)
+- check the editable CodeSandbox [demos](/intro/demos.md)
 
 For a deeper insight:
  
-- read the [Intro](/guide/intro.md) for an overview of the Pathify mechanism
+- read the [Intro](/intro/pathify.md) for an overview of the Pathify mechanism
 - check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demos which illustrate reductions in Vuex code of between **2 and 14 times** 

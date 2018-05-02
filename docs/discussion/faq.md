@@ -45,7 +45,7 @@ The [store helpers](/api/store) include `make.getters()` and `make.actions()` ma
 
 #### Which naming scheme should I use; default or simple?
 
-If you can, name your store members using the [simple](/guide/mapping) scheme.
+If you can, name your store members using the [simple](/setup/mapping) scheme.
 
 It makes no difference to Pathify when correctly configured, but in the author's opinion, it's much easier to scan a file and see relate a single `foo` in state, getters and mutations, than it is to see 2 or even 3 variations on prefixing, naming and casing.
 

@@ -1,14 +1,14 @@
-- [Intro](/guide/index.md)
+- [Intro](/intro/index.md)
 
-    - [Pathify 101](/guide/intro.md)
-    - [Demos](/guide/setup.md)
+    - [Pathify 101](/intro/pathify.md)
+    - [Demos](/intro/demos.md)
 
-- [Installation](/setup/index.md)
+- [Setup](/setup/index.md)
 
-    - [Setup](/guide/setup.md)
-    - [Configuration](/guide/config.md)
-        - [Options](/guide/options.md)
-        - [Mapping](/guide/mapping.md)
+    - [Installation](/setup/install.md)
+    - [Configuration](/setup/config.md)
+        - [Options](/setup/options.md)
+        - [Mapping](/setup/mapping.md)
 
 - [API](/api/index.md)
 

@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Typical component: </span>Vue computed</h2>
       <blockquote>
         <p>Demo uses one and two-way computed properties, state, getters and commits, object and array syntax</p>
-        <view-code src="examples/typical/views/VueComputed.vue"/>
-        <view-code src="examples/typical/stores/vuex-light.js"/>
+        <edit-code src="examples/typical/views/VueComputed.vue"/>
+        <edit-code src="examples/typical/stores/vuex-light.js"/>
       </blockquote>
     </div>
 

@@ -28,10 +28,10 @@
 
       text () {
         return this.src.includes('/view')
-          ? 'View component'
+          ? 'Edit component'
           : this.src.includes('/store')
-            ? 'View store'
-            : 'View code'
+            ? 'Edit store'
+            : 'Edit code'
       }
     },
 
