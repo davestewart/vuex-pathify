@@ -22,20 +22,13 @@ See the advanced property access [demo](https://codesandbox.io/s/github/davestew
 
 ### Accessor priority
 
-As outlined in the [intro](/guide/intro.md) Pathify **automatically** determines whether to get via **state or getters**, or set via **actions or mutations**.
-
-This feature is called **accessor priority** and results in a significant simplification of Vuex's API:
+As outlined in the [intro](/guide/intro.md) Pathify **automatically** determines whether to get via **state or getters**, or set via **actions or mutations**. This feature is called **Accessor Priority** and results in a significant simplification of Vuex's API.
  
-- from **4** operations, **4** helpers, **3** accessor syntaxes and **3** naming formats
-- to **3** methods and **1** path format
-
-
-
 The basic premise is this:
 
 - Vuex has 2 ways to:
-    - read data; **state** and **getters**
-    - write data; **mutations** and **actions**
+    - get data; **state** and **getters**
+    - set data; **mutations** and **actions**
 - when accessing a property, say `items`, if found:
     - a mapped **getter** will be prioritised over a mapped **state** (as the getter will reference it)
     - a mapped **action** will be prioritised over a mapped **mutation** (as the action will call it) 
