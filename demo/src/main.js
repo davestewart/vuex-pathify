@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import App from './App'
-import store from './store'
-import router from './router'
+import App from './app/App'
+import store from './app/store'
+import router from './app/router'
 
 // ui
-import './views/components'
+import './app/views/components'
 
 // styles
 import 'bulma/css/bulma.css'

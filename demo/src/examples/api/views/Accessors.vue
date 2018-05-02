@@ -29,7 +29,7 @@
       </p>
       <pre>{{ copy }}</pre>
 
-      <p>You can call store accessors from anywhere, even the console, and they will update the view. Try:</p>
+      <p>You can call store accessors from anywhere, and they will update the view. In the console, try:</p>
       <pre>store.get('module')
 store.set('module/object', {x: {y: {z: 100}}})
 store.copy('module/object@x.y.z')
