@@ -2,7 +2,7 @@ function getLink (link) {
   if (link instanceof Element) {
     link = link.getAttribute('href')
   }
-  var hash = (link.match(/#.+/) || '').toString().replace('#', '')
+  var hash = (link.match(/#.+/) || '').toString().replace('#', '').replace(/\?.*/, '')
   return hash || '/'
 }
 
