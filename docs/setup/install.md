@@ -1,10 +1,10 @@
-# Setup
+# Installation
 
 > Install and setup the plugin in a new project
 
-## Installation
+## Download
 
-In your project's root folder, install using NPM or yarn:
+In your project's root folder, download and install the package using NPM or yarn:
 
 ```shell
 npm i vuex-pathify
@@ -15,7 +15,7 @@ yarn add vuex-pathify
 
 ## Config
 
-If you don't know already, Pathify **gets and sets** values by mapping **paths** to **store members**.
+If you haven't yet read the [Intro](/intro/pathify.md) section, Pathify **gets and sets** values by mapping **paths** to **store members**.
 
 To do this, Pathify needs to know your store **naming scheme** so it can generate code that suits your setup:
 
@@ -27,7 +27,7 @@ scheme|path|state|getter|mutation|action|notes
 
 If you use the default **standard** naming scheme above, then no configuration is required.
  
-If not, you'll need to [configure](/guide/config.md) Pathify before continuing.
+If not, you'll need to [configure](/setup/config.md) Pathify before continuing.
 
 ## Setup
 
@@ -54,12 +54,7 @@ export default new Vuex.Store({
 
 To get going immediately after installing, check out:
 
-- [Basic usage](/resources/usage.md)   
 - [API reference](/api/index.md)
-
-For deeper information:
-
-- [Discussion](/discussion/index.md)
-- [Resources](/resources/index.md)
+- [Demos](/intro/demos.md)   
 
 

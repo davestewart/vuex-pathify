@@ -1,7 +1,7 @@
 
 # Pathify 101
 
-> A quick intro to how Pathify works
+> How Pathify does what it does
 
 Pathify **simplifies** the Vuex development experience.
 
@@ -23,7 +23,7 @@ computed: {
 }
 ```
 
-Paths are mapped to store members via a configurable [mapping](/guide/mapping.md) algorithm:
+Paths are mapped to store members via a configurable [mapping](/setup/mapping.md) algorithm:
 
 ```js
 Operation       Member          Name            Naming scheme

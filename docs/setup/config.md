@@ -16,9 +16,9 @@ export default {
 }
 ```
 
-If you're a new user, and you need to configure a mapping scheme, visit the [mapping](/guide/mapping.md) page first.
+If you're a new user, and you need to configure a mapping scheme, visit the [mapping](/setup/mapping.md) page first.
 
-If you just need to tweak these values, review the [options](/guide/options.md) for more information.
+If you just need to tweak these values, review the [options](/setup/options.md) for more information.
 
 When you're ready to save your changes, **follow the steps below**.
  
@@ -31,7 +31,7 @@ When you're ready to save your changes, **follow the steps below**.
 
 Create a new file called `pathify.js` and save it in the same folder as your store index file (or anywhere, really).
 
-Add the following code to import, configure and re-export the Pathify, modifying the [options](/guide/options.md) as desired:
+Add the following code to import, configure and re-export the Pathify, modifying the [options](/setup/options.md) as desired:
 
 ```js
 import pathify from 'vuex-pathify'

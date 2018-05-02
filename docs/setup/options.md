@@ -11,7 +11,7 @@ The **mapping** option helps determine how Pathify should map Pathify operations
 
 You can choose from a couple of common presets, or provide a custom function.
 
-See the [mapping](/guide/mapping.md) page for more details.
+See the [mapping](/setup/mapping.md) page for more details.
 
 #### `deep`
 

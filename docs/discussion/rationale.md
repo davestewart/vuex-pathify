@@ -157,7 +157,7 @@ Looking at the list above, we can see that Pathify solves the following:
 
 4. **Works in any project**
 
-    [Mapping configuration](/guide/mapping.md) enables property mapping in any project.
+    [Mapping configuration](/setup/mapping.md) enables property mapping in any project.
     
     [Direct-property access](/api/properties.md#direct-property-access) handles unmappable properties.
 
