@@ -1,6 +1,8 @@
 # Vuex Pathify demo
 
-## Build Setup
+## Demo only
+
+To run the demo, install and run as follows:
 
 ``` bash
 # install dependencies
@@ -12,7 +14,7 @@ npm run dev
 
 ## Local development
 
-To develop Pathify locally and run a live demo, having downloaded the entire Vuex Pathify repo, you should `npm link` the core repo so you can work with the local version of the package as if were installed globally.
+To develop Pathify locally whilst running the demo, you should `npm link` the core repo so you can work with the local version of the package as if were installed globally.
 
 From the root of the downloaded repo:
 
@@ -27,7 +29,7 @@ cd demo/node_modules
 npm link vuex-pathify
 ```
 
-Next, to statr development, run package's `dev` script which will build and watch the plugin, and run the browser demo:
+Next, to begin development, run package's `dev` script which will build and watch the plugin, and launch the browser demo in parallel:
 
 ```bash
 cd ../../
