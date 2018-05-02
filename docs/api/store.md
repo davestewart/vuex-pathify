@@ -20,6 +20,7 @@ Each helper builds and returns the appropriate JavaScript functions.
 The following illustrates functionality and usage for all the helper functions:
 
 ```js
+import Api from 'services/Api'
 import { make } from 'vuex-pathify'
 
 const state = {
@@ -33,8 +34,15 @@ const state = {
 // make all mutations
 const mutations = make.mutations(state)
 
-// make `setItems()` action only
-const actions = make.actions(state, 'items')
+const actions = {
+  // make `setItems()` action only
+  ...make.actions(state, 'items'),
+  
+  // add additional load action
+  loadItems({ commit }) {
+    Api.get('items').then(data => commit('SET_ITEMS', data))
+  }
+}
 
 const getters = {
   // make all getters
