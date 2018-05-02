@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Large component</span>Pathify (implicit)</h2>
       <blockquote>
         <p>Demo uses Pathify sync and implicit wildcard syntax</p>
-        <view-code src="examples/large/views/PathifyImplicit.vue"/>
-        <view-code src="examples/large/stores/pathify.js"/>
+        <edit-code src="examples/large/views/PathifyImplicit.vue"/>
+        <edit-code src="examples/large/stores/pathify.js"/>
       </blockquote>
     </div>
 

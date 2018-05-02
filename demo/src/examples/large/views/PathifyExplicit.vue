@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Large component</span>Pathify (explicit)</h2>
       <blockquote>
         <p>Demo uses Pathify sync and explicit array syntax</p>
-        <view-code src="examples/large/views/PathifyExplicit.vue"/>
-        <view-code src="examples/large/stores/pathify.js"/>
+        <edit-code src="examples/large/views/PathifyExplicit.vue"/>
+        <edit-code src="examples/large/stores/pathify.js"/>
       </blockquote>
     </div>
 

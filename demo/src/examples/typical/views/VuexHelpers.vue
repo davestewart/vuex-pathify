@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Typical component: </span>Vuex helpers</h2>
       <blockquote>
         <p>Demo uses mapState, mapGetters, mapMutations, deep watcher, manual event handlers</p>
-        <view-code src="examples/typical/views/VuexHelpers.vue"/>
-        <view-code src="examples/typical/stores/vuex-light.js"/>
+        <edit-code src="examples/typical/views/VuexHelpers.vue"/>
+        <edit-code src="examples/typical/stores/vuex-light.js"/>
 
       </blockquote>
     </div>

@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Large component</span>Vuex helpers (light)</h2>
       <blockquote>
         <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via state and mutations</p>
-        <view-code src="examples/large/views/VuexHelpersLight.vue"/>
-        <view-code src="examples/large/stores/vuex-light.js"/>
+        <edit-code src="examples/large/views/VuexHelpersLight.vue"/>
+        <edit-code src="examples/large/stores/vuex-light.js"/>
       </blockquote>
     </div>
 

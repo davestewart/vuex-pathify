@@ -6,8 +6,8 @@
       <h2 class="title is-2">API: Component helpers</h2>
       <blockquote>
         <p>Component helpers make wiring store properties to components simple and intuitive</p>
-        <view-code src="examples/api/views/Components.vue"/>
-        <view-code src="examples/api/stores/api.js"/>
+        <edit-code src="examples/api/views/Components.vue"/>
+        <edit-code src="examples/api/stores/api.js"/>
         <view-docs src="api/component"/>
       </blockquote>
     </div>

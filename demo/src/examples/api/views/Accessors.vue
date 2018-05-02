@@ -6,8 +6,8 @@
       <h2 class="title is-2">API: Store accessors</h2>
       <blockquote>
         <p>Store accessors provide global read / write access to the store</p>
-        <view-code src="examples/api/views/Accessors.vue"/>
-        <view-code src="examples/api/stores/api.js"/>
+        <edit-code src="examples/api/views/Accessors.vue"/>
+        <edit-code src="examples/api/stores/api.js"/>
         <view-docs src="api/accessors"/>
       </blockquote>
     </div>

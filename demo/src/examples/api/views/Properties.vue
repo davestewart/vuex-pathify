@@ -9,15 +9,15 @@
         <table>
           <tr><td>Pathify:</td>
           <td>
-            <view-code src="examples/api/views/Properties.vue"/>
-            <view-code src="examples/api/stores/icons.js"/>
+            <edit-code src="examples/api/views/Properties.vue"/>
+            <edit-code src="examples/api/stores/icons.js"/>
             <view-docs src="api/properties"/>
           </td></tr>
           <tr><td>Icon:</td>
           <td>
-            <view-code src="views/components/ui/UiIcon.vue" label="View Icon component" />
-            <view-code src="examples/api/icons/factory.js" label="View Icon factory" />
-            <view-code src="examples/api/icons/service/Icon.js" label="View Icon class" />
+            <edit-code src="views/components/ui/UiIcon.vue" label="Edit Icon component" />
+            <edit-code src="examples/api/icons/factory.js" label="Edit Icon factory" />
+            <edit-code src="examples/api/icons/service/Icon.js" label="Edit Icon class" />
           </td></tr>
         </table>
       </blockquote>

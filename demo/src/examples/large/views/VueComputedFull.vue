@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Large component</span>Vue computed (full)</h2>
       <blockquote>
         <p>Demo uses manually-created computed properties, accessing the store via getters and actions</p>
-        <view-code src="examples/large/views/VueComputedFull.vue"/>
-        <view-code src="examples/large/stores/vuex-full.js"/>
+        <edit-code src="examples/large/views/VueComputedFull.vue"/>
+        <edit-code src="examples/large/stores/vuex-full.js"/>
       </blockquote>
     </div>
 
