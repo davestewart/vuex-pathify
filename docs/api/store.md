@@ -17,7 +17,9 @@ Each helper builds and returns the appropriate JavaScript functions.
 
 ## Usage
 
-The following illustrates functionality and usage for all the helper functions:
+The following example illustrates functionality and usage for all the helper functions.
+
+Note that the code specifically demonstrates a **getters/action-heavy store** approach in order to show full usage of the `make.*` helpers. However, the Pathify-recommended approach is to **eschew** redundant getters and actions (those which simply proxy work to state and mutations) and only create mutations, letting Pathify do the heavy-lifting for you.
 
 ```js
 import Api from 'services/Api'
@@ -35,17 +37,17 @@ const state = {
 const mutations = make.mutations(state)
 
 const actions = {
-  // make `setItems()` action only
-  ...make.actions(state, 'items'),
+  // manually add load items action
+  loadItems({ dispatch }) {
+    Api.get('items').then(data => dispatch('setItems', data))
+  },
   
-  // add additional load action
-  loadItems({ commit }) {
-    Api.get('items').then(data => commit('SET_ITEMS', data))
-  }
+  // automatically-create only `setItems()` action (optional)
+  ...make.actions(state, 'items'),
 }
 
 const getters = {
-  // make all getters
+  // make all getters (optional)
   ...make.getters(state),
   
   // overwrite default `items` getter

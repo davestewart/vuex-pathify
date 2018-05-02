@@ -1,6 +1,10 @@
-- [Guide](/guide/index.md)
+- [Intro](/guide/index.md)
 
     - [Pathify 101](/guide/intro.md)
+    - [Demos](/guide/setup.md)
+
+- [Installation](/setup/index.md)
+
     - [Setup](/guide/setup.md)
     - [Configuration](/guide/config.md)
         - [Options](/guide/options.md)
