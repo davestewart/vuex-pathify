@@ -8,6 +8,11 @@
     <h4 class="title is-4">Introduction</h4>
     <p>This demo is intended to illustrate both API and real-world usage.</p>
 
+    <p>The Simple section gets you started with the least code:</p>
+    <ul>
+      <li><router-link class="code" to="/simple/hello">Hello World</router-link></li>
+    </ul>
+
     <p>The API section demonstrates core Pathify features:</p>
     <ul>
       <li><router-link class="code" to="/api/paths">Path syntax</router-link></li>

@@ -5,6 +5,7 @@ import Home from '../views/pages/Home'
 import Code from '../views/pages/Code'
 
 import api from './api'
+import simple from './simple'
 import typical from './typical'
 import large from './large'
 
@@ -23,6 +24,7 @@ export default new Router({
   routes: [
     { path: '/', redirect:'/home' },
     route('/home', Home),
+    ...simple,
     ...api,
     route('/code', Code),
     ...typical,

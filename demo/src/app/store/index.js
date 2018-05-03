@@ -5,6 +5,9 @@ import Vuex from 'vuex'
 // optional configuration
 import pathify from './pathify'
 
+// simple
+import hello      from '../../examples/simple/vuex/hello'
+
 // api
 import root       from '../../examples/api/vuex/root'
 import module     from '../../examples/api/vuex/module'
@@ -25,6 +28,9 @@ const store = new Vuex.Store({
   ...root,
 
   modules: {
+    // simple
+    hello,
+
     // api
     module,
     helpers,
