@@ -8,12 +8,12 @@
     <h4 class="title is-4">Introduction</h4>
     <p>This demo is intended to illustrate both API and real-world usage.</p>
 
-    <p>The Simple section gets you started with the least code:</p>
+    <p>For a simple, self-contained, "getting started" style demo, check out:</p>
     <ul>
-      <li><router-link class="code" to="/simple/hello">Hello World</router-link></li>
+      <li><a href="https://codesandbox.io/s/xpl8x520vo" target="_blank">Hello World</a></li>
     </ul>
 
-    <p>The API section demonstrates core Pathify features:</p>
+    <p>Otherwise, the API section demonstrates core Pathify features:</p>
     <ul>
       <li><router-link class="code" to="/api/paths">Path syntax</router-link></li>
       <li><router-link class="code" to="/api/accessors">Store accessors</router-link></li>
@@ -58,14 +58,13 @@
         +- views
     </pre>
 
-    <p>Check the <code>store/</code> folder to view Pathify and store setup.</p>
+    <p>Check the <code>store/</code> folder to view Pathify and store setup. There are a lot of imports, but there are a lot of features to demonstrate (one per module)!</p>
 
     <p>The example code (for each feature or example) can be found in the <code>src/examples/</code> folder:</p>
     <pre style="font-size: 12px">
 +- src
     +- examples
         +- api
-        +- simple
         +- large
         +- typical
     </pre>
