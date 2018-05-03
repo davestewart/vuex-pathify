@@ -26,8 +26,11 @@
       <p>Deeply-nested property:</p>
       <pre>{{ deepProp }}</pre>
 
-      <p>Wildcard:</p>
-      <pre>{{ x }} {{ y }} {{ z }}</pre>
+      <p>Property wildcards:</p>
+      <pre>{{ { a, b, c, a2, b2, c2 } }}</pre>
+
+      <p>Sub-property wildcards:</p>
+      <pre>{{ { x, y, z } }}</pre>
     </div>
 
   </article>
@@ -39,11 +42,17 @@
 
   export default {
     computed: {
+      // root value
       prop      : get('value'),
+
+      // module values
       module    : get('module/value'),
       subProp   : get('module/object@value'),
       deepProp  : get('module/object@a.b.c'),
-      ...get('module/wildcard@*') // implicitly maps sub-properties x, y, z
+
+      // wildcards
+      ...get('wildcards/*'), // get all properties (including getters)
+      ...get('wildcards/object@*') // get all sub-properties
     }
   }
 
