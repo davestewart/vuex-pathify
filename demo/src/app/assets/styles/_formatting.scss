@@ -1,0 +1,122 @@
+body {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #34495e;
+}
+
+#app {
+  text-align: center;
+  color: #2c3e50;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+//  HEADINGS
+// ---------------------------------------------------------------------------------------------------------------------
+
+h1, h2 {
+  font-weight: normal;
+}
+
+.content {
+  h1, h2, h3, h4, h5,
+  strong {
+    color: #2c3e50;
+    -webkit-font-smoothing: auto;
+  }
+
+  p,
+  ol,
+  ul {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: Merriweather;
+  margin-top: 2em;
+}
+
+.indent, li {
+  h1, h2, h3, h4, h5 {
+    margin-top: 1.5em;
+  }
+}
+
+.content > h1:first-child,
+.content > h2:first-child,
+.content > h3:first-child,
+.content > h4:first-child {
+  margin-top: 0;
+}
+
+h2 span {
+  display: none;
+  font-size: 0.35em;
+  margin-bottom: 0.3em;
+  margin-top: -1.6em;
+}
+
+.title + .title {
+  margin-top: 0.5em;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+//  LISTS
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  // display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #25afaf;
+}
+
+
+* {
+  text-align: left;
+  line-height: 1.4em;
+}
+
+.content pre,
+pre {
+  margin: 1em;
+  padding: 1em 1.5em;
+  border-radius: 4px;
+  background: #f8f8f8;
+  color: black;
+  font-smoothing: antialiased;
+  font-family: Roboto Mono, Monaco, Courier New, courier, monospace;
+}
+
+.columns {
+  margin-top: 0;
+}
+
+.indent {
+  padding-left: 1.5em;
+  padding-bottom: 1.5em;
+
+  &.has-border {
+    padding: 1em 0 1em 1.5em;
+    border-left: 1px solid #EEE;
+
+    > h1:first-child,
+    > h2:first-child,
+    > h3:first-child,
+    > h4:first-child,
+    > h5:first-child {
+      margin-top: 0;
+    }
+
+  }
+}

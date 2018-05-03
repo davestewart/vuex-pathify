@@ -9,6 +9,11 @@
       <li><router-link to="/home">Home</router-link></li>
     </ul>
 
+    <p class="menu-label">Simple</p>
+    <ul class="menu-list">
+      <li><router-link class="code" to="/simple/hello">Hello World</router-link></li>
+    </ul>
+
     <p class="menu-label">API</p>
     <ul class="menu-list">
       <li><router-link class="code" to="/api/paths">Path syntax</router-link></li>
