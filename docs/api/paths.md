@@ -83,7 +83,7 @@ set('filters@search', 'blue')
 See the [sub-property access](/api/properties.md#sub-property-access) section for more information.
 
 
-#### `Wildcard expansion`
+### Wildcard syntax
 
 Wildcards `*` allow you to reference multiple properties at once, and are used primarily in [component helpers](/api/component.md).
 
