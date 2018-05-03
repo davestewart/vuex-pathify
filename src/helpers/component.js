@@ -59,8 +59,10 @@ export function set (path, props) {
  */
 export function make (path, props, fn) {
   // expand path / props
-  // console.log('making', vuex)
-  const data = makePaths(path, props, vuex.store.state)
+  const getters = fn === getOne
+    ? vuex.store.getters
+    : null
+  const data = makePaths(path, props, vuex.store.state, getters)
 
   // handle single paths
   if (typeof data === 'string') {

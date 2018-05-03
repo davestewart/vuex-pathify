@@ -1,7 +1,7 @@
 /**
  * Module example
  *
- * Namespaced module, with various data types and nested properties
+ * Namespaced module, with different property nesting
  */
 import { make } from 'vuex-pathify'
 
@@ -18,12 +18,6 @@ const state = {
         c: 'some nested value'
       }
     }
-  },
-
-  wildcard: {
-    x: 'x',
-    y: 'y',
-    z: 'z'
   },
 }
 
