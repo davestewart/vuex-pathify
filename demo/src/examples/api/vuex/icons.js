@@ -1,10 +1,12 @@
+/**
+ * Getter Example
+ *
+ * Illustrates transforming simple state into more complex structures using getters
+ *
+ * The example is icons (purely for visual effect) but it could be anything; products, users, etc
+ */
 import factory from '../icons/factory'
 
-/**
- * Icons Store
- *
- * This store manages a set of icons, but they could be anything; products, users, etc
- */
 export default {
   namespaced: true,
 

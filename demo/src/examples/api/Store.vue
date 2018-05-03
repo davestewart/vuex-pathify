@@ -6,8 +6,8 @@
       <h2 class="title is-2">API: Store helpers</h2>
       <blockquote>
         <p>Store helpers help set up stores quickly, by generating default mutations, getters and actions</p>
-        <edit-code src="examples/api/views/Store.vue"/>
-        <edit-code src="examples/api/stores/helpers.js"/>
+        <edit-code src="examples/api/Store.vue"/>
+        <edit-code src="examples/api/vuex/helpers.js"/>
         <view-docs src="api/store"/>
       </blockquote>
     </div>
@@ -41,7 +41,7 @@
 <script>
   import { get } from 'vuex-pathify'
 
-  import store from '../../../app/store'
+  import store from '../../app/store/index'
 
   export default {
     data () {

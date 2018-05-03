@@ -5,8 +5,8 @@ import Home from '../views/pages/Home'
 import Code from '../views/pages/Code'
 
 import api from './api'
-import repos from './typical'
-import user from './large'
+import typical from './typical'
+import large from './large'
 
 Vue.use(Router)
 
@@ -25,8 +25,8 @@ export default new Router({
     route('/home', Home),
     ...api,
     route('/code', Code),
-    ...repos,
-    ...user,
+    ...typical,
+    ...large,
     route('*', {template: '<div>Route not found</div>'})
   ]
 })

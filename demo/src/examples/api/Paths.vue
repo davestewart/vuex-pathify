@@ -6,8 +6,8 @@
       <h2 class="title is-2">API: Path syntax</h2>
       <blockquote>
         <p>A unified path syntax provides expressive property and sub-property access to any store or module</p>
-        <edit-code src="examples/api/views/Paths.vue"/>
-        <edit-code src="examples/api/stores/api.js"/>
+        <edit-code src="examples/api/Paths.vue"/>
+        <edit-code src="examples/api/vuex/api.js"/>
         <view-docs src="api/paths"/>
       </blockquote>
     </div>

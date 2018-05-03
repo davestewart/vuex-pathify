@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import axios from 'axios'
 
-import Repo from '../../../examples/typical/views/ui/Repo'
+import Repo from '../../../examples/typical/ui/Repo'
 
 /*
 Base store for all comparisons

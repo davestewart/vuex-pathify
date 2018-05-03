@@ -9,8 +9,8 @@
         <table>
           <tr><td>Pathify:</td>
           <td>
-            <edit-code src="examples/api/views/Properties.vue"/>
-            <edit-code src="examples/api/stores/icons.js"/>
+            <edit-code src="examples/api/Properties.vue"/>
+            <edit-code src="examples/api/vuex/icons.js"/>
             <view-docs src="api/properties"/>
           </td></tr>
           <tr><td>Icon:</td>
@@ -67,7 +67,7 @@
 <script>
   import { get, sync, commit, dispatch } from 'vuex-pathify'
 
-  import factory from '../icons/factory'
+  import factory from './icons/factory'
 
 
   /**

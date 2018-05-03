@@ -1,4 +1,4 @@
-import RepoCollection from './ui/RepoCollection'
+import RepoCollection from './RepoCollection'
 
 /**
  * Base component for all comparisons

@@ -1,9 +1,9 @@
 import { route } from './index'
 
 import Index from '../views/pages/Typical'
-import Pathify from '../../examples/typical/views/Pathify'
-import VuexComputed from '../../examples/typical/views/VueComputed'
-import VuexHelpers from '../../examples/typical/views/VuexHelpers'
+import Pathify from '../../examples/typical/Pathify'
+import VuexComputed from '../../examples/typical/VueComputed'
+import VuexHelpers from '../../examples/typical/VuexHelpers'
 
 export default [
   route('/code/typical', Index),

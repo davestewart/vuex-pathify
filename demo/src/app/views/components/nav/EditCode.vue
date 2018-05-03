@@ -27,9 +27,9 @@
       },
 
       text () {
-        return this.src.includes('/view')
+        return this.src.includes('.vue')
           ? 'Edit component'
-          : this.src.includes('/store')
+          : this.src.includes('/vuex')
             ? 'Edit store'
             : 'Edit code'
       }

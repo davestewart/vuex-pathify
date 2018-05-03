@@ -30,10 +30,15 @@
     <p>The examples are designed to be viewed in parallel with editing the code. For each:</p>
     <ul>
       <li>there are buttons to open the associated files</li>
-      <li>source code is clearly commented, with interactive suggestions where appropriate</li>
+      <li>source code is clearly commented, with editing suggestions where appropriate</li>
       <li>additional buttons link to any related documentation</li>
     </ul>
 
+    <p>Each example will have one component and one store file. The files will be self-contained, with a few exceptions:</p>
+    <ul>
+      <li>Some files extend from a <code>base.js</code> file, where there is common functionality</li>
+      <li>Some components reference the same store, where there is common data</li>
+    </ul>
 
     <h4 class="title is-4">Folder structure</h4>
 
@@ -44,44 +49,50 @@
     +- app
         +- assets
         +- router
-        +- store
+        +- store                      <-- pathify setup
         +- views
     </pre>
+
+    <p>Check the <code>store/</code> folder to view Pathify and store setup.</p>
 
     <p>The example code (for each feature or example) can be found in the <code>src/examples/</code> folder:</p>
     <pre style="font-size: 12px">
 +- src
     +- examples
         +- api
+        +- simple
         +- large
         +- typical
     </pre>
 
-    <p>Each set of examples is <strong>self-contained</strong> with its own stores, views and supporting files sitting in subfolders:</p>
+    <p>Each example group is self-contained with its own vuex stores, views and supporting files:</p>
     <pre style="font-size: 12px">
 +- src
-    +- examples                       <-- root examples folder
-        |
-        +- api
-        |
-        +- large
-        |
-        +- typical                    <-- "typical component" example set + related files
+    +- examples
+        +- ...
+        +- typical                    <-- example group
             |
-            +- stores
+            +- ui / icons / etc       <-- supporting files
+            |
+            +- vuex                   <-- vuex store files
+            |   +- base.js
+            |   +- index.js
             |   +- pathify.js
             |   +- vuex-light.js
-            |   ...
             |
-            +- views
-                +- Pathify.vue
-                +- VueComputed.vue
-                +- ui
-                |  ...
-                ...
+            +- Pathify.vue            <-- component files
+            +- VueComputed.vue
+            +- VuexHelpers.vue
     </pre>
 
     <p>You can manually navigate to the folders, or as mentioned above, use the edit buttons to jump directly to the file.</p>
+
+
+    <h4 class="title is-4">Using Vue Devtools</h4>
+
+    <p>You will probably want to use Vue Devtools as you run the demo to see the store update.</p>
+    <p>As CodeSandbox runs in an iframe, you'll need to open the preview pane in a new window. Click the arrow-like icon above the preview pane to do this, then use Vue Devtools as normal.</p>
+    <p>Note that you will still be able to edit the code and see the results! CodeSandbox is that cool :)</p>
 
   </div>
 

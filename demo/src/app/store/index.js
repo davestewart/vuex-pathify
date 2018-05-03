@@ -5,12 +5,15 @@ import Vuex from 'vuex'
 // optional configuration
 import pathify from './pathify'
 
-// store
-import { root, module } from '../../examples/api/stores/api'
-import helpers from '../../examples/api/stores/helpers'
-import icons from '../../examples/api/stores/icons'
-import typical from '../../examples/typical/stores/index'
-import large from '../../examples/large/stores/index'
+// api
+import root       from '../../examples/api/vuex/root'
+import module     from '../../examples/api/vuex/module'
+import helpers    from '../../examples/api/vuex/helpers'
+import icons      from '../../examples/api/vuex/icons'
+
+// code comparisons
+import typical    from '../../examples/typical/vuex'
+import large      from '../../examples/large/vuex'
 
 pathify.debug()
 
@@ -22,9 +25,12 @@ const store = new Vuex.Store({
   ...root,
 
   modules: {
+    // api
     module,
     helpers,
     icons,
+
+    // code comparisons
     ...typical,
     ...large,
   },

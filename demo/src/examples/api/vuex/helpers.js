@@ -1,3 +1,8 @@
+/**
+ * Pathify helpers example
+ *
+ * See comments for details
+ */
 import { make } from 'vuex-pathify'
 
 const state = {

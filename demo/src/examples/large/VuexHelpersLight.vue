@@ -2,11 +2,11 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2"><span>Large component</span>Vuex helpers (full)</h2>
+      <h2 class="title is-2"><span>Large component</span>Vuex helpers (light)</h2>
       <blockquote>
-        <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via getters and actions</p>
-        <edit-code src="examples/large/views/VuexHelpersFull.vue"/>
-        <edit-code src="examples/large/stores/vuex-full.js"/>
+        <p>Demo uses Vuex helpers and manually-created handlers, accessing the store via state and mutations</p>
+        <edit-code src="examples/large/VuexHelpersLight.vue"/>
+        <edit-code src="examples/large/vuex/vuex-light.js"/>
       </blockquote>
     </div>
 
@@ -14,67 +14,67 @@
       <fieldset class="column">
         <ui-input label="First Name"
                   :value="firstName"
-                  @input="setFirstName"
+                  @input="SET_FIRST_NAME"
         />
         <ui-input label="Last Name"
                   :value="lastName"
-                  @input="setLastName"
+                  @input="SET_LAST_NAME"
         />
         <ui-input label="Email"
                   :value="email"
-                  @input="setEmail"
+                  @input="SET_EMAIL"
         />
         <ui-input label="Website"
                   :value="website"
-                  @input="setWebsite"
+                  @input="SET_WEBSITE"
         />
         <ui-input label="Phone"
                   :value="phone"
-                  @input="setPhone"
+                  @input="SET_PHONE"
         />
       </fieldset>
 
       <fieldset class="column">
         <ui-input label="Street"
                   :value="street"
-                  @input="setStreet"
+                  @input="SET_STREET"
         />
         <ui-input label="Area"
                   :value="area"
-                  @input="setArea"
+                  @input="SET_AREA"
         />
         <ui-input label="Town"
                   :value="town"
-                  @input="setTown"
+                  @input="SET_TOWN"
         />
         <ui-input label="Zipcode"
                   :value="zipcode"
-                  @input="setZipcode"
+                  @input="SET_ZIPCODE"
         />
         <ui-input label="Country"
                   :value="country"
-                  @input="setCountry"
+                  @input="SET_COUNTRY"
         />
       </fieldset>
     </div>
 
-    <user-card user="user6"/>
+    <user-card user="user5"/>
 
   </article>
 
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapState, mapGetters, mapMutations } from 'vuex'
 
-  import base from './base.js'
+  import base from './ui/base.js'
 
   export default {
 
     extends: base,
 
     computed: {
-      ...mapGetters('user6', [
+      ...mapState('user5', [
         'firstName',
         'lastName',
         'email',
@@ -89,19 +89,18 @@
     },
 
     methods: {
-      ...mapActions('user6', [
-        'setFirstName',
-        'setLastName',
-        'setEmail',
-        'setWebsite',
-        'setPhone',
-        'setStreet',
-        'setArea',
-        'setTown',
-        'setZipcode',
-        'setCountry',
+      ...mapMutations('user5', [
+        'SET_FIRST_NAME',
+        'SET_LAST_NAME',
+        'SET_EMAIL',
+        'SET_WEBSITE',
+        'SET_PHONE',
+        'SET_STREET',
+        'SET_AREA',
+        'SET_TOWN',
+        'SET_ZIPCODE',
+        'SET_COUNTRY',
       ]),
     },
   }
-
 </script>

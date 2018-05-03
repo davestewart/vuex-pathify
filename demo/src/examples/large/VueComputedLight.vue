@@ -2,11 +2,11 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2"><span>Large component</span>Vue computed (full)</h2>
+      <h2 class="title is-2"><span>Large component</span>Vue computed (light)</h2>
       <blockquote>
-        <p>Demo uses manually-created computed properties, accessing the store via getters and actions</p>
-        <edit-code src="examples/large/views/VueComputedFull.vue"/>
-        <edit-code src="examples/large/stores/vuex-full.js"/>
+        <p>Demo uses manually-created computed properties, accessing the store via state and mutations</p>
+        <edit-code src="examples/large/VueComputedLight.vue"/>
+        <edit-code src="examples/large/vuex/vuex-light.js"/>
       </blockquote>
     </div>
 
@@ -28,14 +28,14 @@
       </fieldset>
     </div>
 
-    <user-card user="user4"/>
+    <user-card user="user3"/>
 
   </article>
 
 </template>
 
 <script>
-  import base from './base.js'
+  import base from './ui/base.js'
 
   export default {
 
@@ -44,91 +44,91 @@
     computed: {
       firstName: {
         get () {
-          return this.$store.getters['user4/firstName']
+          return this.$store.state.user3.firstName
         },
         set (value) {
-          this.$store.dispatch('user4/setFirstName', value)
+          this.$store.commit('user3/SET_FIRST_NAME', value)
         }
       },
 
       lastName: {
         get () {
-          return this.$store.getters['user4/lastName']
+          return this.$store.state.user3.lastName
         },
         set (value) {
-          this.$store.dispatch('user4/setLastName', value)
+          this.$store.commit('user3/SET_LAST_NAME', value)
         }
       },
 
       email: {
         get () {
-          return this.$store.getters['user4/email']
+          return this.$store.state.user3.email
         },
         set (value) {
-          this.$store.dispatch('user4/setEmail', value)
+          this.$store.commit('user3/SET_EMAIL', value)
         }
       },
 
       website: {
         get () {
-          return this.$store.getters['user4/website']
+          return this.$store.state.user3.website
         },
         set (value) {
-          this.$store.dispatch('user4/setWebsite', value)
+          this.$store.commit('user3/SET_WEBSITE', value)
         }
       },
 
       phone: {
         get () {
-          return this.$store.getters['user4/phone']
+          return this.$store.state.user3.phone
         },
         set (value) {
-          this.$store.dispatch('user4/setPhone', value)
+          this.$store.commit('user3/SET_PHONE', value)
         }
       },
 
       street: {
         get () {
-          return this.$store.getters['user4/street']
+          return this.$store.state.user3.street
         },
         set (value) {
-          this.$store.dispatch('user4/setStreet', value)
+          this.$store.commit('user3/SET_STREET', value)
         }
       },
 
       area: {
         get () {
-          return this.$store.getters['user4/area']
+          return this.$store.state.user3.area
         },
         set (value) {
-          this.$store.dispatch('user4/setArea', value)
+          this.$store.commit('user3/SET_AREA', value)
         }
       },
 
       town: {
         get () {
-          return this.$store.getters['user4/town']
+          return this.$store.state.user3.town
         },
         set (value) {
-          this.$store.dispatch('user4/setTown', value)
+          this.$store.commit('user3/SET_TOWN', value)
         }
       },
 
       zipcode: {
         get () {
-          return this.$store.getters['user4/zipcode']
+          return this.$store.state.user3.zipcode
         },
         set (value) {
-          this.$store.dispatch('user4/setZipcode', value)
+          this.$store.commit('user3/SET_ZIPCODE', value)
         }
       },
 
       country: {
         get () {
-          return this.$store.getters['user4/country']
+          return this.$store.state.user3.country
         },
         set (value) {
-          this.$store.dispatch('user4/setCountry', value)
+          this.$store.commit('user3/SET_COUNTRY', value)
         }
       },
 

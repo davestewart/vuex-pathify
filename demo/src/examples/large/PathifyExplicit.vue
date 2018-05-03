@@ -2,11 +2,11 @@
   <article>
 
     <div class="content">
-      <h2 class="title is-2"><span>Large component</span>Pathify (implicit)</h2>
+      <h2 class="title is-2"><span>Large component</span>Pathify (explicit)</h2>
       <blockquote>
-        <p>Demo uses Pathify sync and implicit wildcard syntax</p>
-        <edit-code src="examples/large/views/PathifyImplicit.vue"/>
-        <edit-code src="examples/large/stores/pathify.js"/>
+        <p>Demo uses Pathify sync and explicit array syntax</p>
+        <edit-code src="examples/large/PathifyExplicit.vue"/>
+        <edit-code src="examples/large/vuex/pathify.js"/>
       </blockquote>
     </div>
 
@@ -28,7 +28,7 @@
       </fieldset>
     </div>
 
-    <user-card user="user1"/>
+    <user-card user="user2"/>
 
   </article>
 
@@ -37,12 +37,25 @@
 <script>
   import { sync } from 'vuex-pathify'
 
-  import base from './base.js'
+  import base from './ui/base.js'
 
   export default {
 
     extends: base,
 
-    computed: sync('user1/*'),
+    computed: {
+      ...sync('user2/', [
+        'firstName',
+        'lastName',
+        'email',
+        'website',
+        'phone',
+        'street',
+        'area',
+        'town',
+        'zipcode',
+        'country',
+      ]),
+    }
   }
 </script>

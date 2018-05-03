@@ -1,10 +1,9 @@
+/**
+ * Module example
+ *
+ * Namespaced module, with various data types and nested properties
+ */
 import { make } from 'vuex-pathify'
-
-export const root = {
-  state: {
-    value: 123,
-  }
-}
 
 const state = {
 
@@ -32,7 +31,7 @@ const mutations = {
   ...make.mutations(state),
 }
 
-export const module = {
+export default {
   namespaced: true,
   state,
   mutations,

@@ -5,8 +5,8 @@
       <h2 class="title is-2"><span>Typical component: </span>Pathify</h2>
       <blockquote>
         <p>Demo uses Pathify get and sync functions, sub-property access, object, array, and wildcard syntax</p>
-        <edit-code src="examples/typical/views/Pathify.vue"/>
-        <edit-code src="examples/typical/stores/pathify.js"/>
+        <edit-code src="examples/typical/Pathify.vue"/>
+        <edit-code src="examples/typical/vuex/pathify.js"/>
       </blockquote>
     </div>
 
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import base from './base'
+  import base from './ui/base'
 
   import { get, sync } from 'vuex-pathify'
 
