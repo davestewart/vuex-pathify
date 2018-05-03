@@ -8,7 +8,7 @@ import './app/views/components'
 
 // styles
 import 'bulma/css/bulma.css'
-import './assets/styles/index.scss'
+import './app/assets/styles/index.scss'
 
 Vue.config.productionTip = false
 

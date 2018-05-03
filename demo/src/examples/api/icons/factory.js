@@ -5,7 +5,7 @@ import IconFactory from './service/IconFactory'
  *
  * (There is also a travel set - try importing them instead!)
  */
-import icons from '../../../assets/svg/weather'
+import icons from './assets/weather'
 
 const colors = {
   red: '#DD3A77',

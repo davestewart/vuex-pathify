@@ -2,7 +2,7 @@
 
   <div class="content">
     <div style="text-align: center">
-      <img src="../../../assets/img/pathify-logo.png" width="450">
+      <img src="../../assets/img/pathify-logo.png" width="450">
     </div>
 
     <h4 class="title is-4">Introduction</h4>
@@ -42,6 +42,7 @@
     <pre style="font-size: 12px">
 +- src
     +- app
+        +- assets
         +- router
         +- store
         +- views
