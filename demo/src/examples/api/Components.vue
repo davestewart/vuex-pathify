@@ -29,9 +29,6 @@
 
       <p>Object syntax:</p>
       <pre>{{ { altValue, altString } }} </pre>
-
-      <p>Wildcards:</p>
-      <pre>{{ { x, y, z } }} </pre>
     </div>
 
   </article>
@@ -45,8 +42,11 @@
 
     computed: {
 
-      // single property syntax
+      // single property
       store: get('module'),
+
+      // accessor priority
+      string: get('module/string'),
 
       // nested property syntax
       sub: sync('module/object@value'),
@@ -63,9 +63,6 @@
         altValue: 'value',
         altString: 'string'
       }),
-
-      // wildcard syntax, maps x, y, z
-      ...get('module/wildcard@*'),
     }
   }
 
