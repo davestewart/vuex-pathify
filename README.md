@@ -75,8 +75,12 @@ In practical terms, Pathify results in:
 
 ### Next steps
 
-- Read the [documentation](https://davestewart.github.io/vuex-pathify/) to find out more
-- Check out the [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo) to see the code in action
-- Install the [package](https://www.npmjs.com/package/vuex-pathify) from NPM
+Get started:
 
+- [Installation](https://www.npmjs.com/package/vuex-pathify)
+- [Documentation](https://davestewart.github.io/vuex-pathify)
 
+Demos:
+
+- [Hello World demo](https://codesandbox.io/s/xpl8x520vo?module=%2Fsrc%2Fcomponents%2FHelloWorld.vue)
+- [Feature demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)

@@ -214,3 +214,23 @@ products/*
 products/filters@*
 products/filters@sort.*
 ```
+
+Also note that Pathify thet the wildcard `*` symbol **must be at the end** of the path!
+
+!> **Important!**
+
+Using wildcard syntax has one caveat - you need to import your store before your router so that properties are set up before being asked for:
+
+```js
+import store from './store'
+import router from './router'
+```
+
+If you don't do this, Pathify will warn you:
+
+````
+[Vuex Pathify] Unable to create computed properties for path 'foo/*':
+    - The usual reason for this is that the router was set up before the store
+    - Make sure the store is imported before the router, then reload
+````
+

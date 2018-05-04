@@ -8,6 +8,7 @@ import pathify from './pathify'
 // api
 import root       from '../../examples/api/vuex/root'
 import module     from '../../examples/api/vuex/module'
+import wildcards  from '../../examples/api/vuex/wildcards'
 import helpers    from '../../examples/api/vuex/helpers'
 import icons      from '../../examples/api/vuex/icons'
 
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
   modules: {
     // api
     module,
+    wildcards,
     helpers,
     icons,
 
