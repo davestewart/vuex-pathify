@@ -8,22 +8,21 @@ Pathify component helpers are designed to **easily wire components** to the stor
 
 They are implemented as **helper functions** which:
  
-- are written as one-liners
-- can **get**, **set** or **sync** values
+- support **1-way** or **2-way** data-binding
 - wire **single** or **multiple** properties
+- are written as one-liners
 
-Each helper generates and returns the appropriate `computed` property function.
+Each helper generates and returns the appropriate `computed` property function. Additionally, because **sync** does everything inside a single **compound** computed property, there's no need to add code or map actions in your component's `methods` block.
 
-Note that although the **generation** is more expensive than writing a manual function, once helper has finished, only a single lightweight function is returned and used.
+Note that although the **generation** is more expensive than writing a manual function, once helper has finished, only lightweight functions are returned and run.
 
-Additionaly, because get, set **and** sync are all **computed properties**, there's no need to add functions or map actions/mutations in the `methods` block.
 
 ## Usage
 
 The following gives an example of some of the main features:
 
 ```js
-import { get, set, sync } from 'vuex-pathify'
+import { get, sync } from 'vuex-pathify'
 
 // component
 export default {
@@ -32,9 +31,9 @@ export default {
     items: get('products/items'),
     
     // read/write, single property
-    search: sync('products/search'),
+    search: sync('products/filters@search'),
     
-    // read/write, multiple manual (sub) properties
+    // read/write, rename, multiple (sub) properties
     ...sync('products/filters@sort', {
       sortOrder: 'order',
       sortKey: 'key',
@@ -54,43 +53,6 @@ See the component helpers [demo](https://codesandbox.io/s/github/davestewart/vue
 !> Remember that component helpers use Pathify's core [property access](/api/properties.md) so have exactly the same functionality.
 
 ### Single property access
-
-
-#### `sync(path: string): *`
-
-Use `sync()` to set up two-way data binding: 
-
-```js
-computed: {
-  items: sync('products/items')
-}
-```
-
-The helper generates the following **compound** computed property:
-
-```js
-computed: {
-  items: {
-    get () { 
-      return this.$store.getters['products/items']
-    },
-    set (value) {
-      return this.$store.commit('products/SET_ITEMS', value)
-    },
-  }
-}
-```
-Note that `sync()` takes an additional path syntax `|` with which you can specify direct access for both get and set members:
-
-```js
-computed: {
-    // get with `items` accessor but set with `updateItems()` action
-    items: sync('items|updateItems!')
-
-    // get with `filteredItems` getter and set with `updateItems()` action
-    items: sync('filteredItems|updateItems!')
-}
-```
 
 #### `get(path: string): *`
 
@@ -113,23 +75,38 @@ computed: {
 }
 ```
 
-#### `set(path: string, value: *): *`
 
-Not so useful on its own, but included for completeness, use `set()` to write properties to the store: 
+#### `sync(path: string): *`
+
+Use `sync()` to set up two-way data binding: 
 
 ```js
 computed: {
-  items: set('products/items')
+  items: sync('products/status')
 }
 ```
 
-The helper generates the following computed property:
+The helper generates the following **compound** computed property:
 
 ```js
 computed: {
-  items (value) {
-    return this.$store.commit('products/SET_ITEMS', value)
+  status: {
+    get () { 
+      return this.$store.state.products.status
+    },
+    set (value) {
+      return this.$store.commit('products/SET_STATUS', value)
+    },
   }
+}
+```
+
+Note that `sync()` takes an additional path syntax `|` with which you can specify direct access for both get and set members:
+
+```js
+computed: {
+    // get with `items` accessor but set with `updateItems()` action
+    items: sync('items|updateItems')
 }
 ```
 
@@ -147,6 +124,7 @@ Each syntax generates an **Object** of **named properties** which must be mixed 
 
 ```js
 computed: {
+  ...sync(map),
   ...sync(path, map)
 }
 ```
@@ -163,8 +141,8 @@ It takes an **optional** path prefix, and an array of `property` names:
 ```js
 computed: {
   ...get('products', [
+    'search',
     'items',
-    'filter',
   ]),
 }
 ```
@@ -217,7 +195,7 @@ products/filters@sort.*
 
 Also note that Pathify thet the wildcard `*` symbol **must be at the end** of the path!
 
-!> **Important!**
+!> **Important: import order matters!**
 
 Using wildcard syntax has one caveat - you need to import your store before your router so that properties are set up before being asked for:
 

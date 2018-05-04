@@ -3,13 +3,24 @@
 
 > How Pathify does what it does
 
-Pathify **simplifies** the Vuex development experience.
+Pathify's aim is to **simplify** the overall Vuex development experience.
 
 Its core mechanism is a custom [path syntax](/api/paths.md) which can reference any state property:
 
 ```js
 'products/items@filters.search'
 ```
+
+Paths are mapped to store members via a configurable [mapping](/setup/mapping.md) naming scheme:
+
+```js
+Operation       Member          Name            Scheme
+
+read            state           foo             // base name
+read            getters         foo             // no prefix, no case conversion
+write           mutations       SET_FOO         // "set" prefix, constant case, 
+write           actions         setFoo          // "set" prefix, camel case, 
+``` 
 
 Store [access](/api/accessors.md) and component [wiring](/api/component.md) are unified with `get()`, `set()` and `sync()` methods:
 
@@ -22,18 +33,6 @@ computed: {
   items: sync('products/items')
 }
 ```
-
-Paths are mapped to store members via a configurable [mapping](/setup/mapping.md) algorithm:
-
-```js
-Operation       Member          Name            Naming scheme
-
-read            state           foo             // base name
-read            getters         foo             // no prefix, no case conversion
-write           mutations       SET_FOO         // "set" prefix, constant case, 
-write           actions         setFoo          // "set" prefix, camel case, 
-``` 
-
 
 Implementation details are simplified by [prioritising](/api/properties.md) **getters over state** and **actions over mutations**:
 

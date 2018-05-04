@@ -18,7 +18,7 @@ The methods:
 Once [configured](/setup/config.md), getting and setting values on the store is simple: 
 
 ```js
-store.set('products/filters@sort.order', 'asc')
+store.set('filters@sort.order', 'asc')
 ```
 
 You can get and set values from anywhere, even the console (which is great for debugging!):
@@ -28,7 +28,7 @@ import store from 'store'
 window.store = store
 ```
 ```console
-store.set('settings/loaded', false)
+store.set('filters@search', 'widgets')
 ```
 
 See the store accessors [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/accessors) for an editable, live example.
@@ -44,12 +44,12 @@ Remember that store accessors use Pathify's core [property access](/api/properti
 The `get()` method reads values from the getters or state:
 
 ```js
-// 'shoes'
-store.get('category')
+// 'loading'
+store.get('status')
 ```
 ```js
-// 'red'
-store.get('filters@search')
+// 'asc'
+store.get('filters@sort.order')
 ```
 
 #### `set(path: string, value: *): *`
@@ -57,13 +57,13 @@ store.get('filters@search')
 The `set()` method writes values via actions or mutations:
 
 ```js
-store.set('category', 'bags')
+store.set('status', 'error')
 ```
 ```js
 store.set('filters@sort.order', 'desc')
 ```
 
-The result of both calls is returned, so if you're expecting a Promise, you can continue when it resolves:
+Note that `set()` returns the result of the operation so if you're expecting a Promise, you can continue when it resolves:
 
 ```js
 store
