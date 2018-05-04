@@ -63,6 +63,9 @@
 .markdown-section p a:hover {
   color: #09d7d7; }
 
+.markdown-section em {
+  color: #34495e; }
+
 .markdown-section pre {
   padding: 0;
   margin-left: 25px; }

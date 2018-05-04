@@ -1,4 +1,4 @@
-![logo](assets/img/logos/logo.svg)
+![logo](../assets/img/logos/logo.svg)
 
 <blockquote>
     <p class="title">Vuex Pathify</p>

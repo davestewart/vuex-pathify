@@ -21,12 +21,12 @@ Paths are used throughout Pathify:
 
 ```js
 // global
-store.get('value')
-store.set('module/foo', 100)
+store.get('items')
+store.set('products/items', items)
 
 // components
 computed: {
-  value: sync('module/bar@baz')
+  search: sync('products/filters@search')
 }
 ```
 
@@ -131,7 +131,7 @@ Direct sync syntax uses a pipe `|` to specify alternate get and set members in c
 
 ```js
 computed: {
-    items: sync('updatedItems|updateItems!')
+    items: sync('items|updateItems!')
 }
 ```
 
