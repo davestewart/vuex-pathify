@@ -12,7 +12,7 @@ With Pathify, you access Vuex by **path**:
 
 Paths can reference any **module**, **property** or **sub-property**:
 
-![pathify-diagram](assets/img/readme/pathify-diagram.png)
+![pathify-diagram](../assets/img/readme/pathify-diagram.png)
 
 
 **Get** or **set** data without **syntax juggling** or worrying about **implementation**:

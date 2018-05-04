@@ -27,8 +27,9 @@ import { make } from 'vuex-pathify'
 
 const state = {
   items: [],
-  category: '',
+  status: '',
   filters: {
+    search: '',
     sort : { ... } // object sub-properties
   }
 }
@@ -37,13 +38,13 @@ const state = {
 const mutations = make.mutations(state)
 
 const actions = {
+  // automatically create only `setItems()` action (optional)
+  ...make.actions(state, 'items'),
+
   // manually add load items action
   loadItems({ dispatch }) {
     Api.get('items').then(data => dispatch('setItems', data))
   },
-  
-  // automatically-create only `setItems()` action (optional)
-  ...make.actions(state, 'items'),
 }
 
 const getters = {
@@ -57,7 +58,7 @@ const getters = {
   
   // add new `filteredItems` getter
   filteredItems: (state, getters) => {
-    return getters.items.filter(item => item.category === state.category)
+    return getters.items.filter(item => item.title.includes(state.filters.search))
   }
 }
 
@@ -90,9 +91,9 @@ mutations = {
     SET_ITEMS: (state, payload) => payload instanceof Payload
         ? payload.update(state)
         : state.items = payload,
-    SET_CATEGORY: (state, payload) => payload instanceof Payload
+    SET_STATUS: (state, payload) => payload instanceof Payload
         ? payload.update(state)
-        : state.category = payload,
+        : state.search = payload,
     SET_FILTERS: (state, payload) => payload instanceof Payload
         ? payload.update(state)
         : state.filters = payload,
@@ -115,7 +116,7 @@ The helper generates the following code:
 ```js
 const actions = {
     setItems: ({commit}, value) => commit('SET_ITEMS', value),
-    setCategory: ({commit}, value) => commit('SET_CATEGORY', value),
+    setStatus: ({commit}, value) => commit('SET_STATUS', value),
     setFilters: ({commit}, value) => commit('SET_FILTERS', value),
 }
 ```
@@ -136,7 +137,7 @@ The helper generates the following code:
 ```js
 const getters = {
   items: state => state.items,
-  category: state => state.category,
+  status: state => state.search,
   filters: state => state.filters,
 }
 ```
@@ -151,11 +152,11 @@ All `make.*` helpers can choose which state properties to process via a second a
 
 ```js
 // strings have properties parsed from them
-const mutations = make.mutations(state, 'items category')
+const mutations = make.mutations(state, 'items status')
 
 // arrays use the passed values
-const actions = make.actions(state, ['items', 'category'])
+const actions = make.actions(state, ['items', 'status'])
 
 // objects use the passed keys
-const getters = make.getters(state, {items: true, category: true})
+const getters = make.getters(state, {items: true, status: true})
 ```
