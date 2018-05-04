@@ -23,3 +23,7 @@
     - [Rationale](/discussion/rationale.md)
     - [FAQs](/discussion/faq.md)
     
+- Appendix
+
+    - [Example code](/appendix/code.md)
+    
