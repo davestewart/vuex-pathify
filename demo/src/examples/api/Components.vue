@@ -7,7 +7,7 @@
       <blockquote>
         <p>Component helpers make wiring store properties to components simple and intuitive</p>
         <edit-code src="examples/api/Components.vue"/>
-        <edit-code src="examples/api/vuex/api.js"/>
+        <edit-code src="examples/api/vuex/module.js"/>
         <view-docs src="api/component"/>
       </blockquote>
     </div>

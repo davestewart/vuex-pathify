@@ -7,7 +7,8 @@
       <blockquote>
         <p>A unified path syntax provides expressive property and sub-property access to any store or module</p>
         <edit-code src="examples/api/Paths.vue"/>
-        <edit-code src="examples/api/vuex/api.js"/>
+        <edit-code src="examples/api/vuex/root.js" label="Edit root store"/>
+        <edit-code src="examples/api/vuex/module.js" label="Edit module store"/>
         <view-docs src="api/paths"/>
       </blockquote>
     </div>

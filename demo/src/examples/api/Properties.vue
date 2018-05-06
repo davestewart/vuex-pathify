@@ -15,7 +15,7 @@
           </td></tr>
           <tr><td>Icon:</td>
           <td>
-            <edit-code src="views/components/ui/UiIcon.vue" label="Edit Icon component" />
+            <edit-code src="app/views/components/ui/UiIcon.vue" label="Edit Icon component" />
             <edit-code src="examples/api/icons/factory.js" label="Edit Icon factory" />
             <edit-code src="examples/api/icons/service/Icon.js" label="Edit Icon class" />
           </td></tr>

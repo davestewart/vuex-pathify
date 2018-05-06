@@ -7,7 +7,7 @@
       <blockquote>
         <p>Store accessors provide global read / write access to the store</p>
         <edit-code src="examples/api/Accessors.vue"/>
-        <edit-code src="examples/api/vuex/api.js"/>
+        <edit-code src="examples/api/vuex/module.js"/>
         <view-docs src="api/accessors"/>
       </blockquote>
     </div>
