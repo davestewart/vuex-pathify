@@ -85,31 +85,21 @@ See the [sub-property access](/api/properties.md#sub-property-access) section fo
 
 ### Wildcard syntax
 
-Wildcards `*` allow you to reference multiple properties at once, and are used primarily in [component helpers](/api/component.md).
+Wildcards `*` allow you to reference multiple properties at once, and are used only in components:
 
-Wildcards don't **return** values like other path references, rather they **generate** a hash of named functions for **all properties that they expand to**, and are usually mixed in using the ES6 spread operator:
+They don't **return** values like other path references, rather they **generate** a hash of named functions for all properties that they expand to:
 
 ```js
-// a hash of computed getters for `items` and `filters`
+// generate getters for `items`, `search` and `filters`
 computed: {
-  ...get('*') 
+  ...get('products/*') 
 }
 ```
 
-You can use wildcards on top-level modules, properties and sub-properties:
 
-```js
-// a hash of computed getters for `search` and `sort`
-computed: {
-  ...get('filters*')
-}
-```
-```js
-// a hash of computed getters for `key` and `order`
-computed: {
-  ...get('filters@sort.*')
-}
-```
+See the [component helpers](/api/component.md#wildcard-property-access) page for more info.
+
+
 
 ### Direct syntax
 

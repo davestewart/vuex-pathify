@@ -11,7 +11,7 @@ Its core mechanism is a custom [path syntax](/api/paths.md) which can reference 
 'products/items@filters.search'
 ```
 
-Paths are mapped to store members via a configurable [mapping](/setup/mapping.md) naming scheme:
+Paths are [mapped](/setup/mapping.md) to store members via a configurable naming scheme:
 
 ```js
 Operation       Member          Name            Scheme
@@ -27,6 +27,7 @@ Store [access](/api/accessors.md) and component [wiring](/api/component.md) are 
 ```js
 // global
 const items = store.get('products/items')
+store.set('products/items', items)
 
 // component
 computed: {

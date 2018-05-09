@@ -78,7 +78,7 @@ store
 The `copy()` method clones and returns a non-reactive copy of the values in the store.
 
 ```js
-// {key: "bags", order: "asc"} 
+// { key: "id", order: "asc" } 
 copy('sort')
 ```
 ```js
