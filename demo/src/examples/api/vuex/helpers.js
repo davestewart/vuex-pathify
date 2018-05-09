@@ -37,7 +37,7 @@ const mutations = {
 const actions = {
 
   // creates redundant actions, but for foo only
-  ...make.actions(state, 'foo'),
+  ...make.actions('foo'),
 
   // additional loadFoo action
   loadFoo ({commit}) {
