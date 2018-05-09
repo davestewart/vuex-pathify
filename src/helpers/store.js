@@ -3,21 +3,24 @@ import { resolveName } from '../services/resolver'
 import Payload from '../classes/Payload'
 
 /**
- * Utility function to mass-create default getter functions for an existing state object
+ * Utility function to grab keys for state
+ *
+ * @param   {Object|Function|Array|String}   state   State object, state function, array or string of key names
+ * @returns {Array}
+ */
+function getStateKeys (state) {
+  return getKeys(state instanceof Function ? state() : state)
+}
+
+/**
+ * Helper function to mass-create default getter functions for an existing state object
  *
  * Note that you don't need to create top-level getter functions if using $store.get(...)
  *
- * @example making only 2 getters
- *
- *    const getters = {
- *      ...makeGetters(state, 'foo bar')
- *    }
- *
- * @param   {Object}          state   State object from which to grab key names
- * @param   {String|Array}   [only]   Optional filter value to grab only certain keys. Can be an Array or string of names
+ * @param   {Object|Function|Array|String}   state   State object, state function, array or string of key names
  */
-export function makeGetters (state, only) {
-  return getKeys(only || state)
+export function makeGetters (state) {
+  return getStateKeys(state)
     .reduce(function (obj, key) {
       const getter = resolveName('getters', key)
       obj[getter] = function (state) {
@@ -28,19 +31,12 @@ export function makeGetters (state, only) {
 }
 
 /**
- * Utility function to mass-create default mutation functions for an existing state object
+ * Helper function to mass-create default mutation functions for an existing state object
  *
- * @example creating only 2 mutations
- *
- *    const mutations = {
- *      ...makeMutations(state, 'foo bar')
- *    }
- *
- * @param   {Object}        state   State object from which to grab key names
- * @param   {String|Array}  [only]  Optional filter value to grab only certain keys. Can be an Array or string of names
+ * @param   {Object|Function|Array|String}   state   State object, state function, array or string of key names
  */
-export function makeMutations (state, only) {
-  return getKeys(only || state)
+export function makeMutations (state) {
+  return getStateKeys(state)
     .reduce(function (obj, key) {
       const mutation = resolveName('mutations', key)
       obj[mutation] = function (state, value) {
@@ -53,14 +49,12 @@ export function makeMutations (state, only) {
 }
 
 /**
- * Utility function to mass-create default actions functions for an existing state object
+ * Helper function to mass-create default actions functions for an existing state object
  *
- *
- * @param   {Object}          state   State object from which to grab key names
- * @param   {String|Array}   [only]   Optional filter value to grab only certain keys. Can be an Array or string of names
+ * @param   {Object|Function|Array|String}   state   State object, state function, array or string of key names
  */
-export function makeActions (state, only) {
-  return getKeys(only || state)
+export function makeActions (state) {
+  return getStateKeys(state)
     .reduce(function (obj, key) {
       const action = resolveName('actions', key)
       const mutation = resolveName('mutations', key)
