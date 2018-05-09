@@ -38,8 +38,8 @@ const state = {
 const mutations = make.mutations(state)
 
 const actions = {
-  // automatically create only `setItems()` action (optional)
-  ...make.actions(state, 'items'),
+  // automatically create only `setItems()` action
+  ...make.actions('items'),
 
   // manually add load items action
   loadItems({ dispatch }) {
@@ -76,7 +76,7 @@ See the store helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pa
 
 ### Helpers
 
-#### `make.mutations(state: Object, filter: *): Object`
+#### `make.mutations(state: Object | Array | String | Function): Object`
 
 Use `make.mutations()` to generate default mutations for your state object:
 
@@ -103,7 +103,7 @@ mutations = {
 Note transparent support for [sub-property writes](/api/properties#sub-property-access) thanks to the Payload class.
 
 
-#### `make.actions(state: Object, filter: *): Object`
+#### `make.actions(state: Object | Array | String | Function): Object`
 
 You can use `make.actions()` to generate default actions for your state object:
 
@@ -124,7 +124,7 @@ const actions = {
 If using Pathify as your core store access mechanism, you generally don't need to create redundant actions, but if you're the kind of developer who prefers accessing the store by **actions only**, this will save you writing them all yourself.
 
 
-#### `make.getters(state: Object, filter: *): Object`
+#### `make.getters(state: Object | Array | String | Function): Object`
 
 You can use `make.getters()` to generate default getters for your state object:
 
@@ -145,18 +145,32 @@ const getters = {
 If using Pathify as your core store access mechanism, you generally don't need to create redundant getters, but if you're the kind of developer who prefers accessing the store by **getters only**, this will save you writing them all yourself.
 
 
-### Filtering
+### Partial generation
 
-All `make.*` helpers can choose which state properties to process via a second argument:
+The `make.*` helpers take a variety of argument types, with the expectation to pass in an existing `state` object and create helpers for **all** properties:
+
+```js
+const state = { ... }
+const mutations = make.mutations(state)
+```
+
+However, you can generate only **some** properties by passing alternative parameters:
 
 
 ```js
 // strings have properties parsed from them
-const mutations = make.mutations(state, 'items status')
-
+const mutations = make.mutations('items status')
+```
+```js
 // arrays use the passed values
-const actions = make.actions(state, ['items', 'status'])
-
+const mutations = make.mutations(['items', 'status'])
+```
+```js
 // objects use the passed keys
-const getters = make.getters(state, {items: true, status: true})
+const mutations = make.mutations({items: true, status: true})
+```
+```js
+// functions will be executed; any of the above types can be returned
+function state () { ... }
+const mutations = make.mutations(state)
 ```

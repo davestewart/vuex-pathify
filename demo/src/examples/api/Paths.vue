@@ -9,6 +9,7 @@
         <edit-code src="examples/api/Paths.vue"/>
         <edit-code src="examples/api/vuex/root.js" label="Edit root store"/>
         <edit-code src="examples/api/vuex/module.js" label="Edit module store"/>
+        <edit-code src="examples/api/vuex/wildcards.js" label="Edit wildcards store"/>
         <view-docs src="api/paths"/>
       </blockquote>
     </div>

@@ -118,7 +118,7 @@ You can use:
 
 - [array syntax](#array-syntax) - to map properties 1:1 with the store
 - [object syntax](#object-syntax) - to map properties with different names on the component
-- [wildcard syntax](#wildcard-syntax) - to grab sets of properties automatically
+- [wildcard syntax](#wildcard-property-access) - to grab sets of properties automatically
 
 Each syntax generates an **Object** of **named properties** which must be mixed in to the computed property block, or set as the block itself:
 
@@ -170,18 +170,22 @@ sortOrder : products/filters@sort.order
 sortKey   : products/filters@sort.key
 ```
 
+### Wildcard property access
+
+!> Technically wildcard property access is "multi-property access" but gets its own section as there are a few things to be aware of before diving in and using it everywhere
+
 #### `Wildcard syntax`
 
 Wildcard syntax maps **groups** of property names **identically** to the store.
 
 ```js
 computed: {
-  ...sync('products/*')
+  ...get('products/*')
 }
 ```
 ```paths
 items    : products/items
-category : products/category
+search   : products/search
 filters  : products/filters
 ```
 
@@ -193,22 +197,122 @@ products/filters@*
 products/filters@sort.*
 ```
 
-Also note that Pathify thet the wildcard `*` symbol **must be at the end** of the path!
+Note that the `*` symbol must be placed at the end of all paths!
 
-!> **Important: import order matters!**
+#### `Understanding why wildcard properties work`
 
-Using wildcard syntax has one caveat - you need to import your store before your router so that properties are set up before being asked for:
+The wildcard `*` symbol tells Pathify that it should grab all object keys **below** the targeted path segment and generate computed property functions for them.
+
+To do this, the targeted state object **must exist** when the helper is run! That is, at the point of calling `get()` or `sync()` you must be sure that the targeted **store property or module** has been **loaded or registered**:
+
+
+```js
+// components/User.js
+export default {
+  computed: {
+    ...get('user/*') // `store.state.user` module MUST exist at this point
+  }  
+}
+```
+
+There are two main situations where this may not be the case:
+
+1. when routes have been imported before the store
+2. when using dynamically registered modules
+
+Read below to find out more and how to mitigate these issues.
+
+#### `Import order matters`
+
+It's easy to forget that components are imported when the routes are set up:
+
+```js
+import User from 'components/User'
+
+export default [
+  { path: 'user/:id', component: User }
+]
+```
+
+This results in the component definition being loaded **and the code within being run**. If any computed property helpers have been called with wildcard paths, they'll ask the store for the requested state object, and if it **hasn't yet** been added to the store - Pathify will log an error:
+
+```console
+[Vuex Pathify] Unable to create computed properties for path 'user/*':
+    - The usual reason for this is that the router was set up before the store
+    - Make sure the store is imported before the router, then reload
+```
+
+To solve this, simply import your store before your router so that properties are set up before being asked for:
 
 ```js
 import store from './store'
 import router from './router'
 ```
 
-If you don't do this, Pathify will warn you:
 
-````
-[Vuex Pathify] Unable to create computed properties for path 'foo/*':
-    - The usual reason for this is that the router was set up before the store
-    - Make sure the store is imported before the router, then reload
-````
+#### `Dynamic module registration`
 
+Vuex has the ability to register modules [dynamically](https://vuex.vuejs.org/en/modules.html#dynamic-module-registration) rather than import them all when your project loads.
+
+This would prevent us using wildcards if state wouldn't exist by the time the computed properties were asked for:
+
+```js
+// components/User.js
+import store from 'store'
+import user from 'store/user'
+
+export default {
+  beforeCreate () {
+    store.registerModule('user', user)
+  },
+  
+  computed: get('user/*') // ERROR! `store.state.user` does not exist
+}
+```
+
+Luckily, there's a way to add computed properties manually by directly modifying the component's `$options` hash.
+
+This allows us to load the component, register the module, add computed properties, then have it all cleaned up when we destroy the component too:
+
+```js
+// components/User.js
+import store from 'store'
+import user from 'store/user'
+
+export default {
+  beforeCreate () {
+    store.registerModule('user', user)
+    Object.assign(this.$options.computed, get('user/*'))
+  },
+  
+  destoyed () {
+    store.unregisterModule('user')
+  }
+}
+```
+
+Note that in development, hot-reloading can cause the computed properties to be forgotten, therefore an alternative setup is to use router hooks:
+
+```js
+// components/User.js
+import store from 'store'
+import user from 'store/user'
+
+export default {
+  beforeRouteEnter (to, from, next) {
+    store.registerModule('user', user)
+    next() // load the component last!
+  },
+
+  beforeCreate () {
+    Object.assign(this.$options.computed, get('user/*'))
+  },
+
+  beforeRouteLeave (to, from , next) {
+    next() // destroy the component first!
+    store.unregisterModule('user')
+  },
+}
+```
+
+If none of these options are workable... just don't use wildcards :)
