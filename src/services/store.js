@@ -44,21 +44,25 @@ export function makeSetter (store, path) {
  *
  * @see documentation for more detail
  *
- * @param   {Object}  store   The store object
- * @param   {string}  path    The path to the target node
- * @returns {*|Function}      The state value or getter function
+ * @param   {Object}    store       The store object
+ * @param   {string}    path        The path to the target node
+ * @param   {boolean}  [stateOnly]  An optional flag to get from state only (used when syncing)
+ * @returns {*|Function}            The state value or getter function
  */
-export function makeGetter (store, path) {
+export function makeGetter (store, path, stateOnly) {
   const resolver = resolve(store, path)
 
-  const getter = resolver.get('getters')
-  if (getter.exists) {
-    return function () {
-      let value = getter.member[getter.type]
-      if (getter.path) {
-        value = getValue(value, getter.path)
+  // for sync, we don't want to read only from state
+  if (!stateOnly) {
+    const getter = resolver.get('getters')
+    if (getter.exists) {
+      return function () {
+        let value = getter.member[getter.type]
+        if (getter.path) {
+          value = getValue(value, getter.path)
+        }
+        return value
       }
-      return value
     }
   }
 
