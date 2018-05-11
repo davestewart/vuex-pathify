@@ -1,4 +1,4 @@
-import { makeGetter, makeSetter } from '../services/accessors'
+import { makeGetter, makeSetter } from '../services/store'
 import { makePaths } from '../services/paths'
 import vuex from './vuex'
 
