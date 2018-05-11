@@ -59,7 +59,7 @@ Writing computed properties takes this much code **per property** for 2-way wiri
 
 Essentially, vanilla Vuex takes a lot of manual JavaScript coding to both set up and maintain.
 
-Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demo which illustrates a reduction in Vuex code when using Pathify, of between **2 and 14 times** (or more) depending on store size and setup.
+Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=code) demo which illustrates a reduction in Vuex code when using Pathify, of between **2 and 14 times** (or more) depending on store size and setup.
 
 
 ## Summary
@@ -82,5 +82,6 @@ Get started:
 
 Demos:
 
-- [Hello World demo](https://codesandbox.io/s/xpl8x520vo?module=%2Fsrc%2Fcomponents%2FHelloWorld.vue)
-- [Feature demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo)
+- [Simple demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/simple?module=%2Fsrc%2Fcomponents%2FHelloWorld.vue)
+- [Main demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main)
+- [Nuxt demo](https://github.com/davestewart/vuex-pathify-demos/tree/master/nuxt)

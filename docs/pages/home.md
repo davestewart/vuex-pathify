@@ -85,4 +85,4 @@ To see Pathify in action:
 For a deeper insight:
  
 - read the [Intro](/intro/pathify.md) for an overview of the Pathify mechanism
-- check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code) demos which illustrate reductions in Vuex code of between **2 and 14 times** 
+- check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=code) demos which illustrate reductions in Vuex code of between **2 and 14 times** 

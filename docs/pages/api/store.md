@@ -70,7 +70,7 @@ export default {
 }
 ```
 
-See the store helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/store) for an editable, live example.
+See the store helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=api/store) for an editable, live example.
 
 ## API
 
