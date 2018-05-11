@@ -81,8 +81,8 @@ export function make (path, props, fn) {
 /**
  * Creates a single 2-way vue:vuex computed property
  *
- * @param   {string}      path        a path to a state/getter reference. Path can contain an optional commit / action reference, separated by a |, i.e. foo/bar|updateBar
- * @returns {Object}                  a single get/set Object
+ * @param   {string}      path      a path to a state/getter reference. Path can contain an optional commit / action reference, separated by a |, i.e. foo/bar|updateBar
+ * @returns {Object}                a single get/set Object
  */
 export function syncOne (path) {
   let [getter, setter] = path.split('|')
@@ -90,24 +90,25 @@ export function syncOne (path) {
     setter = getter.replace(/\w+!?$/, setter.replace('!', '') + '!')
   }
   return getter && setter
-    ? { get: getOne(getter), set: setOne(setter) }
-    : { get: getOne(getter), set: setOne(getter) }
+    ? { get: getOne(getter, true), set: setOne(setter) }
+    : { get: getOne(getter, true), set: setOne(getter) }
 }
 
 /**
  * Creates a single 1-way vue:vuex computed getter
  *
- * @param   {string}      path        a path to a state/getter reference
- * @returns {Object}                  a single getter function
+ * @param   {string}      path          A path to a state/getter reference
+ * @param   {boolean}    [stateOnly]    An optional flag to get from state only (used when syncing)
+ * @returns {Object}                    A single getter function
  */
-export function getOne (path) {
+export function getOne (path, stateOnly) {
   let getter
   return function (...args) {
     if (!this.$store) {
       throw new Error('[Vuex Pathify] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
     }
     if (!getter) {
-      getter = makeGetter(this.$store, path)
+      getter = makeGetter(this.$store, path, stateOnly)
     }
     return getter(...args)
   }
@@ -116,8 +117,8 @@ export function getOne (path) {
 /**
  * Creates a single 1-way vue:vuex setter
  *
- * @param   {string}      path        a path to an action/commit reference
- * @returns {Function}                a single setter function
+ * @param   {string}      path      a path to an action/commit reference
+ * @returns {Function}              a single setter function
  */
 export function setOne (path) {
   let setter
