@@ -101,7 +101,7 @@ computed: {
 }
 ```
 
-Note that `sync()` takes an additional path syntax `|` with which you can specify direct access for both get and set members:
+If you want to specify an alternate mutation or action, `sync()` takes an additional path syntax `|` with which you can specify direct access:
 
 ```js
 computed: {
@@ -109,6 +109,8 @@ computed: {
     items: sync('items|updateItems')
 }
 ```
+
+Note that `sync()` reads **only from state** to prevent a situation where a same-named **transformational getter** could end up recursively modifying the true value of state.
 
 ### Multi-property access
 
