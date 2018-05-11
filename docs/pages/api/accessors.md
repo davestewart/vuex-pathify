@@ -52,6 +52,12 @@ store.get('status')
 store.get('filters@sort.order')
 ```
 
+If the path references a store [getter function](https://vuex.vuejs.org/en/getters.html#method-style-access), pass additional arguments as required:
+
+```js
+const bags = store.get('filterBy', 'category', 'bag')
+```
+
 #### `set(path: string, value: *): *`
 
 The `set()` method writes values via actions or mutations:

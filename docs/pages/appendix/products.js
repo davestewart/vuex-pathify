@@ -24,11 +24,20 @@ const getters = {
   // return Item instances
   items: (state) => state.items.map(data => new Item(data)),
 
-  // filter items
-  filteredItems: (state, getters) => {
+  // getter value
+  filteredItems (state, getters) {
     return getters.items
       .filter(item => item.title.includes(state.filters.search))
       .sort(sort(state.filters.sort))
+  },
+
+  // custom getter function
+  filterBy (state, getters) {
+    return function (key, value) {
+      return getters.items
+        .filter(item => item[key] === value)
+        .sort(sort(state.filters.sort))
+    }
   }
 }
 
