@@ -53,14 +53,12 @@ export function makeGetter (store, path) {
 
   const getter = resolver.get('getters')
   if (getter.exists) {
-    return function (...args) {
+    return function () {
       let value = getter.member[getter.type]
       if (getter.path) {
         value = getValue(value, getter.path)
       }
-      return value instanceof Function
-        ? value(...args)
-        : value
+      return value
     }
   }
 

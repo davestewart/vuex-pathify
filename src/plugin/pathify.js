@@ -42,7 +42,9 @@ function plugin (store) {
   store.get = function (path, ...args) {
     const getter = makeGetter(store, path)
     if (typeof getter !== 'undefined') {
-      return getter(...args)
+      return getter instanceof Function
+        ? getter()(...args)
+        : getter
     }
   }
 
