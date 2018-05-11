@@ -1,6 +1,6 @@
 {
   "name": "vuex-pathify",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Ridiculously simple Vuex setup + wiring",
   "main": "dist/vuex-pathify.js",
   "module": "dist/vuex-pathify.esm.js",
