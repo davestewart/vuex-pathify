@@ -31,7 +31,7 @@ window.store = store
 store.set('filters@search', 'widgets')
 ```
 
-See the store accessors [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/accessors) for an editable, live example.
+See the store accessors [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=api/accessors) for an editable, live example.
 
 ## API
 

@@ -45,7 +45,7 @@ export default {
 }
 ```
 
-See the component helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/component) for an editable, live example.
+See the component helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=api/component) for an editable, live example.
 
 
 ## API

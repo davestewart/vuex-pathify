@@ -70,7 +70,7 @@ See the [Vuex aliases](api/properties#vuex-aliases) section for more info.
 
 No.
 
-Vuex helpers, through saving over manual coding, add a lot of structural and syntactic cruft; up to 16 different entities to think about vs only 7 for Pathify. See the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=code/large) section of the demo to view this for yourself.
+Vuex helpers, through saving over manual coding, add a lot of structural and syntactic cruft; up to 16 different entities to think about vs only 7 for Pathify. See the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=code/large) section of the demo to view this for yourself.
 
 If you use a lot of `actions`, you may still find `mapActions()` useful, though generally running most if-not-all `get/set` operations via Pathify you'll find it clearer to manually dispatch actions as needed.
 

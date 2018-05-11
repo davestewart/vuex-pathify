@@ -16,7 +16,7 @@ This section covers:
 
 ## Usage
 
-See the advanced property access [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify/tree/master/demo?initialpath=api/properties) for an editable, live example.
+See the advanced property access [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=api/properties) for an editable, live example.
 
 ## Details
 
