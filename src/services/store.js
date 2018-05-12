@@ -57,11 +57,10 @@ export function makeGetter (store, path, stateOnly) {
     const getter = resolver.get('getters')
     if (getter.exists) {
       return function () {
-        let value = getter.member[getter.type]
-        if (getter.path) {
-          value = getValue(value, getter.path)
-        }
-        return value
+        const value = getter.member[getter.type]
+        return getter.path
+          ? getValue(value, getter.path)
+          : value
       }
     }
   }
