@@ -36,6 +36,7 @@
     "node-sass": "^4.9.0",
     "rollup-plugin-buble": "^0.19.1",
     "rollup-plugin-commonjs": "^8.4.1",
+    "rollup-plugin-license": "^0.6.0",
     "rollup-plugin-uglify": "^3.0.0"
   }
 }

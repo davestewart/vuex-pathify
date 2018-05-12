@@ -2,12 +2,14 @@
 // setup
 // ------------------------------------------------------------------------------------------
 
-import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify';
-import buble from 'rollup-plugin-buble';
+import path from 'path'
+import license from 'rollup-plugin-license'
+import commonjs from 'rollup-plugin-commonjs'
+import uglify from 'rollup-plugin-uglify'
+import buble from 'rollup-plugin-buble'
 
 const pkg = require('../package.json')
-const external = Object.keys(pkg.dependencies || {});
+const external = Object.keys(pkg.dependencies || {})
 const name = pkg.name
 const className = name.replace(/(^\w|-\w)/g, c => c.replace('-', '').toUpperCase())
 
@@ -29,6 +31,11 @@ const umd = {
   external: external,
   output: output('js'),
   plugins: [
+    license({
+      banner: {
+        file: path.join(__dirname, 'banner.txt')
+      },
+    }),
     commonjs(),
     buble()
   ]
