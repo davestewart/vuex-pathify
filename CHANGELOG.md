@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.8] - 2018-05-12
+### Added
+- Banner to built files
+
+### Changed
+- Unknown modules now throw error rather than log to console (for Nuxt compatibility)
+
+### Fixed
+- `store.get()` regression fixed
+
 ## [1.0.7] - 2018-05-11
 ### Fixed
 - `sync()` now reads only from state and not getters
