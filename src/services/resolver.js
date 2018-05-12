@@ -119,8 +119,7 @@ export function resolve (store, path) {
 
   // throw error if module does not exist
   if (modPath && !store._modulesNamespaceMap[modPath + '/']) {
-    console.error(`[Vuex Pathify] Unknown module '${modPath}' via path '${path}'`)
-    return
+    throw new Error(`[Vuex Pathify] Unknown module '${modPath}' via path '${path}'`)
   }
 
   // throw error if illegal deep access
