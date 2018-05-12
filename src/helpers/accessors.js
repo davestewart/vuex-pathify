@@ -28,9 +28,10 @@ export default function (store) {
   store.get = function (path, ...args) {
     const getter = makeGetter(store, path)
     if (typeof getter !== 'undefined') {
-      return getter instanceof Function
-        ? getter()(...args)
-        : getter
+      const value = getter()
+      return value instanceof Function
+        ? value(...args)
+        : value
     }
   }
 
