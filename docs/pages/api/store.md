@@ -69,6 +69,7 @@ export default {
   getters,
 }
 ```
+In addition to this, store modules must include the ```namespaced: true``` option for pathing to work. 
 
 See the store helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=api/store) for an editable, live example.
 
