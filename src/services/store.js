@@ -19,7 +19,9 @@ export function makeSetter (store, path) {
   const action = resolver.get('actions')
   if (action.exists) {
     return function (value) {
-      return store.dispatch(action.type, value)
+      return store.dispatch(action.type, action.path
+        ? new Payload(action.path, value)
+        : value)
     }
   }
 
