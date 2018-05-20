@@ -113,26 +113,33 @@ export function makePathsHash (paths) {
 }
 
 /**
- * Helper function to resolve (trailing-only!) wildcard paths from state
+ * Helper function to resolve wildcard paths from state
+ *
+ * Note: this function traverses into the state object and any properties / sub-properties
  *
  * @param   {string}    path    A path with a wildcard at the end
  * @param   {object}    state   A state object on which to look up the sub-properties
  * @returns {string[]}          An array of paths
  */
 export function expandWildcardStates (path, state) {
-  const srcPath = path.replace(/\*$/, '')
-  const objPath = srcPath.replace(/\W+$/, '').replace(/\/+/g, '.')
+  const srcPath = path
+    .replace(/\*$/, '')   // remove wildcard
+  const objPath = srcPath
+    .replace(/\W+$/, '')  // replace trailing tokens
+    .replace(/\/+/g, '.') // replace slashes with dots
   let obj = getValue(state, objPath)
   if (!obj) {
     console.error(`[Vuex Pathify] Unable to expand wildcard '${path}':
-    - It looks like the state path '${objPath}' doesn't resolve to an object`, store.state)
+    - It looks like '${objPath}' does not resolve to an existing state property`)
     return []
   }
   return Object.keys(obj).map(key => srcPath + key)
 }
 
 /**
- * Helper function to resolve (trailing-only!) wildcard paths from getters
+ * Helper function to resolve wildcard paths from getters
+ *
+ * Note: this function filters the top-level flattened hash of getters
  *
  * @param   {string}    path      A path with a wildcard at the end
  * @param   {object}    getters   A getters hash on which to filter by key => wildcard
