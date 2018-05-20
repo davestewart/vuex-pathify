@@ -205,7 +205,7 @@ Note that the `*` symbol must be placed at the end of all paths!
 
 The wildcard `*` symbol tells Pathify that it should grab all object keys **below** the targeted path segment and generate computed property functions for them.
 
-To do this, the targeted state object **must exist** when the helper is run! That is, at the point of calling `get()` or `sync()` you must be sure that the targeted **store property or module** has been **loaded or registered**:
+Because properties are **determined programmatically** the targeted state object **must exist** when the helper is run! That is, at the point of calling `get()` or `sync()` you must be sure that the targeted **store property or module** has been **loaded or registered**:
 
 
 ```js
@@ -251,6 +251,7 @@ import store from './store'
 import router from './router'
 ```
 
+If you're using Nuxt and are still getting errors, make sure you haven't loaded any components that use Pathify and wildcards in any files in `/plugins` as these will load before Nuxt has a chance to load Vuex.
 
 #### `Dynamic module registration`
 

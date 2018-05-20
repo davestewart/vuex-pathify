@@ -140,33 +140,46 @@ If you've written your own mutations and you're using store accessors or compone
 
 The `Payload` class is passed to mutation functions from Pathify's accessor helpers when a sub-property has been set. It communicates the sub-property path and value within a single class.
 
-Here's an example of manually using the class:
+Here's an example of manually creating a mutation function and what to do with the passed Payload:
 
 ```js
+// store
 import { Payload } from 'vuex-pathify'
 import _ from 'lodash'
 
-mutations: {
-  SET_FOO: (state, payload) => {
-    
+const state = {
+  sort: {
+    key: 'id',
+    order: 'asc'
+  }
+}
+
+const mutations = {
+  // manually-created sort mutator
+  SET_SORT: (state, payload) => {
+    // debug
+    console.log('payload', payload)
+
     // if we have a Payload, do something with it
     if (payload instanceof Payload) {
-      // debug
-      console.log(payload)
       
       // either, update using payload...
-      payload.update(store)
+      payload.update(state.sort)
       
-      // ...or, do it yourself
-      _.set(state, payload.path, payload.value)
+      // ...or, update using dot-notation `path`
+      _.set(state.sort, payload.path, payload.value)
     }
     
     // otherwise, handle normally
     else {
-      store.foo = payload
+      state.sort = payload
     }
   }
 }
+```
+```js
+// global
+store.set('sort@order', 'desc')
 ```
 
 
