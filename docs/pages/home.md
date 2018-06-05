@@ -51,7 +51,7 @@ Wire **multiple** properties (or sub-properties) using **array**, **object** and
 })
 ```
 ```pathify
-...sync('filters@*')
+...sync('filters@sort.*')
 ```
 
 
