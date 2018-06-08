@@ -37,6 +37,8 @@ export function makeSetter (store, path) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(getError(path, resolver, 'action', action, 'mutation', mutation))
   }
+
+  return value => {}
 }
 
 /**
@@ -78,4 +80,6 @@ export function makeGetter (store, path, stateOnly) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(getError(path, resolver, 'getter', getter, 'state', state))
   }
+
+  return () => {}
 }
