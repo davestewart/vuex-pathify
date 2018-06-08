@@ -176,9 +176,13 @@ export function getError(path, resolver, aName, a, bName, b) {
     - Did not find ${aName} or ${bName} named '${resolver.name}' on ${resolver.module ? `module '${resolver.module}'`: 'root store'}`
   }
   else {
+    const aText = a
+      ? `${aName} '${a.name}' or `
+      : ''
+    const bText = `${bName} '${b.name}'`
     error += `
-    - Did not find ${aName} '${a.name}' or ${bName} '${b.name}' on ${resolver.module ? `module '${resolver.module}'`: 'store'}
-    - Use direct syntax '${resolver.target.replace(/(@|$)/, '!$1')}' to target store member directly`
+    - Did not find ${aText}${bText} on ${resolver.module ? `module '${resolver.module}'`: 'store'}
+    - Use direct syntax '${resolver.target.replace(/(@|$)/, '!$1')}' (if member exists) to target directly`
   }
   return error
 }

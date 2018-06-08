@@ -55,8 +55,9 @@ export function makeGetter (store, path, stateOnly) {
   const resolver = resolve(store, path)
 
   // for sync, we don't want to read only from state
+  let getter
   if (!stateOnly) {
-    const getter = resolver.get('getters')
+    getter = resolver.get('getters')
     if (getter.exists) {
       return function () {
         const value = getter.member[getter.type]
