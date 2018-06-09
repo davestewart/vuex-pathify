@@ -15,16 +15,24 @@ See the [mapping](/setup/mapping.md) page for more details.
 
 #### `deep`
 
-- Type: Boolean
-- Default: true
+- Type: Number
+- Default: 1
 
-The **deep** option premits sub-property read and writes for store members of the `Object` type:
+The **deep** option permits sub-property read/write and even creation for store members of the `Object` type:
 
 ```js
 store.set('sort@order', 'asc')
 ```
 
-Setting deep to `false` will cause sub-property access to fail and will generate a console error in development if sub-property access is attempted.
+The options are:
+
+- `0` - disable access to sub-properties
+- `1` - enable access to existing sub-properties
+- `2` - enable creation of new sub-properties
+
+If sub-property creation is enabled, new sub-properties can be created on the fly via both `store.set()` and `sync()`.
+
+Attempting to access or create sub-properties without permission will fail and will generate a console error in development.
 
 
 #### `strict`
