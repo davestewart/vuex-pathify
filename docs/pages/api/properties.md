@@ -138,9 +138,9 @@ If you've written your own mutations and you're using store accessors or compone
 
 #### `Payload class`
 
-The `Payload` class is passed to mutation functions from Pathify's accessor helpers when a sub-property has been set. It communicates the sub-property path and value within a single class.
+The `Payload` class is passed to mutations from Pathify's accessor helpers when a path expression includes sub-property access. The class communicates the sub-property `path` and `value`, as well as encapsulating `update()` functionality, and checking for permission to write or even create sub-properties.
 
-Here's an example of manually creating a mutation function and what to do with the passed Payload:
+As mentioned, `make.mutations()` takes care of all sub-property writes automatically, but if you need to do it yourself, here's an example of manually creating a mutation function and what to do with the passed Payload:
 
 ```js
 // store
@@ -164,7 +164,7 @@ const mutations = {
     if (payload instanceof Payload) {
       
       // either, update using payload...
-      payload.update(state.sort)
+      state.sort = payload.update(state.sort)
       
       // ...or, update using dot-notation `path`
       _.set(state.sort, payload.path, payload.value)

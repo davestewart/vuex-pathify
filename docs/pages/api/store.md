@@ -87,16 +87,17 @@ const mutations = make.mutations(state)
 The helper generates the following code:
 
 ```js
+// `key` is a scoped variable unique to each created function
 mutations = {
-    SET_ITEMS: (state, payload) => payload instanceof Payload
-        ? payload.update(state)
-        : state.items = payload,
-    SET_STATUS: (state, payload) => payload instanceof Payload
-        ? payload.update(state)
-        : state.search = payload,
-    SET_FILTERS: (state, payload) => payload instanceof Payload
-        ? payload.update(state)
-        : state.filters = payload,
+    SET_ITEMS: (state, value) => state.items = value instanceof Payload
+        ? value.update(state[key])
+        : value,
+    SET_STATUS: (state, value) => state.search = value instanceof Payload
+        ? value.update(state[key])
+        : value,
+    SET_FILTERS: (state, value) => state.filters = value instanceof Payload
+        ? value.update(state[key])
+        : value,
 }
 ```
 
