@@ -122,11 +122,6 @@ export function resolve (store, path) {
     throw new Error(`[Vuex Pathify] Unknown module '${modPath}' via path '${path}'`)
   }
 
-  // throw error if illegal deep access
-  if (!options.deep && objPath) {
-    throw new Error(`[Vuex Pathify] Illegal attempt to access deep property via path '${path}'`)
-  }
-
   // resolve targets
   return {
     absPath: absPath,

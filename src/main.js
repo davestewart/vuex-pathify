@@ -1,7 +1,7 @@
 import pathify from './plugin/pathify'
 
 import make from './helpers/store'
-import { get, sync } from './helpers/component'
+import { get, sync, call } from './helpers/component'
 import { commit, dispatch } from './helpers/vuex'
 import Payload from './classes/Payload'
 
@@ -12,11 +12,12 @@ export {
   make,
   Payload,
 
-  // computed
+  // component
   get,
   sync,
+  call,
 
   // vuex
   commit,
-  dispatch
+  dispatch,
 }

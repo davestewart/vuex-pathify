@@ -1,4 +1,5 @@
 import { makeGetter, makeSetter } from '../services/store'
+import { expandGet, expandSync, expandCall } from '../services/wildcards'
 import { makePaths } from '../services/paths'
 import vuex from './vuex'
 
@@ -6,13 +7,24 @@ import vuex from './vuex'
 // entry
 // -------------------------------------------------------------------------------------------------------------------
 
-export function sync (path, props) {
-  return make(path, props, syncOne)
+export function get (path, props) {
+  return make(path, props, getOne, function (path) {
+    return expandGet(path, vuex.store.state, vuex.store.getters)
+  })
 }
 
-export function get (path, props) {
-  return make(path, props, getOne)
+export function sync (path, props) {
+  return make(path, props, syncOne, function (path) {
+    return expandSync(path, vuex.store.state)
+  })
 }
+
+export function call (path, props) {
+  return make(path, props, callOne, function (path) {
+    return expandCall(path, vuex.store._actions)
+  })
+}
+
 
 // -------------------------------------------------------------------------------------------------------------------
 // utility
@@ -50,26 +62,24 @@ export function get (path, props) {
  *
  * @param   {string|Object}         path        a path to a module, or a hash of state/getter or commit/action references
  * @param   {Object|Array}          props       a hash of state/getter or commit/action references
- * @param   {Function}              fn          the callback function to create the setter
- * @returns {{set, get}}                        a hash of get/set Objects
+ * @param   {Function}              fnHandler   a callback function to create the handler
+ * @param   {Function}              fnResolver
+ * @returns {{set, get}}                        a hash of Objects
  */
-export function make (path, props, fn) {
+export function make (path, props, fnHandler, fnResolver) {
   // expand path / props
-  const getters = fn === getOne
-    ? vuex.store.getters
-    : null
-  const data = makePaths(path, props, vuex.store.state, getters)
+  const data = makePaths(path, props, fnResolver)
 
   // handle single paths
   if (typeof data === 'string') {
-    return fn(data)
+    return fnHandler(data)
   }
 
   // handle multiple properties
   Object
     .keys(data)
     .forEach(key => {
-      data[key] = fn(data[key])
+      data[key] = fnHandler(data[key])
     })
   return data
 }
@@ -128,5 +138,17 @@ export function setOne (path) {
     }
     this.$nextTick(() => this.$emit('sync', path, value))
     return setter(value)
+  }
+}
+
+/**
+ * Creates a single action dispatcher
+ *
+ * @param   {string}      path      a path to an action/commit reference
+ * @returns {Function}              a single setter function
+ */
+export function callOne (path) {
+  return function (value) {
+    this.$store.dispatch(path, value)
   }
 }
