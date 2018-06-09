@@ -28,6 +28,10 @@ Wire **multiple** properties or sub-properties using **array**, **object** and *
 ![pathify-diagram](docs/assets/img/readme/pathify-computed-many.png)
 
 
+Map **store actions** in exactly the same way, even using **wildcards**:
+
+![pathify-diagram](docs/assets/img/readme/pathify-actions.png)
+
 Set up your store – **no matter how complex** – in a single line:
 
 ![pathify-diagram](docs/assets/img/readme/pathify-store.png)
@@ -82,6 +86,6 @@ Get started:
 
 Demos:
 
-- [Simple demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/simple?module=%2Fsrc%2Fcomponents%2FHelloWorld.vue)
+- [Simple demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/simple)
 - [Main demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main)
 - [Nuxt demo](https://github.com/davestewart/vuex-pathify-demos/tree/master/nuxt)

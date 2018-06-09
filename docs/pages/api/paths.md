@@ -93,6 +93,11 @@ They don't **return** values like other path references, rather they **generate*
 // generate getters for `items`, `search` and `filters`
 computed: {
   ...get('products/*') 
+},
+
+// generate methods that dispatch `load` and `update`
+methods: {
+  ...call('products/*') 
 }
 ```
 
@@ -110,7 +115,7 @@ Pathify has two syntax types which are used to handle customisation around non g
 Direct access syntax uses a bang `!` to skip mapping and access Vuex members directly:
 
 ```js
-set('updateItems!', items)
+set('update!', items)
 ```
 
 See the [properties](/api/properties.md#direct-property-access) page for more info.
@@ -121,7 +126,7 @@ Direct sync syntax uses a pipe `|` to specify alternate get and set members in c
 
 ```js
 computed: {
-    items: sync('items|updateItems!')
+    items: sync('items|update!')
 }
 ```
 

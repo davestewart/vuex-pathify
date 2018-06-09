@@ -82,7 +82,7 @@ get('items')        // state.items
 set('items', data)  // actions.setItems
 ```
 
-This is great for everyday **get/set** usage, but can't account for more nuanced access like `mutations.INCREMENT_VALUE` or `actions.updateItems()`. To work round this, you can reference store members directly.
+This is great for everyday **get/set** usage, but can't account for more nuanced access like `mutations.INCREMENT_VALUE` or `actions.update()`. To work round this, you can reference store members directly.
 
 #### `Direct access syntax`
 
@@ -93,8 +93,8 @@ To **skip** mapping and reference a member directly, append a bang `!` to the pr
 set('INCREMENT_VALUE!')
 ```
 ```js
-// call the `updateItems()` action, rather than `setItems()`
-set('updateItems!', data)
+// call the `update()` action, rather than `setItems()`
+set('update!', data)
 ```
 
 Note that even though direct access syntax skips the mapping function, it still respects [accessor priority](/api/properties.md#accessor-priority).
@@ -114,7 +114,7 @@ import { commit, dispatch } from 'vuex-pathify'
 commit('INCREMENT_VALUE')
 
 // actions
-dispatch('updateItems', data)
+dispatch('update', data)
 ```
 
 #### `Access Vuex directly`
@@ -126,7 +126,7 @@ Finally, you can simply access your store **directly**:
 const items = this.$store.state.items
 
 // set value
-this.$store.dispatch('updateItems', data)
+this.$store.dispatch('update', data)
 ```
  
 
@@ -138,35 +138,48 @@ If you've written your own mutations and you're using store accessors or compone
 
 #### `Payload class`
 
-The `Payload` class is passed to mutation functions from Pathify's accessor helpers when a sub-property has been set. It communicates the sub-property path and value within a single class.
+The `Payload` class is passed to mutations from Pathify's accessor helpers when a path expression includes sub-property access. The class communicates the sub-property `path` and `value`, as well as encapsulating `update()` functionality, and checking for permission to write or even create sub-properties.
 
-Here's an example of manually using the class:
+As mentioned, `make.mutations()` takes care of all sub-property writes automatically, but if you need to do it yourself, here's an example of manually creating a mutation function and what to do with the passed Payload:
 
 ```js
+// store
 import { Payload } from 'vuex-pathify'
 import _ from 'lodash'
 
-mutations: {
-  SET_FOO: (state, payload) => {
-    
+const state = {
+  sort: {
+    key: 'id',
+    order: 'asc'
+  }
+}
+
+const mutations = {
+  // manually-created sort mutator
+  SET_SORT: (state, payload) => {
+    // debug
+    console.log('payload', payload)
+
     // if we have a Payload, do something with it
     if (payload instanceof Payload) {
-      // debug
-      console.log(payload)
       
       // either, update using payload...
-      payload.update(store)
+      state.sort = payload.update(state.sort)
       
-      // ...or, do it yourself
-      _.set(state, payload.path, payload.value)
+      // ...or, update using dot-notation `path`
+      _.set(state.sort, payload.path, payload.value)
     }
     
     // otherwise, handle normally
     else {
-      store.foo = payload
+      state.sort = payload
     }
   }
 }
+```
+```js
+// global
+store.set('sort@order', 'desc')
 ```
 
 

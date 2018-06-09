@@ -1,6 +1,7 @@
 import { getValue } from '../utils/object'
 import { getError, resolve } from './resolver'
 import Payload from '../classes/Payload'
+import options from '../plugin/options'
 
 /**
  * Creates a setter function for the store, automatically targeting actions or mutations
@@ -20,7 +21,7 @@ export function makeSetter (store, path) {
   if (action.exists) {
     return function (value) {
       return store.dispatch(action.type, action.path
-        ? new Payload(action.path, value)
+        ? new Payload(path, action.path, value)
         : value)
     }
   }
@@ -29,7 +30,7 @@ export function makeSetter (store, path) {
   if (mutation.exists) {
     return function (value) {
       return store.commit(mutation.type, mutation.path
-        ? new Payload(mutation.path, value)
+        ? new Payload(path, mutation.path, value)
         : value)
     }
   }
@@ -37,6 +38,8 @@ export function makeSetter (store, path) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(getError(path, resolver, 'action', action, 'mutation', mutation))
   }
+
+  return value => {}
 }
 
 /**
@@ -55,13 +58,14 @@ export function makeGetter (store, path, stateOnly) {
   const resolver = resolve(store, path)
 
   // for sync, we don't want to read only from state
+  let getter
   if (!stateOnly) {
-    const getter = resolver.get('getters')
+    getter = resolver.get('getters')
     if (getter.exists) {
       return function () {
         const value = getter.member[getter.type]
         return getter.path
-          ? getValue(value, getter.path)
+          ? getValueIfEnabled(path, value, getter.path)
           : value
       }
     }
@@ -70,11 +74,30 @@ export function makeGetter (store, path, stateOnly) {
   const state = resolver.get('state')
   if (state.exists) {
     return function () {
-      return getValue(store.state, resolver.absPath)
+      return getValueIfEnabled(path, store.state, resolver.absPath)
     }
   }
 
   if (process.env.NODE_ENV !== 'production') {
     console.error(getError(path, resolver, 'getter', getter, 'state', state))
   }
+
+  return () => {}
+}
+
+/**
+ * Utility function to get value from store, but only if options allow
+ *
+ * @param   {string}  expr    The full path expression
+ * @param   {object}  source  The source object to get property from
+ * @param   {string}  path    The full dot-path on the source object
+ * @returns {*}
+ */
+function getValueIfEnabled(expr, source, path) {
+  if (!options.deep && expr.includes('@')) {
+    console.error(`[Vuex Pathify] Unable to access sub-property for path '${expr}':
+    - Set option 'deep' to 1 to allow it`)
+    return
+  }
+  return getValue(source, path)
 }

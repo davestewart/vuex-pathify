@@ -17,15 +17,14 @@ Each helper builds and returns the appropriate JavaScript functions.
 
 ## Usage
 
-The following example illustrates functionality and usage for all the helper functions.
-
-Note that the code specifically demonstrates a **getters/action-heavy store** approach in order to show full usage of the `make.*` helpers. However, the Pathify-recommended approach is to **eschew** redundant getters and actions (those which simply proxy work to state and mutations) and only create mutations, letting Pathify do the heavy-lifting for you.
+The following example illustrates functionality and usage for all the helper functions:
 
 ```js
 import Api from 'services/Api'
 import { make } from 'vuex-pathify'
 
 const state = {
+  // namespaced: true, // add this if in module
   items: [],
   status: '',
   filters: {
@@ -69,6 +68,7 @@ export default {
   getters,
 }
 ```
+!> Note that the code specifically demonstrates a **getters/action-heavy store** approach in order to show full usage of the `make.*` helpers. However, the Pathify-recommended approach is to **eschew** redundant getters and actions (those which simply proxy work to state and mutations) and only create mutations, letting Pathify do the heavy-lifting for you.
 
 See the store helpers [demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=api/store) for an editable, live example.
 
@@ -87,16 +87,17 @@ const mutations = make.mutations(state)
 The helper generates the following code:
 
 ```js
+// `key` is a scoped variable unique to each created function
 mutations = {
-    SET_ITEMS: (state, payload) => payload instanceof Payload
-        ? payload.update(state)
-        : state.items = payload,
-    SET_STATUS: (state, payload) => payload instanceof Payload
-        ? payload.update(state)
-        : state.search = payload,
-    SET_FILTERS: (state, payload) => payload instanceof Payload
-        ? payload.update(state)
-        : state.filters = payload,
+    SET_ITEMS: (state, value) => state.items = value instanceof Payload
+        ? value.update(state[key])
+        : value,
+    SET_STATUS: (state, value) => state.search = value instanceof Payload
+        ? value.update(state[key])
+        : value,
+    SET_FILTERS: (state, value) => state.filters = value instanceof Payload
+        ? value.update(state[key])
+        : value,
 }
 ```
 
