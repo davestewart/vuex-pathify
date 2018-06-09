@@ -82,7 +82,7 @@ get('items')        // state.items
 set('items', data)  // actions.setItems
 ```
 
-This is great for everyday **get/set** usage, but can't account for more nuanced access like `mutations.INCREMENT_VALUE` or `actions.updateItems()`. To work round this, you can reference store members directly.
+This is great for everyday **get/set** usage, but can't account for more nuanced access like `mutations.INCREMENT_VALUE` or `actions.update()`. To work round this, you can reference store members directly.
 
 #### `Direct access syntax`
 
@@ -93,8 +93,8 @@ To **skip** mapping and reference a member directly, append a bang `!` to the pr
 set('INCREMENT_VALUE!')
 ```
 ```js
-// call the `updateItems()` action, rather than `setItems()`
-set('updateItems!', data)
+// call the `update()` action, rather than `setItems()`
+set('update!', data)
 ```
 
 Note that even though direct access syntax skips the mapping function, it still respects [accessor priority](/api/properties.md#accessor-priority).
@@ -114,7 +114,7 @@ import { commit, dispatch } from 'vuex-pathify'
 commit('INCREMENT_VALUE')
 
 // actions
-dispatch('updateItems', data)
+dispatch('update', data)
 ```
 
 #### `Access Vuex directly`
@@ -126,7 +126,7 @@ Finally, you can simply access your store **directly**:
 const items = this.$store.state.items
 
 // set value
-this.$store.dispatch('updateItems', data)
+this.$store.dispatch('update', data)
 ```
  
 

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2018-06-11
+### Added
+- Ability to create new sub-properties on the fly
+- `call()` helper to map actions using the same syntax as `get()` and `sync()`
+- `registerModule()` helper to register wildcard members for dynamic modules
+
+### Changed
+- Wildcards can now appear anywhere in the last segment of a path
+- Wildcards targeting module properties must now be explicit, i.e. `foo/*` rather than `foo*`
+- `deep` option format is now 0: disabled, 1: read-write, 2: read-write-create
+- `deep` option can now be changed at any time
+- `Payload#update()` now **returns** the updated state, rather than updating the passed state
+
+### Fixed
+- Invalid computed property paths now return empty functions
+- Bug in sync where invalid paths would cause error message to error
+
+
 ## [1.0.10] - 2018-05-20
 ### Fixed
 - Fixed invalid wildcard bug which caused Nuxt to bomb

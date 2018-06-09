@@ -5,14 +5,20 @@
 ## Overview
 
 Pathify component helpers are designed to **easily wire components** to the store.
-
-They are implemented as **helper functions** which:
  
-- support **1-way** or **2-way** data-binding
-- wire **single** or **multiple** properties
-- are written as one-liners
+They are **direct replacements** for Vuex `map*()` helpers, which wire:
+ 
+- computed properties to state / getters
+- methods to actions
+- single or multiple members
+- 1-way and 2-way data-bindings
 
-Each helper generates and returns the appropriate `computed` property function. Additionally, because **sync** does everything inside a single **compound** computed property, there's no need to add code or map actions in your component's `methods` block.
+Additionally, they support Pathify's rich [path syntax](api/paths) including: 
+
+- sub-property access
+- wildcards
+
+Each helper generates and returns the appropriate `Function` handler or `Object` hash of handlers, which can be directly assigned or spread in as needed.
 
 Note that although the **generation** is more expensive than writing a manual function, once helper has finished, only lightweight functions are returned and run.
 
@@ -22,7 +28,7 @@ Note that although the **generation** is more expensive than writing a manual fu
 The following gives an example of some of the main features:
 
 ```js
-import { get, sync } from 'vuex-pathify'
+import { get, sync, call } from 'vuex-pathify'
 
 // component
 export default {
@@ -41,6 +47,11 @@ export default {
 
     // read/write, multiple automatic properties
     ...sync('products/*')
+  },
+  
+  methods: {
+    // wire multiple actions
+    ...call('products/*')
   }
 }
 ```
@@ -62,7 +73,6 @@ Use `get()` to read properties from the store:
 computed: {
   items: get('products/items')
 }
-
 ```
 
 The helper generates the following computed property:
@@ -75,6 +85,7 @@ computed: {
 }
 ```
 
+The function is analogous to a combination of `mapState()` and `mapGetters()`.
 
 #### `sync(path: string): *`
 
@@ -101,80 +112,123 @@ computed: {
 }
 ```
 
+The function is analogous to a combination of `mapState()` and `mapMutations()`.
+
+Note that `sync()` reads **only from state** to prevent a situation where a same-named [transformational getter](api/properties?id=accessor-priority) could end up recursively modifying the true value of state.
+
 If you want to specify an alternate mutation or action, `sync()` takes an additional path syntax `|` with which you can specify direct access:
 
 ```js
 computed: {
-    // get with `items` accessor but set with `updateItems()` action
-    items: sync('items|updateItems')
+    // get with `items` accessor but set with `update()` action
+    items: sync('items|update')
 }
 ```
 
-Note that `sync()` reads **only from state** to prevent a situation where a same-named **transformational getter** could end up recursively modifying the true value of state.
+#### `call(path: string): *`
+
+Use `call()` to create functions that dispatch actions to the store:
+
+```js
+methods: {
+  load: call('products/load')
+}
+```
+
+The helper generates the following method:
+
+```js
+methods: {
+  load (payload) {
+    return this.$store.dispatch('products/load', payload)
+  }
+}
+```
+
+The function is analogous to `mapActions()`.
+
 
 ### Multi-property access
 
-Each of the component helpers can generate **multiple** property wirings.
+Each of the component helpers can generate **multiple** members.
 
 You can use:
 
 - [array syntax](#array-syntax) - to map properties 1:1 with the store
 - [object syntax](#object-syntax) - to map properties with different names on the component
-- [wildcard syntax](#wildcard-property-access) - to grab sets of properties automatically
+- [wildcard syntax](#wildcard-syntax) - to grab sets of properties automatically
 
-Each syntax generates an **Object** of **named properties** which must be mixed in to the computed property block, or set as the block itself:
+Each syntax generates an **Object** of **named properties** which must be mixed in to the associated block (`computed` or `methods`) or set as the block itself:
 
 ```js
 computed: {
   ...sync(map),
   ...sync(path, map)
+},
+methods: {
+  ...call(map),
+  ...call(path, map)  
 }
 ```
 ```js
-computed: sync(path, map) 
+computed: sync(path, map),
+methods: call(path, map) 
 ```
 
 #### `Array syntax`
 
 Array syntax maps property names **identically** to the store.
 
-It takes an **optional** path prefix, and an array of `property` names:
+It takes an **optional** `path` prefix, and an array of store `member` names:
 
 ```js
 computed: {
   ...get('products', [
     'search',
     'items',
-  ]),
+  ])
+},
+methods: {
+  ...get('products', [
+    'load',
+    'update',
+  ])
 }
 ```
 ```paths
 items  : products/items
 filter : products/filter
+load   : products/load()
+update : products/update()
 ```
 
 #### `Object syntax`
 
 Object syntax maps property names **differently** to the store.
 
-It takes an **optional** path prefix, and hash of `key:property` names:
+It takes an **optional** `path` prefix, and hash of `key:member` names:
 
 ```js
 computed: {
   ...sync('products/filters@sort', { 
-    sortOrder: 'order'
-    sortKey: 'key'
+    sortOrder: 'order',
+    sortKey: 'key',
+  })
+},
+methods: {
+  ...call('products', { 
+    loadItems: 'load',
+    updateItems: 'update',
   })
 }
 ```
 ```paths
-sortOrder : products/filters@sort.order
-sortKey   : products/filters@sort.key
+sortOrder   : products/filters@sort.order
+sortKey     : products/filters@sort.key
+loadItems   : products/load()
+updateItems : products/update()
 ```
 
-### Wildcard property access
-
-!> Technically wildcard property access is "multi-property access" but gets its own section as there are a few things to be aware of before diving in and using it everywhere
 
 #### `Wildcard syntax`
 
@@ -183,15 +237,20 @@ Wildcard syntax maps **groups** of property names **identically** to the store.
 ```js
 computed: {
   ...get('products/*')
+},
+methods: {
+  ...call('products/*')
 }
 ```
 ```paths
 items    : products/items
 search   : products/search
 filters  : products/filters
+load     : products/load()
+update   : products/update()
 ```
 
-Note that you can use wildcards to target **any** set of state properties or sub properties, so the following are all valid:
+Additionally, computed properties can target **any** set of state properties or sub-properties, so the following are all valid:
 
 ```wildcards
 products/*
@@ -199,13 +258,25 @@ products/filters@*
 products/filters@sort.*
 ```
 
-Note that the `*` symbol must be placed at the end of all paths!
+Note that the path engine supports partial matches:
 
-#### `Understanding why wildcard properties work`
+```js
+methods: {
+  ...call('products/*Items')
+},
+```
 
-The wildcard `*` symbol tells Pathify that it should grab all object keys **below** the targeted path segment and generate computed property functions for them.
+However, overuse of partial matching would indicate an over-complex design and the need for refactoring!
 
-Because properties are **determined programmatically** the targeted state object **must exist** when the helper is run! That is, at the point of calling `get()` or `sync()` you must be sure that the targeted **store property or module** has been **loaded or registered**:
+### Troubleshooting wildcards
+
+Before you get all trigger-happy with wildcards and use them everywhere, there are a few things you should know.
+
+The wildcard `*` symbol tells Pathify that it should grab object keys **below** the targeted path segment and generate handler functions for them.
+
+Because the results of a wildcard path are determined **programmatically** the targeted store member **must exist** when the helper is run!
+
+For example, at the point of calling `get('user/*')` a module called `user` must exist in the store:
 
 
 ```js
@@ -224,22 +295,21 @@ There are two main situations where this may not be the case:
 
 Read below to find out more and how to mitigate these issues.
 
-#### `Import order matters`
+#### `Correct router setup`
 
 It's easy to forget that components are imported when the routes are set up:
 
 ```js
 import User from 'components/User'
-
 export default [
   { path: 'user/:id', component: User }
 ]
 ```
 
-This results in the component definition being loaded **and the code within being run**. If any computed property helpers have been called with wildcard paths, they'll ask the store for the requested state object, and if it **hasn't yet** been added to the store - Pathify will log an error:
+This results in the component definition being loaded **and the code within being run**. If any component helpers have been called with wildcard paths, they'll query the requested state object, and if it **hasn't yet** been added to the store - Pathify will log an error:
 
 ```console
-[Vuex Pathify] Unable to create computed properties for path 'user/*':
+[Vuex Pathify] Unable to expand wildcard path 'user/*':
     - The usual reason for this is that the router was set up before the store
     - Make sure the store is imported before the router, then reload
 ```
@@ -253,69 +323,86 @@ import router from './router'
 
 If you're using Nuxt and are still getting errors, make sure you haven't loaded any components that use Pathify and wildcards in any files in `/plugins` as these will load before Nuxt has a chance to load Vuex.
 
+
 #### `Dynamic module registration`
 
-Vuex has the ability to register modules [dynamically](https://vuex.vuejs.org/en/modules.html#dynamic-module-registration) rather than import them all when your project loads.
+Vuex has the ability to register modules [dynamically](https://vuex.vuejs.org/en/modules.html#dynamic-module-registration) rather than import them all when your project loads. Use cases for this might include: 
 
-This would prevent us using wildcards if state wouldn't exist by the time the computed properties were asked for:
+- a module that is used only in a subset of routes
+- one component and potentially child-components need access to the same store
+- a set of components might use copies of the same store
+
+Let's take the first example, that a `user/` route requires a `user` store module to be loaded:
 
 ```js
 // components/User.js
-import store from 'store'
 import user from 'store/user'
 
 export default {
   beforeCreate () {
-    store.registerModule('user', user)
+    this.$store.registerModule('user', user)
   },
   
-  computed: get('user/*') // ERROR! `store.state.user` does not exist
+  computed: get('user/*') // ERROR! `store.state.user` does not exist at this point!
 }
 ```
 
-Luckily, there's a way to add computed properties manually by directly modifying the component's `$options` hash.
+The problem is that at the time of executing `get()` the `created()` lifecycle hook hasn't run.
 
-This allows us to load the component, register the module, add computed properties, then have it all cleaned up when we destroy the component too:
+To get round this, there are a few options:
+
+1. **don't use wildcards** with dynamic modules
+2. register the module in a **composing** component
+3. register the module in a **global router** `beforeRouteEnter` hook
+4. assign computed properties **programmatically** in the component `beforeCreate` hook
+
+The first option is workable as it's self-contained and only a little more code. The next two options require additional architecture, so might not be workable. The forth option whilst straightforward, requires a not trivial amount of code to set up, as you need to account for a few edge cases.
+
+As such, Pathify ships with a `registerModule` helper which you can read about below.
+
+#### `registerModule()`
+
+Pathify's `registerModule()` helper is designed to:
+
+- register a store module via component `beforeCreate`
+- add or extend the component's computed properties with new ones
+- add or extend the component's methods with new ones
+- unregister a store module via component `destroyed`
+
+Its signature is similar to `Vuex.registerModule()` with the addition of a callback that should return new component blocks. It is implemented as a function which returns an object which can used as a base class or mixin.
+
+Below is an example using the helper as a base class:
 
 ```js
-// components/User.js
-import store from 'store'
-import user from 'store/user'
+// imports
+import { get, call, registerModule } from 'vuex-pathify'
+import module from './store/user'
 
+// callback to return lazily-executed Pathify helpers
+const members = function () {
+  return {
+    computed: get('user/*'),
+    methods: call('user/*')
+  }
+}
+
+/**
+ * User component definition
+ */
 export default {
-  beforeCreate () {
-    store.registerModule('user', user)
-    Object.assign(this.$options.computed, get('user/*'))
+  // extend from generated base class
+  extend: registerModule('user', module, members),
+  
+  // additional computed properties
+  computed: {
+    foo () { ... }
   },
   
-  destoyed () {
-    store.unregisterModule('user')
+  // additional methods
+  methods: {
+    bar () { ... }
   }
 }
 ```
 
-Note that in development, hot-reloading can cause the computed properties to be forgotten, therefore an alternative setup is to use router hooks:
-
-```js
-// components/User.js
-import store from 'store'
-import user from 'store/user'
-
-export default {
-  beforeRouteEnter (to, from, next) {
-    store.registerModule('user', user)
-    next() // load the component last!
-  },
-
-  beforeCreate () {
-    Object.assign(this.$options.computed, get('user/*'))
-  },
-
-  beforeRouteLeave (to, from , next) {
-    next() // destroy the component first!
-    store.unregisterModule('user')
-  },
-}
-```
-
-If none of these options are workable... just don't use wildcards :)
+If you're interested to see what happens behind the scenes [check out the code](https://github.com/davestewart/vuex-pathify/blob/develop/src/helpers/modules.js) on GitHub.

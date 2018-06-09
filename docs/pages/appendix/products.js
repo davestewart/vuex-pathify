@@ -59,7 +59,7 @@ const actions = {
   },
 
   // manually update items
-  updateItems ({commit}, items) {
+  update ({commit}, items) {
     // convert input to raw data
     const data = items.map(item => Object.assign({}, item))
     commit('SET_ITEMS', data)
