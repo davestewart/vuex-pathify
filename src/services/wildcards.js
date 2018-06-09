@@ -118,13 +118,13 @@ export function init (path, state) {
   // only wildcards in final path segment are supported
   if (path.includes('*') && /\*.*[/@.]/.test(path)) {
     console.error(`[Vuex Pathify] Invalid wildcard placement for path '${path}':
-      - Wildcards may only be used in the last segment of a path`)
+    - Wildcards may only be used in the last segment of a path`)
     return false
   }
 
   // edge case where store sometimes doesn't exist
   if (!state) {
-    console.error(`[Vuex Pathify] Unable to generate component properties or functions for path '${path}':
+    console.error(`[Vuex Pathify] Unable to expand wildcard path '${path}':
     - The usual reason for this is that the router was set up before the store
     - Make sure the store is imported before the router, then reload`)
     return false
