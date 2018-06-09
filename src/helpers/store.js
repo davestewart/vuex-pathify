@@ -40,9 +40,9 @@ export function makeMutations (state) {
     .reduce(function (obj, key) {
       const mutation = resolveName('mutations', key)
       obj[mutation] = function (state, value) {
-        value instanceof Payload
+        state[key] = value instanceof Payload
           ? value.update(state[key])
-          : state[key] = value
+          : value
       }
       return obj
     }, {})
