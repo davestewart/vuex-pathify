@@ -37,7 +37,7 @@ In your store's entry point, setup your store, and activate the plugin:
 // packages
 import Vue from 'vue'
 import Vuex from 'vuex'
-import pathify from 'pathify'
+import pathify from 'vuex-pathify'
 
 // store definition
 const store = {
