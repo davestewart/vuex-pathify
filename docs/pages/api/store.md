@@ -24,7 +24,6 @@ import Api from 'services/Api'
 import { make } from 'vuex-pathify'
 
 const state = {
-  // namespaced: true, // add this if in module
   items: [],
   status: '',
   filters: {
@@ -62,6 +61,7 @@ const getters = {
 }
 
 export default {
+  // namespaced: true, // add this if in module
   state,
   mutations,
   actions,
