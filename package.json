@@ -41,7 +41,9 @@
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-license": "^0.6.0",
     "rollup-plugin-uglify": "^3.0.0",
-    "typescript": "^3.2.2",
+    "typescript": "^3.2.2"
+  },
+  "peerDependencies": {
     "vue": "^2.5.19",
     "vuex": "^3.0.1"
   }
