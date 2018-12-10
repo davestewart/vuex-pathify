@@ -35,9 +35,7 @@
     "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
-    "install": "^0.12.2",
     "node-sass": "^4.9.0",
-    "npm": "^6.4.1",
     "rollup": "^0.67.4",
     "rollup-plugin-buble": "^0.19.1",
     "rollup-plugin-commonjs": "^8.4.1",
