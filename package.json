@@ -8,7 +8,7 @@
   "typings": "types/index.d.ts",
   "files": [
     "dist/*",
-    "types/index.d.ts"
+    "types/*.d.ts"
   ],
   "scripts": {
     "dev": "rollup -c build/rollup.js -w",
