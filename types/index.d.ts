@@ -9,6 +9,7 @@ import vuex, {
   ActionTree,
   MutationTree
 } from "vuex";
+import { createDecorator } from "vue-class-component";
 
 /************************************************************************
  ***                          DEFAULT EXPORT                          ***
@@ -94,6 +95,21 @@ export function call(
   path: string | object,
   props?: string[] | object
 ): (payload: any) => any | Promise<any>;
+
+/*--------------------------------------------------------------------------
+                           Property Decorators                               
+------------------------------------------------------------------------*/
+export function Get(
+  path: string
+): ReturnType<typeof createDecorator>;
+
+export function Sync(
+  path: string
+): ReturnType<typeof createDecorator>;
+
+export function Call(
+  path: string
+): ReturnType<typeof createDecorator>;
 
 /*--------------------------------------------------------------------------
                                   commit                                 
