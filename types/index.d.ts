@@ -58,10 +58,20 @@ type SetAccessor = <T>(newValue: T) => T; // TODO: Do setters always return same
 /*--------------------------------------------------------------------------
                                    make 	                                
 ------------------------------------------------------------------------*/
+type StateFunction<T> = () => T;
+
 interface Make {
-  mutations: <State>(state: State) => MutationTree<State>;
-  actions: <State, RootState>(state: State) => ActionTree<State, RootState>; // TODO: Where do we get RootState from?
-  getters: <State, RootState>(state: State) => GetterTree<State, RootState>; // TODO: Where do we get RootState from?
+  mutations: <State>(
+    state: State | StateFunction<State>
+  ) => MutationTree<State>;
+
+  actions: <State, RootState>(
+    state: State | StateFunction<State>
+  ) => ActionTree<State, RootState>;
+
+  getters: <State, RootState>(
+    state: State | StateFunction<State>
+  ) => GetterTree<State, RootState>;
 }
 
 export const make: Make;
@@ -99,17 +109,11 @@ export function call(
 /*--------------------------------------------------------------------------
                            Property Decorators                               
 ------------------------------------------------------------------------*/
-export function Get(
-  path: string
-): ReturnType<typeof createDecorator>;
+export function Get(path: string): ReturnType<typeof createDecorator>;
 
-export function Sync(
-  path: string
-): ReturnType<typeof createDecorator>;
+export function Sync(path: string): ReturnType<typeof createDecorator>;
 
-export function Call(
-  path: string
-): ReturnType<typeof createDecorator>;
+export function Call(path: string): ReturnType<typeof createDecorator>;
 
 /*--------------------------------------------------------------------------
                                   commit                                 
