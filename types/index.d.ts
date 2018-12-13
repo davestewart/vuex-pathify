@@ -52,7 +52,7 @@ export default defaultExport;
 /*--------------------------------------------------------------------------
                                   SHARED 	                              
 ------------------------------------------------------------------------*/
-type GetAccessor = () => any;
+type GetAccessor = <T = any>() => T;
 type SetAccessor = <T>(newValue: T) => T; // TODO: Do setters always return same type as input.
 
 /*--------------------------------------------------------------------------
