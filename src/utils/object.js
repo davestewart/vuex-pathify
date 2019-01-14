@@ -49,7 +49,7 @@ export function getKeys (value) {
       : typeof value === 'object'
         ? Object.keys(value)
         : typeof value === 'string'
-          ? value.match(/\w+/g) || []
+          ? value.match(/[$\w]+/g) || []
           : []
 }
 
