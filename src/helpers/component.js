@@ -149,6 +149,6 @@ export function setOne (path) {
  */
 export function callOne (path) {
   return function (value) {
-    this.$store.dispatch(path, value)
+    return this.$store.dispatch(path, value)
   }
 }
