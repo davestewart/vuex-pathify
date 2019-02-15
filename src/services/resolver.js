@@ -72,7 +72,7 @@ export function resolveName (type, name) {
 
   // unconfigured resolver! (runs once)
   if (!fn) {
-    if (options.mapping instanceof Function) {
+    if (typeof options.mapping === 'function') {
       fn = options.mapping
     }
     else {
