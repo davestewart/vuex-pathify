@@ -9,7 +9,7 @@ import Payload from '../classes/Payload'
  * @returns {Array}
  */
 function getStateKeys (state) {
-  return getKeys(state instanceof Function ? state() : state)
+  return getKeys(typeof state === 'function' ? state() : state)
 }
 
 /**

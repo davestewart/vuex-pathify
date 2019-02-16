@@ -9,7 +9,7 @@ export default function debug () {
   console.log(`
   [Vuex Pathify] Options:
 
-  Mapping (${options.mapping instanceof Function ? 'custom' : options.mapping})
+  Mapping (${typeof options.mapping === 'function' ? 'custom' : options.mapping})
 -------------------------------
   path       : value
   state      : ${resolve('state')}
