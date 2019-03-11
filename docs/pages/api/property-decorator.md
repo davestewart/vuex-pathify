@@ -9,7 +9,7 @@ vue components easily.
 
 They are **single property access equivalents** of their [component helpers](api/component) counterpart. For details of single property access see [single-property-access](api/component?id=single-property-access)
 
-Note that decorators require [`vue-class-component`](https://github.com/vuejs/vue-class-component), but it is not installed by this library by default. If you are using class based vue components, you already included [`vue-class-component`](https://github.com/vuejs/vue-class-component) nonetheless.
+Note that decorators require [`vue-class-component`](https://github.com/vuejs/vue-class-component), but it is not installed by this library by default. If you are using class based vue components, you already included [`vue-class-component`](https://github.com/vuejs/vue-class-component).
 
 ## Usage
 
@@ -18,38 +18,42 @@ The following gives an example of some of the main features:
 **ES**
 
 ```js
-import { get, sync, call } from 'vuex-pathify'
+import { Get, Sync, Call } from 'vuex-pathify'
 
 // component
 @Components
 export default class Item extends Vue {
-  @get('products/items') items
-  @sync('products/tax') tax
-  @call('products/setDiscount') setDiscount
+  @Get('products/items') items
+  @Sync('products/tax') tax
+  @Call('products/setDiscount') setDiscount
 }
 ```
 
 **TS**
 
-```js
-import { get, sync, call } from 'vuex-pathify'
+```ts
+import { Get, Sync, Call } from 'vuex-pathify'
 
 // component
 @Components
 export default class Item extends Vue {
-  @get('products/items') items!: Item[]
-  @sync('products/tax') tax!: number
-  @call('products/setDiscount') setDiscount!: (rate: number) => any
+  @Get('products/items') items!: Item[]
+  @Sync('products/tax') tax!: number
+  @Call('products/setDiscount') setDiscount!: (rate: number) => any
 }
 ```
 
-which is equivalent of
+Which is equivalent of:
 
 ```js
+import { get, sync, call } from 'vuex-pathify'
+
 export default {
   computed: {
     items: get('products/items'),
     tax: sync('products/tax'),
+  },
+  
   methods: {
     setDiscount: call('products/setDiscount')
   }
