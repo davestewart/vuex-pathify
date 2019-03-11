@@ -16,6 +16,7 @@
     - [Store helpers](/api/store.md)
     - [Store accessors](/api/accessors.md)
     - [Component helpers](/api/component.md)
+    - [Component property decorators](/api/property-decorator.md)
     - [Advanced property access](/api/properties.md)
 
 - Discussion

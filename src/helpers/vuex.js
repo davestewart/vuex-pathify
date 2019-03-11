@@ -24,7 +24,7 @@ export function commit(...args) {
 }
 
 export function dispatch(...args) {
-  vuex.store.dispatch(...args)
+  return vuex.store.dispatch(...args)
 }
 
 export default vuex
