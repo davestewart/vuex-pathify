@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2019-03-11
+### Added
+- Typescript typings file - #38 / @ozum
+- Add TypeScript property decorators and docs - #38 / @ozum
+
+### Fixed
+- Use typeof instead of instanceof to defend against Nuxt errors - #46 / @SebastienTainon
+- Added missing return to callOne() - #43 / @germanp
+- Allow dollar sign in getKeys - #41 / @germanp
+- Return the call to vuex.store.dispatch - #37 / @nchutchind
+
 ## [1.1.0] - 2018-06-11
 ### Added
 - Ability to create new sub-properties on the fly
