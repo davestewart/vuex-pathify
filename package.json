@@ -32,7 +32,8 @@
     "url": "https://github.com/davestewart/vuex-pathify/issues"
   },
   "dependencies": {
-    "lodash.clonedeep": "^4.5.0"
+    "lodash.clonedeep": "^4.5.0",
+    "vue-class-component": "^7.0.2"
   },
   "devDependencies": {
     "install": "^0.12.2",
@@ -45,7 +46,6 @@
     "rollup-plugin-uglify": "^3.0.0",
     "typescript": "^3.2.2",
     "vue": "^2.5.20",
-    "vue-class-component": "^6.3.2",
     "vuex": "^3.0.1"
   },
   "peerDependencies": {
