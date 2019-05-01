@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { GetterTree, ActionTree, MutationTree } from "vuex";
-import pathify, { make, get } from "../index";
+import pathify, { make, get, sync } from "../index";
 
 interface RootState {
   name: string;
@@ -33,5 +33,35 @@ Vue.extend({
     this.bar // string
     this.baz // object
     this.baz.type
+  }
+})
+
+Vue.extend({
+  computed: get<{
+    search: string,
+    items: any[]
+  }>('products', [
+    'search',
+    'items',
+  ]),
+  created () {
+    this.search
+    this.items
+  }
+})
+
+Vue.extend({
+  computed: {
+    ...sync<{
+      sortOrder: 'asc' | 'desc',
+      sortKey: string
+    }>('products/filters@sort', {
+      sortOrder: 'order',
+      sortKey: 'key',
+    })
+  },
+  created () {
+    this.sortOrder
+    this.sortKey
   }
 })

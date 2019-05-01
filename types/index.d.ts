@@ -91,11 +91,29 @@ export class Payload {
 /*--------------------------------------------------------------------------
                              get/sync/call                               
 ------------------------------------------------------------------------*/
+/**
+ * Create get accessors
+ *
+ * Note type definitions do not support wildcards
+ */
+export function get<T extends {}>(
+  path: string | object,
+  props: Array<keyof T> | { [K in keyof T]: string }
+): { [K in keyof T]: { get: GetAccessor<T[K]> } };
 export function get<T = any>(
   path: string | object,
   props?: string[] | object
 ): { get: GetAccessor<T> };
 
+/**
+ * Create get/set accessors
+ *
+ * Note type definitions do not support wildcards
+ */
+export function sync<T extends {}>(
+  path: string | object,
+  props: Array<keyof T> | { [K in keyof T]: string }
+): { [K in keyof T]: { get: GetAccessor<T[K]>; set: SetAccessor<T[K]> } };
 export function sync<T = any>(
   path: string | object,
   props?: string[] | object
