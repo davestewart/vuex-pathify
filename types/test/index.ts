@@ -1,5 +1,6 @@
+import Vue from 'vue';
 import { GetterTree, ActionTree, MutationTree } from "vuex";
-import pathify, { make, Payload } from "../index";
+import pathify, { make, get } from "../index";
 
 interface RootState {
   name: string;
@@ -20,3 +21,17 @@ const actions: ActionTree<RootState, RootState> = {
 };
 
 const plugin = pathify.plugin;
+
+Vue.extend({
+  computed: {
+    foo: get('foo'),
+    bar: get<string>('bar'),
+    baz: get<{ type: 'baz' }>('baz')
+  },
+  created () {
+    this.foo // any
+    this.bar // string
+    this.baz // object
+    this.baz.type
+  }
+})
