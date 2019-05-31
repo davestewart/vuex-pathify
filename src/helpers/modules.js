@@ -8,9 +8,10 @@
  * @returns {object}                    The mixin
  */
 export function registerModule(path, module, callback, options) {
+  const hasModule = function (store, path) { return !!(store.state && store.state[path]) }
   return {
     beforeCreate () {
-      this.$store.registerModule(path, module, options)
+      !hasModule(this.$store, path) && this.$store.registerModule(path, module, options)
       const members = callback()
       this.$options.computed = Object.assign(this.$options.computed || {}, members.computed || {})
       this.$options.methods = Object.assign(this.$options.methods || {}, members.methods || {})
