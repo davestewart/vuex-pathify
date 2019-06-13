@@ -123,3 +123,7 @@ export function hasValue(obj, path) {
   }
   return false
 }
+
+export function clone (obj) {
+  return JSON.parse(JSON.stringify(obj))
+}

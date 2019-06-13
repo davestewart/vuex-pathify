@@ -1,5 +1,4 @@
-import cloneDeep from 'lodash.clonedeep'
-import { isObject } from '../utils/object'
+import { clone, isObject } from '../utils/object'
 import { makeGetter, makeSetter } from '../services/store'
 
 export default function (store) {
@@ -36,7 +35,7 @@ export default function (store) {
   }
 
   /**
-   * Set a property on the store, automatically using actions or mutations
+   * Get a copy of a property from the store, automatically using actions or mutations
    *
    * @param   {string}        path    The path to the store member
    * @param   {*}             args    Optional getter function parameters
@@ -45,7 +44,7 @@ export default function (store) {
   store.copy = function (path, ...args) {
     const value = store.get(path, ...args)
     return isObject(value)
-      ? cloneDeep(value)
+      ? clone(value)
       : value
   }
 }
