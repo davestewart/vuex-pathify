@@ -22,7 +22,7 @@ write           mutations       SET_FOO         // "set" prefix, constant case,
 write           actions         setFoo          // "set" prefix, camel case, 
 ``` 
 
-Store [access](/api/accessors.md) and component [wiring](/api/component.md) are unified with `get()`, `set()` and `sync()` methods:
+Store [access](/api/accessors.md) and component [wiring](/api/component.md) are unified with `get()`, `set()`, `sync()` and `call()` methods:
 
 ```js
 // global
@@ -31,7 +31,12 @@ store.set('products/items', items)
 
 // component
 computed: {
+  total: get('products/total'),
   items: sync('products/items')
+},
+
+methods: {
+  submit: call('products/submit')
 }
 ```
 
@@ -50,7 +55,7 @@ store.set('products/items', items)    ->    dispatch('products/setItems', items)
 The overall approach results in a significant simplification of Vuex's API:
  
 - from **4** operations, **4** helpers, **3** accessor syntaxes and **3** (or sometimes **4**) naming formats
-- to **3** methods and **1** path format
+- to **4** methods and **1** path format
 
 For store members that don't fit the "set/get" paradigm, there are several [direct access](/api/properties.md#direct-property-access) mechanisms available.
 
