@@ -52,8 +52,8 @@ export default defaultExport;
 /*--------------------------------------------------------------------------
                                   SHARED 	                              
 ------------------------------------------------------------------------*/
-type GetAccessor = <T = any>() => T;
-type SetAccessor = <T>(newValue: T) => T; // TODO: Do setters always return same type as input.
+type GetAccessor<T = any> = () => T;
+type SetAccessor<T> = (newValue: T) => T; // TODO: Do setters always return same type as input.
 
 /*--------------------------------------------------------------------------
                                    make 	                                
@@ -91,15 +91,33 @@ export class Payload {
 /*--------------------------------------------------------------------------
                              get/sync/call                               
 ------------------------------------------------------------------------*/
-export function get(
+/**
+ * Create get accessors
+ *
+ * Note type definitions do not support wildcards
+ */
+export function get<T extends {}>(
+  path: string | object,
+  props: Array<keyof T> | { [K in keyof T]: string }
+): { [K in keyof T]: { get: GetAccessor<T[K]> } };
+export function get<T = any>(
   path: string | object,
   props?: string[] | object
-): { get: GetAccessor };
+): { get: GetAccessor<T> };
 
-export function sync(
+/**
+ * Create get/set accessors
+ *
+ * Note type definitions do not support wildcards
+ */
+export function sync<T extends {}>(
+  path: string | object,
+  props: Array<keyof T> | { [K in keyof T]: string }
+): { [K in keyof T]: { get: GetAccessor<T[K]>; set: SetAccessor<T[K]> } };
+export function sync<T = any>(
   path: string | object,
   props?: string[] | object
-): { get: GetAccessor; set: SetAccessor };
+): { get: GetAccessor<T>; set: SetAccessor<T> };
 
 export function call(
   path: string | object,
