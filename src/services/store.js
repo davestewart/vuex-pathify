@@ -20,18 +20,20 @@ export function makeSetter (store, path) {
   const action = resolver.get('actions')
   if (action.exists) {
     return function (value) {
-      return store.dispatch(action.type, action.path
-        ? new Payload(path, action.path, value)
-        : value)
+      const payload = action.objPath
+        ? new Payload(path, action.objPath, value)
+        : value
+      return store.dispatch(action.trgPath, payload)
     }
   }
 
   const mutation = resolver.get('mutations')
   if (mutation.exists) {
     return function (value) {
-      return store.commit(mutation.type, mutation.path
-        ? new Payload(path, mutation.path, value)
-        : value)
+      const payload = mutation.objPath
+        ? new Payload(path, mutation.objPath, value)
+        : value
+      return store.commit(mutation.trgPath, payload)
     }
   }
 
@@ -63,9 +65,9 @@ export function makeGetter (store, path, stateOnly) {
     getter = resolver.get('getters')
     if (getter.exists) {
       return function () {
-        const value = getter.member[getter.type]
-        return getter.path
-          ? getValueIfEnabled(path, value, getter.path)
+        const value = getter.member[getter.trgPath]
+        return getter.objPath
+          ? getValueIfEnabled(path, value, getter.objPath)
           : value
       }
     }
