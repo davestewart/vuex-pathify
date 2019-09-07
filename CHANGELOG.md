@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.5] - 2019-09-07
+
+### Fixed
+- Fixed issue where get and set helpers cached reference to store 
+
+## [1.2.3] - 2019-06-13
+### Added
+- TypeScript: added overload for array and object accessors
+
+### Changed
+- Removed dependency on Lodash `deepClone()` for a naive clone method
+
+### Fixes
+- TypeScript: added proper generics to accessors - #58 / @KaelWD
+
+## [1.2.2] - 2019-03-11
+### Added
+- Added Class Component to dependencies
+
 ## [1.2.0] - 2019-03-11
 ### Added
 - Typescript typings file - #38 / @ozum
