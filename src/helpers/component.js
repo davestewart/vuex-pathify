@@ -112,13 +112,14 @@ export function syncOne (path) {
  * @returns {Object}                    A single getter function
  */
 export function getOne (path, stateOnly) {
-  let getter
+  let getter, store
   return function (...args) {
     if (!this.$store) {
       throw new Error('[Vuex Pathify] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
     }
-    if (!getter) {
-      getter = makeGetter(this.$store, path, stateOnly)
+    if (!getter || store !== this.$store) {
+      store = this.$store
+      getter = makeGetter(store, path, stateOnly)
     }
     return getter(...args)
   }
@@ -131,10 +132,11 @@ export function getOne (path, stateOnly) {
  * @returns {Function}              a single setter function
  */
 export function setOne (path) {
-  let setter
+  let setter, store
   return function (value) {
-    if (!setter) {
-      setter = makeSetter(this.$store, path)
+    if (!setter || store !== this.$store) {
+      store = this.$store
+      setter = makeSetter(store, path)
     }
     this.$nextTick(() => this.$emit('sync', path, value))
     return setter(value)
