@@ -55,6 +55,13 @@ Wire **multiple** properties (or sub-properties) using **array**, **object** and
 ```
 
 
+Use **variable expansion** to dynamically reference store properties:
+
+```pathify
+get('products/:index'),
+```
+
+
 Set up your store – **no matter how complex** – in a single line:
 
 ```pathify
