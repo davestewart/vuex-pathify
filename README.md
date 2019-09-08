@@ -29,8 +29,8 @@ Set up **one or two-way** data binding on **any** store value without **bloat** 
 
 ```js
 computed: {
-      products: get('products'),
-      category: sync('filters@category'),
+  products: get('products'),
+  category: sync('filters@category'),
 }
 ```
 
@@ -39,26 +39,28 @@ computed: {
 Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
 
 ```js
-...sync('filters@sort', [
-      'order', 
-      'key'
+computed: sync('filters@sort', [
+  'order', 
+  'key'
 ])
 ```
 ```js
-...sync('filters@sort', {
-      sortOrder: 'order',
-      sortKey: 'key'
+computed: sync('filters@sort', {
+  sortOrder: 'order',
+  sortKey: 'key'
 })
 ```
 ```js
-...sync('filters@sort.*')
+computed: sync('filters@sort.*')
 ```
 
 
 Use **variable expansion** to dynamically reference store properties:
 
 ```js
-get('products/items@:index')
+computed: {
+  get('products/items@:index')
+}
 ```
 
 
@@ -94,11 +96,3 @@ Demos:
 - [Simple demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/simple)
 - [Main demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main)
 - [Nuxt demo](https://github.com/davestewart/vuex-pathify-demos/tree/master/nuxt)
-
-### Issues / contributing
-
-Feel free to open issues for bugs.
-
-For help, open an issue or catch me on the [Vueland Vuex channel](https://discordapp.com/channels/325477692906536972/325479491453583372).
-
-PRs are welcome! It's the usual approach; see notes [here](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/).
