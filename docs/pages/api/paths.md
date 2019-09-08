@@ -61,17 +61,20 @@ get('products/items')
 
 #### `Sub-property access`
 
-!> Note that Pathify only supports Object (not array) access. Arrays should be updated using manual methods
-
 Sub-property access requires the `@` character, and allows you to read sub-properties to any depth:
 
 ```js
-// 'red'
+// first-level properties
 get('filters@search')
 ```
 ```js
-// 'id'
+// nested properties using dot notation
 get('filters@sort.key')
+```
+```js
+// array access using dot or bracket notation
+get('items@0')
+get('items@[0].name')
 ```
 
 To transparently **write** sub-properties, use the [make.mutations()](/api/store.md#make-mutations) helper or the [Payload](/api/properties.md#payload-class) class.
