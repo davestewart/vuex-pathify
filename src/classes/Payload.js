@@ -32,6 +32,8 @@ export default class Payload {
     }
 
     // set sub-property
-    return Object.assign({}, target)
+    return Array.isArray(target)
+      ? [].concat(target)
+      : Object.assign({}, target)
   }
 }
