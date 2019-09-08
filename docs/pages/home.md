@@ -58,7 +58,7 @@ Wire **multiple** properties (or sub-properties) using **array**, **object** and
 Use **variable expansion** to dynamically reference store properties:
 
 ```pathify
-get('products/:index'),
+get('products/items@:index')
 ```
 
 

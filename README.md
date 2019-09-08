@@ -13,60 +13,62 @@ Paths can reference any **module**, **property** or **sub-property**:
 ![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
 
 
+## Examples
+
 **Get** or **set** data without **syntax juggling** or worrying about **implementation**:
 
-![pathify-diagram](docs/assets/img/readme/pathify-accessors.png)
+```js
+store.get('loaded')
+```
+```js
+store.set('loaded', true)
+```
 
 
 Set up **one or two-way** data binding on **any** store value without **bloat** or **fuss**:
 
-![pathify-diagram](docs/assets/img/readme/pathify-computed.png)
-
-
-Wire **multiple** properties or sub-properties using **array**, **object** and **wildcard** formats:
-
-![pathify-diagram](docs/assets/img/readme/pathify-computed-many.png)
-
-
-Map **store actions** in exactly the same way, even using **wildcards**:
-
-![pathify-diagram](docs/assets/img/readme/pathify-actions.png)
-
-Set up your store – **no matter how complex** – in a single line:
-
-![pathify-diagram](docs/assets/img/readme/pathify-store.png)
-
-
-And... that's it.
+```js
+computed: {
+      products: get('products'),
+      category: sync('filters@category'),
+}
+```
 
 
 
-## Vuex comparison
+Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
 
-Conversely, working with Vuex directly requires is much more work.
-
-Store setup is a manual and laborious process:
-
-![vuex-mutations](docs/assets/img/readme/vuex-store.png)
- 
-Getting and setting values requires juggling accessors, syntax and naming:
-
-![vuex-code](docs/assets/img/readme/vuex-accessors.png)
-
-Component wiring can require up to 4 different helpers, name juggling, plus additional template binding:
-
-![vuex-helpers](docs/assets/img/readme/vuex-helpers.png)
-
-Writing computed properties takes this much code **per property** for 2-way wiring:
-
-![vuex-helpers](docs/assets/img/readme/vuex-computed.png)
-
-Essentially, vanilla Vuex takes a lot of manual JavaScript coding to both set up and maintain.
-
-Check out the [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=code) demo which illustrates a reduction in Vuex code when using Pathify, of between **2 and 14 times** (or more) depending on store size and setup.
+```js
+...sync('filters@sort', [
+      'order', 
+      'key'
+])
+```
+```js
+...sync('filters@sort', {
+      sortOrder: 'order',
+      sortKey: 'key'
+})
+```
+```js
+...sync('filters@sort.*')
+```
 
 
-## Summary
+Use **variable expansion** to dynamically reference store properties:
+
+```js
+get('products/items@:index')
+```
+
+
+Set up your store's mutations – **no matter how complex** – in a single line:
+
+```js
+make.mutations(state)
+```
+
+## Results
 
 In practical terms, Pathify results in:
 
@@ -76,6 +78,9 @@ In practical terms, Pathify results in:
 - cleaner code
 - lighter files
 
+The [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?initialpath=%23%2Fcode%2Flarge) demo demonstrates reductions in lines of code of between **2 and 14 times** (or more) depending on store size and setup.
+
+To see the principles behind such radical code reduction, check out the [Pathify 101](https://davestewart.github.io/vuex-pathify/#/intro/pathify).
 
 ### Next steps
 
@@ -89,3 +94,11 @@ Demos:
 - [Simple demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/simple)
 - [Main demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main)
 - [Nuxt demo](https://github.com/davestewart/vuex-pathify-demos/tree/master/nuxt)
+
+### Issues / contributing
+
+Feel free to open issues for bugs.
+
+For help, open an issue or catch me on the [Vueland Vuex channel](https://discordapp.com/channels/325477692906536972/325479491453583372).
+
+PRs are welcome! It's the usual approach; see notes [here](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/).
