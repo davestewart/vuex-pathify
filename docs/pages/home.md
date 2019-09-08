@@ -30,39 +30,39 @@ Set up **one or two-way** data binding on **any** store value without **bloat** 
 ```pathify
 computed: {
       products: get('products'),
-      category: sync('filters@category'),
+      category: sync('filters@category')
 }
 ```
-
-
 
 Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
 
 ```pathify
-...sync('filters@sort', [
-      'order', 
-      'key'
-])
-```
-```pathify
-...sync('filters@sort', {
-      sortOrder: 'order',
-      sortKey: 'key'
-})
-```
-```pathify
-...sync('filters@sort.*')
+computed: {
+      ...sync('filters@sort', [
+            'order', 
+            'key'
+      ]),
+
+      ...sync('filters@sort', {
+            sortOrder: 'order',
+            sortKey: 'key'
+      }),
+
+      ...sync('filters@sort.*')
+}
 ```
 
 
 Use **variable expansion** to dynamically reference store properties:
 
 ```pathify
-get('products/items@:index')
+computed: {
+      product: get('products/items@:index')
+}
 ```
 
 
-Set up your store – **no matter how complex** – in a single line:
+Set up mutations – **including sub-property mutations** – in a single line:
 
 ```pathify
 make.mutations(state)

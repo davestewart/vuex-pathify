@@ -19,8 +19,6 @@ Paths can reference any **module**, **property** or **sub-property**:
 
 ```js
 store.get('loaded')
-```
-```js
 store.set('loaded', true)
 ```
 
@@ -30,7 +28,7 @@ Set up **one or two-way** data binding on **any** store value without **bloat** 
 ```js
 computed: {
   products: get('products'),
-  category: sync('filters@category'),
+  category: sync('filters@category')
 }
 ```
 
@@ -39,32 +37,30 @@ computed: {
 Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
 
 ```js
-computed: sync('filters@sort', [
-  'order', 
-  'key'
-])
-```
-```js
-computed: sync('filters@sort', {
-  sortOrder: 'order',
-  sortKey: 'key'
-})
-```
-```js
-computed: sync('filters@sort.*')
-```
+computed: {
+  ...sync('filters@sort', [
+    'order', 
+    'key'
+  ]),
 
+  ...sync('filters@sort', {
+    sortOrder: 'order',
+    sortKey: 'key'
+  }),
+
+  ...sync('filters@sort.*')
+}
+```
 
 Use **variable expansion** to dynamically reference store properties:
 
 ```js
 computed: {
-  get('products/items@:index')
+  product: get('products/items@:index')
 }
 ```
 
-
-Set up your store's mutations – **no matter how complex** – in a single line:
+Set up mutations – **including sub-property mutations** – in a single line:
 
 ```js
 make.mutations(state)
