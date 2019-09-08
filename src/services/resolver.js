@@ -152,10 +152,10 @@ export function resolve (store, path) {
         exists: type === 'state'
           ? hasValue(member, trgPath)
           : trgPath in member,
-        member: member,
-        type: trgPath,
-        name: resName,
-        path: objPath,
+        member,
+        trgPath,
+        trgName: resName,
+        objPath,
       }
     }
   }
@@ -172,9 +172,9 @@ export function getError(path, resolver, aName, a, bName, b) {
   }
   else {
     const aText = a
-      ? `${aName} '${a.name}' or `
+      ? `${aName} '${a.trgName}' or `
       : ''
-    const bText = `${bName} '${b.name}'`
+    const bText = `${bName} '${b.trgName}'`
     error += `
     - Did not find ${aText}${bText} on ${resolver.module ? `module '${resolver.module}'`: 'store'}
     - Use direct syntax '${resolver.target.replace(/(@|$)/, '!$1')}' (if member exists) to target directly`

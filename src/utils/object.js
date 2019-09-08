@@ -49,7 +49,7 @@ export function getKeys (value) {
       : typeof value === 'object'
         ? Object.keys(value)
         : typeof value === 'string'
-          ? value.match(/[$\w]+/g) || []
+          ? value.match(/[-$\w]+/g) || []
           : []
 }
 
@@ -65,7 +65,7 @@ export function getValue (obj, path) {
   const keys = getKeys(path)
 
   keys.every(function (key) {
-    const valid = isPlainObject(value) && value.hasOwnProperty(key)
+    const valid = isObject(value) && value.hasOwnProperty(key)
     value = valid ? value[key] : void 0
     return valid
   })
@@ -75,14 +75,19 @@ export function getValue (obj, path) {
 /**
  * Sets a value on an object, based on a path to the property
  *
- * @param   {Object}                obj     The Object to set the value on
- * @param   {string|Array|Object}   path    The path to a sub-property
- * @param   {*}                     value   The value to set
- * @returns {Boolean}                       True or false, depending if value was set
+ * @param   {Object}                obj       The Object to set the value on
+ * @param   {string|Array|Object}   path      The path to a sub-property
+ * @param   {*}                     value     The value to set
+ * @param   {boolean}              [create]   Optional flag to create sub-properties; defaults to false
+ * @returns {Boolean}                         True or false, depending if value was set
  */
-export function setValue (state, path, value, create = false) {
-  const keys = path.split('.')
+export function setValue (obj, path, value, create = false) {
+  const keys = getKeys(path)
   return keys.reduce((obj, key, index)  => {
+    const isIndex = /^\d+$/.test(key)
+    if (isIndex) {
+      key = parseInt(key)
+    }
     if (!obj) {
       return false
     }
@@ -92,13 +97,13 @@ export function setValue (state, path, value, create = false) {
     }
     else if (!isObject(obj[key]) || !(key in obj)) {
       if (create) {
-        obj[key] = {}
+        obj[key] = isIndex ? [] : {}
       } else {
         return false
       }
     }
     return obj[key]
-  }, state)
+  }, obj)
 }
 
 /**
