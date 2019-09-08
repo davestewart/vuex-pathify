@@ -121,7 +121,7 @@ export function getOne (path, stateOnly) {
       store = this.$store
       getter = makeGetter(store, path, stateOnly)
     }
-    return getter(...args)
+    return getter.call(this, ...args)
   }
 }
 
@@ -139,7 +139,7 @@ export function setOne (path) {
       setter = makeSetter(store, path)
     }
     this.$nextTick(() => this.$emit('sync', path, value))
-    return setter(value)
+    return setter.call(this, value)
   }
 }
 
