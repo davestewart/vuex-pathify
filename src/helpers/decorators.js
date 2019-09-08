@@ -1,29 +1,29 @@
 /**
  * @module
- * @description Decorators for Vuex Pathify component helpers.
- * 
+ * @description Decorators for Vuex Pathify component helpers
+ *
  * For example:
  * ```js
  * @Component
  * class MyComponent extends Vue {
- *   @Get("name")
- *   @Set("name")
- *   @Call("setName")
+ *   @Get('name')
+ *   @Set('name')
+ *   @Call('setName')
  * }
  * ```
  */
 
-import { get, sync, call } from "./component"
+import { call, get, sync } from './component'
 
-let createDecorator = require('vue-class-component').createDecorator;
+const createDecorator = require('vue-class-component').createDecorator
 
 /**
- * Decortaor for `get` component helper.
- * @param   {string}          path - Path in store
- * @returns {VueDecorator}         - Vue decortaor to be used in cue class component.
+ * Decorator for `get` component helper.
+ * @param   {string}          path    The path to store property
+ * @returns {VueDecorator}            Vue decorator to be used in Vue class component.
  */
-function Get(path) {
-  if (typeof path !== 'string' || arguments.length > 1) { throw new Error('Property decorators can be used for single property access') }
+function Get (path) {
+  if (typeof path !== 'string' || arguments.length > 1) { throw new Error('Property decorators can only be used for single property access') }
   return createDecorator((options, key) => {
     if (!options.computed) options.computed = {}
     options.computed[key] = get(path)
@@ -31,12 +31,12 @@ function Get(path) {
 }
 
 /**
- * Decortaor for `sync` component helper.
- * @param   {string}          path - Path in store
- * @returns {VueDecorator}         - Vue decortaor to be used in cue class component.
+ * Decorator for `sync` component helper.
+ * @param   {string}          path    The path to store property
+ * @returns {VueDecorator}            Vue decorator to be used in Vue class component.
  */
-function Sync(path) {
-  if (typeof path !== 'string' || arguments.length > 1) { throw new Error('Property decorators can be used for single property access') }
+function Sync (path) {
+  if (typeof path !== 'string' || arguments.length > 1) { throw new Error('Property decorators can only be used for single property access') }
   return createDecorator((options, key) => {
     if (!options.computed) options.computed = {}
     options.computed[key] = sync(path)
@@ -44,12 +44,12 @@ function Sync(path) {
 }
 
 /**
- * Decortaor for `call` component helper.
- * @param   {string}          path - Path in store
- * @returns {VueDecorator}  - Vue decortaor to be used in cue class component.
+ * Decorator for `call` component helper.
+ * @param   {string}          path    The path to store property
+ * @returns {VueDecorator}            Vue decorator to be used in Vue class component.
  */
-function Call(path) {
-  if (typeof path !== 'string' || arguments.length > 1) { throw new Error('Property decorators can be used for single property access') }
+function Call (path) {
+  if (typeof path !== 'string' || arguments.length > 1) { throw new Error('Property decorators can only be used for single property access') }
   return createDecorator((options, key) => {
     if (!options.methods) options.methods = {}
     options.methods[key] = call(path)
