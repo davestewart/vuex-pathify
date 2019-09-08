@@ -12,6 +12,7 @@ Paths can reference any **module**, **property** or **sub-property**:
 
 ![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
 
+Pathify's aim is to simplify the overall Vuex development experience by abstracting away Vuex's complex setup and reliance on manually-written code. The path syntax does the heavy-lifting, with a small set of helper functions used to directly access or wire up components to the store.
 
 ## Examples
 
