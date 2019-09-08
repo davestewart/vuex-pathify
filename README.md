@@ -22,6 +22,12 @@ store.get('loaded')
 store.set('loaded', true)
 ```
 
+Reach into **sub-properties** and **arrays**:
+
+```js
+store.get('products@items.0.name')
+store.set('products@items.1.name', 'Vuex Pathify')
+```
 
 Set up **one or two-way** data binding on **any** store value without **bloat** or **fuss**:
 
@@ -31,8 +37,6 @@ computed: {
   category: sync('filters@category')
 }
 ```
-
-
 
 Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
 
@@ -56,7 +60,7 @@ Use **variable expansion** to dynamically reference store properties:
 
 ```js
 computed: {
-  product: get('products/items@:index')
+  product: get('products@items:index')
 }
 ```
 

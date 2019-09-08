@@ -24,6 +24,12 @@ store.get('loaded')
 store.set('loaded', true)
 ```
 
+Reach into **sub-properties** and **arrays**:
+
+```pathify
+store.get('products@items.0.name')
+store.set('products@items.1.name', 'Vuex Pathify')
+```
 
 Set up **one or two-way** data binding on **any** store value without **bloat** or **fuss**:
 
@@ -57,7 +63,7 @@ Use **variable expansion** to dynamically reference store properties:
 
 ```pathify
 computed: {
-      product: get('products/items@:index')
+      product: get('products@items:index')
 }
 ```
 
