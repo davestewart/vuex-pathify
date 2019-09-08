@@ -128,6 +128,7 @@ export function resolve (store, path) {
     module: modPath,
     target: statePath,
     name: trgName.replace('!', ''),
+    isDynamic: path.includes(':'),
 
     /**
      * Returns properties about the targeted member

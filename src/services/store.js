@@ -27,9 +27,14 @@ export function makeSetter (store, path) {
     }
   }
 
-  const mutation = resolver.get('mutations')
-  if (mutation.exists) {
+  let mutation = resolver.get('mutations')
+  if (mutation.exists || resolver.isDynamic) {
     return function (value) {
+      // rebuild mutation if using dynamic path
+      if (resolver.isDynamic) {
+        const interpolated = interpolate(path, this)
+        mutation = resolve(store, interpolated).get('mutations')
+      }
       const payload = mutation.objPath
         ? new Payload(path, mutation.objPath, value)
         : value
@@ -74,9 +79,12 @@ export function makeGetter (store, path, stateOnly) {
   }
 
   const state = resolver.get('state')
-  if (state.exists) {
+  if (state.exists || resolver.isDynamic) {
     return function () {
-      return getValueIfEnabled(path, store.state, resolver.absPath)
+      const absPath = resolver.isDynamic
+        ? interpolate(resolver.absPath, this)
+        : resolver.absPath
+      return getValueIfEnabled(path, store.state, absPath)
     }
   }
 
@@ -102,4 +110,19 @@ function getValueIfEnabled(expr, source, path) {
     return
   }
   return getValue(source, path)
+}
+
+/**
+ * Utility function to interpolate a string with properties
+ * @param   {string}  path    The path containing interpolation :tokens
+ * @param   {object}  scope   The scope containing properties to be used
+ * @return  {string}
+ */
+function interpolate (path, scope) {
+  return path.replace(/:(\w+)/g, function replace (all, token) {
+    if (!(token in scope)) {
+      console.error(`Error resolving dynamic store path: The property "${token}" does not exist on the scope`, scope)
+    }
+    return scope[token]
+  })
 }

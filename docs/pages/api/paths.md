@@ -7,6 +7,7 @@
 Pathify provides a rich [path syntax](#core-syntax) to access Vuex stores, including:
 
 - module, property and sub-property access
+- variable expansion 
 - wildcard expansion
 
 There are some additional [direct syntaxes](#direct-syntax) as well, which are designed to handle customisation around non `get/set` naming:
@@ -86,7 +87,29 @@ set('filters@search', 'blue')
 See the [sub-property access](/api/properties.md#sub-property-access) section for more information.
 
 
-### Wildcard syntax
+### Variable expansion
+
+Variable `:notation` allows you to use component properties to dynamically build references to store properties.
+
+They may only be used in [component helpers](/api/component.md) but can reference store properties or sub-properties:
+
+```js
+// dynamically reference a property or sub-property  
+get('projects/:slug') 
+get('projects@:slug') 
+
+// dynamically sync a deeply-nested property using object and array notation using multiple variables 
+sync('clients/:name@project[:index].name') 
+```
+
+Note the following caveats:
+
+- only top-level properties may be used as variable names, i.e. `:index` but not `:options.index`
+- when getting, only `state` will be referenced; `getters` will be ignored
+- when setting, only `mutations` will be referenced; `actions` will be ignored
+- you can use array `[:index]` or dot `.index` notation for arrays
+
+### Wildcard expansion
 
 Wildcards `*` allow you to reference multiple properties at once, and are used only in components:
 

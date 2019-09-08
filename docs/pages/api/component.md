@@ -156,7 +156,7 @@ You can use:
 
 - [array syntax](#array-syntax) - to map properties 1:1 with the store
 - [object syntax](#object-syntax) - to map properties with different names on the component
-- [wildcard syntax](#wildcard-syntax) - to grab sets of properties automatically
+- [wildcard expansion](#wildcard-expansion) - to grab sets of properties automatically
 
 Each syntax generates an **Object** of **named properties** which must be mixed in to the associated block (`computed` or `methods`) or set as the block itself:
 
