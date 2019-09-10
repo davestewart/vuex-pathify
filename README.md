@@ -71,7 +71,7 @@ Set up mutations – **including sub-property mutations** – in a single line:
 make.mutations(state)
 ```
 
-# Results
+## Results
 
 In practical terms, Pathify results in:
 
@@ -85,7 +85,7 @@ The [code comparison](https://codesandbox.io/s/github/davestewart/vuex-pathify-d
 
 To see the principles behind such radical code reduction, check out the [Pathify 101](https://davestewart.github.io/vuex-pathify/#/intro/pathify).
 
-# Next steps
+## Next steps
 
 Get started:
 

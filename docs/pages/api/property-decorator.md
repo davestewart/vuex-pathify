@@ -4,14 +4,15 @@
 
 ## Overview
 
-Component property decorators are included to let [component helpers](api/component) to be used with class based
-vue components easily.
+For developers who prefer class-based component development, Pathify allows you to generate computed properties using the `@decorator` syntax.
 
-They are **single property access equivalents** of their [component helpers](api/component) counterpart. For details of single property access see [single-property-access](api/component?id=single-property-access)
+They are [single-property-access](api/component?id=single-property-access) equivalents of their [component helpers](api/component) counterpart.
 
-Note that decorators require [`vue-class-component`](https://github.com/vuejs/vue-class-component), but it is not installed by this library by default. If you are using class based vue components, you already included [`vue-class-component`](https://github.com/vuejs/vue-class-component).
+Note that Pathify imports [`vue-class-component`](https://github.com/vuejs/vue-class-component) internally, but this may change in the future.
 
 ## Usage
+
+!> **Important syntax difference!** Decorators use Sentence-case, i.e. `Get` and not `get`!
 
 The following gives an example of some of the main features:
 
