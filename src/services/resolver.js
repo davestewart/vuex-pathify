@@ -108,7 +108,7 @@ export function resolve (store, path) {
 
   // parent
   let modPath, trgName
-  if (statePath.includes('/')) {
+  if (statePath.indexOf('/') > -1) {
     const keys = statePath.split('/')
     trgName = keys.pop()
     modPath = keys.join('/')
@@ -128,7 +128,7 @@ export function resolve (store, path) {
     module: modPath,
     target: statePath,
     name: trgName.replace('!', ''),
-    isDynamic: path.includes(':'),
+    isDynamic: path.indexOf(':') > -1,
 
     /**
      * Returns properties about the targeted member
@@ -167,7 +167,7 @@ export function resolve (store, path) {
  */
 export function getError(path, resolver, aName, a, bName, b) {
   let error = `[Vuex Pathify] Unable to map path '${path}':`
-  if (path.includes('!')) {
+  if (path.indexOf('!') > -1) {
     error += `
     - Did not find ${aName} or ${bName} named '${resolver.name}' on ${resolver.module ? `module '${resolver.module}'`: 'root store'}`
   }
