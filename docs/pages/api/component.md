@@ -61,7 +61,7 @@ See the component helpers [demo](https://codesandbox.io/s/github/davestewart/vue
 
 ## API
 
-!> Remember that component helpers use Pathify's core [property access](/api/properties.md) so have exactly the same functionality.
+!> Remember that component helpers use Pathify's core [property access](/api/properties.md) thus have exactly the same functionality.
 
 ### Single property access
 
