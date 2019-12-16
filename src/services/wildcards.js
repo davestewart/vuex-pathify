@@ -116,7 +116,7 @@ export function resolveHandlers (path, hash) {
  */
 export function init (path, state) {
   // only wildcards in final path segment are supported
-  if (path.includes('*') && /\*.*[/@.]/.test(path)) {
+  if (path.indexOf('*') > -1 && /\*.*[/@.]/.test(path)) {
     console.error(`[Vuex Pathify] Invalid wildcard placement for path '${path}':
     - Wildcards may only be used in the last segment of a path`)
     return false

@@ -104,7 +104,7 @@ export function makeGetter (store, path, stateOnly) {
  * @returns {*}
  */
 function getValueIfEnabled(expr, source, path) {
-  if (!options.deep && expr.includes('@')) {
+  if (!options.deep && expr.indexOf('@') > -1) {
     console.error(`[Vuex Pathify] Unable to access sub-property for path '${expr}':
     - Set option 'deep' to 1 to allow it`)
     return

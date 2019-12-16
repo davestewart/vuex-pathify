@@ -19,7 +19,7 @@ import { isObject } from '../utils/object'
  */
 export function makePaths (path, props, fnResolver) {
   // handle wildcards
-  if (typeof path === 'string' && path.includes('*')) {
+  if (typeof path === 'string' && path.indexOf('*') > -1) {
     return makePathsHash(fnResolver(path))
   }
 
@@ -68,7 +68,7 @@ export function makePaths (path, props, fnResolver) {
  */
 export function makePath (path, target = '') {
   path = path.replace(/\/+$/, '')
-  const value = path.includes('@')
+  const value = path.indexOf('@') > -1
     ? path + '.' + target
     : path + '/' + target
   return value
