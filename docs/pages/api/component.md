@@ -405,4 +405,4 @@ export default {
 }
 ```
 
-If you're interested to see what happens behind the scenes [check out the code](https://github.com/davestewart/vuex-pathify/blob/develop/src/helpers/modules.js) on GitHub.
+If you're interested to see what happens behind the scenes [check out the code](https://github.com/davestewart/vuex-pathify/blob/master/src/helpers/modules.js) on GitHub.
