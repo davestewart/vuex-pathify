@@ -89,7 +89,7 @@ In practical terms, Pathify results in:
 To get started:
 
 - visit the [Installation](/setup/install.md) page to install and use Pathify now
-- read the [API](/api/index.md) section for a deep dive into Pathify's features
+- read the [API](/api/paths.md) section for a deep dive into Pathify's features
 
 To see Pathify in action:
 
