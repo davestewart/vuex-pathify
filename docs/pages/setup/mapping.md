@@ -66,7 +66,7 @@ pathify.options.mapping = function (type, name, formatters) {
 
 ### Formatters
 
-The formatter functions passed as a convenience in as the 3rd parameter have two roles:
+The formatter functions are passed for convenience as the 3rd parameter and have two roles:
 
 1. concatenate separate words
 2. convert their case 

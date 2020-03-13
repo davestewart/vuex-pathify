@@ -4,7 +4,7 @@
 
 ## Download
 
-In your project's root folder, download and install the package using NPM or yarn:
+In your project's root folder, download and install the package using npm or yarn:
 
 ```shell
 npm i vuex-pathify
