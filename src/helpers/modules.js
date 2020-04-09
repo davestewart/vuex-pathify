@@ -16,7 +16,7 @@ export function registerModule(path, module, callback, options) {
       this.$options.methods = Object.assign(this.$options.methods || {}, members.methods || {})
     },
 
-    destoyed () {
+    destroyed () {
       this.$store.unregisterModule(path)
     }
   }
