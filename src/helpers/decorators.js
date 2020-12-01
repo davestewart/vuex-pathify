@@ -14,8 +14,7 @@
  */
 
 import { call, get, sync } from './component'
-
-const createDecorator = require('vue-class-component').createDecorator
+import { createDecorator } from 'vue-class-component'
 
 /**
  * Decorator for `get` component helper.
