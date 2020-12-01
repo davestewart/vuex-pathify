@@ -1,16 +1,16 @@
 
-![splash](docs/assets/img/readme/splash-github.png)
+![splash](https://raw.githubusercontent.com/davestewart/vuex-pathify/master/docs/assets/img/readme/splash-github.png)
 
 ## Overview
 
 Pathify makes working with Vuex **easy**, with a **declarative**, **state-based**, **path syntax**:
 
-![pathify-diagram](docs/assets/img/readme/pathify-path.png)
+![pathify-diagram](https://raw.githubusercontent.com/davestewart/vuex-pathify/master/docs/assets/img/readme/pathify-path.png)
 
 
 Paths can reference any **module**, **property** or **sub-property**:
 
-![pathify-diagram](docs/assets/img/readme/pathify-diagram.png)
+![pathify-diagram](https://raw.githubusercontent.com/davestewart/vuex-pathify/master/docs/assets/img/readme/pathify-diagram.png)
 
 Pathify's aim is to simplify the overall Vuex development experience by abstracting away Vuex's complex setup and reliance on manually-written code. The path syntax does the heavy-lifting, with a small set of helper functions used to directly access or wire up components to the store.
 
