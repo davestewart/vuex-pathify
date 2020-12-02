@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.4.3] - 2020-12-01
 ### Fixed
-- Fix broken UMD bundles - #117 / @johannes-z
+- Update dependencies
 
 ## [1.4.2] - 2020-12-01
 ### Fixed
