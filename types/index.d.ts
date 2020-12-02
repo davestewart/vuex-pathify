@@ -81,7 +81,7 @@ export const make: Make;
 ------------------------------------------------------------------------*/
 // TODO: Not documented/public class, may need refinement by module author.
 export class Payload {
-  constructor(path: string, value: any);
+  constructor(expr: string, path: string, value: any);
   expr: string;
   path: string;
   value: any;
