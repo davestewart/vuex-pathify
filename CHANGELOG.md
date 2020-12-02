@@ -5,28 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.4.2] - 2020-12-01
+## [1.4.4] - 2020-12-02
+### Fixed
+- Fix Payload type - #101 / @VesterDe
 
+## [1.4.3] - 2020-12-01
+### Fixed
+- Fix broken UMD bundles - #117 / @johannes-z
+
+## [1.4.2] - 2020-12-01
 ### Fixed
 - Fix broken UMD bundles - #117 / @johannes-z
 
 ## [1.4.1] - 2019-12-16
-
 ### Fixed
 - IE11 compatibility - #77 / @JessicaSachs
 
 ## [1.4.0] - 2019-09-08
-
 ### Added
 - Enable variable expansion in component helper paths
 
 ## [1.3.0] - 2019-09-08
-
 ### Added
 - Enable array read / write for sub-properties
 
 ## [1.2.5] - 2019-09-07
-
 ### Fixed
 - Fixed issue where get and set helpers cached reference to store 
 
@@ -72,7 +75,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Invalid computed property paths now return empty functions
 - Bug in sync where invalid paths would cause error message to error
 
-
 ## [1.0.10] - 2018-05-20
 ### Fixed
 - Fixed invalid wildcard bug which caused Nuxt to bomb
@@ -112,16 +114,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Removed component helpers set() function
 
-
 ## [1.0.3] - 2018-05-04
 ### Fixed
 - Fixed bug with module-level wildcard get() not returning getters
 
-
 ## [1.0.2] - 2018-05-03
 ### Fixed
 - Fixed error message displaying original package name
-
 
 ## [1.0.1] - 2018-04-30
 ### Changed
