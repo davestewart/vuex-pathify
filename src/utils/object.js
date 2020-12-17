@@ -19,6 +19,16 @@ export function isObject (value) {
 }
 
 /**
+ * Tests whether a string is numeric
+ *
+ * @param   {string|number}   value   The value to be assessed
+ * @returns {boolean}
+ */
+export function isNumeric (value) {
+  return typeof value === 'number' || /^\d+$/.test(value)
+}
+
+/**
  * Tests whether a passed value is an Object and has the specified key
  *
  * @param   {Object}   obj    The source object
@@ -89,9 +99,8 @@ export function setValue (obj, path, value, create = false) {
       return false
     }
 
-    // convert key to index if key is numeric and obj is an array
-    const isIndex = /^\d+$/.test(key)
-    if (Array.isArray(obj) && isIndex) {
+    // convert key to index if obj is an array and key is numeric
+    if (Array.isArray(obj) && isNumeric(key)) {
       key = parseInt(key)
     }
 
@@ -101,10 +110,14 @@ export function setValue (obj, path, value, create = false) {
       return true
     }
 
-    // if the target property doesn't exist, create one, or cancel
+    // if the target property doesn't exist...
     else if (!isObject(obj[key]) || !(key in obj)) {
+      // ...create one, or cancel
       if (create) {
-        obj[key] = isIndex ? [] : {}
+        // create object or array, depending on next key
+        obj[key] = isNumeric(keys[index + 1])
+          ? []
+          : {}
       }
       else {
         return false
