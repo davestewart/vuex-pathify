@@ -84,7 +84,7 @@ export function getValue (obj, path) {
 export function setValue (obj, path, value, create = false) {
   const keys = getKeys(path)
   return keys.reduce((obj, key, index)  => {
-    const isIndex = /^\d+$/.test(key)
+    const isIndex = /^0$|^[1-9]\d*$/.test(key)
     if (isIndex) {
       key = parseInt(key)
     }
