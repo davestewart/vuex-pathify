@@ -1,4 +1,4 @@
-import { getValue} from '../utils/object'
+import { getValue } from '../utils/object'
 
 // -------------------------------------------------------------------------------------------------------------------
 // external
@@ -50,7 +50,6 @@ export function expandCall (path, actions) {
   return resolveHandlers(path, actions)
 }
 
-
 // -------------------------------------------------------------------------------------------------------------------
 // internal
 // -------------------------------------------------------------------------------------------------------------------
@@ -101,7 +100,6 @@ export function resolveHandlers (path, hash) {
   const rx = new RegExp('^' + path.replace(/\*/g, '\\w+') + '$')
   return Object.keys(hash).filter(key => rx.test(key))
 }
-
 
 // -------------------------------------------------------------------------------------------------------------------
 // utility

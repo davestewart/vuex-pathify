@@ -19,13 +19,23 @@ export function isObject (value) {
 }
 
 /**
+ * Tests whether a string is numeric
+ *
+ * @param   {string|number}   value   The value to be assessed
+ * @returns {boolean}
+ */
+export function isNumeric (value) {
+  return typeof value === 'number' || /^\d+$/.test(value)
+}
+
+/**
  * Tests whether a passed value is an Object and has the specified key
  *
  * @param   {Object}   obj    The source object
  * @param   {string}   key    The key to check that exists
  * @returns {boolean}         Whether the predicate is satisfied
  */
-export function hasKey(obj, key) {
+export function hasKey (obj, key) {
   return isObject(obj) && key in obj
 }
 
@@ -83,25 +93,38 @@ export function getValue (obj, path) {
  */
 export function setValue (obj, path, value, create = false) {
   const keys = getKeys(path)
-  return keys.reduce((obj, key, index)  => {
-    const isIndex = /^\d+$/.test(key)
-    if (isIndex) {
-      key = parseInt(key)
-    }
+  return keys.reduce((obj, key, index) => {
+    // early return if no object
     if (!obj) {
       return false
     }
-    else if (index === keys.length - 1) {
+
+    // convert key to index if obj is an array and key is numeric
+    if (Array.isArray(obj) && isNumeric(key)) {
+      key = parseInt(key)
+    }
+
+    // if we're at the end of the path, set the value
+    if (index === keys.length - 1) {
       obj[key] = value
       return true
     }
+
+    // if the target property doesn't exist...
     else if (!isObject(obj[key]) || !(key in obj)) {
+      // ...create one, or cancel
       if (create) {
-        obj[key] = isIndex ? [] : {}
-      } else {
+        // create object or array, depending on next key
+        obj[key] = isNumeric(keys[index + 1])
+          ? []
+          : {}
+      }
+      else {
         return false
       }
     }
+
+    // if we get here, return the target property
     return obj[key]
   }, obj)
 }
@@ -113,14 +136,15 @@ export function setValue (obj, path, value, create = false) {
  * @param   {string|Array|Object}   path    The path to a sub-property
  * @returns {boolean}                       Boolean true or false
  */
-export function hasValue(obj, path) {
+export function hasValue (obj, path) {
   let keys = getKeys(path)
   if (isObject(obj)) {
     while (keys.length) {
       let key = keys.shift()
       if (hasKey(obj, key)) {
         obj = obj[key]
-      } else {
+      }
+      else {
         return false
       }
     }

@@ -1,109 +1,133 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import pathify, { make } from '../src/main';
+import { make } from '../src/main';
+import { makeStore } from './helpers'
 
+describe('top-level state', () => {
+  it('should get state', () => {
+    const state = { name: 'Jack', age: 28 }
+    const store = makeStore({
+      state,
+    })
 
-Vue.use(Vuex)
-
-it('can get state', () => {
-  const state = { name: 'Jack', age: 28 }
-
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
-    state,
+    expect(store.get('name')).toEqual('Jack')
+    expect(store.get('age')).toEqual(28)
   })
 
-  expect(store.get('name')).toEqual('Jack')
-  expect(store.get('age')).toEqual(28)
-})
 
-it('can get nested state', () => {
-  const state = {
-    person: {
-      name: 'Jack',
-      age: 28,
-      pets: [{
-        animal: 'cat',
-        name: 'Tabby',
-      }],
-    },
-  }
+  it('should set state', () => {
+    const state = { name: 'Jack', age: 28 }
+    const store = makeStore({ state })
 
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
-    state,
+    store.set('name', 'Jill')
+
+    expect(store.state.name).toEqual('Jill')
   })
-
-  expect(store.get('person@name')).toEqual('Jack')
-  expect(store.get('person@age')).toEqual(28)
-  expect(store.get('person@pets@[0].animal')).toEqual('cat')
-  expect(store.get('person@pets@[0].name')).toEqual('Tabby')
 })
 
-it('can get module state', () => {
-  const state = { name: 'Jack', age: 28 }
-
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
-    modules: {
-      people: { namespaced: true, state }
+describe('nested state', function () {
+  it('should get state', () => {
+    const state = {
+      person: {
+        name: 'Jack',
+        age: 28,
+        pets: [{
+          animal: 'cat',
+          name: 'Tabby',
+        }],
+      },
     }
+    const store = makeStore({
+      state,
+    })
+
+    expect(store.get('person@name')).toEqual('Jack')
+    expect(store.get('person@age')).toEqual(28)
+    expect(store.get('person@pets@[0].animal')).toEqual('cat')
+    expect(store.get('person@pets@[0].name')).toEqual('Tabby')
   })
 
-  expect(store.get('people/name')).toEqual('Jack')
-  expect(store.get('people/age')).toEqual(28)
-})
-
-it('can set state', () => {
-  const state = { name: 'Jack', age: 28 }
-  const mutations = make.mutations(state)
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
-    state,
-    mutations,
-  })
-
-  store.set('name', 'Jill')
-
-  expect(store.state.name).toEqual('Jill')
-})
-
-it('can set nested state', () => {
-  const state = {
-    person: {
-      name: 'Jack',
-      age: 28,
-      pets: [{
-        animal: 'cat',
-        name: 'Tabby',
-      }],
-    },
-  }
-  const mutations = make.mutations(state)
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
-    state,
-    mutations,
-  })
-
-  store.set('person@name', 'Jill')
-  store.set('person@pets[0].name', 'Spot')
-
-  expect(store.state.person.name).toEqual('Jill')
-  expect(store.state.person.pets[0].name).toEqual('Spot')
-})
-
-it('can set module state', () => {
-  const state = { name: 'Jack', age: 28 }
-  const mutations = make.mutations(state)
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
-    modules: {
-      people: { namespaced: true, state, mutations }
+  it('should set state', () => {
+    const state = {
+      person: {
+        name: 'Jack',
+        age: 28,
+        pets: [{
+          animal: 'cat',
+          name: 'Tabby',
+        }],
+      },
     }
+    const store = makeStore({ state })
+
+    store.set('person@name', 'Jill')
+    store.set('person@pets[0].name', 'Spot')
+
+    expect(store.state.person.name).toEqual('Jill')
+    expect(store.state.person.pets[0].name).toEqual('Spot')
+  })
+})
+
+describe('module state', function () {
+  it('should get state', () => {
+    const state = { name: 'Jack', age: 28 }
+    const store = makeStore({
+      modules: {
+        people: { namespaced: true, state }
+      }
+    })
+
+    expect(store.get('people/name')).toEqual('Jack')
+    expect(store.get('people/age')).toEqual(28)
   })
 
-  store.set('people/name', 'Jill')
+  it('should set state', () => {
+    const state = { name: 'Jack', age: 28 }
+    const mutations = make.mutations(state)
+    const store = makeStore({
+      modules: {
+        people: { namespaced: true, state, mutations }
+      }
+    })
 
-  expect(store.state.people.name).toEqual('Jill')
+    store.set('people/name', 'Jill')
+
+    expect(store.state.people.name).toEqual('Jill')
+  })
+})
+
+describe('special functionality', function () {
+  describe('key types', () => {
+    const state = { object: {}, array: [] }
+    const store = makeStore({ state })
+
+    it('alpha keys - should set a key on an object', function () {
+      store.set('object@a1', 1)
+      expect(store.state.object['a1']).toEqual(1)
+    })
+
+    it('numeric keys - should set a key on an object', function () {
+      store.set('object@1a', 1)
+      expect(store.state.object['1a']).toEqual(1)
+    })
+
+    it('numeric keys - should set an index on an array', function () {
+      store.set('array@0', 1)
+      expect(store.state.array[0]).toEqual(1)
+    })
+  })
+
+  describe('object creation', () => {
+    const state = { target: {} }
+    const mutations = make.mutations(state)
+    const store = makeStore({ state, mutations })
+
+    it('should create empty objects', function () {
+      store.set('target@value', 100)
+      expect(store.state.target.value).toEqual(100)
+    })
+
+    it('should create empty arrays', function () {
+      store.set('target@matrix.0.0', 100)
+      expect(store.state.target.matrix[0][0]).toEqual(100)
+    })
+  })
 })

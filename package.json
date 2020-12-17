@@ -1,6 +1,6 @@
 {
   "name": "vuex-pathify",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Ridiculously simple Vuex setup + wiring",
   "main": "dist/vuex-pathify.js",
   "module": "dist/vuex-pathify.esm.js",
@@ -14,7 +14,7 @@
     "dev": "rollup -c build/rollup.js -w",
     "build": "rollup -c build/rollup.js",
     "docs": "node-sass docs/assets/scss -o docs/assets/css -w docs/assets/scss/**/*.scss & docsify serve docs",
-    "test": "jest tests/",
+    "test": "jest tests/ --verbose",
     "test:types": "tsc -p types/test"
   },
   "author": "Dave Stewart <dave@davestewart.io>",

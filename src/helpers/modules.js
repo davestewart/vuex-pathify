@@ -7,7 +7,7 @@
  * @param   {object}       [options]    Optional Vuex module registration options
  * @returns {object}                    The mixin
  */
-export function registerModule(path, module, callback, options) {
+export function registerModule (path, module, callback, options) {
   return {
     beforeCreate () {
       this.$store.registerModule(path, module, options)

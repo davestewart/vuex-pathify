@@ -58,7 +58,7 @@ export function makeActions (state) {
     .reduce(function (obj, key) {
       const action = resolveName('actions', key)
       const mutation = resolveName('mutations', key)
-      obj[action] = function ({commit}, value) {
+      obj[action] = function ({ commit }, value) {
         commit(mutation, value)
       }
       return obj

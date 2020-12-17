@@ -1,22 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { make } from '../src/main'
+import { makeStore } from './helpers'
 
-import pathify, { make } from '../src/main'
-
-Vue.use(Vuex)
-
-it('can make mutations', () => {
+it('should make mutations', () => {
   const state = { name: 'Jack', age: 28 }
   const mutations = make.mutations(state)
-
-  const store = new Vuex.Store({
-    plugins: [pathify.plugin],
+  const store = makeStore({
     state,
     mutations,
   })
 
-  store.commit('SET_AGE', 30)
-  store.commit('SET_NAME', 'Jill')
+  store.commit('age', 30)
+  store.commit('name', 'Jill')
   expect(store.state.name).toEqual('Jill')
   expect(store.state.age).toEqual(30)
 })
