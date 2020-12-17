@@ -83,25 +83,35 @@ export function getValue (obj, path) {
  */
 export function setValue (obj, path, value, create = false) {
   const keys = getKeys(path)
-  return keys.reduce((obj, key, index)  => {
-    const isIndex = /^\d+$/.test(key)
-    if (isIndex) {
-      key = parseInt(key)
-    }
+  return keys.reduce((obj, key, index) => {
+    // early return if no object
     if (!obj) {
       return false
     }
-    else if (index === keys.length - 1) {
+
+    // convert key to index if key is numeric and obj is an array
+    const isIndex = /^\d+$/.test(key)
+    if (Array.isArray(obj) && isIndex) {
+      key = parseInt(key)
+    }
+
+    // if we're at the end of the path, set the value
+    if (index === keys.length - 1) {
       obj[key] = value
       return true
     }
+
+    // if the target property doesn't exist, create one, or cancel
     else if (!isObject(obj[key]) || !(key in obj)) {
       if (create) {
         obj[key] = isIndex ? [] : {}
-      } else {
+      }
+      else {
         return false
       }
     }
+
+    // if we get here, return the target property
     return obj[key]
   }, obj)
 }
