@@ -19,11 +19,11 @@ const vuex = {
   }
 }
 
-export function commit(...args) {
+export function commit (...args) {
   vuex.store.commit(...args)
 }
 
-export function dispatch(...args) {
+export function dispatch (...args) {
   return vuex.store.dispatch(...args)
 }
 

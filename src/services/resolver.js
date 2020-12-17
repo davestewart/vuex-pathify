@@ -28,7 +28,7 @@ const resolvers = {
    * @returns {string}
    */
   standard (type, name, formatters) {
-    switch(type) {
+    switch (type) {
       case 'mutations':
         return formatters.const('set', name) // SET_BAR
       case 'actions':
@@ -165,11 +165,11 @@ export function resolve (store, path) {
 /**
  * Error generation function for accessors
  */
-export function getError(path, resolver, aName, a, bName, b) {
+export function getError (path, resolver, aName, a, bName, b) {
   let error = `[Vuex Pathify] Unable to map path '${path}':`
   if (path.indexOf('!') > -1) {
     error += `
-    - Did not find ${aName} or ${bName} named '${resolver.name}' on ${resolver.module ? `module '${resolver.module}'`: 'root store'}`
+    - Did not find ${aName} or ${bName} named '${resolver.name}' on ${resolver.module ? `module '${resolver.module}'` : 'root store'}`
   }
   else {
     const aText = a
@@ -177,7 +177,7 @@ export function getError(path, resolver, aName, a, bName, b) {
       : ''
     const bText = `${bName} '${b.trgName}'`
     error += `
-    - Did not find ${aText}${bText} on ${resolver.module ? `module '${resolver.module}'`: 'store'}
+    - Did not find ${aText}${bText} on ${resolver.module ? `module '${resolver.module}'` : 'store'}
     - Use direct syntax '${resolver.target.replace(/(@|$)/, '!$1')}' (if member exists) to target directly`
   }
   return error

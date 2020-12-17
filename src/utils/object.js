@@ -35,7 +35,7 @@ export function isNumeric (value) {
  * @param   {string}   key    The key to check that exists
  * @returns {boolean}         Whether the predicate is satisfied
  */
-export function hasKey(obj, key) {
+export function hasKey (obj, key) {
   return isObject(obj) && key in obj
 }
 
@@ -136,14 +136,15 @@ export function setValue (obj, path, value, create = false) {
  * @param   {string|Array|Object}   path    The path to a sub-property
  * @returns {boolean}                       Boolean true or false
  */
-export function hasValue(obj, path) {
+export function hasValue (obj, path) {
   let keys = getKeys(path)
   if (isObject(obj)) {
     while (keys.length) {
       let key = keys.shift()
       if (hasKey(obj, key)) {
         obj = obj[key]
-      } else {
+      }
+      else {
         return false
       }
     }
