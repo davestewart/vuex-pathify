@@ -40,6 +40,9 @@ export function makeMutations (state) {
     .reduce(function (obj, key) {
       const mutation = resolveName('mutations', key)
       obj[mutation] = function (state, value) {
+        if (Payload.isSerialized(value)) {
+          value = new Payload(value.expr, value.path, value.value)
+        }
         state[key] = value instanceof Payload
           ? value.update(state[key])
           : value

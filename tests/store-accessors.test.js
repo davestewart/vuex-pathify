@@ -131,3 +131,20 @@ describe('special functionality', function () {
     })
   })
 })
+
+describe('serialized Payload', () => {
+  it('serialized Payload should be interpreted', function () {
+    const state = { name: { firstName: 'John', lastName: 'Doe' }, age: 28 }
+    const mutations = make.mutations(state)
+    const store = makeStore({
+      modules: {
+        people: { namespaced: true, state, mutations }
+      }
+    })
+
+    store.commit('people/name', { expr: 'people/name@firstname', value: 'Jane', path: 'firstname' })
+
+    expect(store.get('people/name@firstname')).toEqual('Jane')
+    expect(store.get('people/age')).toEqual(28)
+  })
+})
