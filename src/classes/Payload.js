@@ -1,4 +1,4 @@
-import { isObject, setValue } from '../utils/object'
+import { isPlainObject, setValue } from '../utils/object'
 import options from '../plugin/options'
 
 /**
@@ -44,5 +44,8 @@ export default class Payload {
  * @see https://github.com/davestewart/vuex-pathify/pull/125
  */
 Payload.isSerialized = function (value) {
-  return isObject(value) && 'expr' in value && 'path' in value && 'value' in value
+  return isPlainObject(value)
+    && 'expr' in value
+    && 'path' in value
+    && 'value' in value
 }
