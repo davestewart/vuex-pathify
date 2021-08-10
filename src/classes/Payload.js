@@ -22,6 +22,11 @@ export default class Payload {
       return target
     }
 
+    if (!this.path) {
+      target = this.value;
+      return target;
+    }
+
     const success = setValue(target, this.path, this.value, options.deep > 1)
 
     // unable to set sub-property
