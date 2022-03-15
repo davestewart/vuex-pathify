@@ -50,13 +50,13 @@ export default defaultExport;
  ***********************************************************************/
 
 /*--------------------------------------------------------------------------
-                                  SHARED 	                              
+                                  SHARED
 ------------------------------------------------------------------------*/
 type GetAccessor<T = any> = () => T;
 type SetAccessor<T> = (newValue: T) => T; // TODO: Do setters always return same type as input.
 
 /*--------------------------------------------------------------------------
-                                   make 	                                
+                                   make
 ------------------------------------------------------------------------*/
 type StateFunction<T> = () => T;
 
@@ -77,7 +77,7 @@ interface Make {
 export const make: Make;
 
 /*--------------------------------------------------------------------------
-                                Payload	                                
+                                Payload
 ------------------------------------------------------------------------*/
 // TODO: Not documented/public class, may need refinement by module author.
 export class Payload {
@@ -89,7 +89,7 @@ export class Payload {
 }
 
 /*--------------------------------------------------------------------------
-                             get/sync/call                               
+                             get/sync/call
 ------------------------------------------------------------------------*/
 /**
  * Create get accessors
@@ -125,7 +125,7 @@ export function call(
 ): (payload: any) => any | Promise<any>;
 
 /*--------------------------------------------------------------------------
-                           Property Decorators                               
+                           Property Decorators
 ------------------------------------------------------------------------*/
 export function Get(path: string): ReturnType<typeof createDecorator>;
 
@@ -134,7 +134,7 @@ export function Sync(path: string): ReturnType<typeof createDecorator>;
 export function Call(path: string): ReturnType<typeof createDecorator>;
 
 /*--------------------------------------------------------------------------
-                                  commit                                 
+                                  commit
 ------------------------------------------------------------------------*/
 // Copied from vuex types.
 export function commit(
@@ -148,7 +148,7 @@ export function commit<P extends Payload>(
 ): void;
 
 /*--------------------------------------------------------------------------
-                                 dispatch                                
+                                 dispatch
 ------------------------------------------------------------------------*/
 // Copied from vuex types.
 export function dispatch(
@@ -162,7 +162,7 @@ export function dispatch<P extends Payload>(
 ): Promise<any>;
 
 /*--------------------------------------------------------------------------
-                             registerModule                              
+                             registerModule
  ------------------------------------------------------------------------*/
 export function registerModule(
   path: string | string[],
@@ -170,3 +170,14 @@ export function registerModule(
   callback: (...args: any[]) => any, // TODO: Needs refinement.
   options: object
 ): object; // TODO: Needs more details from module author.
+
+/*--------------------------------------------------------------------------
+                           global store methods
+ ------------------------------------------------------------------------*/
+declare module '@vue/runtime-core' {
+  interface Store {
+    get(path: string, args?: any[]): any;
+    set(path: string, value: any): any;
+    copy(path: string): any
+  }
+}

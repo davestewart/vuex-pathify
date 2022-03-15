@@ -1,8 +1,7 @@
 // plugin
-import vuex from '../helpers/vuex'
+import { setStore } from '../helpers/vuex'
 
 // options
-import accessorize from '../helpers/accessors'
 import options from './options'
 import debug from './debug'
 
@@ -12,12 +11,7 @@ import debug from './debug'
  * @param {Object} store  The store object
  */
 function plugin (store) {
-
-  // cache store instance
-  vuex.store = store
-
-  // add pathify accessors
-  accessorize(store)
+  setStore(store)
 }
 
 export default {

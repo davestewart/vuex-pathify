@@ -152,7 +152,9 @@ export function resolve (store, path) {
       return {
         exists: type === 'state'
           ? hasValue(member, trgPath)
-          : trgPath in member,
+          : member
+            ? trgPath in member
+            : false,
         member,
         trgPath,
         trgName: resName,

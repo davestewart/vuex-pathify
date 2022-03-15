@@ -1,27 +1,31 @@
+import { computed } from 'vue'
 import { makeGetter, makeSetter } from '../services/store'
 import { expandGet, expandSync, expandCall } from '../services/wildcards'
 import { makePaths } from '../services/paths'
-import vuex from './vuex'
+import { getStore } from './vuex'
 
 // -------------------------------------------------------------------------------------------------------------------
 // entry
 // -------------------------------------------------------------------------------------------------------------------
 
-export function get (path, props) {
+export function get (path, props, useComputed = true) {
+  const store = getStore()
   return make(path, props, getOne, function (path) {
-    return expandGet(path, vuex.store.state, vuex.store.getters)
-  })
+    return expandGet(path, store.state, store.getters)
+  }, useComputed)
 }
 
-export function sync (path, props) {
+export function sync (path, props, useComputed = true) {
+  const store = getStore()
   return make(path, props, syncOne, function (path) {
-    return expandSync(path, vuex.store.state)
-  })
+    return expandSync(path, store.state)
+  }, useComputed)
 }
 
 export function call (path, props) {
+  const store = getStore()
   return make(path, props, callOne, function (path) {
-    return expandCall(path, vuex.store._actions)
+    return expandCall(path, store._actions)
   })
 }
 
@@ -63,22 +67,27 @@ export function call (path, props) {
  * @param   {Object|Array}          props       a hash of state/getter or commit/action references
  * @param   {Function}              fnHandler   a callback function to create the handler
  * @param   {Function}              fnResolver
+ * @param   {boolean}               useComputed
  * @returns {{set, get}}                        a hash of Objects
  */
-export function make (path, props, fnHandler, fnResolver) {
+export function make (path, props, fnHandler, fnResolver, useComputed = false) {
   // expand path / props
   const data = makePaths(path, props, fnResolver)
 
   // handle single paths
   if (typeof data === 'string') {
-    return fnHandler(data)
+    return useComputed
+      ? computed(fnHandler(data))
+      : fnHandler(data)
   }
 
   // handle multiple properties
   Object
     .keys(data)
     .forEach(key => {
-      data[key] = fnHandler(data[key])
+      data[key] = useComputed
+        ? computed(fnHandler(data[key]))
+        : fnHandler(data[key])
     })
   return data
 }
@@ -113,11 +122,8 @@ export function syncOne (path) {
 export function getOne (path, stateOnly) {
   let getter, store
   return function (...args) {
-    if (!this.$store) {
-      throw new Error('[Vuex Pathify] Unexpected condition: this.$store is undefined.\n\nThis is a known edge case with some setups and will cause future lookups to fail')
-    }
-    if (!getter || store !== this.$store) {
-      store = this.$store
+    if (!getter || !store) {
+      store = getStore()
       getter = makeGetter(store, path, stateOnly)
     }
     return getter.call(this, ...args)
@@ -133,11 +139,11 @@ export function getOne (path, stateOnly) {
 export function setOne (path) {
   let setter, store
   return function (value) {
-    if (!setter || store !== this.$store) {
-      store = this.$store
+    if (!setter || !store) {
+      store = getStore()
       setter = makeSetter(store, path)
     }
-    this.$nextTick(() => this.$emit('sync', path, value))
+    // this.$nextTick(() => this.$emit('sync', path, value))
     return setter.call(this, value)
   }
 }
@@ -149,7 +155,8 @@ export function setOne (path) {
  * @returns {Function}              a single setter function
  */
 export function callOne (path) {
+  const store = getStore()
   return function (value) {
-    return this.$store.dispatch(path, value)
+    return store.dispatch(path, value)
   }
 }
