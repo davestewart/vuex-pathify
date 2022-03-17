@@ -141,25 +141,25 @@ Looking at the list above, we can see that Pathify solves the following:
 
 1. **Syntax juggling**
 
-    [Path syntax](/api/paths.md) unifies differing varied state, getters, commit and dispatch syntax.
+    [Path syntax](/guide/paths.md) unifies differing varied state, getters, commit and dispatch syntax.
     
-    [Accessor priority](/api/properties.md#accessor-priority) decouples store access from store architecture and makes it simple to get or set.
+    [Accessor priority](/guide/properties.md#accessor-priority) decouples store access from store architecture and makes it simple to get or set.
 
 2. **Boilerplate**
 
-    [Store helpers](/api/store.md) eliminate store boilerplate.
+    [Store helpers](/guide/store.md) eliminate store boilerplate.
 
 3. **Wiring**
 
-    [Component helpers](/api/component.md) eliminate wiring boilerplate.
+    [Component helpers](/guide/component.md) eliminate wiring boilerplate.
 
-    [Sub-property access](/api/properties.md#sub-property-access) enables transparent read and write for complex properties.
+    [Sub-property access](/guide/properties.md#sub-property-access) enables transparent read and write for complex properties.
 
 4. **Works in any project**
 
     [Mapping configuration](/setup/mapping.md) enables property mapping in any project.
     
-    [Direct-property access](/api/properties.md#direct-property-access) handles unmappable properties.
+    [Direct-property access](/guide/properties.md#direct-property-access) handles unmappable properties.
 
 5. **Simplicity**
 

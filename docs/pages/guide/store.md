@@ -101,7 +101,7 @@ mutations = {
 }
 ```
 
-Note transparent support for [sub-property writes](/api/properties#sub-property-access) thanks to the Payload class.
+Note transparent support for [sub-property writes](/guide/properties#sub-property-access) thanks to the Payload class.
 
 
 #### `make.actions(state: Object | Array | String | Function): Object`

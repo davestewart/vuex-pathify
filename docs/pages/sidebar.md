@@ -10,21 +10,22 @@
         - [Options](/setup/options.md)
         - [Mapping](/setup/mapping.md)
 
-- API
+- Guide
 
-    - [Path syntax](/api/paths.md)
-    - [Store helpers](/api/store.md)
-    - [Store accessors](/api/accessors.md)
-    - [Component helpers](/api/component.md)
-    - [Component property decorators](/api/property-decorator.md)
-    - [Advanced property access](/api/properties.md)
+    - [Path syntax](/guide/paths.md)
+    - [Store helpers](/guide/store.md)
+    - [Store accessors](/guide/accessors.md)
+    - [Component helpers](/guide/component.md)
+    - [Class component decorators](/guide/decorators.md)
+    - [Advanced property access](/guide/properties.md)
+
+- Reference
+
+  - [API](/reference/api.md)
+  - [Example code](/reference/code.md)
 
 - Discussion
 
     - [Rationale](/discussion/rationale.md)
     - [FAQs](/discussion/faq.md)
-    
-- Appendix
-
-    - [Example code](/appendix/code.md)
     

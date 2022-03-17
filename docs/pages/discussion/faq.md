@@ -16,7 +16,7 @@ In the vast majority of cases, you'll just need to set and get data, or sync com
 
 Because Pathify's configuration is tuned to map state names to Vuex members in a `get/set` manner, calling non `get/set` named `actions` or `mutations` such as `updateItems` or `loadItems` via Pathify may not feel intuitive.
 
-You can use [direct syntax](/api/paths#direct-syntax) to target non-`get/set` members, for example `set('products/updateItem!', value)` or, if you feel more comfortable in these situations commit or dispatch [directly](#do-i-still-need-commit-and-dispatch).
+You can use [direct syntax](/guide/paths#direct-syntax) to target non-`get/set` members, for example `set('products/updateItem!', value)` or, if you feel more comfortable in these situations commit or dispatch [directly](#do-i-still-need-commit-and-dispatch).
 
 #### Make sure you understand Vuex properly before using Pathify
 
@@ -40,7 +40,7 @@ The consistency that **in theory** was provided by always going through actions 
 
 Creating additional getters and actions will only clog up your store and provide more code for Vue to run when getting or setting values. Creating ONLY the getters and actions you need keeps your store lean and codebase tight!
 
-The [store helpers](/api/store) include `make.getters()` and `make.actions()` mainly for developers who [prefer this approach](https://forum.vuejs.org/t/actions-for-actions-sake/16413).
+The [store helpers](/guide/store) include `make.getters()` and `make.actions()` mainly for developers who [prefer this approach](https://forum.vuejs.org/t/actions-for-actions-sake/16413).
 
 
 #### Which naming scheme should I use; default or simple?
@@ -59,7 +59,7 @@ Finally, in the Vuex Devtools mutations panel it's arguably easier on the eyes t
 
 #### Do I still need commit and dispatch?
 
-With `sync()`, `set()` and [direct syntax](/api/paths#direct-syntax) being the preferred way to get and set values on the store, you won't need `commit()` as much, but `dispatch()` is still useful in the fact it's explicit.
+With `sync()`, `set()` and [direct syntax](/guide/paths#direct-syntax) being the preferred way to get and set values on the store, you won't need `commit()` as much, but `dispatch()` is still useful in the fact it's explicit.
 
 As such, Pathify includes aliases to `commit()` and `dispatch()` within its helpers; it's up to you which method you feel most comfortable with.
 
@@ -82,7 +82,7 @@ Note that although Pathify removes the burden of setup and wiring, there will st
 Some rules of thumb::
 
 - use Pathify `get()`, `set()` and `sync()` for global access and component/store sync
-- use Pathify [direct syntax](/api/paths#direct-syntax) for non `set*`/`SET_*` mutations or actions
+- use Pathify [direct syntax](/guide/paths#direct-syntax) for non `set*`/`SET_*` mutations or actions
 - use Vuex `dispatch()` or `commit()` if you really want to be explicit, or **within** the store
 - call `state` directly if a same-named getter is taking priority
 
