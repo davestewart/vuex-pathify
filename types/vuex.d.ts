@@ -1,5 +1,5 @@
 /**
- * Extends interfcae of vuex
+ * Extends interface of vuex
  */
 
 import vuex from "vuex";

@@ -54,7 +54,8 @@ export default new Vuex.Store({
 
 To get going immediately after installing, check out:
 
-- [API reference](/api/paths.md)
+- [Guide](/guide/paths.md)
+- [API](/guide/paths.md)
 - [Demos](/intro/demos.md)   
 
 

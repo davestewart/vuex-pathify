@@ -1,4 +1,4 @@
-# Component property decorators
+# Class component decorators
 
 > **Optional** component property decorators for **single property access** to be used with class based components
 
@@ -22,8 +22,8 @@ The following gives an example of some of the main features:
 import { Get, Sync, Call } from 'vuex-pathify'
 
 // component
-@Components
-export default class Item extends Vue {
+@Component
+export default class Basket extends Vue {
   @Get('products/items') items
   @Sync('products/tax') tax
   @Call('products/setDiscount') setDiscount
@@ -36,8 +36,8 @@ export default class Item extends Vue {
 import { Get, Sync, Call } from 'vuex-pathify'
 
 // component
-@Components
-export default class Item extends Vue {
+@Component
+export default class Basket extends Vue {
   @Get('products/items') items!: Item[]
   @Sync('products/tax') tax!: number
   @Call('products/setDiscount') setDiscount!: (rate: number) => any

@@ -2,16 +2,16 @@ function getLink (link) {
   if (link instanceof Element) {
     link = link.getAttribute('href')
   }
-  var hash = (link.match(/#.+/) || '').toString().replace('#', '').replace(/\?.*/, '')
+  const hash = (link.match(/#.+/) || '').toString().replace('#', '').replace(/\?.*/, '')
   return hash || '/'
 }
 
 function getLinks () {
 
-  var sidebar = document.querySelector('.sidebar')
-  var links = [].slice.call(sidebar.querySelectorAll('a'))
-  var current = links.find(link => getLink(link) === getLink(location.href))
-  var index = links.indexOf(current)
+  const sidebar = document.querySelector('.sidebar')
+  const links = [].slice.call(sidebar.querySelectorAll('a'))
+  const current = links.find(link => getLink(link) === getLink(location.href))
+  const index = links.indexOf(current)
 
   return {
     length: links.length,
@@ -25,8 +25,8 @@ function getLinks () {
 function pageNav (hook) {
 
   function navigate (name) {
-    var links = getLinks()
-    var link = links[name]
+    const links = getLinks()
+    const link = links[name]
     if (link) {
       window.location.hash = getLink(link)
     }
@@ -50,12 +50,12 @@ function pageNav (hook) {
 function pageLinks (hook) {
 
   function makeLinks () {
-    var links = getLinks()
+    const links = getLinks()
     if (!links.current) {
       return ''
     }
 
-    var html = ''
+    let html = ''
     if (links.prev) {
       html += '<span class="guide-link-prev">' +links.prev.outerHTML+ '</span>'
     }
@@ -77,7 +77,12 @@ function pageLinks (hook) {
 }
 
 /**
- * Fix anchors for all headings with code in them
+ * Fix anchors for all headings with code / methods
+ *
+ * @example:
+ *
+ *  - from: sync(path: string)
+ *  - to: sync
  *
  * @param hook
  */
@@ -89,29 +94,32 @@ function fixAnchors (hook) {
     html = html.replace(/<(h\d).+?<\/\1>/g, function (html) {
 
       // create temp node
-      var div = document.createElement('div')
+      const div = document.createElement('div')
       div.innerHTML = html
 
       // get anchor
-      var link = div.querySelector('a[href*="?id"]')
-
+      const link = div.querySelector('a[href*="?id"]')
       if (!link) {
         return html
       }
 
-      // work out id
-      var text = link.innerText
-      var id = text
-        .split('(')
-        .shift()
-        .toLowerCase()
-        .replace(/\W+/g, '-')
-        .replace(/^-+|-+$/g, '')
-      var href = link.getAttribute('href')
-        .replace(/\?id=.+/, '?id=' + id)
+      // get id
+      const matches = link.getAttribute('href').match(/id=(.+)/)
+      let id = matches[1]
+
+      // clean up ids unless element has `anchor` class (meaning it was manually-entered HTML)
+      if (!link.classList.contains('anchor')) {
+        id = link.innerText
+          .split('(')
+          .shift()
+          .toLowerCase()
+          .replace(/\W+/g, '-')
+          .replace(/^-+|-+$/g, '')
+        const href = link.getAttribute('href').replace(/\?id=.+/, '?id=' + id)
+        link.setAttribute('href', href)
+      }
 
       // update dom
-      link.setAttribute('href', href)
       link.setAttribute('data-id', id)
       link.parentElement.setAttribute('id', id)
 

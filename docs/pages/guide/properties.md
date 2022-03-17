@@ -2,7 +2,7 @@
 
 > Detailed information on store property access
 
-## Overview
+## Overview
 
 Pathify's unified path syntax and mapping simplifies property access to Vuex, at the expense of some minor flexibility.
 
@@ -97,7 +97,7 @@ set('INCREMENT_VALUE!')
 set('update!', data)
 ```
 
-Note that even though direct access syntax skips the mapping function, it still respects [accessor priority](/api/properties.md#accessor-priority).
+Note that even though direct access syntax skips the mapping function, it still respects [accessor priority](/guide/properties.md#accessor-priority).
 
 
 #### `Vuex aliases`
@@ -132,7 +132,7 @@ this.$store.dispatch('update', data)
 
 ### Sub-property access
 
-Sub-property **reads** are handled transparently by Pathify's store accessors, whilst sub-property **writes** are handled by the store helper's [make.mutations()](/api/store.md#make-mutations) method. If your mutations are created using the helper, then sub-property writes will be handled automatically.
+Sub-property **reads** are handled transparently by Pathify's store accessors, whilst sub-property **writes** are handled by the store helper's [make.mutations()](/guide/store.md#make-mutations) method. If your mutations are created using the helper, then sub-property writes will be handled automatically.
 
 If you've written your own mutations and you're using store accessors or component helpers then you'll need to manually handle the Payload class.
 

@@ -78,20 +78,20 @@ get('items@0')
 get('items@[0].name')
 ```
 
-To transparently **write** sub-properties, use the [make.mutations()](/api/store.md#make-mutations) helper or the [Payload](/api/properties.md#payload-class) class.
+To transparently **write** sub-properties, use the [make.mutations()](/guide/store.md#make-mutations) helper or the [Payload](/guide/properties.md#payload-class) class.
 
 ```js
 set('filters@search', 'blue')
 ```
 
-See the [sub-property access](/api/properties.md#sub-property-access) section for more information.
+See the [sub-property access](/guide/properties.md#sub-property-access) section for more information.
 
 
 ### Variable expansion
 
 Variable `:notation` allows you to use component properties to dynamically build references to store properties.
 
-They may only be used in [component helpers](/api/component.md) but can reference store properties or sub-properties:
+They may only be used in [component helpers](/guide/component.md) but can reference store properties or sub-properties:
 
 ```js
 // dynamically reference a property or sub-property  
@@ -128,7 +128,7 @@ methods: {
 ```
 
 
-See the [component helpers](/api/component.md#wildcard-property-access) page for more info.
+See the [component helpers](/guide/component.md#wildcard-property-access) page for more info.
 
 
 
@@ -144,7 +144,7 @@ Direct access syntax uses a bang `!` to skip mapping and access Vuex members dir
 set('update!', items)
 ```
 
-See the [properties](/api/properties.md#direct-property-access) page for more info.
+See the [properties](/guide/properties.md#direct-property-access) page for more info.
 
 #### `Direct sync`
 
@@ -156,4 +156,4 @@ computed: {
 }
 ```
 
-See the [component helpers](/api/component.md#sync) page for more info.
+See the [component helpers](/guide/component.md#sync) page for more info.

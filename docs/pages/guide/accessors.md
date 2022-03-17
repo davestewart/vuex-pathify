@@ -8,9 +8,9 @@ The plugin adds accessor methods directly to the Vuex store instance.
 
 The methods:
 
-- use Pathify's [path syntax](/api/paths.md) to reference modules, properties and sub-properties
-- implement [accessor priority](/api/properties.md#accessor-priority), simplifying the overall set/get interface
-- couple with [store helpers](/api/store.md) to provide full sub-property read/write
+- use Pathify's [path syntax](/guide/paths.md) to reference modules, properties and sub-properties
+- implement [accessor priority](/guide/properties.md#accessor-priority), simplifying the overall set/get interface
+- couple with [store helpers](/guide/store.md) to provide full sub-property read/write
 
 
 ## Usage
@@ -37,7 +37,7 @@ See the store accessors [demo](https://codesandbox.io/s/github/davestewart/vuex-
 
 ### Methods
 
-Remember that store accessors use Pathify's core [property access](/api/properties.md) so have exactly the same functionality.
+Remember that store accessors use Pathify's core [property access](/guide/properties.md) so have exactly the same functionality.
 
 #### `get(path: string): *`
 
