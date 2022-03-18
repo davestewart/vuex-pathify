@@ -25,6 +25,9 @@ Note that although the **generation** is more expensive than writing a manual fu
 
 ## Usage
 
+!> Note that the examples here use the Options API which is compatible with Vue 2 and Vue 3.
+<br>For the Composition API check the [Vue 3](/guide/composition-api) section of the Guide.
+
 The following gives an example of some of the main features:
 
 ```js

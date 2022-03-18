@@ -18,6 +18,7 @@
     - [Component helpers](/guide/component.md)
     - [Class component decorators](/guide/decorators.md)
     - [Advanced property access](/guide/properties.md)
+    - [Vue 3](/guide/composition-api.md)
 
 - Reference
 
