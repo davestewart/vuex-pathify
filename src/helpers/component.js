@@ -9,6 +9,10 @@ import { getStore } from './vuex'
 // -------------------------------------------------------------------------------------------------------------------
 
 export function get (path, props, useComputed = true) {
+  if (arguments.length === 2 && props === false) {
+    props = null
+    useComputed = false
+  }
   const store = getStore()
   return make(path, props, getOne, function (path) {
     return expandGet(path, store.state, store.getters)
@@ -16,6 +20,10 @@ export function get (path, props, useComputed = true) {
 }
 
 export function sync (path, props, useComputed = true) {
+  if (arguments.length === 2 && props === false) {
+    props = null
+    useComputed = false
+  }
   const store = getStore()
   return make(path, props, syncOne, function (path) {
     return expandSync(path, store.state)
