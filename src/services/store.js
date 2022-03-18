@@ -20,9 +20,7 @@ export function makeSetter (store, path) {
   const action = resolver.get('actions')
   if (action.exists) {
     return function (value) {
-      const payload = action.objPath
-        ? new Payload(path, action.objPath, value)
-        : value
+      const payload = new Payload(path, action.objPath, value)
       return store.dispatch(action.trgPath, payload)
     }
   }
@@ -35,9 +33,7 @@ export function makeSetter (store, path) {
         const interpolated = interpolate(path, this)
         mutation = resolve(store, interpolated).get('mutations')
       }
-      const payload = mutation.objPath
-        ? new Payload(path, mutation.objPath, value)
-        : value
+      const payload = new Payload(path, mutation.objPath, value)
       return store.commit(mutation.trgPath, payload)
     }
   }

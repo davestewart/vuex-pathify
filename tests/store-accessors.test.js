@@ -92,6 +92,23 @@ describe('module state', function () {
 
     expect(store.state.people.name).toEqual('Jill')
   })
+
+  it('should set state with Payload class', () => {
+    const state = { name: 'Jack', age: 28 }
+    const mutations = make.mutations(state)
+    const store = makeStore({
+      modules: {
+        people: { namespaced: true, state, mutations }
+      }
+    })
+    store.subscribe((mutation) => {
+      expect(mutation.payload.constructor.name).toEqual("Payload")
+    })
+
+    store.set('people/name', 'Jill')
+
+    expect(store.state.people.name).toEqual('Jill')
+  })
 })
 
 describe('special functionality', function () {
