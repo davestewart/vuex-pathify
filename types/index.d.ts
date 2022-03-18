@@ -170,14 +170,3 @@ export function registerModule(
   callback: (...args: any[]) => any, // TODO: Needs refinement.
   options: object
 ): object; // TODO: Needs more details from module author.
-
-/*--------------------------------------------------------------------------
-                           global store methods
- ------------------------------------------------------------------------*/
-declare module '@vue/runtime-core' {
-  interface Store {
-    get(path: string, args?: any[]): any;
-    set(path: string, value: any): any;
-    copy(path: string): any
-  }
-}
