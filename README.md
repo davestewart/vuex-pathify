@@ -16,6 +16,8 @@ Pathify's aim is to simplify the overall Vuex development experience by abstract
 
 ## Examples
 
+> Pathify Version 3.x works with Vue 3. For Vue 2, see the 1.x branch
+
 **Get** or **set** data without **syntax juggling** or worrying about **implementation**:
 
 ```js
@@ -33,35 +35,41 @@ store.set('products@items.1.name', 'Vuex Pathify')
 Set up **one or two-way** data binding on **any** store value without **bloat** or **fuss**:
 
 ```js
-computed: {
-  products: get('products'),
-  category: sync('filters@category')
+setup () {
+  return {
+    products: get('products'),
+    category: sync('filters@category')
+  }
 }
 ```
 
 Wire **multiple** properties (or sub-properties) using **array**, **object** and **wildcard** formats:
 
 ```js
-computed: {
-  ...sync('filters@sort', [
-    'order', 
-    'key'
-  ]),
-
-  ...sync('filters@sort', {
-    sortOrder: 'order',
-    sortKey: 'key'
-  }),
-
-  ...sync('filters@sort.*')
+setup () {
+  return {
+    ...sync('filters@sort', [
+      'order', 
+      'key'
+    ]),
+  
+    ...sync('filters@sort', {
+      sortOrder: 'order',
+      sortKey: 'key'
+    }),
+  
+    ...sync('filters@sort.*')
+  }
 }
 ```
 
 Use **variable expansion** to dynamically reference store properties:
 
 ```js
-computed: {
-  product: get('products@items:index')
+setup () {
+  return {
+    product: get('products@items:index')
+  }
 }
 ```
 
@@ -92,8 +100,13 @@ Get started:
 - [Installation](https://www.npmjs.com/package/vuex-pathify)
 - [Documentation](https://davestewart.github.io/vuex-pathify)
 
-Demos:
+Vue 3 demo:
+
+- [Vue 3](https://github.com/davestewart/vuex-pathify-demos/tree/master/vue-3)
+
+
+Vue 2 demos:
 
 - [Simple demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/simple)
 - [Main demo](https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main)
-- [Nuxt demo](https://github.com/davestewart/vuex-pathify-demos/tree/master/nuxt)
+- [Nuxt demo](https://github.com/davestewart/vuex-pathify-demos/tree/master/nuxt) 
