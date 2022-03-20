@@ -36,7 +36,7 @@ export default {
 }
 ```
 
-In Vue 3, Pathify's component helpers abstract away the complication using exactly the same syntax:
+In Vue 3, Pathify's component helpers abstract away the complication using the same syntax as the previous version:
 
 ```js
 import { get } from 'vuex-pathify'
@@ -82,8 +82,8 @@ Pathify under Vue 3 works with both the Composition API and Options API, but def
 The format of the Component helpers is essentially the same as Vue 2 (with an optional flag for the Options API):
 
 ```js
-get(path: string, properties?: string[] | Object, useComputed?: bool = false)
-sync(path: string, properties?: string[] | Object, useComputed?: bool = false)
+get(path: string, properties?: string[] | Object, useComputed?: bool = true)
+sync(path: string, properties?: string[] | Object, useComputed?: bool = true)
 call(path: string, properties?: string[] | Object)
 ```
 
