@@ -178,7 +178,7 @@ computed: sync(path, map),
 methods: call(path, map) 
 ```
 
-#### `Array syntax`
+#### Array syntax
 
 Array syntax maps property names **identically** to the store.
 
@@ -205,7 +205,7 @@ load   : products/load()
 update : products/update()
 ```
 
-#### `Object syntax`
+#### Object syntax
 
 Object syntax maps property names **differently** to the store.
 
@@ -233,7 +233,7 @@ updateItems : products/update()
 ```
 
 
-#### `Wildcard syntax`
+#### Wildcard syntax
 
 Wildcard syntax maps **groups** of property names **identically** to the store.
 
@@ -298,7 +298,7 @@ There are two main situations where this may not be the case:
 
 Read below to find out more and how to mitigate these issues.
 
-#### `Correct router setup`
+#### Correct router setup
 
 It's easy to forget that components are imported when the routes are set up:
 
@@ -327,7 +327,7 @@ import router from './router'
 If you're using Nuxt and are still getting errors, make sure you haven't loaded any components that use Pathify and wildcards in any files in `/plugins` as these will load before Nuxt has a chance to load Vuex.
 
 
-#### `Dynamic module registration`
+#### Dynamic module registration
 
 Vuex has the ability to register modules [dynamically](https://vuex.vuejs.org/en/modules.html#dynamic-module-registration) rather than import them all when your project loads. Use cases for this might include: 
 

@@ -84,7 +84,7 @@ set('items', data)  // actions.setItems
 
 This is great for everyday **get/set** usage, but can't account for more nuanced access like `mutations.INCREMENT_VALUE` or `actions.update()`. To work round this, you can reference store members directly.
 
-#### `Direct access syntax`
+#### Direct access syntax
 
 To **skip** mapping and reference a member directly, append a bang `!` to the property name:
 
@@ -100,7 +100,7 @@ set('update!', data)
 Note that even though direct access syntax skips the mapping function, it still respects [accessor priority](/guide/properties.md#accessor-priority).
 
 
-#### `Vuex aliases`
+#### Vuex aliases
 
 To skip Pathify entirely when setting data, you can use **Vuex aliases**.
 
@@ -117,7 +117,7 @@ commit('INCREMENT_VALUE')
 dispatch('update', data)
 ```
 
-#### `Access Vuex directly`
+#### Access Vuex directly
 
 Finally, you can simply access your store **directly**:
 
@@ -136,7 +136,7 @@ Sub-property **reads** are handled transparently by Pathify's store accessors, w
 
 If you've written your own mutations and you're using store accessors or component helpers then you'll need to manually handle the Payload class.
 
-#### `Payload class`
+#### `Payload` class
 
 The `Payload` class is passed to mutations from Pathify's accessor helpers when a path expression includes sub-property access. The class communicates the sub-property `path` and `value`, as well as encapsulating `update()` functionality, and checking for permission to write or even create sub-properties.
 

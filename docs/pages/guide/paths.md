@@ -39,7 +39,7 @@ See the path syntax [demo](https://codesandbox.io/s/github/davestewart/vuex-path
 
 ### Core syntax
 
-#### `Property access`
+#### Property access
 
 Properties are accessed by simply referencing the state name:
 
@@ -48,7 +48,7 @@ Properties are accessed by simply referencing the state name:
 get('items')
 ```
 
-#### `Module access`
+#### Module access
 
 Modules are accessed by providing the full path to to the module:
 
@@ -60,7 +60,7 @@ get('products/items')
 ```
 
 
-#### `Sub-property access`
+#### Sub-property access
 
 Sub-property access requires the `@` character, and allows you to read sub-properties to any depth:
 
@@ -136,7 +136,7 @@ See the [component helpers](/guide/component.md#wildcard-property-access) page f
 
 Pathify has two syntax types which are used to handle customisation around non get/set naming. 
 
-#### `Direct access`
+#### Direct access
 
 Direct access syntax uses a bang `!` to skip mapping and access Vuex members directly:
 
@@ -146,7 +146,7 @@ set('update!', items)
 
 See the [properties](/guide/properties.md#direct-property-access) page for more info.
 
-#### `Direct sync`
+#### Direct sync
 
 Direct sync syntax uses a pipe `|` to specify alternate get and set members in component helpers:
 
