@@ -325,7 +325,7 @@ export default {
 
 ### `registerModule()`
 
-Dynamically registers a new Vuex module during component creation:
+#### Vue 2
 
 ```js
 registerModule(path: string, module: Object, members: Function, options: Object)
@@ -356,3 +356,9 @@ export default {
 ```
 
 For full usage, see [Dynamic module registration](/guide/component?id=registermodule).
+
+#### Vue 3
+
+In Vue 3, it's fairly simple to set up computed functions, register and unregister a store using the `setup()` and `onUnmounted` functions:
+
+See the Vue 3 demo for [to see how](https://github.com/davestewart/vuex-pathify-demos/blob/master/vue-3/src/components/DynamicExample.vue).
